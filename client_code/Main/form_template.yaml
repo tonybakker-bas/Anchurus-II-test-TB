@@ -19,38 +19,47 @@ components:
   properties: {col_widths: '{}'}
   type: ColumnPanel
 - components:
-  - event_bindings: {change: action_list_change}
-    layout_properties: {width: 255}
-    name: action_list
-    properties:
-      background: theme:On Primary
-      bold: false
-      border: solid black 1px
-      include_placeholder: true
-      margin: ['8', null, null, null]
-      placeholder: Select your action
-    type: DropDown
-  - layout_properties: {}
-    name: username
-    properties:
-      align: center
-      border: ''
-      font_size: 11
-      spacing:
-        margin: ['0', null, null, null]
-        padding: ['0', null, '0', null]
-    type: Label
-  - event_bindings: {click: logout_button_click}
-    layout_properties: {}
-    name: logout_button
-    properties:
-      border: solid black 1px
-      icon: fa:sign-out
-      spacing:
+  - components:
+    - layout_properties: {grid_position: 'DKEWKI,AZTXRR'}
+      name: outlined_button_1
+      properties: {role: outlined-button, text: outlined_button_1}
+      type: Button
+    - layout_properties: {grid_position: 'DKEWKI,HOEMVI'}
+      name: username
+      properties:
+        align: center
+        border: ''
+        font_size: 11
+        spacing:
+          margin: ['0', null, null, null]
+          padding: ['0', null, '0', null]
+      type: Label
+    - event_bindings: {change: action_list_change}
+      layout_properties: {grid_position: 'HNQQJJ,EJBMHJ'}
+      name: action_list
+      properties:
+        background: theme:On Primary
+        bold: false
+        border: solid black 1px
+        include_placeholder: true
         margin: ['8', null, null, null]
-        padding: ['0', null, '0', null]
-      text: Logout
-    type: Button
+        placeholder: Select your action
+      type: DropDown
+    - event_bindings: {click: logout_button_click}
+      layout_properties: {grid_position: 'HNQQJJ,OTJMVD'}
+      name: logout_button
+      properties:
+        border: solid black 1px
+        icon: fa:sign-out
+        spacing:
+          margin: ['8', null, null, null]
+          padding: ['0', null, '0', null]
+        text: Logout
+      type: Button
+    layout_properties: {width: 597}
+    name: outlined_card_1
+    properties: {role: outlined-card}
+    type: ColumnPanel
   layout_properties: {slot: nav-right}
   name: navbar_links
   properties: {}
@@ -65,7 +74,7 @@ components:
   properties: {bold: true}
   type: Label
 container:
-  properties: {html: '@theme:standard-page.html'}
+  properties: {html: '@theme:standard-page.html', visible: true}
   type: HtmlTemplate
 is_package: true
 slots:
