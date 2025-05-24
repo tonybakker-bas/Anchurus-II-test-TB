@@ -1,0 +1,67 @@
+components:
+- layout_properties: {full_width_row: true, grid_position: 'GIBXPR,GWEFOR'}
+  name: label_1
+  properties: {font_size: 24, italic: false, text: This form is used for updating a user role and/or status, underline: true}
+  type: Label
+- layout_properties: {full_width_row: true, grid_position: 'GYNTNY,GSMAKS'}
+  name: label_2
+  properties: {text: 'User email:'}
+  type: Label
+- layout_properties: {grid_position: 'GYNTNY,KKJWDM'}
+  name: user_email_value
+  properties: {role: outlined}
+  type: TextBox
+- layout_properties: {full_width_row: true, grid_position: 'YYJGEK,ENURED XFACTH,ROLZOG'}
+  name: label_3
+  properties: {text: 'Role:'}
+  type: Label
+- layout_properties: {grid_position: 'YYJGEK,ENURED IGXYSO,TWADLN'}
+  name: label_4
+  properties: {text: 'Status:'}
+  type: Label
+- event_bindings: {change: user_role_value_change}
+  layout_properties: {grid_position: 'YYJGEK,RTSDRX XDNBUA,CVHIXV'}
+  name: user_role_value
+  properties: {background: 'theme:On Primary'}
+  type: DropDown
+- event_bindings: {change: user_status_value_change}
+  layout_properties: {grid_position: 'YYJGEK,RTSDRX KUUCRB,KYSCBT'}
+  name: user_status_value
+  properties: {background: 'theme:On Primary'}
+  type: DropDown
+- layout_properties: {grid_position: 'YYJGEK,MHUSVM'}
+  name: label_5
+  properties: {}
+  type: Label
+- layout_properties: {full_width_row: true, grid_position: 'JNDWOY,TSNJOD'}
+  name: Initials_header
+  properties: {text: 'Initials:'}
+  type: Label
+- event_bindings: {change: Initials_change}
+  layout_properties: {grid_position: 'JNDWOY,WFLWRR'}
+  name: Initials
+  properties:
+    margin: ['0', null, null, null]
+    role: outlined
+  type: TextBox
+- layout_properties: {grid_position: 'JNDWOY,TFPNYR'}
+  name: label_7
+  properties: {}
+  type: Label
+- event_bindings: {click: submit_changes_click}
+  layout_properties: {full_width_row: true, grid_position: 'HTPBMG,TSHCOP'}
+  name: submit_changes
+  properties: {role: outlined-button, text: Submit}
+  type: Button
+- layout_properties: {grid_position: 'HTPBMG,LLQFSP'}
+  name: label_6
+  properties: {}
+  type: Label
+container:
+  properties:
+    col_widths: '{"GSMAKS":5,"KKJWDM":55,"ENURED":5,"RTSDRX":10,"MHUSVM":45,"TSHCOP":20,"LLQFSP":40,"TFPNYR":45,"TSNJOD":5,"WFLWRR":10}'
+    spacing:
+      margin: ['4', null, '4', null]
+      padding: ['0', null, null, null]
+  type: ColumnPanel
+is_package: true

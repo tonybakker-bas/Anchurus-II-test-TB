@@ -1,0 +1,30 @@
+components:
+- components:
+  - layout_properties: {full_width_row: true, grid_position: 'LNVHEX,MZKYDJ'}
+    name: total_context_number
+    properties: {align: right, border: none, role: outlined}
+    type: TextBox
+  layout_properties: {full_width_row: true, grid_position: 'WWKKDB,DOHYNN'}
+  name: sub_header
+  properties: {}
+  type: ColumnPanel
+- components:
+  - name: ContextList
+    properties: {item_template: ListContexts.RowTemplate1}
+    type: RepeatingPanel
+  layout_properties: {full_width_row: true, grid_position: 'GCHTGW,EYDKRA'}
+  name: Context_list_1
+  properties:
+    columns:
+    - {data_key: column_1, expand: false, id: CUJRTJ, title: '', width: '50'}
+    - {data_key: column_2, expand: false, id: IWGMNO, title: '', width: 50}
+    - {data_key: ContextId, expand: false, id: JKSDUP, title: Context ID, width: 99}
+    - {data_key: AreaId, expand: false, id: TYVPVR, title: Area ID, width: 70}
+    - {data_key: Name, expand: false, id: VJQQOR, title: Name, width: 299}
+    - {data_key: ContextType, expand: false, id: OJLQEN, title: ' Context Type', width: 138}
+    - {data_key: Description, expand: false, id: BDDLLV, title: Description, width: 648}
+  type: DataGrid
+container:
+  properties: {background: '', border: '', col_spacing: medium}
+  type: ColumnPanel
+is_package: true

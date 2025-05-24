@@ -1,0 +1,8 @@
+components:
+- event_bindings: {click: edit_user_button_click}
+  layout_properties: {column: FBKXLS}
+  name: edit_user_button
+  properties: {icon: 'fa:edit', text: ''}
+  type: Button
+container: {type: DataRowPanel}
+is_package: true
