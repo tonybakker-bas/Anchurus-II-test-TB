@@ -1,5 +1,51 @@
 components:
 - components:
+  - components:
+    - components:
+      - layout_properties: {grid_position: 'DKEWKI,AZTXRR'}
+        name: button_1
+        properties: {text: button_1}
+        type: Button
+      - event_bindings: {change: action_list_change}
+        layout_properties: {grid_position: 'DKEWKI,PPMLHB'}
+        name: action_list
+        properties:
+          background: theme:On Primary
+          bold: false
+          border: solid black 1px
+          include_placeholder: true
+          margin: ['8', null, null, null]
+          placeholder: Select your action
+        type: DropDown
+      - layout_properties: {grid_position: 'DKEWKI,HOEMVI DLJFTA,SKRVVX'}
+        name: username
+        properties:
+          align: center
+          border: ''
+          font_size: 11
+          spacing:
+            margin: ['0', null, null, null]
+            padding: ['0', null, '0', null]
+        type: Label
+      - event_bindings: {click: logout_button_click}
+        layout_properties: {grid_position: 'DKEWKI,HOEMVI DLJFTA,EILNPJ'}
+        name: logout_button
+        properties:
+          border: solid black 1px
+          icon: fa:sign-out
+          spacing:
+            margin: ['8', null, null, null]
+            padding: ['0', null, '0', null]
+          text: Logout
+        type: Button
+      layout_properties: {width: 611}
+      name: outlined_card_1
+      properties: {col_widths: '{"AZTXRR":10,"PPMLHB":20,"HOEMVI":30}', role: outlined-card}
+      type: ColumnPanel
+    layout_properties: {grid_position: 'JPIUZP,IOXXDP'}
+    name: navbar_links
+    properties: {}
+    type: FlowPanel
   - layout_properties: {grid_position: 'RUMYFD,ECNYPE'}
     name: about_us_box
     properties: {}
@@ -18,52 +64,6 @@ components:
   name: content_panel
   properties: {col_widths: '{}'}
   type: ColumnPanel
-- components:
-  - components:
-    - layout_properties: {grid_position: 'DKEWKI,AZTXRR'}
-      name: button_1
-      properties: {text: button_1}
-      type: Button
-    - event_bindings: {change: action_list_change}
-      layout_properties: {grid_position: 'DKEWKI,PPMLHB'}
-      name: action_list
-      properties:
-        background: theme:On Primary
-        bold: false
-        border: solid black 1px
-        include_placeholder: true
-        margin: ['8', null, null, null]
-        placeholder: Select your action
-      type: DropDown
-    - layout_properties: {grid_position: 'DKEWKI,HOEMVI DLJFTA,SKRVVX'}
-      name: username
-      properties:
-        align: center
-        border: ''
-        font_size: 11
-        spacing:
-          margin: ['0', null, null, null]
-          padding: ['0', null, '0', null]
-      type: Label
-    - event_bindings: {click: logout_button_click}
-      layout_properties: {grid_position: 'DKEWKI,HOEMVI DLJFTA,EILNPJ'}
-      name: logout_button
-      properties:
-        border: solid black 1px
-        icon: fa:sign-out
-        spacing:
-          margin: ['8', null, null, null]
-          padding: ['0', null, '0', null]
-        text: Logout
-      type: Button
-    layout_properties: {width: 611}
-    name: outlined_card_1
-    properties: {col_widths: '{"AZTXRR":10,"PPMLHB":20,"HOEMVI":30}', role: outlined-card}
-    type: ColumnPanel
-  layout_properties: {slot: nav-right}
-  name: navbar_links
-  properties: {}
-  type: FlowPanel
 - components: []
   layout_properties: {slot: left-nav}
   name: work_area_list
