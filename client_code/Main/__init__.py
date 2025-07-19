@@ -10,6 +10,7 @@ import anvil.users
 
 #from ..WorkArea import WorkArea
 from ..Header import Header
+from ..GlobalHeader import GlobalHeader
 #from ..Welcome import Welcome
 from .. import Global
 from .. import Function
@@ -26,6 +27,9 @@ class Main(MainTemplate):
     Global.admin_user = globals_from_config["admin_user"]
     Global.admin_user_initials = globals_from_config["admin_user_initials"]
     #
+    Global.GlobalHeader = GlobalHeader()
+    self.add_component(Global.GlobalHeader, slot='GlobalHeaderheaderSlot')
+    Global.GlobalHeader.visible = False
     Global.header = Header()
     self.add_component(Global.header, slot='header_slot')
     Global.header.visible = False
@@ -186,6 +190,7 @@ class Main(MainTemplate):
     if user is not None:
       # when user is logged in, enable Action menu, username field and logout button, and disable content panel (welcome message)
       # also set username  to user email address
+      Global.GlobalHeader.visible = True
       Global.username = user["email"]
       Global.user_role = user["role"]
       #Global.DBAcontrol = anvil.server.call("check_DBAcontrol",Global.username,"i")
