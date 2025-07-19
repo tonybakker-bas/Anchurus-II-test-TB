@@ -220,6 +220,7 @@ class Main(MainTemplate):
     self.action_list.visible = False
     self.logout_button.visible = False
     self.username.visible = False
+    Global.GlobalHeader.visible = False
     #delete all work_areas and all work_area names/buttons
     temp_work_area_name_list = list(Global.work_area.keys())
     for work_area_name in temp_work_area_name_list:

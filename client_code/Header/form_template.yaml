@@ -47,7 +47,7 @@ components:
   name: column_panel_1
   properties:
     background: theme:Secondary Container
-    col_spacing: tiny
+    col_spacing: small
     col_widths: '{"GOUBXT":15,"KEWNXD":25,"RILMKY":85,"TWZKTB":10,"ZXMOYD":35,"VSABQN":10}'
     spacing:
       margin: ['0', null, '0', null]
