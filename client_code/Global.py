@@ -109,7 +109,7 @@ This system allows for the digital recording of archaeological excavations.
 The software has been developed by Archaeology IT Solutions, an independent 'not-for-profit' or 'nonprofit' organisation developing software solutions for the archaeological community.
 It is developed using the <a href="https://anvil.works/">Anvil Framework</a> and is using the open source Anvil App Server to run on your own dedicated server. It uses an external MySQL database to store the excavation details.  
 This software is released under Creative Commons license: 
-< href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Attributions-NonCommercial-ShareAlike 4.0 International (CC BY-NC-AS 4.0) license</a>.
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Attributions-NonCommercial-ShareAlike 4.0 International (CC BY-NC-AS 4.0) license</a>.
 This is version """ + version + """.</p>
 
 <p>For more information please contact ...</p>
