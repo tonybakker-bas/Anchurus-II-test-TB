@@ -4,8 +4,8 @@ db_schema:
   systems:
     client: none
     columns:
-    - admin_ui: {width: 200}
-      name: SystemName
+    - admin_ui: {order: 0, width: 200}
+      name: systemname
       type: string
     - admin_ui: {order: 1, width: 200}
       name: databasename
