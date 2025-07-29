@@ -151,16 +151,20 @@ class ContextForm(ContextFormTemplate):
       Global.context_items["Year"] = self.Year.text
       #Global.context_items["AreaId"] = self.AreaId.selected_value
       Global.context_items["AreaId"] = self.AreaId.text
+      Global.context_items["RecordStatus"] = self.RecordStatus.text
+      Global.context_items["FillOf"] = self.FillOfFindId.text
       Global.context_items["ContextType"] = self.ContextType.selected_value
       Global.context_items["Description"] = self.Description.text
       Global.context_items["Interpretation"] = self.Interpretation.text
       Global.context_items["DatesAssignedBy"] = self.DatesAssignedBy.text
       Global.context_items["YearStart"] = self.YearStart.text
       Global.context_items["YearEnd"] = self.YearEnd.text
-      Global.context_items["FillOf"] = self.FillOfFindId.text
       #
       if (self.ContextType.selected_value) is not None:
         # call server for database update
+        for x in Global.context_items:
+          if Global.context_items[x] == "":
+            Global.context_items[x] = None
         msg = "This message text should not be seen. Global.action = " + Global.action
         #print(Global.action)
         if Global.work_area[Global.current_work_area_name]["action"] == "Add Context":
