@@ -23,20 +23,20 @@ class Header(HeaderTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    Global.header_work_area_name = self.text_box_1
-    Global.header_work_area_type = self.text_box_2
+    Global.header_work_area_name = self.work_area_name
+    Global.header_work_area_type = self.work_area_type
     Global.header_refresh_button = self.refresh_button
     Global.header_refresh_button.visible = False
 
   def delete_work_area_click(self, **event_args):
     """This method is called when the button is clicked"""
-    Function.delete_workspace(self.text_box_1.text)
+    Function.delete_workspace(self.work_area_name.text)
     pass
 
-  def text_box_1_pressed_enter(self, **event_args):
+  def work_area_name_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""
-    # This is the work_area_name field and a new naem has been enterd.
-    new_work_area_name = self.text_box_1.text
+    # This is the work_area_name field and a new name has been enterd.
+    new_work_area_name = self.work_area_name.text
     # No we need to check if it is acceptable, i.e. unique; can do the check on one of the two lists (work_area_list or work_area_name_list)
     if new_work_area_name in Global.work_area:
       # name exists, so not unique, hence name change not accepted
@@ -83,6 +83,7 @@ class Header(HeaderTemplate):
 
   def print_button_click(self, **event_args):
     """This method is called when the button is clicked"""
+    print("calling print_form on server")
     pdf_form = anvil.server.call('print_form','ContextForm')
     download(pdf_form)
     pass
