@@ -84,8 +84,8 @@ class Header(HeaderTemplate):
   def print_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     print("calling print_form on server")
-    pdf_form = anvil.server.call('print_form','ListContexts')
-    get_open_form.print_pdf(pdf_form)
+    pdf_form = anvil.server.call('print_form','ListContexts',Global.site_id)
+    anvil.media.download(pdf_form)
     pass
 
 

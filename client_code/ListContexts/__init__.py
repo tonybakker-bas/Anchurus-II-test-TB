@@ -20,14 +20,16 @@ class ListContexts(ListContextsTemplate):
     self.total_context_number.text = "Total number of Contexts: " + str(len(self.ContextList.items))
   pass
   
-  def __init__(self, **properties):
+  def __init__(self, site_id, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.site_id = site_id
     # Any code you write here will run before the form opens.
-      
+    if Global.site_id is None:
+      Global.site_id = site_id
     # ask the server for a list of the contexts and set nr of item per page on DataGrid (i.e. table) Context_list_1
     Global.context_id = ""
-    print("from Init ListContexts:")
+    print("from Init ListContexts:",Global.site_id)
     # refresh the table content
     self.list_contexts_refresh()
 
