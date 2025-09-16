@@ -27,7 +27,7 @@ class ListContexts(ListContextsTemplate):
       
     # ask the server for a list of the contexts and set nr of item per page on DataGrid (i.e. table) Context_list_1
     Global.context_id = ""
-    print("from Init ListContexts:",Global.site_id)
+    print("from Init ListContexts:")
     # refresh the table content
     self.list_contexts_refresh()
 
