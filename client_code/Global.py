@@ -26,12 +26,14 @@ user_action_list = ["Select Site",separator,
 # action_list_not_implemented should always contain the separator
 action_list_not_implemented = [separator,"Bulk Upload Finds","Draw","List Areas","Add Area"]
 action_forms_with_refresh = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","BulkUpload","Add Area","List Areas"]
+action_forms_with_print = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","List Areas","View Context","View Find","View Area"]
 action_seq_no = {}
 current_work_area = {}
 current_work_area_name = ""
 header = {}
 header_work_area_name = {}
 header_refresh_button = {}
+header_print_button = {}
 header_work_area_type= {}
 #
 work_area = {}

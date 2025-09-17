@@ -74,7 +74,12 @@ class Main(MainTemplate):
       Global.header_refresh_button.visible = True
     else:
       Global.header_refresh_button.visible = False
-    pass
+  if Global.action_form_type in Global.action_forms_with_print:
+    # Make print button visible for Global.action_form_type
+    Global.header_print_button.visible = True
+  #else:
+    #Global.header_print_button.visible = False
+  pass
 
   def create_new_work_area(self,action):
     # First make sure the heade is visible
@@ -146,7 +151,11 @@ class Main(MainTemplate):
       Global.header_refresh_button.visible = True
     else:
       Global.header_refresh_button.visible = False
-    # reset action dropdown list
+    if Global.action_form_type in Global.action_forms_with_print:
+      # make print button visible if action_form_type has print function (i.e. in list Global.action_forms_with_print) 
+      Global.header_print_button.visible = True
+    else:
+      Global.header_print_button.visible = False    # reset action dropdown list
     self.action_list.selected_value = None
     pass
   

@@ -26,12 +26,9 @@ class Header(HeaderTemplate):
     Global.header_work_area_name = self.work_area_name
     Global.header_work_area_type = self.work_area_type
     Global.header_refresh_button = self.refresh_button
+    Global.header_print_button = self.print_button
     Global.header_refresh_button.visible = False
-
-  def delete_work_area_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    Function.delete_workspace(self.work_area_name.text)
-    pass
+    Global.header_print_button.visible = False
 
   def work_area_name_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""
@@ -86,6 +83,11 @@ class Header(HeaderTemplate):
       ListUsers.list_users_refresh(Global.work_area[Global.current_work_area_name]["form"]) 
     elif Global.work_area[Global.current_work_area_name]["action"] == "BulkUpload":
       BulkUpload.bulk_upload_refresh(Global.work_area[Global.current_work_area_name]["form"])
+    pass
+
+  def delete_work_area_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    Function.delete_workspace(self.work_area_name.text)
     pass
 
 
