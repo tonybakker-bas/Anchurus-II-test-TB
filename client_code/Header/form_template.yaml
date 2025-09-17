@@ -16,9 +16,17 @@ components:
       role: outlined
     type: TextBox
   - event_bindings: {click: refresh_button_click}
-    layout_properties: {grid_position: 'LLCXPA,VSABQN'}
+    layout_properties: {grid_position: 'LLCXPA,TNHTHQ'}
     name: refresh_button
-    properties: {font_size: 12, icon: 'fa:refresh', role: outlined-button, text: Refresh}
+    properties:
+      icon: fa:refresh
+      spacing:
+        padding: [null, '10', null, '10']
+      text: ''
+    type: Button
+  - layout_properties: {grid_position: 'LLCXPA,EPPBDL'}
+    name: button_1
+    properties: {text: button_1}
     type: Button
   - event_bindings: {click: delete_work_area_click}
     layout_properties: {grid_position: 'LLCXPA,TWZKTB'}
@@ -31,7 +39,7 @@ components:
       spacing:
         margin: [4, null, 0, '0']
         padding: [null, '8', 6, '8']
-      text: Remove
+      text: ''
       tooltip: Delete the work area
     type: Button
   - layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,ZXMOYD'}
@@ -39,20 +47,27 @@ components:
     properties: {}
     type: Label
   - event_bindings: {click: print_button_click}
-    layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,HHGXUS'}
+    layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,TCHJNT'}
     name: print_button
-    properties: {role: outlined-button, text: Print}
+    properties:
+      icon: fa:print
+      spacing:
+        margin: [null, 0, null, null]
+        padding: [null, '10', null, '10']
+      text: ''
     type: Button
   layout_properties: {full_width_row: true, grid_position: 'ZRXDNJ,BTYRNV'}
   name: column_panel_1
   properties:
     background: theme:Secondary Container
     col_spacing: small
-    col_widths: '{"GOUBXT":15,"KEWNXD":25,"RILMKY":85,"TWZKTB":10,"ZXMOYD":35,"VSABQN":10}'
+    col_widths: '{"GOUBXT":15,"KEWNXD":25,"RILMKY":48,"TWZKTB":4,"ZXMOYD":50,"TNHTHQ":2,"EPPBDL":6,"TCHJNT":5}'
     spacing:
       margin: ['0', null, '0', null]
     spacing_above: none
     spacing_below: none
   type: ColumnPanel
-container: {type: ColumnPanel}
+container:
+  event_bindings: {}
+  type: ColumnPanel
 is_package: true

@@ -62,6 +62,13 @@ class Header(HeaderTemplate):
       #
     pass
 
+  def print_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    print("calling print_form on server")
+    pdf_form = anvil.server.call('print_form','ListContexts',Global.site_id)
+    anvil.media.download(pdf_form)
+    pass
+
   def refresh_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     # select correct refresh function to call
@@ -79,13 +86,6 @@ class Header(HeaderTemplate):
       ListUsers.list_users_refresh(Global.work_area[Global.current_work_area_name]["form"]) 
     elif Global.work_area[Global.current_work_area_name]["action"] == "BulkUpload":
       BulkUpload.bulk_upload_refresh(Global.work_area[Global.current_work_area_name]["form"])
-    pass
-
-  def print_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    print("calling print_form on server")
-    pdf_form = anvil.server.call('print_form','ListContexts',Global.site_id)
-    anvil.media.download(pdf_form)
     pass
 
 

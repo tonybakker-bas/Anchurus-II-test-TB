@@ -20,9 +20,9 @@ components:
     - {data_key: column_2, expand: false, id: IWGMNO, title: '', width: 50}
     - {data_key: ContextId, expand: false, id: JKSDUP, title: Context ID, width: 99}
     - {data_key: AreaId, expand: false, id: TYVPVR, title: Area ID, width: 70}
-    - {data_key: Name, expand: false, id: VJQQOR, title: Name, width: 299}
-    - {data_key: ContextType, expand: false, id: OJLQEN, title: ' Context Type', width: 138}
-    - {data_key: Description, expand: false, id: BDDLLV, title: Description, width: 648}
+    - {data_key: Name, expand: false, id: VJQQOR, title: Name, width: 147.727294921875}
+    - {data_key: ContextType, expand: false, id: OJLQEN, title: ' Context Type', width: 99.18182373046875}
+    - {data_key: Description, expand: false, id: BDDLLV, title: Description, width: 591.636474609375}
   type: DataGrid
 container:
   properties: {background: '', border: '', col_spacing: medium}
