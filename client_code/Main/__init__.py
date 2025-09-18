@@ -69,11 +69,13 @@ class Main(MainTemplate):
     Global.work_area[Global.current_work_area_name]["button"].background = Global.button_highlight_background_clour
     Global.header.visible = True
     Global.action_form_type = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
+    print("header_refresh_button:Global.header_refresh_button)
     if Global.action_form_type in Global.action_forms_with_refresh:
       # Make refresh button visible for Global.action_form_type
       Global.header_refresh_button.visible = True
     else:
       Global.header_refresh_button.visible = False
+  print("header_print_button: ",Global.header_print_button)
   if Global.action_form_type in Global.action_forms_with_print:
     # Make print button visible for Global.action_form_type
     Global.header_print_button.visible = True
