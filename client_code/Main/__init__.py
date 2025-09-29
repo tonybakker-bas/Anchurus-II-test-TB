@@ -146,6 +146,8 @@ class Main(MainTemplate):
     Global.header_work_area_name.text = work_area_name
     Global.current_work_area_name = work_area_name
     Global.header_work_area_type.text = type(Global.work_area[work_area_name]["form"])
+    #extract last part of type of teh form to find the actual form name
+    print(Global.header_work_area_type.text.rsplit(".",1)[1][:-2])
     Global.header_work_area_type.enabled = False
     Global.action_form_type = Global.header_work_area_type.text.split(".")[2][:-2]
     if Global.action_form_type in Global.action_forms_with_refresh:
