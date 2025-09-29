@@ -21,7 +21,8 @@ components:
     properties:
       icon: fa:refresh
       spacing:
-        padding: [null, '10', null, '10']
+        margin: [null, null, null, null]
+        padding: [null, '4', null, '4']
       text: ''
       tooltip: refresh list
     type: Button
@@ -31,7 +32,7 @@ components:
     properties:
       icon: fa:remove
       spacing:
-        padding: [null, '10', null, '10']
+        padding: [null, '4', null, '4']
       text: ''
       tooltip: delete workspace
     type: Button
@@ -45,7 +46,7 @@ components:
     properties:
       icon: fa:filter
       spacing:
-        padding: [null, '10', null, '10']
+        padding: [null, '4', null, '4']
       text: ''
       tooltip: filter columns
     type: Button
@@ -55,7 +56,7 @@ components:
     properties:
       icon: fa:download
       spacing:
-        padding: [null, '10', null, '10']
+        padding: [null, '4', null, '4']
       text: ''
       tooltip: download csv file
     type: Button
@@ -66,7 +67,7 @@ components:
       icon: fa:print
       spacing:
         margin: [null, 0, null, null]
-        padding: [null, '10', null, '10']
+        padding: [null, '4', null, '4']
       text: ''
       tooltip: print list
     type: Button
