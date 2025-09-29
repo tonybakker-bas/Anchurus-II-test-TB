@@ -14,9 +14,9 @@ import anvil.server
 class ListContexts(ListContextsTemplate):
   def list_contexts_refresh(self, **event_args):
     # this function does the filling of the table contents
-    #print("From within refresh:",Global.site_id)
     self.ContextList.items = anvil.server.call("contexts_get", Global.site_id)
     self.Context_list_1.rows_per_page = Global.nr_of_rows
+    Global.work_area[Global.current_work_area_name]["csv"] = self.ContextList.items.to_csv()
     self.total_context_number.text = "Total number of Contexts: " + str(len(self.ContextList.items))
   pass
   

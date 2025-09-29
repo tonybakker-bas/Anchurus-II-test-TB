@@ -15,6 +15,7 @@ class ListFinds(ListFindsTemplate):
     # this function does the filling of the table contents
     self.FindsList.items = anvil.server.call("finds_get", Global.site_id)
     self.Find_list_1.rows_per_page = Global.nr_of_rows
+    Global.work_area[Global.current_work_area_name]["csv"] = self.FindsList.items.to_csv()
     self.total_find_number.text = "Total number of Finds: " + str(len(self.FindsList.items))
   pass
   

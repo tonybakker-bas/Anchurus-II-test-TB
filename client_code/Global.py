@@ -31,6 +31,7 @@ action_forms_with_print = ["ListContexts","ListFinds"]
 action_forms_with_download = ["ListContexts","ListFinds"]
 action_forms_with_filter = ["ListContexts","ListFinds"]
 action_seq_no = {}
+csv_file = None
 current_work_area = {}
 current_work_area_name = ""
 current_work_area_type = ""

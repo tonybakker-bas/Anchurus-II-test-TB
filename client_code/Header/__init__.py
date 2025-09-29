@@ -98,9 +98,7 @@ class Header(HeaderTemplate):
 
   def download_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    form = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
-    csv_form = anvil.server.call('download_csv',form,Global.site_id)
-    anvil.media.download(csv_form)
+    anvil.media.download(Global.work_area[Global.current_work_area_name]["csv"])
     #csv_file = self.repeating_panel_1.items.to_csv()
     # Or...
     #csv_file = app_tables.my_table.search().to_csv()
