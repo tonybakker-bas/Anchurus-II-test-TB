@@ -30,6 +30,7 @@ action_forms_with_print = ["ListUsers","ListSites","ListContexts","ListFinds","L
 action_seq_no = {}
 current_work_area = {}
 current_work_area_name = ""
+current_work_area_type = ""
 header = {}
 header_work_area_name = {}
 header_refresh_button = {}
