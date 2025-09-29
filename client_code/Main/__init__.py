@@ -81,6 +81,16 @@ class Main(MainTemplate):
       Global.header_print_button.visible = True
     else:
       Global.header_print_button.visible = False
+    if Global.action_form_type in Global.action_forms_with_download:
+      # Make download button visible for Global.action_form_type
+      Global.header_download_button.visible = True
+    else:
+      Global.header_download_button.visible = False
+    if Global.action_form_type in Global.action_forms_with_filter:
+      # Make filter button visible for Global.action_form_type
+      Global.header_filter_button.visible = True
+    else:
+      Global.header_filter_button.visible = False
   pass
 
   def create_new_work_area(self,action):
@@ -158,7 +168,18 @@ class Main(MainTemplate):
       # make print button visible if action_form_type has print function (i.e. in list Global.action_forms_with_print) 
       Global.header_print_button.visible = True
     else:
-      Global.header_print_button.visible = False    # reset action dropdown list
+      Global.header_print_button.visible = False    
+    if Global.action_form_type in Global.action_forms_with_download:
+      # Make download button visible for Global.action_form_type
+      Global.header_download_button.visible = True
+    else:
+      Global.header_download_button.visible = False
+    if Global.action_form_type in Global.action_forms_with_filter:
+      # Make filter button visible for Global.action_form_type
+      Global.header_filter_button.visible = True
+    else:
+      Global.header_filter_button.visible = False
+    # reset action dropdown list
     self.action_list.selected_value = None
     pass
   
