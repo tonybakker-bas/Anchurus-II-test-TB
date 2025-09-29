@@ -28,6 +28,8 @@ action_list_not_implemented = [separator,"Bulk Upload Finds","Draw","List Areas"
 action_forms_with_refresh = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","BulkUpload","Add Area","List Areas"]
 #action_forms_with_print = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","List Areas","View Context","View Find","View Area"]
 action_forms_with_print = ["ListContexts","ListFinds"]
+action_forms_with_download = ["ListContexts","ListFinds"]
+action_forms_with_filter = ["ListContexts","ListFinds"]
 action_seq_no = {}
 current_work_area = {}
 current_work_area_name = ""
@@ -36,6 +38,8 @@ header = {}
 header_work_area_name = {}
 header_refresh_button = {}
 header_print_button = {}
+header_download_button = {}
+header_filter_button = {}
 header_work_area_type= {}
 #
 work_area = {}

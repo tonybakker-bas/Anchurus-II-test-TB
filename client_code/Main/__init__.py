@@ -52,7 +52,7 @@ class Main(MainTemplate):
     # Firstly make all work_area_list elements invisible and set to unfocus (unbold) work_area_name_list elements
     #for name in Global.work_area_list:
     for name in Global.work_area:
-      print(name)
+      #print(name)
       Global.work_area[name]["form"].visible = False
       Global.work_area[name]["button"].bold = False
       Global.work_area[name]["button"].background = Global.button_normal_background_clour
@@ -75,7 +75,7 @@ class Main(MainTemplate):
       Global.header_refresh_button.visible = True
     else:
       Global.header_refresh_button.visible = False
-    print("header_print_button: ",Global.header_print_button)
+    #print("header_print_button: ",Global.header_print_button)
     if Global.action_form_type in Global.action_forms_with_print:
       # Make print button visible for Global.action_form_type
       Global.header_print_button.visible = True

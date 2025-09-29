@@ -27,8 +27,12 @@ class Header(HeaderTemplate):
     Global.header_work_area_type = self.work_area_type
     Global.header_refresh_button = self.refresh_button
     Global.header_print_button = self.print_button
+    Global.header_download_button = self.download_button
+    Global.header_filter_button = self.filter_button
     Global.header_refresh_button.visible = False
     Global.header_print_button.visible = False
+    Global.header_download_button.visible = False
+    Global.header_filter_button.visible = False
 
   def work_area_name_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""
@@ -62,7 +66,7 @@ class Header(HeaderTemplate):
   def print_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     form = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
-    print("calling print_form on server for form: ",form)
+    #print("calling print_form on server for form: ",form)
     #pdf_form = anvil.server.call('print_form','ListContexts',Global.site_id)
     pdf_form = anvil.server.call('print_form',form,Global.site_id)
     anvil.media.download(pdf_form)
@@ -90,6 +94,18 @@ class Header(HeaderTemplate):
   def delete_work_area_click(self, **event_args):
     """This method is called when the button is clicked"""
     Function.delete_workspace(self.work_area_name.text)
+    pass
+
+  def download_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    #csv_file = self.repeating_panel_1.items.to_csv()
+    # Or...
+    #csv_file = app_tables.my_table.search().to_csv()
+    #anvil.media.download(csv_file)
+    pass
+
+  def filter_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
     pass
 
 

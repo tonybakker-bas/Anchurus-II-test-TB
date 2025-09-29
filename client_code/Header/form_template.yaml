@@ -23,6 +23,7 @@ components:
       spacing:
         padding: [null, '10', null, '10']
       text: ''
+      tooltip: refresh list
     type: Button
   - event_bindings: {click: delete_work_area_click}
     layout_properties: {grid_position: 'LLCXPA,EPPBDL'}
@@ -32,11 +33,32 @@ components:
       spacing:
         padding: [null, '10', null, '10']
       text: ''
+      tooltip: delete workspace
     type: Button
   - layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,ZXMOYD'}
     name: label_1
     properties: {}
     type: Label
+  - event_bindings: {click: filter_button_click}
+    layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,XBQNNA'}
+    name: filter_button
+    properties:
+      icon: fa:filter
+      spacing:
+        padding: [null, '10', null, '10']
+      text: ''
+      tooltip: filter columns
+    type: Button
+  - event_bindings: {click: download_button_click}
+    layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,GIHCSI'}
+    name: download_button
+    properties:
+      icon: fa:download
+      spacing:
+        padding: [null, '10', null, '10']
+      text: ''
+      tooltip: download csv file
+    type: Button
   - event_bindings: {click: print_button_click}
     layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,TCHJNT'}
     name: print_button
@@ -46,13 +68,14 @@ components:
         margin: [null, 0, null, null]
         padding: [null, '10', null, '10']
       text: ''
+      tooltip: print list
     type: Button
   layout_properties: {full_width_row: true, grid_position: 'ZRXDNJ,BTYRNV'}
   name: column_panel_1
   properties:
     background: theme:Secondary Container
     col_spacing: small
-    col_widths: '{"GOUBXT":15,"KEWNXD":25,"RILMKY":55,"ZXMOYD":50,"TNHTHQ":3,"EPPBDL":2,"TCHJNT":5}'
+    col_widths: '{"GOUBXT":15,"KEWNXD":25,"RILMKY":56,"ZXMOYD":60,"TNHTHQ":2,"EPPBDL":2,"TCHJNT":5,"XBQNNA":5,"GIHCSI":5}'
     spacing:
       margin: ['0', null, '0', null]
     spacing_above: none
