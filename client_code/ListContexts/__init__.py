@@ -14,7 +14,7 @@ import anvil.server
 class ListContexts(ListContextsTemplate):
   def list_contexts_refresh(self, **event_args):
     # this function does the filling of the table contents
-    print("From within refresh:",Global.site_id)
+    #print("From within refresh:",Global.site_id)
     self.ContextList.items = anvil.server.call("contexts_get", Global.site_id)
     self.Context_list_1.rows_per_page = Global.nr_of_rows
     self.total_context_number.text = "Total number of Contexts: " + str(len(self.ContextList.items))
@@ -29,7 +29,7 @@ class ListContexts(ListContextsTemplate):
       Global.site_id = site_id
     # ask the server for a list of the contexts and set nr of item per page on DataGrid (i.e. table) Context_list_1
     Global.context_id = ""
-    print("from Init ListContexts:",Global.site_id)
+    #print("from Init ListContexts:",Global.site_id)
     # refresh the table content
     self.list_contexts_refresh()
 

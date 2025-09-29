@@ -46,7 +46,7 @@ def create_work_space(type):
   elif type == "List Areas":
     work_space = ListAreas() 
   elif type == "List Finds":
-    work_space = ListFinds()
+    work_space = ListFinds("")
   elif type == "List Sites":
     work_space = ListSites()
   elif type == "List Users":

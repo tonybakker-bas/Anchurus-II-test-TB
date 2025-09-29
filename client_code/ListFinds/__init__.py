@@ -18,11 +18,14 @@ class ListFinds(ListFindsTemplate):
     self.total_find_number.text = "Total number of Finds: " + str(len(self.FindsList.items))
   pass
   
-  def __init__(self, **properties):
+  def __init__(self, site_id, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    
+    self.site_id = site_id
+    # Any code you write here will run before the form opens.
+    if Global.site_id is None:
+      Global.site_id = site_id    
     # ask the server for a list of the finds and set nr of item per page on DataGrid (i.e. table) Find_list
     Global.find_id = ""
     # refresh the table content
