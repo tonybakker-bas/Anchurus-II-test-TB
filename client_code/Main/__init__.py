@@ -70,6 +70,8 @@ class Main(MainTemplate):
     Global.header.visible = True
     Global.action_form_type = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     #print("header_refresh_button: ",Global.header_refresh_button)
+
+    # Set selected buttons on Header for work area type
     if Global.action_form_type in Global.action_forms_with_refresh:
       # Make refresh button visible for Global.action_form_type
       Global.header_refresh_button.visible = True
@@ -158,6 +160,8 @@ class Main(MainTemplate):
     Global.header_work_area_type.text = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     Global.header_work_area_type.enabled = False
     #Global.action_form_type = Global.header_work_area_type.text.split(".")[2][:-2]
+
+    # Set selected buttons on Header for work area type
     Global.action_form_type = Global.header_work_area_type.text
     if Global.action_form_type in Global.action_forms_with_refresh:
       # make Refresh button visible if action_form_type has refresh function (i.e. in list Global.action_forms_with_refresh) 
