@@ -116,8 +116,8 @@ class Header(HeaderTemplate):
     options_data = []
     for column_name in column_headings:
       option_id = option_id + 1
-      options_data.append= [{'name': column_name, 'id': option_id}]
-    print(options_data)
+      options_data.append({'name': column_name, 'id': option_id})
+
     # 2. Create an instance of your Dialog Form
     dialog = FilterList(options_list=options_data)
 

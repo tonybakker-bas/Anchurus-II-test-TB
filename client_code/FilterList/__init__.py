@@ -15,6 +15,7 @@ class FilterList(FilterListTemplate):
     self.init_components(**properties)
 
     # The list of options passed from the main form
+    print(options_list)
     self.repeating_panel_1.items = options_list 
 
     # A property to store the final selected items
@@ -29,5 +30,5 @@ class FilterList(FilterListTemplate):
     ]
 
     # Raise the 'x-close-alert' event to close the popup and return the selection
-    #self.raise_event("x-close-alert", value=self.selected_options)
+    self.raise_event("x-close-alert", value=self.selected_options)
     pass
