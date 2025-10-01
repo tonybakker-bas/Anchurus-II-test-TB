@@ -17,6 +17,7 @@ from ..ListAreas import ListAreas
 from ..ListSites import ListSites
 from ..ListUsers import ListUsers
 from ..BulkUpload import BulkUpload
+from ..FilterList import FilterList 
 
 class Header(HeaderTemplate):
   def __init__(self, **properties):
@@ -98,13 +99,44 @@ class Header(HeaderTemplate):
 
   def download_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    form = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
+    #form = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     csv_file = anvil.server.call('create_csv',Global.work_area[Global.current_work_area_name]["data_list"])
     anvil.media.download(csv_file)
     pass
 
   def filter_button_click(self, **event_args):
     """This method is called when the button is clicked"""
+    # extract table columns names
+    if Global.work_area[Global.current_work_area_name]["data_list"]:
+      # Get the keys (which are the column headings) from the first item
+      column_headings = list(Global.work_area[Global.current_work_area_name]["data_list"][0].keys())
+ 
+    # 1. Define the options you want to display
+    option_id = 0
+    options_data = []
+    for column_name in column_headings:
+      option_id = option_id + 1
+      options_data.append= [{'name': column_name, 'id': option_id}]
+    print(options_data)
+    # 2. Create an instance of your Dialog Form
+    dialog = FilterList(options_list=options_data)
+
+    # 3. Use alert() to show the form as a modal popup
+    # The alert() function will return the 'value' passed when 'x-close-alert' is raised
+    selected_list = alert(
+      content=dialog, 
+      title="Select Your Options",
+      buttons=[] # Crucial: set buttons=[] to use your custom button for submission
+    )
+
+    # 4. Process the result after the dialog is closed
+    if selected_list:
+      print("User submitted the following items:")
+      for item in selected_list:
+        print(f"- {item['name']} (ID: {item['id']})")
+    else:
+      # This occurs if the user closes the modal without clicking a button
+      print("Selection was cancelled or dismissed.")
     pass
 
 

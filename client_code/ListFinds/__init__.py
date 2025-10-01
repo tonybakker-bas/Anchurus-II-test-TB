@@ -14,8 +14,10 @@ class ListFinds(ListFindsTemplate):
   def list_finds_refresh(self, **event_args):
     # this function does the filling of the table contents
     self.FindsList.items = anvil.server.call("finds_get", Global.site_id)
-    self.Find_list_1.rows_per_page = Global.nr_of_rows
-    Global.work_area[Global.current_work_area_name]["data_list"] = self.FindsList.items
+    if Global.nr_of_rows is not None:
+      self.Find_list_1.rows_per_page = Global.nr_of_rows
+    if Global.current_work_area_name is not None:
+      Global.work_area[Global.current_work_area_name]["data_list"] = self.FindsList.items
     self.total_find_number.text = "Total number of Finds: " + str(len(self.FindsList.items))
   pass
   
@@ -25,9 +27,13 @@ class ListFinds(ListFindsTemplate):
     # Any code you write here will run before the form opens.
     self.site_id = site_id
     # Any code you write here will run before the form opens.
+    # Global.site_id is only None when form called from server side (e.g. printing form)
     if Global.site_id is None:
-      Global.site_id = site_id    
-    # ask the server for a list of the finds and set nr of item per page on DataGrid (i.e. table) Find_list
+      # initialise some Globals variables for server side function call
+      Global.site_id = site_id
+      Global.current_work_area_name = "FindList"
+      Global.work_area[Global.current_work_area_name] = {}
+      
     Global.find_id = ""
     # refresh the table content
     self.list_finds_refresh()

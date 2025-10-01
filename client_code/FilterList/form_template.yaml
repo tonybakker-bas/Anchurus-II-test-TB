@@ -1,0 +1,12 @@
+components:
+- layout_properties: {grid_position: 'ZNUZWQ,ZGMKAA'}
+  name: repeating_panel_1
+  properties: {item_template: FilterList.ItemTemplate1}
+  type: RepeatingPanel
+- event_bindings: {click: submit_button_click}
+  layout_properties: {grid_position: 'MTEBZU,BERZBL'}
+  name: submit_button
+  properties: {text: Submit}
+  type: Button
+container: {type: ColumnPanel}
+is_package: true
