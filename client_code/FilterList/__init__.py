@@ -26,7 +26,7 @@ class FilterList(FilterListTemplate):
     # Gather all selected items from the Repeating Panel's components
     self.selected_options = [
       r.item for r in self.repeating_panel_1.get_components() 
-      if r.checkbox_1.checked # Assuming your item template has a Checkbox named checkbox_1
+      if r.check_box_1.checked # Assuming your item template has a Checkbox named checkbox_1
     ]
 
     # Raise the 'x-close-alert' event to close the popup and return the selection

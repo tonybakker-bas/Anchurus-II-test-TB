@@ -125,7 +125,7 @@ class Header(HeaderTemplate):
     # The alert() function will return the 'value' passed when 'x-close-alert' is raised
     selected_list = alert(
       content=dialog, 
-      title="Select Your Options",
+      title="",
       buttons=[] # Crucial: set buttons=[] to use your custom button for submission
     )
 
@@ -133,7 +133,7 @@ class Header(HeaderTemplate):
     if selected_list:
       print("User submitted the following items:")
       for item in selected_list:
-        print(f"- {item['name']} (ID: {item['id']})")
+        print(f"- {item['text']} (ID: {item['id']})")
     else:
       # This occurs if the user closes the modal without clicking a button
       print("Selection was cancelled or dismissed.")
