@@ -96,9 +96,9 @@ class Main(MainTemplate):
   pass
 
   def create_new_work_area(self,action):
-    # First make sure the heade is visible
+    # First make sure the header is visible
     Global.header.visible = True
-    # set name of work_area to be action name
+    # set name of work_area to be action name if action is view or edit
     work_area_name = action
     if action == "View Context" or action == "Edit Context":
       # modify work_area name to add XxxxId number (ContextId, FindId, AeraId, etc); for now only implemented for Context
@@ -126,13 +126,12 @@ class Main(MainTemplate):
       # work_area_name exists, so update work_area_name to add seq_no in brackets
       Global.action_seq_no[work_area_name] += 1
       work_area_name = work_area_name + " (" + str(Global.action_seq_no[work_area_name]) + ")"
-    #
-    # create new 'empty row' in nested work_area dictionary
+    
+    # create new 'empty row' in nested work_area dictionary for the new work_area_name
     Global.work_area[work_area_name] = {}
     Global.work_area[work_area_name]["action"] = action
-    #print("Create new work area :",work_area_name,Global.work_area[work_area_name]["action"])
     Global.current_work_area_name = work_area_name
-    #print("Create new work area - Global.current_work_area_name: ",Global.current_work_area_name)
+
     # create the button for the work_area in the navigation panel and add it to the work_area_name_list
     Global.work_area[work_area_name]["button"] = Button(text=work_area_name,align="left")
     #Global.work_area[work_area_name]["button"] = Global.work_area_name_list[work_area_name]
@@ -143,14 +142,14 @@ class Main(MainTemplate):
     self.add_component(Global.work_area[work_area_name]["form"])
     # set button name to new work_area_name
     Global.work_area[work_area_name]["button"].text = work_area_name
+    
     # make all work spaces invisible
     for name in Global.work_area:
-      #print("Create new work Area - make all work spaces invisible: ",name)
       Global.work_area[name]["form"].visible = False
       Global.work_area[name]["button"].bold = False
       Global.work_area[name]["button"].background = Global.button_normal_background_clour
+    
     # Make selected work area visible and have Focus
-    #print("Create new work Area - make new work space invisible: ",work_area_name)
     Global.work_area[work_area_name]["form"].visible = True
     Global.work_area[work_area_name]["button"].bold = True
     Global.work_area[work_area_name]["button"].background = Global.button_highlight_background_clour

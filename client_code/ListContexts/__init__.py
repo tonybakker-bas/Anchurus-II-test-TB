@@ -30,6 +30,7 @@ class ListContexts(ListContextsTemplate):
   def __init__(self, site_id, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    #
     self.site_id = site_id
     # Any code you write here will run before the form open
     # Global.site_id is only None when form called from server side (e.g. printing form)
