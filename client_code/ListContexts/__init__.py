@@ -16,6 +16,7 @@ class ListContexts(ListContextsTemplate):
     # This function does the filling of the table contents
     # 1. call server function 'context_get', which retrieves all conrtext for the given site
     self.ContextList.items = anvil.server.call("contexts_get", Global.site_id)
+    print(self.ContextList.items)
     # 2. set nr of rows per page from Global variable (which is defined by a parameter in the server-side config file)
     if Global.nr_of_rows is not None:
       self.Context_list_1.rows_per_page = Global.nr_of_rows
