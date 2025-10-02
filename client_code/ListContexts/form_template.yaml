@@ -16,13 +16,13 @@ components:
   name: Context_list_1
   properties:
     columns:
-    - {data_key: column_1, expand: false, id: CUJRTJ, title: '', width: '50'}
-    - {data_key: column_2, expand: false, id: IWGMNO, title: '', width: 50}
-    - {data_key: ContextId, expand: false, id: JKSDUP, title: Context ID, width: 99}
+    - {data_key: column_1, expand: false, id: CUJRTJ, title: '', width: '30'}
+    - {data_key: column_2, expand: false, id: IWGMNO, title: '', width: '30'}
+    - {data_key: ContextId, expand: false, id: JKSDUP, title: Context ID, width: '90'}
     - {data_key: AreaId, expand: false, id: TYVPVR, title: Area ID, width: 70}
-    - {data_key: Name, expand: false, id: VJQQOR, title: Name, width: 125.63641357421875}
-    - {data_key: ContextType, expand: false, id: OJLQEN, title: ' Context Type'}
-    - {data_key: Description, expand: false, id: BDDLLV, title: Description, width: 430.3636474609375}
+    - {data_key: Name, expand: false, id: VJQQOR, title: Name, width: '125'}
+    - {data_key: ContextType, expand: false, id: OJLQEN, title: Context Type, width: '110'}
+    - {data_key: Description, expand: false, id: BDDLLV, title: Description, width: '400'}
   type: DataGrid
 container:
   properties: {background: '', border: '', col_spacing: medium}

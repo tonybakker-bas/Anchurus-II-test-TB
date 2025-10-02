@@ -6,7 +6,7 @@ components:
     align: left
     icon: fa:edit
     spacing:
-      padding: [null, '8', null, '8']
+      padding: [null, '2', null, '2']
     text: ''
   type: Button
 - event_bindings: {click: view_context_button_click}
@@ -16,7 +16,7 @@ components:
     align: left
     icon: fa:eye
     spacing:
-      padding: [null, '8', null, '8']
+      padding: [null, '2', null, '2']
     text: ''
   type: Button
 container: {type: DataRowPanel}
