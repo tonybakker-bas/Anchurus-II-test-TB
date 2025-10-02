@@ -16,7 +16,7 @@ class ListContexts(ListContextsTemplate):
     # This function does the filling of the table contents
     # 1. call server function 'context_get', which retrieves all conrtext for the given site
     self.ContextList.items = anvil.server.call("contexts_get", Global.site_id)
-    print(self.ContextList.items)
+    #print(self.ContextList.items)
     # 2. set nr of rows per page from Global variable (which is defined by a parameter in the server-side config file)
     if Global.nr_of_rows is not None:
       self.Context_list_1.rows_per_page = Global.nr_of_rows
@@ -45,17 +45,44 @@ class ListContexts(ListContextsTemplate):
     # Add the Data Grid to your Form
     self.add_component(grid)
     table_info = anvil.server.call("describe_table","context")
-    print(table_info)
+    
+    #print(table_info)
+    # The DESCRIBE result structure is:
+    # (Field:, Type:, Null:, Key:, Default:, Extra:)
+    id = 0
+    grid.columns = []
+    for column_data in table_info:
+      # Select Column Field
+      field_name = column_data["Field"]
+      id = id + 1
+      grid.columns.append({"id": id, "title": field_name, "data_key": field_name}) 
+      #'text': column_name, 'id': option_id})
+    print(grid.columns)
     # Add two columns to your Data Grid
     grid.columns = [
-      { "id": "A", "title": "Name", "data_key": "name" },
-      { "id": "B", "title": "Address", "data_key": "address" },
+      { "id": "1", "title": "Name", "data_key": "name" },
+      { "id": "2", "title": "Address", "data_key": "address" },
+      { "id": "3", "title": "Address2", "data_key": "address2" },
+      { "id": "4", "title": "Address3", "data_key": "address3" },
+      { "id": "5", "title": "Address4", "data_key": "address4" },
+      { "id": "6", "title": "Address5", "data_key": "address5" },
+      { "id": "7", "title": "Address6", "data_key": "address6" },
+      { "id": "8", "title": "Address7", "data_key": "address7" },
+      { "id": "9", "title": "Address8", "data_key": "address8" },
+      { "id": "10", "title": "Address9", "data_key": "address9" },
+      { "id": "11", "title": "Address10", "data_key": "address10" },
+      { "id": "12", "title": "Address11", "data_key": "address11" },
+      { "id": "13", "title": "Address12", "data_key": "address12" },
+      { "id": "14", "title": "Address13", "data_key": "address13" },
     ]
+    print(grid.columns)
     rp = RepeatingPanel(item_template=DataRowPanel)
     # Set its items property
     rp.items = [
-      {'name': 'Alice', 'address': '1 Road Street'},
-      {'name': 'Bob', 'address': '2 City Town'}
+      #{'name': 'Alice', 'address': 'London'},
+      #{'name': 'John', 'address': 'Amsterdam'}
+      #{'SiteId': 'S10001', 'ContextId': 'C10001'},
+      #{'SiteID': 'S10001', 'ContextId': 'C10002'}
     ]
     # Add the repeating panel to your data grid
     grid.add_component(rp)
