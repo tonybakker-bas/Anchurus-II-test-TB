@@ -39,7 +39,26 @@ class ListContexts(ListContextsTemplate):
       Global.site_id = site_id
       Global.current_work_area_name = "ContextList"
       Global.work_area[Global.current_work_area_name] = {}
-      
+
+    # Create your Data Grid 
+    grid = DataGrid()
+    # Add the Data Grid to your Form
+    self.add_component(grid)
+    # Add two columns to your Data Grid
+    grid.columns = [
+      { "id": "A", "title": "Name", "data_key": "name" },
+      { "id": "B", "title": "Address", "data_key": "address" },
+    ]
+    rp = RepeatingPanel(item_template=DataRowPanel)
+    # Set its items property
+    rp.items = [
+      {'name': 'Alice', 'address': '1 Road Street'},
+      {'name': 'Bob', 'address': '2 City Town'}
+    ]
+    # Add the repeating panel to your data grid
+    grid.add_component(rp)
+    grid.rows_per_page = 20
+    
     Global.context_id = ""
     # refresh the table content
     self.list_contexts_refresh()
