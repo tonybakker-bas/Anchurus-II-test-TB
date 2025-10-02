@@ -44,6 +44,7 @@ class ListContexts(ListContextsTemplate):
     grid = DataGrid()
     # Add the Data Grid to your Form
     self.add_component(grid)
+    column_list = anvil.server.call("describe_table")
     # Add two columns to your Data Grid
     grid.columns = [
       { "id": "A", "title": "Name", "data_key": "name" },
