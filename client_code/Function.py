@@ -24,6 +24,7 @@ from ListFinds import ListFinds
 from ListSites import ListSites
 from ListAreas import ListAreas
 from ListUsers import ListUsers
+from TableList import TableList
 from ContextForm import ContextForm
 from FindForm import FindForm
 from AreaForm import AreaForm
@@ -42,7 +43,8 @@ def say_hello():
 def create_work_space(type):
   #print("Work space to create is: ",type)
   if type == "List Contexts":
-    work_space = ListContexts("")
+    work_space = TableList("","context")
+    #work_space = ListContexts("")
   elif type == "List Areas":
     work_space = ListAreas() 
   elif type == "List Finds":

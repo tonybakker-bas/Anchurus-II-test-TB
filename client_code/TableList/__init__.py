@@ -52,8 +52,8 @@ class TableList(TableListTemplate):
     self.add_component(self.grid, full_width_row=True)
 
     # set table_name to one of "context", "find", from the action Global variable 
-    Global.table_name = Global.action.split(" ")[1].lower()
-    print(Global.table_name)
+    Global.table_name = Global.action.split(" ")[1][:-1].lower()
+    print("Table_name = ",Global.table_name)
     # get the Table information form the Database
     table_info = anvil.server.call("describe_table", Global.table_name)
 
