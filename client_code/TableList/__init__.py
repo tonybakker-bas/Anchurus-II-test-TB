@@ -15,8 +15,8 @@ import anvil.server
 class TableList(TableListTemplate):
   def tablelist_refresh(self, **event_args):
     # This function does the filling of the table contents
-    # 1. call server function '"table_type"s_get', which retrieves all rows of the table_type for the given site
-    self.rp.items = anvil.server.call("table_get",Global.site_id,Global.table_type)
+    # 1. call server function '"table_name"s_get', which retrieves all rows of the table_name for the given site
+    self.rp.items = anvil.server.call("table_get",Global.site_id,Global.table_name)
 
     # 2. set nr of rows per page from Global variable (which is defined by a parameter in the server-side config file)
     if Global.nr_of_rows is not None:
@@ -32,7 +32,7 @@ class TableList(TableListTemplate):
 
   pass
 
-  def __init__(self, site_id, table_type, **properties):
+  def __init__(self, site_id, table_name, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #
@@ -43,7 +43,7 @@ class TableList(TableListTemplate):
       # initialise some Globals variables for when the function is called from the server side
       Global.site_id = site_id
       Global.current_work_area_name = "TableList"
-      Global.table_type = table_type
+      Global.table_name = table_name
       Global.work_area[Global.current_work_area_name] = {}
 
     # Create your Data Grid
@@ -51,11 +51,11 @@ class TableList(TableListTemplate):
     # Add the Data Grid to your Form
     self.add_component(self.grid, full_width_row=True)
 
-    # set table_type to one of "context", "find", etc
-    Global.table_type = Global.action.split(" ")[1]
-    print(Global.table_type)
+    # set table_name to one of "context", "find", from the action Global variable 
+    Global.table_name = Global.action.split(" ")[1].lower()
+    print(Global.table_name)
     # get the Table information form the Database
-    table_info = anvil.server.call("describe_table", Global.table_type)
+    table_info = anvil.server.call("describe_table", Global.table_name)
 
     # Extract the columns names from the table_info
     # The DESCRIBE result structure is:

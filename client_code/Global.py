@@ -100,6 +100,7 @@ system_name = ""
 SurveyMethod_options = {"BNG","Aligned to BNG north","Not aligned to BNG north"}
 system = "Anchurus Web Service"
 status = ""
+table_name = ""
 title = system + " for " + organisation
 sign_in_out_button_text = "Sign in"
 username = ""
