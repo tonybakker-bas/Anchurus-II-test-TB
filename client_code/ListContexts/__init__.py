@@ -59,7 +59,7 @@ class ListContexts(ListContextsTemplate):
       columns_titles.append({"id": id, "title": field_name, "data_key": field_name}) 
       #'text': column_name, 'id': option_id})
 
-    # assign the columns titles to the grid comlumns
+    # assign the columns titles to the grid columns
     self.grid.columns = columns_titles
 
     # create the row structure of the datagrid
