@@ -1,0 +1,14 @@
+components:
+- components:
+  - layout_properties: {full_width_row: true, grid_position: 'LNVHEX,MZKYDJ'}
+    name: total_number
+    properties: {align: right, border: none, role: outlined}
+    type: TextBox
+  layout_properties: {full_width_row: true, grid_position: 'WWKKDB,DOHYNN'}
+  name: sub_header
+  properties: {}
+  type: ColumnPanel
+container:
+  properties: {background: '', border: '', col_spacing: medium}
+  type: ColumnPanel
+is_package: true
