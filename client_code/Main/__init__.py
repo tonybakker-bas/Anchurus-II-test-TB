@@ -235,6 +235,7 @@ class Main(MainTemplate):
       # if users has admin role, add admin actions list and set it visible
       self.admin_action_list.visible = False
       if Global.user_role == "admin":
+        print(Global.username, Global.user_role)
         self.admin_action_list.items = Global.admin_action_list
         self.admin_action_list.visible = True
       # make menu bar varianble visible
