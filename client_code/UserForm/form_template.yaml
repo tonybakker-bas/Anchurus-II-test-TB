@@ -17,7 +17,7 @@ components:
   type: Label
 - layout_properties: {grid_position: 'YYJGEK,ENURED IGXYSO,TWADLN'}
   name: label_4
-  properties: {text: 'Status:'}
+  properties: {text: 'Enabled:'}
   type: Label
 - event_bindings: {change: user_role_value_change}
   layout_properties: {grid_position: 'YYJGEK,RTSDRX XDNBUA,CVHIXV'}
