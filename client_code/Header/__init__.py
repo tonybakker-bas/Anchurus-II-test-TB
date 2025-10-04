@@ -11,6 +11,8 @@ from anvil.tables import app_tables
 
 from .. import Global
 from .. import Function
+
+from ..TableList import TableList
 from ..ListContexts import ListContexts
 from ..ListFinds import ListFinds
 from ..ListAreas import ListAreas
@@ -68,8 +70,9 @@ class Header(HeaderTemplate):
     """This method is called when the button is clicked"""
     form = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     #print("calling print_form on server for form: ",form)
-    #pdf_form = anvil.server.call('print_form','ListContexts',Global.site_id)
-    pdf_form = anvil.server.call('print_form',form,Global.site_id)
+    table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
+    print("table name for print = ",table_name)
+    pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name)
     anvil.media.download(pdf_form)
     pass
 
@@ -78,10 +81,11 @@ class Header(HeaderTemplate):
     # select correct refresh function to call
     #print("Refresh button clicked. Action is:", Global.work_area[Global.current_work_area_name]["action"], ", Action_form_type is: ",Global.work_area[Global.current_work_area_name]["form"])
     # select the correct refresh depending on Global.action_form_type
-    if Global.work_area[Global.current_work_area_name]["action"] == "List Contexts":
-      ListContexts.list_contexts_refresh(Global.work_area[Global.current_work_area_name]["form"])
-    elif Global.work_area[Global.current_work_area_name]["action"] == "List Finds":
-      ListFinds.list_finds_refresh(Global.work_area[Global.current_work_area_name]["form"])
+    if Global.work_area[Global.current_work_area_name]["action"] in ["List Contexts", "List Finds"]:
+      TableList.table_list_refresh(Global.work_area[Global.current_work_area_name]["form"])
+    #  ListContexts.list_contexts_refresh(Global.work_area[Global.current_work_area_name]["form"])
+    #elif Global.work_area[Global.current_work_area_name]["action"] == "List Finds":
+    #  ListFinds.list_finds_refresh(Global.work_area[Global.current_work_area_name]["form"])
     elif Global.work_area[Global.current_work_area_name]["action"] == "List Areas":
       ListAreas.list_areas_refresh(Global.work_area[Global.current_work_area_name]["form"])  
     elif Global.work_area[Global.current_work_area_name]["action"] == "List Sites":

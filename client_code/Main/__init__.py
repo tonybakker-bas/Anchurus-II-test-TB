@@ -43,6 +43,7 @@ class Main(MainTemplate):
     Global.work_area_list = {}
     self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
+    self.admin_action_list.visible = False
     self.action_list.visible = False
     self.logout_button.visible = False
     self.username.visible = False
@@ -257,6 +258,7 @@ class Main(MainTemplate):
     anvil.users.logout()
     self.content_panel.visible = True
     self.action_list.items = Global.user_action_list
+    self.admin_action_list.visible = False
     self.action_list.visible = False
     self.logout_button.visible = False
     self.username.visible = False

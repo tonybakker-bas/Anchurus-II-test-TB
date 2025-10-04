@@ -13,7 +13,7 @@ from .. import Global
 import anvil.server
 
 class TableList(TableListTemplate):
-  def tablelist_refresh(self, **event_args):
+  def table_list_refresh(self, **event_args):
     # This function does the filling of the table contents
     # 1. call server function '"table_name"s_get', which retrieves all rows of the table_name for the given site
     self.rp.items = anvil.server.call("table_get",Global.site_id,Global.table_name)
@@ -45,15 +45,17 @@ class TableList(TableListTemplate):
       Global.current_work_area_name = "TableList"
       Global.table_name = table_name
       Global.work_area[Global.current_work_area_name] = {}
+      Global.table_name = table_name
+    else:
+    # set table_name to one of "context", "find", from the action Global variable 
+      Global.table_name = Global.action.split(" ")[1][:-1].lower()
+    print("Table_name = ",Global.table_name)
 
     # Create your Data Grid
     self.grid = DataGrid()
     # Add the Data Grid to your Form
     self.add_component(self.grid, full_width_row=True)
 
-    # set table_name to one of "context", "find", from the action Global variable 
-    Global.table_name = Global.action.split(" ")[1][:-1].lower()
-    print("Table_name = ",Global.table_name)
     # get the Table information form the Database
     table_info = anvil.server.call("describe_table", Global.table_name)
 
@@ -87,4 +89,4 @@ class TableList(TableListTemplate):
     #???
     Global.context_id = ""
     # refresh the table content
-    self.tablelist_refresh()
+    self.table_list_refresh()

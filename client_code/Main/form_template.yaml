@@ -60,19 +60,20 @@ components:
         padding: ['0', null, '0', null]
     type: Label
   - event_bindings: {click: logout_button_click}
-    layout_properties: {grid_position: 'GOPBNR,UCIOIG'}
+    layout_properties: {full_width_row: true, grid_position: 'GOPBNR,UCIOIG'}
     name: logout_button
     properties:
+      align: left
       border: solid black 1px
       icon: fa:sign-out
       spacing:
-        margin: ['8', null, null, null]
-        padding: ['0', null, '0', null]
+        margin: ['8', '0', null, '0']
+        padding: ['0', '0', '0', '20']
       text: Logout
     type: Button
   layout_properties: {slot: nav-right}
   name: outlined_card_1
-  properties: {col_widths: '{"LIPUDW":17,"UCIOIG":15,"CYZKJO":14,"CWEWQM":14}', role: null}
+  properties: {col_widths: '{"LIPUDW":17,"UCIOIG":15,"CYZKJO":15,"CWEWQM":13}', role: null}
   type: ColumnPanel
 container:
   properties: {html: '@theme:standard-page.html', visible: true}
