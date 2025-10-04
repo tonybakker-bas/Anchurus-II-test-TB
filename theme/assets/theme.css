@@ -1027,6 +1027,18 @@ input[disabled] ~ span {
   border-right: 0;
 }
 
+/* DataGrid Horizontal Scroll */
+.anvil-role-horizontal-scroll {
+  overflow: hidden; /* Fix background of auto-header when it's rounded (tonal-grid) */
+}
+.anvil-role-horizontal-scroll .data-grid-child-panel {
+  overflow-x: auto;
+}
+
+.anvil-role-horizontal-scroll .anvil-data-row-panel {
+  flex-wrap: nowrap;
+  width: fit-content; /* Fix background*/
+}
 
 /*Plots*/
 
