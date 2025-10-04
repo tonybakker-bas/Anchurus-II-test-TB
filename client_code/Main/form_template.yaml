@@ -39,6 +39,16 @@ components:
       margin: ['8', null, null, null]
       placeholder: Select your action
     type: DropDown
+  - event_bindings: {change: admin_action_list_change}
+    layout_properties: {grid_position: 'GOPBNR,CYZKJO'}
+    name: admin_action_list
+    properties:
+      background: theme:On Primary
+      border: solid Black 1px
+      include_placeholder: true
+      margin: ['8', null, null, null]
+      placeholder: Select admin action
+    type: DropDown
   - layout_properties: {grid_position: 'GOPBNR,LIPUDW'}
     name: username
     properties:

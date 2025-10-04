@@ -17,6 +17,7 @@ import anvil.users
 main_form = ""
 separator = "------------------"
 admin_action_list = ["List Users","List Sites","Add Site",separator]
+admin_action_list_not_implemented = [separator]
 user_action_list = ["Select Site",separator,
                     "List Contexts","Add Context","Bulk Upload Contexts",separator,
                     "List Finds", "Add Find","Bulk Upload Finds",separator,
@@ -27,9 +28,9 @@ user_action_list = ["Select Site",separator,
 action_list_not_implemented = [separator,"Bulk Upload Finds","Draw","List Areas","Add Area"]
 action_forms_with_refresh = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","BulkUpload","Add Area","List Areas"]
 #action_forms_with_print = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","List Areas","View Context","View Find","View Area"]
-action_forms_with_print = ["ListContexts","ListFinds"]
-action_forms_with_download = ["ListContexts","ListFinds"]
-action_forms_with_filter = ["ListContexts","ListFinds"]
+action_forms_with_print = ["ListContexts","ListFinds","TableList"]
+action_forms_with_download = ["ListContexts","ListFinds","TableList"]
+action_forms_with_filter = ["ListContexts","ListFinds","TableList"]
 action_seq_no = {}
 csv_file = None
 current_work_area = {}
@@ -50,6 +51,7 @@ button_highlight_background_clour = "#CBEAD6"
 #
 action = ""
 action_form_type = ""
+admin_action = ""
 admin_domain = ""
 admin_user = ""
 admin_user_initials = ""

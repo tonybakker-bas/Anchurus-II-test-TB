@@ -232,10 +232,13 @@ class Main(MainTemplate):
       #Global.DBAcontrol = anvil.server.call("check_DBAcontrol",Global.username,"i")
       self.username.text = Global.username + "\n (" + Global.user_role + ")"
       Global.ip_address = anvil.server.call("user_login_notification")
-      # add admin actions to top of actions list if loggedin user has admin role
+      # if users has admin role, add admin actions list and set it visible
+      self.admin_action_list.visible = False
       if Global.user_role == "admin":
-        self.action_list.items = Global.admin_action_list + Global.user_action_list
+        self.admin_action_list.items = Global.admin_action_list
+        self.admin_action_list.visible = True
       # make menu bar varianble visible
+      self.action_list.items = Global.user_action_list
       self.action_list.visible = True
       self.logout_button.visible = True
       self.username.visible = True
@@ -279,4 +282,22 @@ class Main(MainTemplate):
       self.logout_button.visible = True
       self.username.visible = True
       self.content_panel.visible = False
+    pass
+
+  def admin_action_list_change(self, **event_args):
+    """This method is called when an item is selected"""
+    # Action has been selected, but only take action if action in not a separator
+    # save a link to the Main form in a Global variable 
+    Global.main_form = get_open_form()
+    #
+    Global.admin_action = self.admin_action_list.selected_value
+    if Global.admin_action in Global.admin_action_list:
+      # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
+      # for any action that has a Form defined create a new work_area
+
+      self.create_new_work_area(Global.admin_action)
+    else:
+      if Global.action != Global.separator:
+        alert("Action not yet implemented.")
+    self.action_list.selected_value = None
     pass
