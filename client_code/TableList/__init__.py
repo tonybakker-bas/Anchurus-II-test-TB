@@ -58,10 +58,13 @@ class TableList(TableListTemplate):
     table_info = anvil.server.call("describe_table", Global.table_name)
 
     # Extract the columns names from the table_info
+    # Frist two columns are vor View and Edit icon
     # The DESCRIBE result structure is:
     # (Field:, Type:, Null:, Key:, Default:, Extra:)
-    id = 0
     columns_titles = []
+    columns_titles.append({"id": 1, "title": "View", "data_key": "view", "width": 40, "expand": True })
+    columns_titles.append({"id": 2, "title": "Edit", "data_key": "edit", "width": 40, "expand": True })
+    id = 2
     for column_data in table_info:
       # Select Column Field
       field_name = column_data["Field"]

@@ -1059,7 +1059,7 @@ div.plot-container.plotly svg.main-svg {
     --anvil-spinner-bg: %color:Surface Variant%;
 }
 
-/* make all even rows a grey backghroud in data grid */
+/* make all even rows a grey backgroud in data grid */
 .anvil-data-grid .anvil-data-row-panel:nth-child(even) {
     background-color: #E3E3E3;
     border-left: 0;
