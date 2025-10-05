@@ -68,7 +68,7 @@ class TableList(TableListTemplate):
     columns_titles.append({"id": 2, "title": "Edit", "data_key": "edit", "width": 40, "expand": True })
     id = 2
     for column_data in table_info:
-      # Select Column Field
+      # Select Column "Field"
       field_name = column_data["Field"]
       id = id + 1
       columns_titles.append({"id": id, "title": field_name, "data_key": field_name, "width": 150, "expand": True })
@@ -77,6 +77,10 @@ class TableList(TableListTemplate):
     # assign the columns titles to the grid columns
     self.grid.columns = columns_titles
 
+    btn_view = Button(text='View row!', align='left')
+    btn_view.icon = "fa:eye"
+    btn_edit = Button(text='Edit row', align='left')
+    btn_edit.icon = "fa:edit"
     # create the row structure of the datagrid
     self.rp = RepeatingPanel(item_template=DataRowPanel)
     # Set its items property
