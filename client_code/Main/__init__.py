@@ -231,7 +231,8 @@ class Main(MainTemplate):
       Global.username = user["email"]
       Global.user_role = user["role"]
       #Global.DBAcontrol = anvil.server.call("check_DBAcontrol",Global.username,"i")
-      self.username.text = Global.username + "\n (" + Global.user_role + ")"
+      #self.username.text = Global.username + "\n (" + Global.user_role + ")"
+      self.username.text = Global.username
       Global.ip_address = anvil.server.call("user_login_notification")
       # if users has admin role, add admin actions list and set it visible
       self.admin_action_list.visible = False
