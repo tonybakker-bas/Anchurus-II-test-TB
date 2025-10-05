@@ -77,20 +77,44 @@ class TableList(TableListTemplate):
     # assign the columns titles to the grid columns
     self.grid.columns = columns_titles
 
-    btn_view = Button(text='View row!', align='left')
+    btn_view = Button(text='View row', align='left')
     btn_view.icon = "fa:eye"
+    btn_view.set_event_handler('click', self.btn_view_click)
     btn_edit = Button(text='Edit row', align='left')
     btn_edit.icon = "fa:edit"
+    btn_edit.set_event_handler('click', self.btn_edit_click)
+    
     # create the row structure of the datagrid
     self.rp = RepeatingPanel(item_template=DataRowPanel)
-    # Set its items property
 
-    # Add the repeating panel to your data grid and set rows_per_page
+    # Add the repeating panel to the data grid and set rows_per_page
     self.grid.add_component(self.rp, full_width_row=True)
     self.grid.rows_per_page = Global.nr_of_rows
     self.grid.role = "horizontal-scroll"
-    
+ 
+    self.rp.add_component(btn_view,column=1)
+    self.rp.add_component(btn_edit,column=2)
+
     #???
     Global.context_id = ""
     # refresh the table content
     self.table_list_refresh()
+  
+  
+  def btn_view_click(self, **event_args):
+    """This handler is called by the dynamically created button."""
+
+    current_item_data = self.item
+    item_name = current_item_data.get('name', 'Unknown')
+
+    alert(f"view button clicked for: {item_name}")
+  pass
+
+  def btn_edit_click(self, **event_args):
+    """This handler is called by the dynamically created button."""
+
+    current_item_data = self.item
+    item_name = current_item_data.get('name', 'Unknown')
+
+    alert(f"edit button clicked for: {item_name}")
+  pass
