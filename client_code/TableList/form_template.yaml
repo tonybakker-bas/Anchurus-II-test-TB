@@ -8,6 +8,15 @@ components:
   name: sub_header
   properties: {}
   type: ColumnPanel
+- components:
+  - name: repeating_panel_1
+    properties: {item_template: TableList.RowTemplate8}
+    type: RepeatingPanel
+  layout_properties: {full_width_row: true, grid_position: 'AELHBN,LAYVIR'}
+  name: table
+  properties:
+    columns: []
+  type: DataGrid
 container:
   properties: {background: '', border: '', col_spacing: medium}
   type: ColumnPanel
