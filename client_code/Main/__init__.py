@@ -212,9 +212,9 @@ class Main(MainTemplate):
         # if site is not yet selected alert user
         alert(
         content="Site has not been selected. Please select a site.",
-        title="Select Site",
+        title="Site selection warning",
         large=True,
-        buttons=["Ok", True],
+        buttons=[("Ok", True)],
         )
       else:
         self.create_new_work_area(Global.action)
@@ -238,7 +238,6 @@ class Main(MainTemplate):
     if user is not None:
       # when user is logged in, enable Action menu, username field and logout button, and disable content panel (welcome message)
       # also set username  to user email address
-      Global.GlobalHeader.visible = True
       Global.username = user["email"]
       Global.user_role = user["role"]
       #Global.DBAcontrol = anvil.server.call("check_DBAcontrol",Global.username,"i")
@@ -259,6 +258,8 @@ class Main(MainTemplate):
       # make content_panel of Main form invisible
       self.content_panel.visible = False
       # once logged in, show "Select Site" form
+      Global.GlobalHeader.visible = True
+      #
       Global.action = "Select Site"
       self.create_new_work_area(Global.action)
     pass
