@@ -19,7 +19,7 @@ class FindForm(FindFormTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-
+    Global.find_items = Global.work_area[Global.current_work_area_name]["items"]
     self.validator = Validator()
     # set validation on fields
     self.validator.regex(

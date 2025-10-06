@@ -16,18 +16,7 @@ class TableList(TableListTemplate):
   def table_list_refresh(self, **event_args):
     # This function does the filling of the table contents
     # 1. call server function '"table_name"s_get', which retrieves all rows of the table_name for the given site
-    print("in TabelList refresh")
-
-    db_table = anvil.server.call("table_get",Global.site_id,Global.table_name)
-
-    # add view and edit buttons to rows
-    row = 0
-    while row < len (db_table):
-      db_table[row]['view'] = self.btn_view
-      db_table[row]['edit'] = self.btn_edit
-      row = row + 1
-    print(db_table)
-    self.repeating_panel_1.items = db_table
+    self.repeating_panel_1.items= anvil.server.call("table_get",Global.site_id,Global.table_name)
 
     # 2. set nr of rows per page from Global variable (which is defined by a parameter in the server-side config file)
     if Global.nr_of_rows is not None:
@@ -40,7 +29,7 @@ class TableList(TableListTemplate):
       )
     # Display the total number of rows
     self.total_number.text = "Total number of rows: " + str(len(self.repeating_panel_1.items))
-
+    self.information.text = Global.table_name
   pass
 
   def __init__(self, site_id, table_name, **properties):
@@ -60,13 +49,7 @@ class TableList(TableListTemplate):
     else:
     # set table_name to one of "context", "find", from the action Global variable 
       Global.table_name = Global.action.split(" ")[1][:-1].lower()
-    #print("Table_name = ",Global.table_name)
-
-    # Create your Data Grid
-    #self.grid = DataGrid()
-    # Add the Data Grid to your Form
-    #self.add_component(self.grid, full_width_row=True)
-
+    
     # get the Table information form the Database
     table_info = anvil.server.call("describe_table", Global.table_name)
 
@@ -75,8 +58,8 @@ class TableList(TableListTemplate):
     # The DESCRIBE result structure is:
     # (Field:, Type:, Null:, Key:, Default:, Extra:)
     columns_titles = []
-    columns_titles.append({"id": 1, "title": "View", "data_key": "view", "width": 40, "expand": True })
-    columns_titles.append({"id": 2, "title": "Edit", "data_key": "edit", "width": 40, "expand": True })
+    columns_titles.append({"id": 1, "title": "", "data_key": "view", "width": 30, "expand": True })
+    columns_titles.append({"id": 2, "title": "", "data_key": "edit", "width": 30, "expand": True })
     id = 2
     for column_data in table_info:
       # Select Column "Field"
@@ -88,44 +71,12 @@ class TableList(TableListTemplate):
     # assign the columns titles to the grid columns
     self.table.columns = columns_titles
 
-    self.btn_view = Button(text='View row', align='left')
-    self.btn_view.icon = "fa:eye"
-    self.btn_view.set_event_handler('click', self.btn_view_click)
-    self.btn_edit = Button(text='Edit row', align='left')
-    self.btn_edit.icon = "fa:edit"
-    self.btn_edit.set_event_handler('click', self.btn_edit_click)
-    
-    # create the row structure of the datagrid
-    #self.rp = RepeatingPanel(item_template=DataRowPanel)
-
     # Add the repeating panel to the data grid and set rows_per_page
     #self.grid.add_component(self.rp, full_width_row=True)
     self.table.rows_per_page = Global.nr_of_rows
     self.table.role = "horizontal-scroll"
- 
-    #self.table.add_component(self.btn_view)
-    #self.table.add_component(self.btn_edit)
 
     #???
     Global.context_id = ""
     # refresh the table content
     self.table_list_refresh()
-  
-  
-  def btn_view_click(self, **event_args):
-    """This handler is called by the dynamically created button."""
-
-    current_item_data = self.item
-    item_name = current_item_data.get('name', 'Unknown')
-
-    alert(f"view button clicked for: {item_name}")
-  pass
-
-  def btn_edit_click(self, **event_args):
-    """This handler is called by the dynamically created button."""
-
-    current_item_data = self.item
-    item_name = current_item_data.get('name', 'Unknown')
-
-    alert(f"edit button clicked for: {item_name}")
-  pass

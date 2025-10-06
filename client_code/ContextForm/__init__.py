@@ -18,7 +18,7 @@ class ContextForm(ContextFormTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-
+    Global.context_items = Global.work_area[Global.current_work_area_name]["items"]
     self.validator = Validator()
     # set validation on fields
     self.validator.regex(component=self.ContextId,

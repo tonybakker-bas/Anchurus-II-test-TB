@@ -1,12 +1,16 @@
 components:
 - components:
+  - layout_properties: {full_width_row: true, grid_position: 'LNVHEX,BHZUPJ'}
+    name: information
+    properties: {border: none}
+    type: TextArea
   - layout_properties: {full_width_row: true, grid_position: 'LNVHEX,MZKYDJ'}
     name: total_number
     properties: {align: right, border: none, role: outlined}
     type: TextBox
   layout_properties: {full_width_row: true, grid_position: 'WWKKDB,DOHYNN'}
   name: sub_header
-  properties: {}
+  properties: {col_widths: '{"BHZUPJ":50,"MZKYDJ":10}'}
   type: ColumnPanel
 - components:
   - name: repeating_panel_1

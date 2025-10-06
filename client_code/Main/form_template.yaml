@@ -28,57 +28,66 @@ components:
   properties: {bold: true}
   type: Label
 - components:
-  - layout_properties: {grid_position: 'DDNTRZ,ZJWDRL'}
-    name: username
-    properties:
-      align: right
-      background: theme:On Primary
-      border: ''
-      font_size: 14
-      spacing:
-        margin: ['12', '0', null, '0']
-        padding: ['0', null, '0', null]
-    type: Label
-  - event_bindings: {change: admin_action_list_change}
-    layout_properties: {grid_position: 'DDNTRZ,SWYXGR'}
-    name: admin_action_list
-    properties:
-      background: theme:On Primary
-      border: solid Black 1px
-      include_placeholder: true
-      margin: ['8', null, null, null]
-      placeholder: Admin
-    type: DropDown
-  - event_bindings: {change: action_list_change}
-    layout_properties: {grid_position: 'DDNTRZ,RGRLNT'}
-    name: action_list
-    properties:
-      background: theme:On Primary
-      bold: false
-      border: solid black 1px
-      include_placeholder: true
-      margin: ['8', null, null, null]
-      placeholder: Menu
-    type: DropDown
-  - event_bindings: {click: logout_button_click}
-    layout_properties: {grid_position: 'DDNTRZ,KFLFIZ'}
-    name: logout_button
-    properties:
-      align: left
-      background: theme:On Primary
-      border: solid black 1px
-      icon: fa:sign-out
-      icon_align: left_edge
-      spacing:
+  - components:
+    - layout_properties: {expand: true}
+      name: username
+      properties:
+        align: left
+        background: ''
+        border: none
+        font_size: 14
+        spacing:
+          margin: ['12', '0', null, '0']
+          padding: ['0', '30', '0', '30']
+      type: Label
+    - event_bindings: {change: admin_action_list_change}
+      layout_properties: {expand: true, width: 80}
+      name: admin_action_list
+      properties:
+        align: left
+        background: ''
+        border: none
+        include_placeholder: true
         margin: ['8', '0', null, '0']
-        padding: ['0', '0', '0', '20']
-      text: ' Logout          '
-    type: Button
+        placeholder: Admin
+      type: DropDown
+    - event_bindings: {change: action_list_change}
+      layout_properties: {expand: true, width: 80}
+      name: action_list
+      properties:
+        align: left
+        background: ''
+        bold: false
+        border: none
+        include_placeholder: true
+        margin: ['8', '0', null, '0']
+        placeholder: Menu
+      type: DropDown
+    - event_bindings: {click: logout_button_click}
+      layout_properties: {}
+      name: logout_button
+      properties:
+        align: left
+        background: ''
+        border: none
+        icon: fa:sign-out
+        icon_align: left_edge
+        spacing:
+          margin: ['8', '0', null, '0']
+          padding: ['0', '0', '0', '20']
+        text: ' Logout          '
+      type: Button
+    layout_properties: {grid_position: 'DDNTRZ,QVQFFX'}
+    name: flow_panel_1
+    properties:
+      spacing:
+        margin: ['0', '0', null, '0']
+    type: FlowPanel
   layout_properties: {slot: nav-right}
   name: outlined_card_1
   properties:
     col_spacing: none
-    col_widths: '{"SWYXGR":15,"RGRLNT":15,"KFLFIZ":15}'
+    col_widths: '{"QVQFFX":25}'
     role: null
     spacing:
       margin: ['8', null, null, null]
