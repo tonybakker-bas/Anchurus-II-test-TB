@@ -53,7 +53,7 @@ class Main(MainTemplate):
     # Firstly make all work_area_list elements invisible and set to unfocus (unbold) work_area_name_list elements
     #for name in Global.work_area_list:
     for name in Global.work_area:
-      #print(name)
+      print(name)
       Global.work_area[name]["form"].visible = False
       Global.work_area[name]["button"].bold = False
       Global.work_area[name]["button"].background = Global.button_normal_background_clour

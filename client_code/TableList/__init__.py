@@ -16,7 +16,20 @@ class TableList(TableListTemplate):
   def table_list_refresh(self, **event_args):
     # This function does the filling of the table contents
     # 1. call server function '"table_name"s_get', which retrieves all rows of the table_name for the given site
-    self.rp.items = anvil.server.call("table_get",Global.site_id,Global.table_name)
+    print("in TabelList refresh")
+
+    table = anvil.server.call("table_get",Global.site_id,Global.table_name)
+
+    # add view and edit buttons to rows
+    row = 0
+    while row < len (table):
+      print(table[row])
+      table[row]['view'] = self.btn_view
+      print(table[row])
+      table[row]['edit'] = self.btn_edit
+      print(table[row])
+    
+    self.rp.items = table
 
     # 2. set nr of rows per page from Global variable (which is defined by a parameter in the server-side config file)
     if Global.nr_of_rows is not None:
@@ -49,7 +62,7 @@ class TableList(TableListTemplate):
     else:
     # set table_name to one of "context", "find", from the action Global variable 
       Global.table_name = Global.action.split(" ")[1][:-1].lower()
-    print("Table_name = ",Global.table_name)
+    #print("Table_name = ",Global.table_name)
 
     # Create your Data Grid
     self.grid = DataGrid()
@@ -77,12 +90,12 @@ class TableList(TableListTemplate):
     # assign the columns titles to the grid columns
     self.grid.columns = columns_titles
 
-    btn_view = Button(text='View row', align='left')
-    btn_view.icon = "fa:eye"
-    btn_view.set_event_handler('click', self.btn_view_click)
-    btn_edit = Button(text='Edit row', align='left')
-    btn_edit.icon = "fa:edit"
-    btn_edit.set_event_handler('click', self.btn_edit_click)
+    self.btn_view = Button(text='View row', align='left')
+    self.btn_view.icon = "fa:eye"
+    self.btn_view.set_event_handler('click', self.btn_view_click)
+    self.btn_edit = Button(text='Edit row', align='left')
+    self.btn_edit.icon = "fa:edit"
+    self.btn_edit.set_event_handler('click', self.btn_edit_click)
     
     # create the row structure of the datagrid
     self.rp = RepeatingPanel(item_template=DataRowPanel)
@@ -92,8 +105,8 @@ class TableList(TableListTemplate):
     self.grid.rows_per_page = Global.nr_of_rows
     self.grid.role = "horizontal-scroll"
  
-    self.rp.add_component(btn_view,column=1)
-    self.rp.add_component(btn_edit,column=2)
+    #self.rp.add_component(btn_view,column=1)
+    #self.rp.add_component(btn_edit,column=2)
 
     #???
     Global.context_id = ""
