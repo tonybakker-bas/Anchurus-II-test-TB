@@ -23,7 +23,8 @@ class GlobalHeader(GlobalHeaderTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-
+    Global.header_site_name = self.site_name
+    Global.header_site_summary_information = self.more_information
 
 
 

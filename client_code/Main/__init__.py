@@ -71,7 +71,7 @@ class Main(MainTemplate):
     Global.header_work_area_type.text = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     # Show work_area and set focus on work_area_name
     Global.work_area[Global.current_work_area_name]["form"].visible = True
-    Global.work_area[Global.current_work_area_name]["button"].bold = True
+    Global.work_area[Global.current_work_area_name]["button"].bold = False
     Global.work_area[Global.current_work_area_name]["button"].background = Global.button_highlight_background_clour
     Global.header.visible = True
     Global.action_form_type = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
@@ -163,7 +163,7 @@ class Main(MainTemplate):
     
     # Make selected work area visible and have Focus
     Global.work_area[work_area_name]["form"].visible = True
-    Global.work_area[work_area_name]["button"].bold = True
+    Global.work_area[work_area_name]["button"].bold = False
     Global.work_area[work_area_name]["button"].background = Global.button_highlight_background_clour
     #
     Global.header_work_area_name.text = work_area_name

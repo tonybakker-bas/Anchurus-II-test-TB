@@ -64,10 +64,10 @@ components:
         placeholder: Menu
       type: DropDown
     - event_bindings: {click: logout_button_click}
-      layout_properties: {}
+      layout_properties: {width: 60}
       name: logout_button
       properties:
-        align: left
+        align: center
         background: ''
         border: none
         icon: fa:sign-out

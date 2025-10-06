@@ -32,10 +32,13 @@ class SelectSite(SelectSiteTemplate):
       Global.site_name = self.select_site.selected_value
       Global.site_id = Global.site_options[self.select_site.selected_value]
       Global.selected_site = ": " + Global.site_name
-      Global.title_label.text = Global.title + Global.status + Global.selected_site
+      #Global.title_label.text = Global.title + Global.status + Global.selected_site
+      Global.title_label.text = Global.title
       #get more details of sites, e.g. How many areas, contexts, finds 
       site_information = anvil.server.call("site_get_information",Global.site_id)
-      self.site_summary.text = "Site summary for " + Global.site_id + ": #Contexts: " + str(site_information["Contexts"]) + ", Finds:" + str(site_information["Finds"])
+      Global.header_site_name.text = Global.site_name
+      Global.header_site_summary_information.text = "# of Contexts: " + str(site_information["Contexts"]) + ", # of Finds:" + str(site_information["Finds"])
+      
     pass
 
   def work_area_name_pressed_enter(self, **event_args):
