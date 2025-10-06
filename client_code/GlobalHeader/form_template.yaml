@@ -1,31 +1,41 @@
 components:
 - components:
-  - layout_properties: {}
-    name: site_name
+  - name: site_name
     properties:
       align: left
       bold: false
-      font_size: 16
+      font_size: 14
       foreground: theme:Surface
       spacing:
         margin: ['4', '2', '0', '2']
         padding: ['4', null, '0', null]
+      spacing_above: none
+      spacing_below: none
       text: ''
     type: Label
-  - layout_properties: {}
-    name: more_information
+  - name: more_information
     properties:
       bold: false
-      font_size: 16
+      font_size: 14
       foreground: theme:Surface
       spacing:
         margin: ['4', '8', '0', '2']
         padding: ['4', '2', '0', null]
+      spacing_above: none
+      spacing_below: none
       text: ''
     type: Label
-  layout_properties: {full_width_row: true, grid_position: 'JQGSAV,WKPNZP'}
+  layout_properties: {full_width_row: true, grid_position: 'WNREHC,QUGDTI'}
   name: flow_panel_1
-  properties: {align: left, vertical_align: middle}
+  properties:
+    align: left
+    spacing:
+      margin: ['4', null, '0', null]
+    vertical_align: middle
+  type: FlowPanel
+- layout_properties: {full_width_row: true, grid_position: 'WNREHC,AREPRE'}
+  name: flow_panel_2
+  properties: {align: right}
   type: FlowPanel
 container:
   data_bindings:

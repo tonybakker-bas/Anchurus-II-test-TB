@@ -1,88 +1,92 @@
 components:
 - components:
-  - event_bindings: {pressed_enter: work_area_name_pressed_enter}
-    layout_properties: {full_width_row: true, grid_position: 'LLCXPA,RILMKY QGGNZO,GOUBXT'}
-    name: work_area_name
-    properties:
-      font_size: 12
-      margin: [6, '4', null, '4']
-      role: outlined
-    type: TextBox
-  - layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,KEWNXD'}
-    name: work_area_type
-    properties:
-      font_size: 12
-      margin: [6, '4', null, '4']
-      role: outlined
-    type: TextBox
-  - event_bindings: {click: refresh_button_click}
-    layout_properties: {grid_position: 'LLCXPA,TNHTHQ'}
-    name: refresh_button
-    properties:
-      icon: fa:refresh
-      spacing:
-        margin: [null, null, null, null]
-        padding: [null, '4', null, '4']
-      text: ''
-      tooltip: refresh list
-    type: Button
-  - event_bindings: {click: delete_work_area_click}
-    layout_properties: {grid_position: 'LLCXPA,EPPBDL'}
-    name: delete_work_area
-    properties:
-      icon: fa:remove
-      spacing:
-        padding: [null, '4', null, '4']
-      text: ''
-      tooltip: delete workspace
-    type: Button
-  - layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,ZXMOYD'}
-    name: label_1
-    properties: {}
-    type: Label
-  - event_bindings: {click: filter_button_click}
-    layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,XBQNNA'}
-    name: filter_button
-    properties:
-      icon: fa:filter
-      spacing:
-        padding: [null, '4', null, '4']
-      text: ''
-      tooltip: filter columns
-    type: Button
-  - event_bindings: {click: download_button_click}
-    layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,GIHCSI'}
-    name: download_button
-    properties:
-      icon: fa:download
-      spacing:
-        padding: [null, '4', null, '4']
-      text: ''
-      tooltip: download csv file
-    type: Button
-  - event_bindings: {click: print_button_click}
-    layout_properties: {grid_position: 'LLCXPA,RILMKY QGGNZO,TCHJNT'}
-    name: print_button
-    properties:
-      icon: fa:print
-      spacing:
-        margin: [null, 0, null, null]
-        padding: [null, '4', null, '4']
-      text: ''
-      tooltip: print list
-    type: Button
-  layout_properties: {full_width_row: true, grid_position: 'ZRXDNJ,BTYRNV'}
+  - components:
+    - layout_properties: {}
+      name: label_2
+      properties:
+        spacing:
+          margin: [null, null, null, '4']
+        text: 'Work Area name:'
+      type: Label
+    - event_bindings: {pressed_enter: work_area_name_pressed_enter}
+      layout_properties: {width: 148.5169423828125}
+      name: work_area_name
+      properties:
+        font_size: 12
+        margin: [6, '4', null, '4']
+        role: outlined
+      type: TextBox
+    - name: label_3
+      properties: {text: 'Work area form:'}
+      type: Label
+    - name: work_area_type
+      properties:
+        font_size: 12
+        margin: [6, '4', null, '4']
+        role: outlined
+      type: TextBox
+    layout_properties: {full_width_row: true, grid_position: 'XGTADS,CTGSDY'}
+    name: flow_panel_1
+    properties: {background: 'theme:Secondary Container'}
+    type: FlowPanel
+  - components:
+    - event_bindings: {click: filter_button_click}
+      name: filter_button
+      properties:
+        icon: fa:filter
+        spacing:
+          padding: [null, '4', null, '4']
+        text: ''
+        tooltip: filter columns
+      type: Button
+    - event_bindings: {click: download_button_click}
+      name: download_button
+      properties:
+        icon: fa:download
+        spacing:
+          padding: [null, '4', null, '4']
+        text: ''
+        tooltip: download csv file
+      type: Button
+    - event_bindings: {click: print_button_click}
+      name: print_button
+      properties:
+        icon: fa:print
+        spacing:
+          margin: [null, 0, null, null]
+          padding: [null, '4', null, '4']
+        text: ''
+        tooltip: print list
+      type: Button
+    - event_bindings: {click: refresh_button_click}
+      name: refresh_button
+      properties:
+        icon: fa:refresh
+        spacing:
+          margin: [null, null, null, null]
+          padding: [null, '4', null, '4']
+        text: ''
+        tooltip: refresh list
+      type: Button
+    - event_bindings: {click: delete_work_area_click}
+      name: delete_work_area
+      properties:
+        icon: fa:remove
+        spacing:
+          padding: [null, '4', null, '4']
+        text: ''
+        tooltip: delete workspace
+      type: Button
+    layout_properties: {full_width_row: true, grid_position: 'XGTADS,ASPBEZ'}
+    name: flow_panel_2
+    properties: {align: right, background: 'theme:Secondary Container'}
+    type: FlowPanel
+  layout_properties: {full_width_row: true, grid_position: 'URTZQK,VJOIFT'}
   name: column_panel_1
-  properties:
-    background: theme:Secondary Container
-    col_spacing: small
-    col_widths: '{"GOUBXT":15,"KEWNXD":25,"RILMKY":56,"ZXMOYD":60,"TNHTHQ":2,"EPPBDL":2,"TCHJNT":5,"XBQNNA":5,"GIHCSI":5}'
-    spacing:
-      margin: ['0', null, '0', null]
-    spacing_above: none
-    spacing_below: none
+  properties: {background: 'theme:Secondary Container', col_widths: '{"CTGSDY":45,"ASPBEZ":15}'}
   type: ColumnPanel
 container:
   event_bindings: {}
+  properties: {col_widths: '{}'}
   type: ColumnPanel
 is_package: true

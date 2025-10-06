@@ -29,17 +29,10 @@ components:
   type: Label
 - components:
   - components:
-    - layout_properties: {expand: true}
+    - layout_properties: {expand: false, width: 339.3269423828125}
       name: username
-      properties:
-        align: left
-        background: ''
-        border: none
-        font_size: 14
-        spacing:
-          margin: ['12', '0', null, '0']
-          padding: ['0', '30', '0', '30']
-      type: Label
+      properties: {align: right, background: 'theme:Background', border: none, foreground: 'theme:On Primary Container', type: email}
+      type: TextBox
     - event_bindings: {change: admin_action_list_change}
       layout_properties: {expand: true, width: 80}
       name: admin_action_list
