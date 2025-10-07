@@ -66,8 +66,8 @@ db_schema:
     server: full
     title: Users
 dependencies: []
-metadata: {title: Anchurus2 v053}
-name: ANC2_v053
+metadata: {title: Anchurus2 v054}
+name: ANC2_v054
 native_deps: null
 package_name: ANC2_v050
 renamed: true

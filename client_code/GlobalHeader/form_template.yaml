@@ -27,6 +27,10 @@ components:
       spacing_below: none
       text: ''
     type: Label
+  - layout_properties: {width: 100}
+    name: select_site
+    properties: {include_placeholder: true, placeholder: Select Site}
+    type: DropDown
   layout_properties: {full_width_row: true, grid_position: 'WNREHC,QUGDTI'}
   name: flow_panel_1
   properties:
