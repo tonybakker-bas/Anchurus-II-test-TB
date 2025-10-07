@@ -261,8 +261,8 @@ class Main(MainTemplate):
       # once logged in, show "Select Site" form
       Global.GlobalHeader.visible = True
       #
-      Global.action = "Select Site"
-      self.create_new_work_area(Global.action)
+      #Global.action = "Select Site"
+      #self.create_new_work_area(Global.action)
     pass
 
   def logout_button_click(self, **event_args):

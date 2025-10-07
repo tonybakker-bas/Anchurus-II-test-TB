@@ -1,19 +1,10 @@
 components:
 - components:
-  - layout_properties: {}
-    name: site_name
-    properties:
-      align: left
-      bold: false
-      font_size: 16
-      foreground: theme:Surface
-      spacing:
-        margin: ['4', '2', '0', '2']
-        padding: ['4', null, '0', null]
-      spacing_above: none
-      spacing_below: none
-      text: ''
-    type: Label
+  - event_bindings: {change: select_site_change}
+    layout_properties: {expand: true, width: 125}
+    name: select_site
+    properties: {include_placeholder: true, placeholder: Select Site}
+    type: DropDown
   - layout_properties: {}
     name: more_information
     properties:
@@ -21,16 +12,12 @@ components:
       font_size: 16
       foreground: theme:Surface
       spacing:
-        margin: ['4', '8', '0', '2']
+        margin: ['0', '8', '0', '2']
         padding: ['4', '2', '0', null]
       spacing_above: none
       spacing_below: none
       text: ''
     type: Label
-  - layout_properties: {width: 100}
-    name: select_site
-    properties: {include_placeholder: true, placeholder: Select Site}
-    type: DropDown
   layout_properties: {full_width_row: true, grid_position: 'WNREHC,QUGDTI'}
   name: flow_panel_1
   properties:

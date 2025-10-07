@@ -23,7 +23,7 @@ class GlobalHeader(GlobalHeaderTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    Global.header_site_name = self.site_name
+    #Global.header_site_name = self.site_name
     Global.header_site_summary_information = self.more_information
     Global.gh_file_list = self.File
     Global.gh_view_list = self.View
@@ -41,8 +41,22 @@ class GlobalHeader(GlobalHeaderTemplate):
         Global.site_options[option] = val_list[0]
     else:
       print("in SelectSite form without having logged in")
-      
+    #  
     self.select_site.items = Global.site_options.keys()
+
+  def select_site_change(self, **event_args):
+    """This method is called when an item is selected"""
+    if self.select_site.selected_value is not None:
+      Global.site_name = self.select_site.selected_value
+      Global.site_id = Global.site_options[self.select_site.selected_value]
+      Global.selected_site = ": " + Global.site_name
+      #Global.title_label.text = Global.title + Global.status + Global.selected_site
+      Global.title_label.text = Global.title
+      #get more details of sites, e.g. How many areas, contexts, finds 
+      site_information = anvil.server.call("site_get_information",Global.site_id)
+      #Global.header_site_name.text = Global.site_name
+      Global.header_site_summary_information.text = "# of Contexts: " + str(site_information["Contexts"]) + ", # of Finds:" + str(site_information["Finds"])
+    pass
 
 
 

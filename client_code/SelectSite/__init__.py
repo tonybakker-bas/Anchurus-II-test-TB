@@ -23,7 +23,7 @@ class SelectSite(SelectSiteTemplate):
         option = val_list[0] + " - " + val_list[1]
         Global.site_options[option] = val_list[0]
     else:
-        print("in SelectSite form without having logged in")
+        print("in Select Site form without having logged in")
     self.select_site.items = Global.site_options.keys()
 
   def submit_button_click(self, **event_args):
@@ -41,10 +41,3 @@ class SelectSite(SelectSiteTemplate):
       
     pass
 
-  def work_area_name_pressed_enter(self, **event_args):
-    """This method is called when the user presses Enter in this text box"""
-    new_work_area_name = self.work_area_name.text
-    #replace old work area name with new work area name in the two list (work area name list and work area list)
-    #Global.work_area_name_list[Global.current_work_area].text = self.work_area_name.text
-    #Global.work_area_list[Global.current_work_area]
-    pass
