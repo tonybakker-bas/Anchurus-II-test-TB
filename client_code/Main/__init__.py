@@ -250,6 +250,7 @@ class Main(MainTemplate):
         print(Global.username, Global.user_role)
         self.admin_action_list.items = Global.admin_action_list
         self.admin_action_list.visible = True
+        Global.gh_admin_list.visible = True
       # make menu bar varianble visible
       self.action_list.items = Global.user_action_list
       self.action_list.visible = True
@@ -276,6 +277,8 @@ class Main(MainTemplate):
     self.logout_button.visible = False
     self.username.visible = False
     Global.GlobalHeader.visible = False
+    Global.gh_admin_list.visible = False
+
     
     # To be done: save work areas in table for user for loading when login
     

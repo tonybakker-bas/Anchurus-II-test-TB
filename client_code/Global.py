@@ -36,6 +36,7 @@ csv_file = None
 current_work_area = {}
 current_work_area_name = ""
 current_work_area_type = ""
+# variables for work area header
 header = {}
 header_work_area_name = {}
 header_refresh_button = {}
@@ -43,6 +44,13 @@ header_print_button = {}
 header_download_button = {}
 header_filter_button = {}
 header_work_area_type= {}
+# variables for Global Header dropdown lists
+gh_file_list = {}
+gh_view_list = {}
+gh_help_list = {}
+gh_list_list = {}
+gh_insert_list = {}
+gh_admin_list = {}
 #
 work_area = {}
 #

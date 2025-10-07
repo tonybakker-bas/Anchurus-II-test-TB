@@ -25,7 +25,12 @@ class GlobalHeader(GlobalHeaderTemplate):
     # Any code you write here will run before the form opens.
     Global.header_site_name = self.site_name
     Global.header_site_summary_information = self.more_information
-
+    Global.gh_file_list = self.File
+    Global.gh_view_list = self.View
+    Global.gh_list_list = self.List
+    Global.gh_insert_list = self.Insert
+    Global.gh_admin_list = self.Admin
+    Global.gh_admin_list.visible = False
 
 
 

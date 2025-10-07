@@ -1,10 +1,11 @@
 components:
 - components:
-  - name: site_name
+  - layout_properties: {}
+    name: site_name
     properties:
       align: left
       bold: false
-      font_size: 14
+      font_size: 16
       foreground: theme:Surface
       spacing:
         margin: ['4', '2', '0', '2']
@@ -13,10 +14,11 @@ components:
       spacing_below: none
       text: ''
     type: Label
-  - name: more_information
+  - layout_properties: {}
+    name: more_information
     properties:
       bold: false
-      font_size: 14
+      font_size: 16
       foreground: theme:Surface
       spacing:
         margin: ['4', '8', '0', '2']
