@@ -51,7 +51,7 @@ class FindForm(FindFormTemplate):
       message="Please enter a short description (max 40 characters)",
     )
     # for all actions set SiteId disabled for editing
-    self.SiteId.text = Global.site_id
+    self.SiteId.text = Global.work_area[Global.current_work_area_name]["site_id"] 
     self.SiteId.enabled = False
     if Global.action == "View Find" or Global.action == "Edit Find":
       #print(Global.find_items)
@@ -161,7 +161,7 @@ class FindForm(FindFormTemplate):
       # collect context form details and then call anvil.server add_context
       Global.find_items["FindId"] = self.FindId.text
       Global.find_items["ContextId"] = self.ContextId.text
-      Global.find_items["SiteId"] = Global.site_id
+      Global.find_items["SiteId"] = self.SiteId.text
       Global.find_items["FromSample"] = self.FromSample.text
       Global.find_items["FindType"] = self.FindType.selected_value
       Global.find_items["RecordStatus"] = self.RecordStatus.text

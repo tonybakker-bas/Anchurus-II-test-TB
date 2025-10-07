@@ -28,6 +28,7 @@ class Header(HeaderTemplate):
     # Any code you write here will run before the form opens.
     Global.header_work_area_name = self.work_area_name
     Global.header_work_area_type = self.work_area_type
+    Global.header_site_name = self.site_name
     Global.header_refresh_button = self.refresh_button
     Global.header_print_button = self.print_button
     Global.header_download_button = self.download_button

@@ -44,6 +44,8 @@ header_print_button = {}
 header_download_button = {}
 header_filter_button = {}
 header_work_area_type= {}
+header_site_name = {}
+header_site_summary_information = {}
 # variables for Global Header dropdown lists
 gh_file_list = {}
 gh_view_list = {}
@@ -104,7 +106,6 @@ selected_site = ""
 sign_in_out_button_text = "Sign in"
 site_id = None
 site_name = ""
-header_site_name = {}
 site_options = {}
 site_items = {}
 header_site_summary_information = {}

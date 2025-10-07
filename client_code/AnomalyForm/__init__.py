@@ -50,7 +50,7 @@ class AnomalyForm(AnomalyFormTemplate):
       message="Please enter a short description (max 40 characters)",
     )
     # for all actions set SiteId disabled for editing
-    self.SiteId.text = Global.site_id
+    self.SiteId.text = Global.work_area[Global.current_work_area_name]["site_id"] 
     self.SiteId.enabled = False
     self.context_help_information.text = Global.context_help_information
     self.context_help_information.enabled = False
@@ -68,7 +68,7 @@ class AnomalyForm(AnomalyFormTemplate):
       # Note Context_type is a dropdown, not a text field
       self.ContextType.items = Global.context_types
       self.ContextType.selected_value = Global.context_items["ContextType"]
-      areas_list = anvil.server.call("areas_get_summary", Global.site_id)
+      areas_list = anvil.server.call("areas_get_summary", Global.work_area[Global.current_work_area_name]["site_id"] )
       areas_options = []
       for x in areas_list:
         areas_options.append(x["AreaId"])
@@ -113,7 +113,7 @@ class AnomalyForm(AnomalyFormTemplate):
       self.ContextType.items = Global.context_types
       self.ContextType.selected_value = None
       self.ContextType.enabled = True
-      areas_list = anvil.server.call("areas_get_summary", Global.site_id)
+      areas_list = anvil.server.call("areas_get_summary", Global.work_area[Global.current_work_area_name]["site_id"] )
       areas_options = []
       for x in areas_list:
         areas_options.append(x["AreaId"])
@@ -146,7 +146,7 @@ class AnomalyForm(AnomalyFormTemplate):
       # All fields are filled in correct (I think)
       # collect context form details and then call anvil.server add_context
       Global.context_items["ContextId"] = self.ContextId.text
-      Global.context_items["SiteId"] = Global.site_id
+      Global.context_items["SiteId"] = self.SiteId.text
       Global.context_items["ContextName"] = self.ContextName.text
       Global.context_items["DigYear"] = self.DigYear.text
       Global.context_items["AreaId"] = self.AreaId.selected_value

@@ -66,7 +66,7 @@ class AreaForm(AreaFormTemplate):
       message="Please enter the Top Right Northing",
     )
     # for all actions set SiteId disabled for editing
-    self.SiteId.text = Global.site_id
+    self.SiteId.text = Global.work_area[Global.current_work_area_name]["site_id"] 
     self.SiteId.enabled = False
     if Global.work_area[Global.current_work_area_name]["action"] == "View Area" or Global.work_area[Global.current_work_area_name]["action"] == "Edit Area":
       # fill fields with values for View or Edit
@@ -121,7 +121,7 @@ class AreaForm(AreaFormTemplate):
       # All fields are filled in correct (I think)
       # collect context form details and then call anvil.server add_context
       Global.area_items["AreaId"] = self.AreaId.text
-      Global.area_items["SiteId"] = Global.site_id
+      Global.area_items["SiteId"] = self.SiteId.text
       Global.area_items["Description"] = self.Description.text
       Global.area_items["Alias"] = self.Alias.text
       if self.BottomLeftEasting.text == "":

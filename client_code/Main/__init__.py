@@ -69,6 +69,8 @@ class Main(MainTemplate):
     # Fill header fields with work_area name and work_area Form name
     Global.header_work_area_name.text = Global.current_work_area_name
     Global.header_work_area_type.text = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
+    Global.header_site_name.text = Global.work_area[Global.current_work_area_name]["site_name"]
+
     # Show work_area and set focus on work_area_name
     Global.work_area[Global.current_work_area_name]["form"].visible = True
     Global.work_area[Global.current_work_area_name]["button"].bold = False
@@ -105,7 +107,7 @@ class Main(MainTemplate):
     # First make sure the header is visible
     Global.header.visible = True
     # set name of work_area to be action name if action is view or edit
-    work_area_name = action
+    work_area_name = Global.site_id + " " + action
     print("Create new work_area action:",action)
     if action == "View Context" or action == "Edit Context":
       # modify work_area name to add XxxxId number (ContextId, FindId, AeraId, etc); for now only implemented for Context
@@ -154,8 +156,12 @@ class Main(MainTemplate):
     # set button name to new work_area_name
     Global.work_area[work_area_name]["button"].text = work_area_name
     Global.work_area[work_area_name]["form_type"] = str(type(Global.work_area[work_area_name]["form"])).split(".")[2][:-2]
+    #
+    Global.work_area[work_area_name]["site_name"] = Global.site_name
+    Global.header_site_name.text = Global.work_area[work_area_name]["site_name"]
+    Global.work_area[work_area_name]["site_id"] = Global.site_id
 
-   # make all work spaces invisible
+    # make all work spaces invisible
     for name in Global.work_area:
       Global.work_area[name]["form"].visible = False
       Global.work_area[name]["button"].bold = False

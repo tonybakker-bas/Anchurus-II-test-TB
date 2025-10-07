@@ -52,7 +52,7 @@ class ContextForm(ContextFormTemplate):
                            required=False,
                            message="Please enter a valid year YYYY BC|AD (or -YYYY for BC year)")
     #
-    self.SiteId.text = Global.site_id
+    self.SiteId.text = Global.work_area[Global.current_work_area_name]["site_id"] 
     self.SiteId.enabled = False
     self.context_help_information.text = Global.context_help_information
     self.context_help_information.enabled = False
@@ -146,7 +146,7 @@ class ContextForm(ContextFormTemplate):
       # All fields are filled in correct (I think)
       # collect context form details and then call anvil.server add_context
       Global.context_items["ContextId"] = self.ContextId.text
-      Global.context_items["SiteId"] = Global.site_id
+      Global.context_items["SiteId"] = self.SiteId.text
       Global.context_items["Name"] = self.Name.text
       Global.context_items["Year"] = self.Year.text
       #Global.context_items["AreaId"] = self.AreaId.selected_value

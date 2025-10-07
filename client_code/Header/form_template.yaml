@@ -25,6 +25,10 @@ components:
         margin: [6, '4', null, '4']
         role: outlined
       type: TextBox
+    - layout_properties: {width: 199.4346474609375}
+      name: site_name
+      properties: {background: 'theme:Secondary Container', border: none}
+      type: TextBox
     layout_properties: {full_width_row: true, grid_position: 'XGTADS,CTGSDY'}
     name: flow_panel_1
     properties: {background: 'theme:Secondary Container'}
