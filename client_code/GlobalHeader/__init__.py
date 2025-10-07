@@ -29,7 +29,7 @@ class GlobalHeader(GlobalHeaderTemplate):
     Global.gh_view_list = self.View
     Global.gh_list_list = self.List
     Global.gh_insert_list = self.Insert
-    Global.gh_admin_list = self.Admin
+    Global.gh_admin_list = self.Admin_list
     Global.gh_admin_list.visible = False
 
     if anvil.users.get_user() is not None:
@@ -56,6 +56,25 @@ class GlobalHeader(GlobalHeaderTemplate):
       site_information = anvil.server.call("site_get_information",Global.site_id)
       #Global.header_site_name.text = Global.site_name
       Global.header_site_summary_information.text = "# of Contexts: " + str(site_information["Contexts"]) + ", # of Finds:" + str(site_information["Finds"])
+    pass
+
+  def Admin_list_change(self, **event_args):
+    """This method is called when an item is selected"""
+    # Action has been selected, but only take action if action in not a separator
+    # save a link to the Main form in a Global variable 
+    Global.main_form = get_open_form()
+    #
+    Global.admin_action = self.Admin_list.selected_value
+    if Global.admin_action in Global.admin_action_list:
+      # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
+      # for any action that has a Form defined create a new work_area
+
+      Global.main_form.create_new_work_area(Global.admin_action)
+    else:
+      if Global.action != Global.separator:
+        alert("Action not yet implemented.")
+    #    
+    self.Admin_list.selected_value = None
     pass
 
 

@@ -52,8 +52,9 @@ components:
     name: Insert
     properties: {include_placeholder: true, placeholder: Insert}
     type: DropDown
-  - layout_properties: {width: 100}
-    name: Admin
+  - event_bindings: {change: Admin_list_change}
+    layout_properties: {width: 100}
+    name: Admin_list
     properties: {include_placeholder: true, placeholder: Admin}
     type: DropDown
   layout_properties: {full_width_row: true, grid_position: 'WNREHC,AREPRE'}

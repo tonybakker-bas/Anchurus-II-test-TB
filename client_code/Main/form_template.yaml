@@ -33,17 +33,6 @@ components:
       name: username
       properties: {align: right, background: 'theme:Background', border: none, foreground: 'theme:On Primary Container', type: email}
       type: TextBox
-    - event_bindings: {change: admin_action_list_change}
-      layout_properties: {expand: true, width: 100}
-      name: admin_action_list
-      properties:
-        align: left
-        background: ''
-        border: none
-        include_placeholder: true
-        margin: ['8', '0', null, '0']
-        placeholder: Admin
-      type: DropDown
     - event_bindings: {change: action_list_change}
       layout_properties: {expand: true, width: 100}
       name: action_list

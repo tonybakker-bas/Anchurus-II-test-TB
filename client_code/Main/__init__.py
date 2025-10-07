@@ -43,7 +43,6 @@ class Main(MainTemplate):
     Global.work_area_list = {}
     self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
-    self.admin_action_list.visible = False
     self.action_list.visible = False
     self.logout_button.visible = False
     self.username.visible = False
@@ -148,7 +147,9 @@ class Main(MainTemplate):
     print("Create New Work Area. Global.site_id = ",Global.site_id)
     print("Create New Work Area. Global.selected-site = ",Global.selected_site)
 
-    work_area_name = Global.site_id + " " + work_area_name
+    if action not in Global.admin_action_list:
+      work_area_name = Global.site_id + " " + work_area_name
+      
     # create new 'empty row' in nested work_area dictionary for the new work_area_name
     Global.work_area[work_area_name] = {}
     Global.work_area[work_area_name]["action"] = action
@@ -265,11 +266,9 @@ class Main(MainTemplate):
       # if users has admin role, add admin actions list and set it visible
       user = anvil.users.get_user()
       Global.user_role = user["role"]
-      self.admin_action_list.visible = False
       if Global.user_role == "admin":
         print(Global.username, Global.user_role)
-        self.admin_action_list.items = Global.admin_action_list
-        self.admin_action_list.visible = True
+        Global.gh_admin_list.items = Global.admin_action_list
         Global.gh_admin_list.visible = True
       # make menu bar varianble visible
       self.action_list.items = Global.user_action_list
@@ -292,7 +291,6 @@ class Main(MainTemplate):
     anvil.users.logout()
     self.content_panel.visible = True
     self.action_list.items = Global.user_action_list
-    self.admin_action_list.visible = False
     self.action_list.visible = False
     self.logout_button.visible = False
     self.username.visible = False
@@ -331,20 +329,3 @@ class Main(MainTemplate):
       self.content_panel.visible = False
     pass
 
-  def admin_action_list_change(self, **event_args):
-    """This method is called when an item is selected"""
-    # Action has been selected, but only take action if action in not a separator
-    # save a link to the Main form in a Global variable 
-    Global.main_form = get_open_form()
-    #
-    Global.admin_action = self.admin_action_list.selected_value
-    if Global.admin_action in Global.admin_action_list:
-      # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
-      # for any action that has a Form defined create a new work_area
-
-      self.create_new_work_area(Global.admin_action)
-    else:
-      if Global.action != Global.separator:
-        alert("Action not yet implemented.")
-    self.action_list.selected_value = None
-    pass
