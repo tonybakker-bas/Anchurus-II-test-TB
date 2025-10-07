@@ -51,7 +51,8 @@ class FindForm(FindFormTemplate):
       message="Please enter a short description (max 40 characters)",
     )
     # for all actions set SiteId disabled for editing
-    self.SiteId.text = Global.work_area[Global.current_work_area_name]["site_id"] 
+    #self.SiteId.text = Global.work_area[Global.current_work_area_name]["site_id"]
+    self.SiteId.text = Global.find_items["SiteId"]
     self.SiteId.enabled = False
     if Global.action == "View Find" or Global.action == "Edit Find":
       #print(Global.find_items)

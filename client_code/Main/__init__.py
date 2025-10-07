@@ -66,6 +66,11 @@ class Main(MainTemplate):
     Global.table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
     print(Global.table_name)
     
+    # set Global variables for site information
+    Global.site_name = Global.work_area[Global.current_work_area_name]["site_name"]
+    Global.site_id = Global.work_area[Global.current_work_area_name]["site_id"]
+    Global.selected_site = ": " + Global.site_name
+    
     # Fill header fields with work_area name and work_area Form name
     Global.header_work_area_name.text = Global.current_work_area_name
     Global.header_work_area_type.text = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
@@ -107,7 +112,7 @@ class Main(MainTemplate):
     # First make sure the header is visible
     Global.header.visible = True
     # set name of work_area to be action name if action is view or edit
-    work_area_name = Global.site_id + " " + action
+    work_area_name = action
     print("Create new work_area action:",action)
     if action == "View Context" or action == "Edit Context":
       # modify work_area name to add XxxxId number (ContextId, FindId, AeraId, etc); for now only implemented for Context
@@ -138,6 +143,12 @@ class Main(MainTemplate):
       Global.action_seq_no[work_area_name] += 1
       work_area_name = work_area_name + " (" + str(Global.action_seq_no[work_area_name]) + ")"
     
+    # prepend site_id to work_area_name
+    print("Create New Work Area. Global.site_name = ",Global.site_name)
+    print("Create New Work Area. Global.site_id = ",Global.site_id)
+    print("Create New Work Area. Global.selected-site = ",Global.selected_site)
+
+    work_area_name = Global.site_id + " " + work_area_name
     # create new 'empty row' in nested work_area dictionary for the new work_area_name
     Global.work_area[work_area_name] = {}
     Global.work_area[work_area_name]["action"] = action
