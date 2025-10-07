@@ -26,11 +26,19 @@ user_action_list = ["Select Site",separator,
                    ]
 # action_list_not_implemented should always contain the separator
 action_list_not_implemented = [separator,"Bulk Upload Finds","Draw","List Areas","Add Area"]
+# the list_action_list is a list of the tables in DB (not yet sites)
+list_action_dropdown = ["Contexts","Finds","Anomolies","Interpretrations"]
+insert_action_dropdown = ["Context","Find","Anomoly","Interpretation"]
+file_action_dropdown = ["Bulk import",separator,"Save Work Areas"]
+view_action_dropdown = []
+help_action_dropdown = []
+#
 action_forms_with_refresh = ["TableList","ListUsers","ListSites","ListContexts","ListFinds","ListAreas","BulkUpload","Add Area","List Areas"]
 #action_forms_with_print = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","List Areas","View Context","View Find","View Area"]
 action_forms_with_print = ["ListContexts","ListFinds","TableList"]
 action_forms_with_download = ["ListContexts","ListFinds","TableList"]
 action_forms_with_filter = ["ListContexts","ListFinds","TableList"]
+#
 action_seq_no = {}
 csv_file = None
 current_work_area = {}

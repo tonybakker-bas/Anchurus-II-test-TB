@@ -52,18 +52,18 @@ class Main(MainTemplate):
     # Firstly make all work_area_list elements invisible and set to unfocus (unbold) work_area_name_list elements
     
     for name in Global.work_area:
-      print(name)
+      #print(name)
       Global.work_area[name]["form"].visible = False
       Global.work_area[name]["button"].bold = False
       Global.work_area[name]["button"].background = Global.button_normal_background_clour
     # now get the name of the button (work_area_name) that was clicked and make this and the associated work_area visible
     work_area = event_args['sender']
     Global.current_work_area_name = work_area.text
-    print("Work Area click: ", Global.current_work_area_name)
+    #print("Work Area click: ", Global.current_work_area_name)
     
     # Set Global.table_name linked with work_area_type
     Global.table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
-    print(Global.table_name)
+    #print(Global.table_name)
     
     # set Global variables for site information
     Global.site_name = Global.work_area[Global.current_work_area_name]["site_name"]
@@ -143,9 +143,9 @@ class Main(MainTemplate):
       work_area_name = work_area_name + " (" + str(Global.action_seq_no[work_area_name]) + ")"
     
     # prepend site_id to work_area_name
-    print("Create New Work Area. Global.site_name = ",Global.site_name)
-    print("Create New Work Area. Global.site_id = ",Global.site_id)
-    print("Create New Work Area. Global.selected-site = ",Global.selected_site)
+    #print("Create New Work Area. Global.site_name = ",Global.site_name)
+    #print("Create New Work Area. Global.site_id = ",Global.site_id)
+    #print("Create New Work Area. Global.selected-site = ",Global.selected_site)
 
     if action not in Global.admin_action_list:
       work_area_name = Global.site_id + " " + work_area_name
@@ -172,7 +172,7 @@ class Main(MainTemplate):
     Global.work_area[work_area_name]["site_name"] = Global.site_name
     Global.header_site_name.text = Global.work_area[work_area_name]["site_name"]
     Global.work_area[work_area_name]["site_id"] = Global.site_id
-
+    print(Global.work_area)
     # make all work spaces invisible
     for name in Global.work_area:
       Global.work_area[name]["form"].visible = False
@@ -267,10 +267,15 @@ class Main(MainTemplate):
       user = anvil.users.get_user()
       Global.user_role = user["role"]
       if Global.user_role == "admin":
-        print(Global.username, Global.user_role)
+        #print(Global.username, Global.user_role)
         Global.gh_admin_list.items = Global.admin_action_list
         Global.gh_admin_list.visible = True
-      # make menu bar varianble visible
+      # make menu bar variable visible
+      Global.gh_list_list.items = Global.list_action_dropdown
+      Global.gh_insert_list.items = Global.insert_action_dropdown
+      Global.gh_file_list = Global.file_action_dropdown
+      Global.gh_view_list = Global.view_action_dropdown
+      Global.gh_help_list = Global.help_action_dropdown
       self.action_list.items = Global.user_action_list
       self.action_list.visible = True
       self.logout_button.visible = True
