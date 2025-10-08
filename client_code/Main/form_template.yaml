@@ -100,7 +100,7 @@ components:
         font_size: 13
         include_placeholder: true
         margin: ['5', '0', null, '0']
-        placeholder: Menu
+        placeholder: Admin
       type: DropDown
     layout_properties: {full_width_row: true, grid_position: 'KLLHTQ,LHAUBZ'}
     name: menu_panel_2
