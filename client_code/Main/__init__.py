@@ -352,7 +352,6 @@ class Main(MainTemplate):
     # Action has been selected, but only take action if action in not a separator
     # save a link to the Main form in a Global variable 
     Global.main_form = get_open_form()
-    #
     Global.action = self.admin_dropdown.selected_value
     if Global.action not in Global.action_list_not_implemented:
       # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
@@ -376,7 +375,9 @@ class Main(MainTemplate):
 
   def insert_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
-    
+    Global.main_form = get_open_form()
+    Global.action = self.admin_dropdown.selected_value
+
     # clear selected_value
     self.insert_dropdown.selected_value = None
     pass
@@ -384,15 +385,24 @@ class Main(MainTemplate):
   def list_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
     # clear selected_value
-    self.insert_dropdown.selected_value = None
+    Global.main_form = get_open_form()
+    Global.action = self.admin_dropdown.selected_value
+
+    self.lli_dropdown.selected_value = None
     pass
 
   def help_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
+    Global.main_form = get_open_form()
+    Global.action = self.admin_dropdown.selected_value
+
     pass
 
   def view_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
+    Global.main_form = get_open_form()
+    Global.action = self.admin_dropdown.selected_value
+
     pass
 
   def file_dropdown_change(self, **event_args):
