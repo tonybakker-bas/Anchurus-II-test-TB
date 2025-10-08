@@ -64,15 +64,18 @@ components:
         margin: ['0', '0', null, '0']
     type: FlowPanel
   - components:
-    - layout_properties: {width: 76}
+    - event_bindings: {change: file_dropdown_change}
+      layout_properties: {width: 76}
       name: file_dropdown
       properties: {font_size: 14, include_placeholder: true, placeholder: File}
       type: DropDown
-    - layout_properties: {width: 75}
+    - event_bindings: {change: view_dropdown_change}
+      layout_properties: {width: 75}
       name: view_dropdown
       properties: {font_size: 13, include_placeholder: true, placeholder: View}
       type: DropDown
-    - layout_properties: {width: 75}
+    - event_bindings: {change: help_dropdown_change}
+      layout_properties: {width: 75}
       name: help_dropdown
       properties: {font_size: 13, include_placeholder: true, placeholder: Help}
       type: DropDown
@@ -81,11 +84,13 @@ components:
     properties: {background: 'theme:Primary'}
     type: FlowPanel
   - components:
-    - layout_properties: {width: 75}
+    - event_bindings: {change: list_dropdown_change}
+      layout_properties: {width: 75}
       name: list_dropdown
       properties: {font_size: 13, include_placeholder: true, placeholder: List}
       type: DropDown
-    - layout_properties: {width: 75}
+    - event_bindings: {change: insert_dropdown_change}
+      layout_properties: {width: 75}
       name: insert_dropdown
       properties: {font_size: 13, include_placeholder: true, placeholder: Insert}
       type: DropDown

@@ -44,7 +44,7 @@ class Main(MainTemplate):
     # fill action menu options - taken from gh_*_list defined in Global 
     self.insert_dropdown.items = Global.insert_action_dropdown
     self.list_dropdown.items = Global.list_action_dropdown
-    self.admin_dropdown.items = Global.admin_action_Dropdown
+    self.admin_dropdown.items = Global.admin_action_dropdown
     self.file_dropdown.items = Global.file_list
     self.view_dropdown.items = Global.view_action_dropdown
     self.help_dropdown.items = Global.help_action_dropdown
@@ -221,32 +221,6 @@ class Main(MainTemplate):
     #self.action_list.selected_value = None
     pass
   
-  def admin_dropdown_change(self, **event_args):
-    """This method is called when an item from the dropdown menu is selected"""
-    # Action has been selected, but only take action if action in not a separator
-    # save a link to the Main form in a Global variable 
-    Global.main_form = get_open_form()
-    #
-    Global.action = self.admin_dropdown.selected_value
-    if Global.action not in Global.action_list_not_implemented:
-      # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
-      # for any action that has a Form defined create a new work_area
-      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown + ["Select Site"]):
-        # if site is not yet selected alert user
-        alert(
-        content="Site has not been selected. Please select a site.",
-        title="Site selection warning",
-        large=True,
-        buttons=[("Ok", True)],
-        )
-      else:
-        self.create_new_work_area(Global.action)
-    else:
-      if Global.action != Global.separator:
-        alert("Action not yet implemented.")
-    # clear admin_dropdown.select_value
-    self.admin_dropdown.selected_value = None
-    pass
 
   def login_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -367,5 +341,52 @@ class Main(MainTemplate):
       site_information = anvil.server.call("site_get_information",Global.site_id)
       #Global.header_site_name.text = Global.site_name
       self.site_summary.text = str(site_information["Contexts"]) + " Contexts, " + str(site_information["Finds"]) + " Finds"
+    pass
+    
+  def admin_dropdown_change(self, **event_args):
+    """This method is called when an item from the dropdown menu is selected"""
+    # Action has been selected, but only take action if action in not a separator
+    # save a link to the Main form in a Global variable 
+    Global.main_form = get_open_form()
+    #
+    Global.action = self.admin_dropdown.selected_value
+    if Global.action not in Global.action_list_not_implemented:
+      # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
+      # for any action that has a Form defined create a new work_area
+      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown + ["Select Site"]):
+        # if site is not yet selected alert user
+        alert(
+          content="Site has not been selected. Please select a site.",
+          title="Site selection warning",
+          large=True,
+          buttons=[("Ok", True)],
+        )
+      else:
+        self.create_new_work_area(Global.action)
+    else:
+      if Global.action != Global.separator:
+        alert("Action not yet implemented.")
+    # clear admin_dropdown.select_value
+    self.admin_dropdown.selected_value = None
+    pass
+
+  def insert_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
+    pass
+
+  def list_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
+    pass
+
+  def help_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
+    pass
+
+  def view_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
+    pass
+
+  def file_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
     pass
 
