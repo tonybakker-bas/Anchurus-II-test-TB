@@ -347,6 +347,8 @@ class Main(MainTemplate):
       self.menu_block.visible = False
       Global.GlobalHeader.visible = False
       Global.gh_admin_list.visible = False
+      self.username_dropdown.placeholder = Global.username
+      self.username_dropdown.items = []
 
       # To be done: save work areas in table for user for loading when login
 
