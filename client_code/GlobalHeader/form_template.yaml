@@ -1,32 +1,5 @@
 components:
 - components:
-  - event_bindings: {change: select_site_change}
-    layout_properties: {expand: true, width: 125}
-    name: select_site
-    properties: {include_placeholder: true, placeholder: Select Site}
-    type: DropDown
-  - layout_properties: {}
-    name: more_information
-    properties:
-      bold: false
-      font_size: 16
-      foreground: theme:Surface
-      spacing:
-        margin: ['0', '8', '0', '2']
-        padding: ['4', '2', '0', null]
-      spacing_above: none
-      spacing_below: none
-      text: ''
-    type: Label
-  layout_properties: {full_width_row: true, grid_position: 'WNREHC,QUGDTI'}
-  name: flow_panel_1
-  properties:
-    align: left
-    spacing:
-      margin: ['4', null, '0', null]
-    vertical_align: middle
-  type: FlowPanel
-- components:
   - layout_properties: {width: 100}
     name: File
     properties: {include_placeholder: true, placeholder: File}

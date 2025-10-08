@@ -39,8 +39,12 @@ components:
         placeholder: Select Site
       type: DropDown
     - layout_properties: {width: 200}
-      name: outlined_1
-      properties: {border: none, role: outlined}
+      name: site_summary
+      properties:
+        border: none
+        font_size: 13
+        margin: [null, '0', null, '0']
+        role: outlined
       type: TextBox
     - event_bindings: {change: username_dropdown_change}
       layout_properties: {width: 300}

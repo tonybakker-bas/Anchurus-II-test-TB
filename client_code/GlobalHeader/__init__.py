@@ -24,7 +24,7 @@ class GlobalHeader(GlobalHeaderTemplate):
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     #Global.header_site_name = self.site_name
-    Global.header_site_summary_information = self.more_information
+    #Global.header_site_summary_information = self.more_information
     Global.gh_file_list = self.File
     Global.gh_view_list = self.View
     Global.gh_list_list = self.List
@@ -42,7 +42,7 @@ class GlobalHeader(GlobalHeaderTemplate):
     else:
       print("in SelectSite form without having logged in")
     #  
-    self.select_site.items = Global.site_options.keys()
+    #self.select_site.items = Global.site_options.keys()
 
   def select_site_change(self, **event_args):
     """This method is called when an item is selected"""

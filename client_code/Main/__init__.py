@@ -218,7 +218,7 @@ class Main(MainTemplate):
     else:
       Global.header_filter_button.visible = False
     # reset action dropdown list
-    self.action_list.selected_value = None
+    #self.action_list.selected_value = None
     pass
   
   def admin_dropdown_change(self, **event_args):
@@ -227,11 +227,11 @@ class Main(MainTemplate):
     # save a link to the Main form in a Global variable 
     Global.main_form = get_open_form()
     #
-    Global.action = self.action_list.selected_value
+    Global.action = self.admin_dropdown.selected_value
     if Global.action not in Global.action_list_not_implemented:
       # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
       # for any action that has a Form defined create a new work_area
-      if Global.site_id is None and Global.action not in (Global.admin_action_list + ["Select Site"]):
+      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown + ["Select Site"]):
         # if site is not yet selected alert user
         alert(
         content="Site has not been selected. Please select a site.",
@@ -244,7 +244,8 @@ class Main(MainTemplate):
     else:
       if Global.action != Global.separator:
         alert("Action not yet implemented.")
-    self.action_list.selected_value = None
+    # clear admin_dropdown.select_value
+    self.admin_dropdown.selected_value = None
     pass
 
   def login_button_click(self, **event_args):
@@ -365,6 +366,6 @@ class Main(MainTemplate):
       #get more details of sites, e.g. How many areas, contexts, finds 
       site_information = anvil.server.call("site_get_information",Global.site_id)
       #Global.header_site_name.text = Global.site_name
-      Global.header_site_summary_information.text = "# of Contexts: " + str(site_information["Contexts"]) + ", # of Finds:" + str(site_information["Finds"])
+      self.site_summary.text = str(site_information["Contexts"]) + " Contexts, " + str(site_information["Finds"]) + " Finds"
     pass
 
