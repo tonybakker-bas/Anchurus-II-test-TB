@@ -53,6 +53,8 @@ class Main(MainTemplate):
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
     #self.action_list.visible = False
     self.menu_block.visible = False
+    self.ad = False
+
       
   def work_area_click(self, **event_args):
     # Here the user clicked on a button in the left navigation list, requested to go to a different work area.
@@ -249,8 +251,9 @@ class Main(MainTemplate):
       Global.user_role = user["role"]
       if Global.user_role == "admin":
         #print(Global.username, Global.user_role)
-        Global.gh_admin_list.items = Global.admin_action_list
-        Global.gh_admin_list.visible = True
+        #Global.gh_admin_list.items = Global.admin_action_list
+        #Global.gh_admin_list.visible = True
+        self.admin_dropdown.visible = True
       # make menu bar variable visible
       #Global.gh_list_list.items = Global.list_action_dropdown
       #Global.gh_insert_list.items = Global.insert_action_dropdown
@@ -305,11 +308,12 @@ class Main(MainTemplate):
       anvil.server.call("user_logout_notification",Global.ip_address,Global.username)
       anvil.users.logout()
       self.content_panel.visible = True
-      self.action_list.items = Global.user_action_list
-      self.action_list.visible = False
+      #self.action_list.items = Global.user_action_list
+      #self.action_list.visible = False
       self.menu_block.visible = False
       Global.GlobalHeader.visible = False
       Global.gh_admin_list.visible = False
+      self.admin_dropdown.visible = False
       self.username_dropdown.placeholder = Global.username
       self.username_dropdown.items = []
 
