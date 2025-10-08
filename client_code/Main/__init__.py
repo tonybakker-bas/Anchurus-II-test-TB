@@ -53,7 +53,7 @@ class Main(MainTemplate):
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
     #self.action_list.visible = False
     self.menu_block.visible = False
-    self.ad = False
+    self.admin = False
 
       
   def work_area_click(self, **event_args):
