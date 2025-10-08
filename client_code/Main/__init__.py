@@ -53,7 +53,7 @@ class Main(MainTemplate):
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
     #self.action_list.visible = False
     self.menu_block.visible = False
-    self.ad = False
+    self.admin_dropdown.visible = False
 
       
   def work_area_click(self, **event_args):
@@ -370,16 +370,21 @@ class Main(MainTemplate):
     else:
       if Global.action != Global.separator:
         alert("Action not yet implemented.")
-    # clear admin_dropdown.select_value
+    # clear selected_value
     self.admin_dropdown.selected_value = None
     pass
 
   def insert_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
+    
+    # clear selected_value
+    self.insert_dropdown.selected_value = None
     pass
 
   def list_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
+    # clear selected_value
+    self.insert_dropdown.selected_value = None
     pass
 
   def help_dropdown_change(self, **event_args):
