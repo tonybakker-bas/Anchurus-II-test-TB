@@ -763,7 +763,7 @@ button.close > span, button.close {
 input.anvil-component, textarea.anvil-component, .anvil-component select, .anvil-datepicker input {
   font-size: 16px;
   line-height: 1.5;
-  border-radius: 4px 4px 0 0;
+  border-radius: 2px 2px 0 0;
   background-color: %color:Surface Variant%;
   color: %color:On Surface Variant%;
   box-shadow: none;

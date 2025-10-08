@@ -10,7 +10,7 @@ import anvil.users
 
 #from ..WorkArea import WorkArea
 from ..Header import Header
-from ..GlobalHeader import GlobalHeader
+#from ..GlobalHeader import GlobalHeader
 #from ..Welcome import Welcome
 from .. import Global
 from .. import Function
@@ -27,9 +27,9 @@ class Main(MainTemplate):
     Global.admin_user = globals_from_config["admin_user"]
     Global.admin_user_initials = globals_from_config["admin_user_initials"]
     #
-    Global.GlobalHeader = GlobalHeader()
-    self.add_component(Global.GlobalHeader, slot='GlobalHeaderheaderSlot')
-    Global.GlobalHeader.visible = False
+    #Global.GlobalHeader = GlobalHeader()
+    #self.add_component(Global.GlobalHeader, slot='GlobalHeaderheaderSlot')
+    #Global.GlobalHeader.visible = False
     Global.header = Header()
     self.add_component(Global.header, slot='header_slot')
     Global.header.visible = False
@@ -278,7 +278,7 @@ class Main(MainTemplate):
       # make content_panel of Main form invisible
       self.content_panel.visible = False
       # once logged in, show "Select Site" form
-      Global.GlobalHeader.visible = True
+      #Global.GlobalHeader.visible = True
       #
       #Global.action = "Select Site"
       #self.create_new_work_area(Global.action)
@@ -311,8 +311,8 @@ class Main(MainTemplate):
       #self.action_list.items = Global.user_action_list
       #self.action_list.visible = False
       self.menu_block.visible = False
-      Global.GlobalHeader.visible = False
-      Global.gh_admin_list.visible = False
+      #Global.GlobalHeader.visible = False
+      #Global.gh_admin_list.visible = False
       self.admin_dropdown.visible = False
       self.username_dropdown.placeholder = Global.username
       self.username_dropdown.items = []
@@ -353,6 +353,7 @@ class Main(MainTemplate):
     # save a link to the Main form in a Global variable 
     Global.main_form = get_open_form()
     Global.action = self.admin_dropdown.selected_value
+
     if Global.action not in Global.action_list_not_implemented:
       # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
       # for any action that has a Form defined create a new work_area
@@ -369,6 +370,7 @@ class Main(MainTemplate):
     else:
       if Global.action != Global.separator:
         alert("Action not yet implemented.")
+        
     # clear selected_value
     self.admin_dropdown.selected_value = None
     pass
@@ -376,7 +378,25 @@ class Main(MainTemplate):
   def insert_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
     Global.main_form = get_open_form()
-    Global.action = self.admin_dropdown.selected_value
+    # make action to be "Add ..." 
+    Global.action = "Add " + str(self.insert_dropdown.selected_value).capitalize()
+
+    if Global.action not in Global.action_list_not_implemented:
+      # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
+      # for any action that has a Form defined create a new work_area
+      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown + ["Select Site"]):
+        # if site is not yet selected alert user
+        alert(
+          content="Site has not been selected. Please select a site.",
+          title="Site selection warning",
+          large=True,
+          buttons=[("Ok", True)],
+        )
+      else:
+        self.create_new_work_area(Global.action)
+    else:
+      if Global.action != Global.separator:
+        alert("Action not yet implemented.")
 
     # clear selected_value
     self.insert_dropdown.selected_value = None
@@ -386,26 +406,50 @@ class Main(MainTemplate):
     """This method is called when an item is selected"""
     # clear selected_value
     Global.main_form = get_open_form()
-    Global.action = self.admin_dropdown.selected_value
-
-    self.lli_dropdown.selected_value = None
+    # make action to be "List ..."
+    Global.action = "List " + str(self.list_dropdown.selected_value).capitalize()
+    
+    if Global.action not in Global.action_list_not_implemented:
+      # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
+      # for any action that has a Form defined create a new work_area
+      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown + ["Select Site"]):
+        # if site is not yet selected alert user
+        alert(
+          content="Site has not been selected. Please select a site.",
+          title="Site selection warning",
+          large=True,
+          buttons=[("Ok", True)],
+        )
+      else:
+        self.create_new_work_area(Global.action)
+    else:
+      if Global.action != Global.separator:
+        alert("Action not yet implemented.")
+    
+    self.list_dropdown.selected_value = None
     pass
 
   def help_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
     Global.main_form = get_open_form()
-    Global.action = self.admin_dropdown.selected_value
+    Global.action = self.help_dropdown.selected_value
 
+    self.help_dropdown.selected_value = None
     pass
 
   def view_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
     Global.main_form = get_open_form()
-    Global.action = self.admin_dropdown.selected_value
+    Global.action = self.view_dropdown.selected_value
 
+    self.view_dropdown.selected_value = None
     pass
 
   def file_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
+    Global.main_form = get_open_form()
+    Global.action = self.file_dropdown.selected_value
+
+    self.file_dropdown.selected_value = None
     pass
 

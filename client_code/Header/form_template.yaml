@@ -13,13 +13,14 @@ components:
       name: work_area_name
       properties:
         font_size: 12
-        margin: [6, '4', null, '4']
+        margin: [6, '0', null, '0']
         role: outlined
       type: TextBox
     - name: label_3
       properties: {text: 'Work area form:'}
       type: Label
-    - name: work_area_type
+    - layout_properties: {width: 143.5169423828125}
+      name: work_area_type
       properties:
         font_size: 12
         margin: [6, '4', null, '4']
