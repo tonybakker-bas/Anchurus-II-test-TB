@@ -44,8 +44,7 @@ class Main(MainTemplate):
     self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
     self.action_list.visible = False
-    self.logout_button.visible = False
-    self.username.visible = False
+    self.menu_block.visible = False
       
   def work_area_click(self, **event_args):
     # Here the user clicked on a button in the left navigation list, requested to go to a different work area.
@@ -260,7 +259,7 @@ class Main(MainTemplate):
       
       #Global.DBAcontrol = anvil.server.call("check_DBAcontrol",Global.username,"i")
       #self.username.text = Global.username + "\n (" + Global.user_role + ")"
-      self.username.text = Global.username
+      self.username.placeholder = Global.username
       # check user authorisation - role columns will be updated in anvil user table
       Global.ip_address = anvil.server.call("user_authorisation")
       # if users has admin role, add admin actions list and set it visible
@@ -278,8 +277,8 @@ class Main(MainTemplate):
       Global.gh_help_list = Global.help_action_dropdown
       self.action_list.items = Global.user_action_list
       self.action_list.visible = True
-      self.logout_button.visible = True
-      self.username.visible = True
+      self.menu_block.visible = True
+
       # make content_panel of Main form invisible
       self.content_panel.visible = False
       # once logged in, show "Select Site" form
@@ -297,15 +296,14 @@ class Main(MainTemplate):
     self.content_panel.visible = True
     self.action_list.items = Global.user_action_list
     self.action_list.visible = False
-    self.logout_button.visible = False
-    self.username.visible = False
+    self.menu_block.visible = False
     Global.GlobalHeader.visible = False
     Global.gh_admin_list.visible = False
+    self.username.placeholder = ""
 
-    
     # To be done: save work areas in table for user for loading when login
     
-    #delete all work_areas and all work_area names/buttons
+    # delete all work_areas and all work_area names/buttons
     temp_work_area_name_list = list(Global.work_area.keys())
     for work_area_name in temp_work_area_name_list:
       Function.delete_workspace(work_area_name)
@@ -327,10 +325,39 @@ class Main(MainTemplate):
       # when user is logged in enable Action menu, username field and logout button, and disable content panel (welcome message)
       # also set username  to user email address
       Global.username = user["email"]
-      self.username.text = Global.username
+      self.username.placeholder = Global.username
       self.action_list.visible = True
-      self.logout_button.visible = True
-      self.username.visible = True
+      self.menu_block.visible = True
       self.content_panel.visible = False
+    pass
+
+  def username_change(self, **event_args):
+    """This method is called when an item is selected"""
+    # The only selection should be Logout but check anyway
+    if self.username.selected_value == "Logout":
+      print("Logout selected")
+      # logout user, hide action menu, username and logout button; also delete all workspaces
+      anvil.server.call("user_logout_notification",Global.ip_address,Global.username)
+      anvil.users.logout()
+      self.content_panel.visible = True
+      self.action_list.items = Global.user_action_list
+      self.action_list.visible = False
+      self.menu_block.visible = False
+      Global.GlobalHeader.visible = False
+      Global.gh_admin_list.visible = False
+
+      # To be done: save work areas in table for user for loading when login
+
+      #delete all work_areas and all work_area names/buttons
+      temp_work_area_name_list = list(Global.work_area.keys())
+      for work_area_name in temp_work_area_name_list:
+        Function.delete_workspace(work_area_name)
+
+      # clear work_area list and action_seq_no
+      Global.work_area = {}
+      Global.action_seq_no = {}
+
+      components = self.get_components()
+      #print(f"{len(components)} components after deleting all workspaces")
     pass
 
