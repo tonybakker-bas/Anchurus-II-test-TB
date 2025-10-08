@@ -259,7 +259,8 @@ class Main(MainTemplate):
       
       #Global.DBAcontrol = anvil.server.call("check_DBAcontrol",Global.username,"i")
       #self.username.text = Global.username + "\n (" + Global.user_role + ")"
-      self.username.placeholder = Global.username
+      self.username_dropdown.placeholder = Global.username
+      self.username_dropdown.items = ["Logout"]
       # check user authorisation - role columns will be updated in anvil user table
       Global.ip_address = anvil.server.call("user_authorisation")
       # if users has admin role, add admin actions list and set it visible
@@ -299,7 +300,8 @@ class Main(MainTemplate):
     self.menu_block.visible = False
     Global.GlobalHeader.visible = False
     Global.gh_admin_list.visible = False
-    self.username.placeholder = ""
+    self.username_dropdown.placeholder = "Logout"
+    self.username_dropdown.items = []
 
     # To be done: save work areas in table for user for loading when login
     
@@ -325,17 +327,17 @@ class Main(MainTemplate):
       # when user is logged in enable Action menu, username field and logout button, and disable content panel (welcome message)
       # also set username  to user email address
       Global.username = user["email"]
-      self.username.placeholder = Global.username
+      self.username_dropdown.placeholder = Global.username
       self.action_list.visible = True
       self.menu_block.visible = True
       self.content_panel.visible = False
     pass
 
-  def username_change(self, **event_args):
+  def username_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
     # The only selection should be Logout but check anyway
-    if self.username.selected_value == "Logout":
-      print("Logout selected")
+    print("Logout selected: ",self.username_dropdown.selected_value)
+    if self.username_dropdown.selected_value == "Logout":
       # logout user, hide action menu, username and logout button; also delete all workspaces
       anvil.server.call("user_logout_notification",Global.ip_address,Global.username)
       anvil.users.logout()
@@ -359,5 +361,10 @@ class Main(MainTemplate):
 
       components = self.get_components()
       #print(f"{len(components)} components after deleting all workspaces")
+    pass
+
+  def select_site_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
+    print("select_site_dropdown selected")
     pass
 

@@ -29,18 +29,20 @@ components:
   type: Label
 - components:
   - components:
-    - layout_properties: {width: 336.722}
-      name: drop_down_1
+    - event_bindings: {change: select_site_dropdown_change}
+      layout_properties: {width: 336.722}
+      name: select_site_dropdown
       properties:
         include_placeholder: true
         margin: ['10', '0', null, null]
         placeholder: Select Site
       type: DropDown
-    - event_bindings: {change: username_change}
+    - event_bindings: {change: username_dropdown_change}
       layout_properties: {}
-      name: username
+      name: username_dropdown
       properties:
-        items: [Logout]
+        include_placeholder: true
+        items: []
         margin: ['10', null, null, null]
       type: DropDown
     - event_bindings: {click: logout_button_click}
