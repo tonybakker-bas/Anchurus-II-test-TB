@@ -41,6 +41,7 @@ class Main(MainTemplate):
     self.about_us_box.add_component(rt)
     # fill action menu options - taken from action_list defined in Global 
     Global.work_area_list = {}
+    self.insert
     self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
     self.action_list.visible = False
@@ -215,7 +216,7 @@ class Main(MainTemplate):
     self.action_list.selected_value = None
     pass
   
-  def action_list_change(self, **event_args):
+  def admin_dropdown_change(self, **event_args):
     """This method is called when an item from the dropdown menu is selected"""
     # Action has been selected, but only take action if action in not a separator
     # save a link to the Main form in a Global variable 
@@ -289,35 +290,6 @@ class Main(MainTemplate):
       #self.create_new_work_area(Global.action)
     pass
 
-  def logout_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    #logout user, hide action menu, username and logout button; also delete all workspaces
-    anvil.server.call("user_logout_notification",Global.ip_address,Global.username)
-    anvil.users.logout()
-    self.content_panel.visible = True
-    self.action_list.items = Global.user_action_list
-    self.action_list.visible = False
-    self.menu_block.visible = False
-    Global.GlobalHeader.visible = False
-    Global.gh_admin_list.visible = False
-    self.username_dropdown.placeholder = "Logout"
-    self.username_dropdown.items = []
-
-    # To be done: save work areas in table for user for loading when login
-    
-    # delete all work_areas and all work_area names/buttons
-    temp_work_area_name_list = list(Global.work_area.keys())
-    for work_area_name in temp_work_area_name_list:
-      Function.delete_workspace(work_area_name)
-    
-    # clear work_area list and action_seq_no
-    Global.work_area = {}
-    Global.action_seq_no = {}
-    
-    #components = self.get_components()
-    #print(f"{len(components)} components after deleting all workspaces")
-    pass
-
   def register_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     user = anvil.users.signup_with_form(allow_cancel=True)
@@ -368,5 +340,15 @@ class Main(MainTemplate):
   def select_site_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
     print("select_site_dropdown selected")
+    if self.select_site.selected_value is not None:
+      Global.site_name = self.select_site_dropdown.selected_value
+      Global.site_id = Global.site_options[self.select_site_dropdown.selected_value]
+      Global.selected_site = ": " + Global.site_name
+      #Global.title_label.text = Global.title + Global.status + Global.selected_site
+      Global.title_label.text = Global.title
+      #get more details of sites, e.g. How many areas, contexts, finds 
+      site_information = anvil.server.call("site_get_information",Global.site_id)
+      #Global.header_site_name.text = Global.site_name
+      Global.header_site_summary_information.text = "# of Contexts: " + str(site_information["Contexts"]) + ", # of Finds:" + str(site_information["Finds"])
     pass
 
