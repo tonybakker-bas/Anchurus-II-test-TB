@@ -33,7 +33,7 @@ components:
       layout_properties: {width: 300}
       name: select_site_dropdown
       properties:
-        font_size: 14
+        font_size: 13
         include_placeholder: true
         margin: ['10', '0', null, null]
         placeholder: Select Site
@@ -46,7 +46,7 @@ components:
       layout_properties: {width: 300}
       name: username_dropdown
       properties:
-        font_size: 14
+        font_size: 13
         include_placeholder: true
         items: []
         margin: ['10', null, null, null]
@@ -83,7 +83,7 @@ components:
       type: DropDown
     - layout_properties: {width: 75}
       name: insert_dropdown
-      properties: {font_size: 14, include_placeholder: true, placeholder: Insert}
+      properties: {font_size: 13, include_placeholder: true, placeholder: Insert}
       type: DropDown
     - event_bindings: {change: admin_dropdown_change}
       layout_properties: {width: 75}
@@ -93,7 +93,7 @@ components:
         background: ''
         bold: false
         border: ''
-        font_size: 14
+        font_size: 13
         include_placeholder: true
         margin: ['5', '0', null, '0']
         placeholder: Menu

@@ -39,18 +39,23 @@ class Main(MainTemplate):
     # add the about_us_text (taken from Anchurus-2.cfg file) to the about_us_box text field by adding a Rich Text Component
     rt = RichText(content=Global.about_us_text,format="restricted_html")
     self.about_us_box.add_component(rt)
-    # fill action menu options - taken from action_list defined in Global 
+    # 
     Global.work_area_list = {}
-    self.insert
-    self.action_list.items = Global.user_action_list
+    # fill action menu options - taken from gh_*_list defined in Global 
+    self.insert_dropdown.items = Global.insert_action_dropdown
+    self.list_dropdown.items = Global.list_action_dropdown
+    self.admin_dropdown.items = Global.admin_action_Dropdown
+    self.file_dropdown.items = Global.file_list
+    self.view_dropdown.items = Global.view_action_dropdown
+    self.help_dropdown.items = Global.help_action_dropdown
+    #
+    #self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
-    self.action_list.visible = False
+    #self.action_list.visible = False
     self.menu_block.visible = False
       
   def work_area_click(self, **event_args):
     # Here the user clicked on a button in the left navigation list, requested to go to a different work area.
-    # Firstly make all work_area_list elements invisible and set to unfocus (unbold) work_area_name_list elements
-    
     for name in Global.work_area:
       #print(name)
       Global.work_area[name]["form"].visible = False
@@ -272,14 +277,25 @@ class Main(MainTemplate):
         Global.gh_admin_list.items = Global.admin_action_list
         Global.gh_admin_list.visible = True
       # make menu bar variable visible
-      Global.gh_list_list.items = Global.list_action_dropdown
-      Global.gh_insert_list.items = Global.insert_action_dropdown
-      Global.gh_file_list = Global.file_action_dropdown
-      Global.gh_view_list = Global.view_action_dropdown
-      Global.gh_help_list = Global.help_action_dropdown
-      self.action_list.items = Global.user_action_list
-      self.action_list.visible = True
+      #Global.gh_list_list.items = Global.list_action_dropdown
+      #Global.gh_insert_list.items = Global.insert_action_dropdown
+      #Global.gh_file_list = Global.file_action_dropdown
+      #Global.gh_view_list = Global.view_action_dropdown
+      #Global.gh_help_list = Global.help_action_dropdown
+      #self.action_list.items = Global.user_action_list
+      #self.action_list.visible = True
       self.menu_block.visible = True
+
+      if anvil.users.get_user() is not None:
+        sites_list = anvil.server.call('sites_get_summary')
+        Global.site_options = {}
+        for x in sites_list:
+          val_list = list(x.values())
+          option = val_list[0] + " - " + val_list[1]
+          Global.site_options[option] = val_list[0]
+      else:
+        print("in SelectSite form without having logged in")
+      self.select_site_dropdown.items = Global.site_options.keys()
 
       # make content_panel of Main form invisible
       self.content_panel.visible = False
@@ -340,7 +356,7 @@ class Main(MainTemplate):
   def select_site_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
     print("select_site_dropdown selected")
-    if self.select_site.selected_value is not None:
+    if self.select_site_dropdown.selected_value is not None:
       Global.site_name = self.select_site_dropdown.selected_value
       Global.site_id = Global.site_options[self.select_site_dropdown.selected_value]
       Global.selected_site = ": " + Global.site_name

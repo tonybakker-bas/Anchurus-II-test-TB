@@ -32,6 +32,7 @@ insert_action_dropdown = ["Context","Find","Anomoly","Interpretation"]
 file_action_dropdown = ["Bulk import",separator,"Save Work Areas"]
 view_action_dropdown = []
 help_action_dropdown = []
+admin_action_Dropdown = ["List Users","List Sites","Add Site"]
 #
 action_forms_with_refresh = ["TableList","ListUsers","ListSites","ListContexts","ListFinds","ListAreas","BulkUpload","Add Area","List Areas"]
 #action_forms_with_print = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","List Areas","View Context","View Find","View Area"]
