@@ -55,7 +55,6 @@ class Main(MainTemplate):
     self.menu_block.visible = False
     self.admin_dropdown.visible = False
 
-      
   def work_area_click(self, **event_args):
     # Here the user clicked on a button in the left navigation list, requested to go to a different work area.
     for name in Global.work_area:
@@ -271,8 +270,9 @@ class Main(MainTemplate):
           val_list = list(x.values())
           option = val_list[0] + " - " + val_list[1]
           Global.site_options[option] = val_list[0]
-      else:
-        print("in SelectSite form without having logged in")
+      #else:
+      #  print("in SelectSite form without having logged in")
+        
       self.select_site_dropdown.items = Global.site_options.keys()
 
       # make content_panel of Main form invisible
