@@ -31,6 +31,7 @@ from AreaForm import AreaForm
 from SiteForm import SiteForm
 from UserForm import UserForm
 from BulkUpload import BulkUpload
+from Help import Help
 
 from Draw import Draw
 #from Workarea import Workarea
@@ -85,6 +86,8 @@ def create_work_space(type):
     work_space = SiteForm()
   elif type == "Draw":
     work_space = Draw()
+  elif type == "Help":
+    work_space = Help()
   else:
     #print("Unknown Type - no known workspace")
     work_space = "Unknown"

@@ -11,6 +11,7 @@ import anvil.users
 from ..Header import Header
 from .. import Global
 from .. import Function
+from ..Help import Help
 
 class Main(MainTemplate):
   def __init__(self, **properties):
@@ -27,6 +28,11 @@ class Main(MainTemplate):
     Global.header = Header()
     self.add_component(Global.header, slot='header_slot')
     Global.header.visible = False
+
+    Global.help_page = Help()
+    self.add_component(Global.help_page, slot='help_slot')
+    Global.help_page.visible = False
+
     # set Main title field with name of organisation (defined in Anchurus-2.cgf file from server)
     Global.title_label = self.title
     self.title.text = Global.title + Global.status + Global.selected_site
@@ -261,10 +267,18 @@ class Main(MainTemplate):
         
       self.select_site_dropdown.items = Global.site_options.keys()
 
-      # make content_panel of Main form invisible
-      self.content_panel.visible = False
-      # once logged in, show "Select Site" form
+      # make welcome block of Main form invisible
+      self.welcome.visible = False
+
+      # create a introduction message and ad it to the introduction_message of the introduction_message block and make it visible
+      #rt = RichText(content=Global.help_introduction,format="restricted_html")
+      #self.introduction_message.add_component(rt)
+      #self.introduction.visible = True
       
+      Global.help_page_form = Function.create_work_space("Help")
+      self.add_component(Global.help_page_form)
+      Global.help_page_form.visible = True
+
       #Global.action = "Select Site"
       #self.create_new_work_area(Global.action)
     pass
@@ -281,7 +295,7 @@ class Main(MainTemplate):
       self.username_dropdown.placeholder = Global.username
       self.action_list.visible = True
       self.menu_block.visible = True
-      self.content_panel.visible = False
+      #self.content_panel.visible = False
     pass
 
   def username_dropdown_change(self, **event_args):
@@ -292,7 +306,7 @@ class Main(MainTemplate):
       # logout user, hide action menu, username and logout button; also delete all workspaces
       anvil.server.call("user_logout_notification",Global.ip_address,Global.username)
       anvil.users.logout()
-      self.content_panel.visible = True
+      #self.content_panel.visible = True
       self.menu_block.visible = False
       self.admin_dropdown.visible = False
       self.username_dropdown.placeholder = Global.username
@@ -326,6 +340,8 @@ class Main(MainTemplate):
       site_information = anvil.server.call("site_get_information",Global.site_id)
       #Global.header_site_name.text = Global.site_name
       self.site_summary.text = str(site_information["Contexts"]) + " Contexts, " + str(site_information["Finds"]) + " Finds"
+      # make introduction message block invisible
+      self.introduction.visible = False
     pass
     
   def admin_dropdown_change(self, **event_args):

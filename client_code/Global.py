@@ -141,20 +141,24 @@ about_us_text = """
 <p>
 This system allows for the digital recording of archaeological excavations.
 The software has been developed by Archaeology IT Solutions, an independent 'not-for-profit' or 'nonprofit' organisation developing software solutions for the archaeological community.
-It is developed using the <a href="https://anvil.works/">Anvil Framework</a> and is using the open source Anvil App Server to run on your own dedicated server. It uses an external MySQL database to store the excavation details.  
+It is developed using the <a href="https://anvil.works/" target="_blank>Anvil Framework</a> and is using the open source Anvil App Server to run on your own dedicated server. It uses an external MySQL database to store the excavation details.  
 This software is released under Creative Commons license: 
-<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Attributions-NonCommercial-ShareAlike 4.0 International (CC BY-NC-AS 4.0) license</a>.
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target=_blank>Attributions-NonCommercial-ShareAlike 4.0 International (CC BY-NC-AS 4.0) license</a>.
 This is version """ + version + """.</p>
 
 <p>For more information please contact ...</p>
 """
+help_page_form = ""
+help_page = {}
 help_introduction = """
-<h3>Introduction to the the Anchurus-II Web Service</h3>" + """
+<h3>Introduction to the the Anchurus-II Web Service</h3>"
 
 <p>
 
+</p>
 
-
-
-
+<p>
+For more information on recording Archaeological Excavations please go to the
+<a href="https://anchurus.co.uk/" target=_blank>Anchurus Website</a>
+</p>
 """
