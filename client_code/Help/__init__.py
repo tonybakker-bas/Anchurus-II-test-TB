@@ -16,4 +16,5 @@ class Help(HelpTemplate):
     self.init_components(**properties)
     
     # Any code you write here will run before the form opens.
+    print("In Help_form")
     self.help_page.text = Global.help_introduction

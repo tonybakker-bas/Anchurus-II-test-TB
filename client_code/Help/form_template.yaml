@@ -1,5 +1,9 @@
 components:
-- layout_properties: {grid_position: 'DLRIWZ,MLYWPD'}
+- layout_properties: {grid_position: 'RAUDQD,IVQLYS'}
+  name: rich_text_1
+  properties: {content: This is a help page}
+  type: RichText
+- layout_properties: {grid_position: 'RLWLCH,XGHYSR'}
   name: help_page
   properties: {}
   type: RichText

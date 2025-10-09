@@ -31,6 +31,7 @@ class Main(MainTemplate):
 
     Global.help_page = Help()
     self.add_component(Global.help_page, slot='help_slot')
+    print("set help_page invisible")
     Global.help_page.visible = False
 
     # set Main title field with name of organisation (defined in Anchurus-2.cgf file from server)
@@ -270,14 +271,13 @@ class Main(MainTemplate):
       # make welcome block of Main form invisible
       self.welcome.visible = False
 
-      # create a introduction message and ad it to the introduction_message of the introduction_message block and make it visible
+      # create a introduction message and add it to the introduction_message of the introduction_message block and make it visible
       #rt = RichText(content=Global.help_introduction,format="restricted_html")
       #self.introduction_message.add_component(rt)
       #self.introduction.visible = True
       
-      Global.help_page_form = Function.create_work_space("Help")
-      self.add_component(Global.help_page_form)
-      Global.help_page_form.visible = True
+      print("set help_page visible after login")
+      Global.help_page.visible = True
 
       #Global.action = "Select Site"
       #self.create_new_work_area(Global.action)
