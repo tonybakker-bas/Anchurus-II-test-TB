@@ -16,5 +16,6 @@ class Help(HelpTemplate):
     self.init_components(**properties)
     
     # Any code you write here will run before the form opens.
-    print("In Help_form")
-    self.help_page.text = Global.help_introduction
+    rt = RichText(content=Global.help_introduction,format="restricted_html")
+    self.help_page_text.add_component(rt)
+    self.help_page_text.visible = True

@@ -31,7 +31,6 @@ class Main(MainTemplate):
 
     Global.help_page = Help()
     self.add_component(Global.help_page, slot='help_slot')
-    print("set help_page invisible")
     Global.help_page.visible = False
 
     # set Main title field with name of organisation (defined in Anchurus-2.cgf file from server)
@@ -119,7 +118,7 @@ class Main(MainTemplate):
     Global.header.visible = True
     # set name of work_area to be action name if action is view or edit
     work_area_name = action
-    print("Create new work_area action:",action)
+    #print("Create new work_area action:",action)
     if action == "View Context" or action == "Edit Context":
       # modify work_area name to add XxxxId number (ContextId, FindId, AeraId, etc); for now only implemented for Context
       Global.context_items = Global.table_items
@@ -179,7 +178,7 @@ class Main(MainTemplate):
     Global.work_area[work_area_name]["site_name"] = Global.site_name
     Global.header_site_name.text = Global.work_area[work_area_name]["site_name"]
     Global.work_area[work_area_name]["site_id"] = Global.site_id
-    print(Global.work_area)
+    #print(Global.work_area)
     # make all work spaces invisible
     for name in Global.work_area:
       Global.work_area[name]["form"].visible = False
@@ -236,6 +235,9 @@ class Main(MainTemplate):
       #anvil.server.call('user_update',Global.admin_user,"admin",True,Global.admin_user_initials)
     #
     if user is not None:
+      # make welcome block of Main form invisible
+      self.welcome_page.visible = False
+      
       # when user is logged in, enable Action menu, username field and logout button, and disable content panel (welcome message)
       # also set username  to user email address
       Global.username = user["email"]
@@ -268,19 +270,9 @@ class Main(MainTemplate):
         
       self.select_site_dropdown.items = Global.site_options.keys()
 
-      # make welcome block of Main form invisible
-      self.welcome.visible = False
-
       # create a introduction message and add it to the introduction_message of the introduction_message block and make it visible
-      #rt = RichText(content=Global.help_introduction,format="restricted_html")
-      #self.introduction_message.add_component(rt)
-      #self.introduction.visible = True
-      
-      print("set help_page visible after login")
       Global.help_page.visible = True
 
-      #Global.action = "Select Site"
-      #self.create_new_work_area(Global.action)
     pass
 
   def register_button_click(self, **event_args):
@@ -295,18 +287,26 @@ class Main(MainTemplate):
       self.username_dropdown.placeholder = Global.username
       self.action_list.visible = True
       self.menu_block.visible = True
-      #self.content_panel.visible = False
+      self.welcome_page.visible = False
     pass
 
   def username_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
-    # The only selection should be Logout but check anyway
-    print("Logout selected: ",self.username_dropdown.selected_value)
+    # This dropdown change means that the user selected for a Logout
+    # as the only selection available in the dropdown list is Logout
+    # But we just check in case it is not ;)
     if self.username_dropdown.selected_value == "Logout":
       # logout user, hide action menu, username and logout button; also delete all workspaces
       anvil.server.call("user_logout_notification",Global.ip_address,Global.username)
       anvil.users.logout()
-      #self.content_panel.visible = True
+
+      # make help_page invisible
+      Global.help_page.visible = False
+
+      # Welcome_page will show the login page
+      self.welcome_page.visible = True
+      
+      # make menu block and admin menu invisible
       self.menu_block.visible = False
       self.admin_dropdown.visible = False
       self.username_dropdown.placeholder = Global.username
@@ -322,15 +322,19 @@ class Main(MainTemplate):
       # clear work_area list and action_seq_no
       Global.work_area = {}
       Global.action_seq_no = {}
-
+      
       components = self.get_components()
       #print(f"{len(components)} components after deleting all workspaces")
     pass
 
   def select_site_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
-    print("select_site_dropdown selected")
+    # print("select_site_dropdown selected")
     if self.select_site_dropdown.selected_value is not None:
+      # clear help_page_text 
+      Global.help_page.help_page_text.visible = True
+      Global.help_page.help_page_text.clear()
+      
       Global.site_name = self.select_site_dropdown.selected_value
       Global.site_id = Global.site_options[self.select_site_dropdown.selected_value]
       Global.selected_site = ": " + Global.site_name
@@ -340,8 +344,9 @@ class Main(MainTemplate):
       site_information = anvil.server.call("site_get_information",Global.site_id)
       #Global.header_site_name.text = Global.site_name
       self.site_summary.text = str(site_information["Contexts"]) + " Contexts, " + str(site_information["Finds"]) + " Finds"
-      # make introduction message block invisible
-      self.introduction.visible = False
+      #
+      Global.help_page.visible = True
+
     pass
     
   def admin_dropdown_change(self, **event_args):

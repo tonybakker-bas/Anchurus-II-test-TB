@@ -1,35 +1,21 @@
 components:
 - components:
-  - components:
-    - layout_properties: {grid_position: 'RNCJOY,UPPPQH'}
-      name: about_us_box
-      properties: {}
-      type: RichText
-    - event_bindings: {click: login_button_click}
-      layout_properties: {grid_position: 'HYJBCS,HZDBMP'}
-      name: login_button
-      properties: {role: outlined-button, text: Please Login}
-      type: Button
-    - event_bindings: {click: register_button_click}
-      layout_properties: {grid_position: 'HYJBCS,XZSVWE'}
-      name: register_button
-      properties: {role: outlined-button, text: Please Register}
-      type: Button
-    layout_properties: {grid_position: 'ECCFSI,XRPSUF'}
-    name: welcome
+  - layout_properties: {grid_position: 'PNXCDV,DWACDI'}
+    name: about_us_box
     properties: {}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {grid_position: 'DUSQFS,BZOGSS'}
-      name: introduction_message
-      properties: {}
-      type: RichText
-    layout_properties: {grid_position: 'ZYXUXZ,RYFYYL'}
-    name: introduction
-    properties: {}
-    type: ColumnPanel
+    type: RichText
+  - event_bindings: {click: login_button_click}
+    layout_properties: {grid_position: 'FGKTJN,ZMAKTC'}
+    name: login_button
+    properties: {role: outlined-button, text: Please Login}
+    type: Button
+  - event_bindings: {click: register_button_click}
+    layout_properties: {grid_position: 'FGKTJN,HUZFAM'}
+    name: register_button
+    properties: {role: outlined-button, text: Please Register}
+    type: Button
   layout_properties: {slot: default}
-  name: content_panel
+  name: welcome_page
   properties: {col_widths: '{}'}
   type: ColumnPanel
 - components: []
@@ -147,10 +133,10 @@ container:
 is_package: true
 slots:
   body_slot:
-    index: 1
-    set_layout_properties: {grid_position: 'SJIJZK,ZEFINV GDBQMZ,GEETFQ'}
-    target: {name: welcome, type: container}
+    index: 0
+    set_layout_properties: {grid_position: 'HMPTUS,DSEOSV'}
+    target: {name: welcome_page, type: container}
   header_slot:
     index: 0
-    set_layout_properties: {grid_position: 'WDEOHD,NKNOTA'}
-    target: {name: welcome, type: container}
+    set_layout_properties: {grid_position: 'LCHCLU,FVPKZJ'}
+    target: {name: welcome_page, type: container}

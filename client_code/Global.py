@@ -146,19 +146,19 @@ This software is released under Creative Commons license:
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target=_blank>Attributions-NonCommercial-ShareAlike 4.0 International (CC BY-NC-AS 4.0) license</a>.
 This is version """ + version + """.</p>
 
-<p>For more information please contact ...</p>
+<p>
+For more information please contact ...</p>
 """
 help_page_form = ""
 help_page = {}
 help_introduction = """
-<h3>Introduction to the the Anchurus-II Web Service</h3>"
-
+<h3>Introduction</h3>
 <p>
-
-</p>
-
+Please select a site. Once selected you can use the menu items to select your actions.</p>
+<p>
+<b>Note:</b> changing/selecting a new site, all current workspace wil be deleted.</p>
+<h3> </h3>
 <p>
 For more information on recording Archaeological Excavations please go to the
-<a href="https://anchurus.co.uk/" target=_blank>Anchurus Website</a>
-</p>
+<a href="https://anchurus.co.uk/" target=_blank>Anchurus Website</a></p>
 """

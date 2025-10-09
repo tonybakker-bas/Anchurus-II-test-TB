@@ -17,13 +17,15 @@ class ListContexts(ListContextsTemplate):
     # 1. call server function 'context_get', which retrieves all conrtext for the given site
     self.ContextList.items = anvil.server.call("contexts_get", Global.site_id)
     self.rp.items = self.ContextList.items
-    #print(self.ContextList.items)
+
     # 2. set nr of rows per page from Global variable (which is defined by a parameter in the server-side config file)
     if Global.nr_of_rows is not None:
       self.Context_list_1.rows_per_page = Global.nr_of_rows
+    
     # 3.save the list of items in the Global 'work-area' dictionary
     if Global.current_work_area_name is not None:
       Global.work_area[Global.current_work_area_name]["data_list"] = self.ContextList.items
+    
     # Display the total number of rows 
     self.total_context_number.text = "Total number of Contexts: " + str(len(self.ContextList.items))
   pass

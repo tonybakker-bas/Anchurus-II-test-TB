@@ -18,7 +18,7 @@ class RowTemplate8(RowTemplate8Template):
     Global.action = "View " + Global.table_name.capitalize()
     if Global.main_form:  # Important to check if the form exists
       # Create new work_area "View Context" and set focus on this new work_area
-      print("From repatingPanel row calling create_new_work_area for:",Global.action)
+      #print("From repatingPanel row calling create_new_work_area for:",Global.action)
       Global.main_form.create_new_work_area(Global.action)
     else:
       print("Main form not found!")
