@@ -132,10 +132,6 @@ container:
   type: HtmlTemplate
 is_package: true
 slots:
-  GlobalHeaderSlot:
-    index: 0
-    set_layout_properties: {full_width_row: true, grid_position: 'VYEGHQ,LGDUNZ'}
-    target: {name: content_panel, type: container}
   body_slot:
     index: 1
     set_layout_properties: {grid_position: 'ZOVWQM,BUEHJO'}

@@ -30,7 +30,6 @@ from FindForm import FindForm
 from AreaForm import AreaForm
 from SiteForm import SiteForm
 from UserForm import UserForm
-from SelectSite import SelectSite
 from BulkUpload import BulkUpload
 
 from Draw import Draw

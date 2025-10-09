@@ -8,10 +8,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.users
 
-#from ..WorkArea import WorkArea
 from ..Header import Header
-#from ..GlobalHeader import GlobalHeader
-#from ..Welcome import Welcome
 from .. import Global
 from .. import Function
 
@@ -27,9 +24,6 @@ class Main(MainTemplate):
     Global.admin_user = globals_from_config["admin_user"]
     Global.admin_user_initials = globals_from_config["admin_user_initials"]
     #
-    #Global.GlobalHeader = GlobalHeader()
-    #self.add_component(Global.GlobalHeader, slot='GlobalHeaderheaderSlot')
-    #Global.GlobalHeader.visible = False
     Global.header = Header()
     self.add_component(Global.header, slot='header_slot')
     Global.header.visible = False
@@ -243,24 +237,18 @@ class Main(MainTemplate):
       #self.username.text = Global.username + "\n (" + Global.user_role + ")"
       self.username_dropdown.placeholder = Global.username
       self.username_dropdown.items = ["Logout"]
+      
       # check user authorisation - role columns will be updated in anvil user table
       Global.ip_address = anvil.server.call("user_authorisation")
+      
       # if users has admin role, add admin actions list and set it visible
       user = anvil.users.get_user()
       Global.user_role = user["role"]
       if Global.user_role == "admin":
         #print(Global.username, Global.user_role)
-        #Global.gh_admin_list.items = Global.admin_action_list
-        #Global.gh_admin_list.visible = True
         self.admin_dropdown.visible = True
+      
       # make menu bar variable visible
-      #Global.gh_list_list.items = Global.list_action_dropdown
-      #Global.gh_insert_list.items = Global.insert_action_dropdown
-      #Global.gh_file_list = Global.file_action_dropdown
-      #Global.gh_view_list = Global.view_action_dropdown
-      #Global.gh_help_list = Global.help_action_dropdown
-      #self.action_list.items = Global.user_action_list
-      #self.action_list.visible = True
       self.menu_block.visible = True
 
       if anvil.users.get_user() is not None:
@@ -270,16 +258,13 @@ class Main(MainTemplate):
           val_list = list(x.values())
           option = val_list[0] + " - " + val_list[1]
           Global.site_options[option] = val_list[0]
-      #else:
-      #  print("in SelectSite form without having logged in")
         
       self.select_site_dropdown.items = Global.site_options.keys()
 
       # make content_panel of Main form invisible
       self.content_panel.visible = False
       # once logged in, show "Select Site" form
-      #Global.GlobalHeader.visible = True
-      #
+      
       #Global.action = "Select Site"
       #self.create_new_work_area(Global.action)
     pass
@@ -308,11 +293,7 @@ class Main(MainTemplate):
       anvil.server.call("user_logout_notification",Global.ip_address,Global.username)
       anvil.users.logout()
       self.content_panel.visible = True
-      #self.action_list.items = Global.user_action_list
-      #self.action_list.visible = False
       self.menu_block.visible = False
-      #Global.GlobalHeader.visible = False
-      #Global.gh_admin_list.visible = False
       self.admin_dropdown.visible = False
       self.username_dropdown.placeholder = Global.username
       self.username_dropdown.items = []
@@ -357,7 +338,7 @@ class Main(MainTemplate):
     if Global.action not in Global.action_list_not_implemented:
       # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
       # for any action that has a Form defined create a new work_area
-      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown + ["Select Site"]):
+      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown):
         # if site is not yet selected alert user
         alert(
           content="Site has not been selected. Please select a site.",
@@ -384,7 +365,7 @@ class Main(MainTemplate):
     if Global.action not in Global.action_list_not_implemented:
       # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
       # for any action that has a Form defined create a new work_area
-      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown + ["Select Site"]):
+      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown):
         # if site is not yet selected alert user
         alert(
           content="Site has not been selected. Please select a site.",
@@ -412,7 +393,7 @@ class Main(MainTemplate):
     if Global.action not in Global.action_list_not_implemented:
       # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
       # for any action that has a Form defined create a new work_area
-      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown + ["Select Site"]):
+      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown):
         # if site is not yet selected alert user
         alert(
           content="Site has not been selected. Please select a site.",
