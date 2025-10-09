@@ -120,7 +120,7 @@ site_items = {}
 header_site_summary_information = {}
 system_name = ""
 SurveyMethod_options = {"BNG","Aligned to BNG north","Not aligned to BNG north"}
-system = "Anchurus Web Service"
+system = "Anchurus-II Web Service"
 status = ""
 table_name = ""
 table_items = {}
@@ -136,7 +136,7 @@ user_items = {}
 version = ""
 #
 about_us_text = """
-<h3>Welcome to the Anchurus-II system for """ + organisation + "</h3>" + """
+<h3>Welcome to the Anchurus-II Web Service for """ + organisation + "</h3>" + """
 
 <p>
 This system allows for the digital recording of archaeological excavations.
@@ -147,4 +147,14 @@ This software is released under Creative Commons license:
 This is version """ + version + """.</p>
 
 <p>For more information please contact ...</p>
+"""
+help_introduction = """
+<h3>Introduction to the the Anchurus-II Web Service</h3>" + """
+
+<p>
+
+
+
+
+
 """
