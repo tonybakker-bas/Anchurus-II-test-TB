@@ -2,7 +2,12 @@ components:
 - components:
   - layout_properties: {full_width_row: true, grid_position: 'LNVHEX,BHZUPJ'}
     name: information
-    properties: {auto_expand: true, background: 'theme:Surface Variant', border: none, height: '40'}
+    properties:
+      auto_expand: true
+      background: theme:Surface Variant
+      border: none
+      height: '40'
+      margin: [null, null, null, '4']
     type: TextArea
   - layout_properties: {full_width_row: true, grid_position: 'LNVHEX,MZKYDJ'}
     name: total_number
@@ -11,6 +16,7 @@ components:
   layout_properties: {full_width_row: true, grid_position: 'WWKKDB,DOHYNN'}
   name: sub_header
   properties:
+    background: theme:Tertiary
     col_widths: '{"BHZUPJ":50,"MZKYDJ":10}'
     spacing:
       margin: ['0', null, '0', null]
@@ -25,8 +31,18 @@ components:
   name: table
   properties:
     columns: []
+    margin: ['0', null, null, null]
+    spacing_above: none
+    spacing_below: none
   type: DataGrid
 container:
-  properties: {background: '', border: '', col_spacing: medium}
+  properties:
+    background: ''
+    border: ''
+    col_spacing: medium
+    spacing:
+      margin: ['0', null, null, null]
+    spacing_above: none
+    spacing_below: none
   type: ColumnPanel
 is_package: true

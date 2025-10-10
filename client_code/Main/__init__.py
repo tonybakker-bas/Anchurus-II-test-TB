@@ -222,7 +222,6 @@ class Main(MainTemplate):
     #self.action_list.selected_value = None
     pass
   
-
   def login_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     user = anvil.users.login_with_form(allow_cancel=True)
@@ -319,6 +318,9 @@ class Main(MainTemplate):
       for work_area_name in temp_work_area_name_list:
         Function.delete_workspace(work_area_name)
 
+      # clear selected site
+      self.select_site_dropdown.selected_value = None
+      
       # clear work_area list and action_seq_no
       Global.work_area = {}
       Global.action_seq_no = {}
@@ -332,8 +334,9 @@ class Main(MainTemplate):
     # print("select_site_dropdown selected")
     if self.select_site_dropdown.selected_value is not None:
       # clear help_page_text 
-      Global.help_page.help_page_text.visible = True
-      Global.help_page.help_page_text.clear()
+      #Global.help_page.help_page_text.visible = True
+      #Global.help_page.help_page_text.clear()
+      Global.help_page.visible = False
       
       Global.site_name = self.select_site_dropdown.selected_value
       Global.site_id = Global.site_options[self.select_site_dropdown.selected_value]
@@ -345,7 +348,6 @@ class Main(MainTemplate):
       #Global.header_site_name.text = Global.site_name
       self.site_summary.text = str(site_information["Contexts"]) + " Contexts, " + str(site_information["Finds"]) + " Finds"
       #
-      Global.help_page.visible = True
 
     pass
     

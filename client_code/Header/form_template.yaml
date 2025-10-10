@@ -32,7 +32,12 @@ components:
       type: TextBox
     layout_properties: {full_width_row: true, grid_position: 'XGTADS,CTGSDY'}
     name: flow_panel_1
-    properties: {background: 'theme:Secondary Container'}
+    properties:
+      background: theme:Secondary Container
+      spacing:
+        margin: [-0.9090908893868948, null, -0.9090908893868948, null]
+      spacing_above: none
+      spacing_below: none
     type: FlowPanel
   - components:
     - event_bindings: {click: filter_button_click}
@@ -84,7 +89,11 @@ components:
       type: Button
     layout_properties: {full_width_row: true, grid_position: 'XGTADS,ASPBEZ'}
     name: flow_panel_2
-    properties: {align: right, background: 'theme:Secondary Container'}
+    properties:
+      align: right
+      background: theme:Secondary Container
+      spacing:
+        margin: ['0', null, '0', null]
     type: FlowPanel
   layout_properties: {full_width_row: true, grid_position: 'URTZQK,VJOIFT'}
   name: column_panel_1
@@ -92,6 +101,11 @@ components:
   type: ColumnPanel
 container:
   event_bindings: {}
-  properties: {col_widths: '{}'}
+  properties:
+    col_widths: '{}'
+    spacing:
+      margin: [-0.9090908893868948, null, '0', null]
+    spacing_above: none
+    spacing_below: none
   type: ColumnPanel
 is_package: true

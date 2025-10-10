@@ -56,8 +56,6 @@ def create_work_space(type):
     work_space = ListUsers()
   elif type == "Bulk Upload Contexts":
     work_space = BulkUpload()
-  elif type == "Select Site":
-    work_space = SelectSite()
   elif type == "Add Context":
     work_space = ContextForm()
   elif type == "Add Area":

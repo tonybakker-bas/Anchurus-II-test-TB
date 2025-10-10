@@ -132,10 +132,6 @@ container:
   type: HtmlTemplate
 is_package: true
 slots:
-  body_slot:
-    index: 1
-    set_layout_properties: {grid_position: 'DOJJGG,PNHTLE'}
-    target: {name: welcome_page, type: container}
   header_slot:
     index: 0
     set_layout_properties: {grid_position: 'LCHCLU,FVPKZJ'}

@@ -67,13 +67,11 @@ class TableList(TableListTemplate):
       field_name = column_data["Field"]
       id = id + 1
       columns_titles.append({"id": id, "title": field_name, "data_key": field_name, "width": 150, "expand": True })
-      #'text': column_name, 'id': option_id})
 
     # assign the columns titles to the grid columns
     self.table.columns = columns_titles
 
     # Add the repeating panel to the data grid and set rows_per_page
-    #self.grid.add_component(self.rp, full_width_row=True)
     self.table.rows_per_page = Global.nr_of_rows
     self.table.role = "horizontal-scroll"
 
