@@ -48,23 +48,16 @@ class Header(HeaderTemplate):
       alert("The new work area name is already in use. Please change it.")
     else:
       # new name is unique so now add new work area name in the two lists (one for buttons and one for the forms 
-      #Global.work_area_list[new_work_area_name] = Global.work_area_list[Global.current_work_area_name]
-      #Global.work_area_action[new_work_area_name] = Global.work_area_action[Global.current_work_area_name] 
-      #Global.work_area_name_list[new_work_area_name] = Global.work_area_name_list[Global.current_work_area_name]
-      #Global.work_area_name_list[new_work_area_name].text = new_work_area_name
       Global.work_area[new_work_area_name] = {}
       Global.work_area[new_work_area_name] = Global.work_area[Global.current_work_area_name]
       Global.work_area[new_work_area_name]["button"].text = new_work_area_name
-      # remove old key/value pair for the old work_area_name from the dictionaries
-      #Global.work_area_list.pop(Global.current_work_area_name)
-      #Global.work_area_action.pop(Global.current_work_area_name)
-      #Global.work_area_name_list.pop(Global.current_work_area_name)
-      #print(Global.work_area)
+      
+      # remove old key/value pair for the old work_area_name from the dictionaries     
       Global.work_area.pop(Global.current_work_area_name)
-      #print(Global.work_area)
+
       # update Global.curret_work_area_name with new name
       Global.current_work_area_name = new_work_area_name
-      #
+      
     pass
 
   def print_button_click(self, **event_args):
@@ -133,15 +126,23 @@ class Header(HeaderTemplate):
       title="",
       buttons=[] # Crucial: set buttons=[] to use your custom button for submission
     )
-
+    
     # 4. Process the result after the dialog is closed
-    if selected_list:
-      print("User selected the following items:")
-      for item in selected_list:
-        print(f"- {item['text']} (ID: {item['id']})")
-    else:
-      # This occurs if the user closes the modal without clicking a button
-      print("Selection was cancelled or dismissed.")
+    # loop through columns and hide the one not seleced (but not the cols with empty titles!)
+    all_columns_titles = [col["title"] for col in Global.work_area[Global.current_work_area_name]["table"].columns if "title" in col]
+    selected_columns_titles = [col["text"] for col in selected_list if "text" in col]
+    print(all_columns_titles)
+    print(selected_columns_titles)
+    columns_not_selected = list(set(all_columns_titles).difference(selected_columns_titles))
+    print(columns_not_selected)
+    
+    #if selected_list:
+    #  print("User selected the following columns:")
+    #  for item in selected_list:
+    #    print(f"- {item['text']} (ID: {item['id']})")
+    #else:
+    #  # This occurs if the user closes the modal without clicking a button
+    #  print("Selection was cancelled or dismissed.")
     pass
 
 
