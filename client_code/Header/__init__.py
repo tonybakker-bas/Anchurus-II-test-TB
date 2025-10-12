@@ -108,17 +108,20 @@ class Header(HeaderTemplate):
     if Global.work_area[Global.current_work_area_name]["data_list"]:
       # Get the keys (which are the column headings) from the first item
       column_headings = list(Global.work_area[Global.current_work_area_name]["data_list"][0].keys())
+    
+    # remove special columns
     column_headings.remove("view")
     column_headings.remove("edit")
     column_headings.remove("delete")
+    # sort column names
+    column_headings.sort()
     
     # 1. Define the options you want to display
     option_id = 0
     options_data = []
     for column_name in column_headings:
-      if column_name != "":  # ignore comlumns with empty title (special columns)
-        option_id = option_id + 1
-        options_data.append({'text': column_name, 'id': option_id})
+      option_id = option_id + 1
+      options_data.append({'text': column_name, 'id': option_id})
 
     # 2. Create an instance of your Dialog Form
     dialog = FilterList(options_list=options_data)
@@ -134,22 +137,26 @@ class Header(HeaderTemplate):
     # 4. Process the result after the dialog is closed
     #
     # First unhide all columns
+    print("hidden_columns before unhiding = ",Global.work_area[Global.current_work_area_name]["hidden_columns"])
     # Filter the column with title 'Stock Price' out of the hidden columns list.
     for col in Global.work_area[Global.current_work_area_name]["hidden_columns"]:
       # remove from list of hidden_columns
-      Global.work_area[Global.current_work_area_name]["hidden_columns"].remove(col)
+      Global.work_area[Global.current_work_area_name]["filter"].remove(col)
       # Add it to the Data Grid's column list
-      Global.work_area[Global.current_work_area_name]["hidden_columns"].append(col)
+      Global.work_area[Global.current_work_area_name]["table"].columns.append(col)
     # make it 'live'
     Global.work_area[Global.current_work_area_name]["table"].columns = Global.work_area[Global.current_work_area_name]["table"].columns
+    # set hidden_columns to empty list
+    Global.work_area[Global.current_work_area_name]["hidden_columns"] = []
+    print("filtered columns list = ", Global.work_area[Global.current_work_area_name]["filter"])
+    print("current table columns = ",Global.work_area[Global.current_work_area_name]["table"].columns)
 
     #
     all_columns_titles = [col["title"] for col in Global.work_area[Global.current_work_area_name]["table"].columns if "title" in col]
     #remove columns with empty title
     cleaned_list = [item for item in all_columns_titles if item != ""]
-    print(cleaned_list)
-    all_columns_titles = cleaned_list.sort()
-    print(all_columns_titles)
+    cleaned_list.sort()
+    all_columns_titles = cleaned_list
     # create columns_to_hide (difference between all_columns and selected_columns)
     columns_to_hide = []
     selected_columns_titles = []
@@ -165,9 +172,13 @@ class Header(HeaderTemplate):
       # add col to filter and remove from table
       column = [c for c in Global.work_area[Global.current_work_area_name]["table"].columns][0]
       Global.work_area[Global.current_work_area_name]["filter"].append(column)
-      Global.work_area[Global.current_work_area_name]["table"].remove(column)
+      Global.work_area[Global.current_work_area_name]["table"].columns.remove(column)
     # make the filter 'live'
     Global.work_area[Global.current_work_area_name]["table"].columns = Global.work_area[Global.current_work_area_name]["table"].columns
+
+    print("Filter applies. hidden_columns = ",Global.work_area[Global.current_work_area_name]["hidden_columns"])
+    print("filter = ",Global.work_area[Global.current_work_area_name]["filter"])
+    print("table columns are = ",Global.work_area[Global.current_work_area_name]["table"].columns)
 
     pass
 
