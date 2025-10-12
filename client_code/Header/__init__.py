@@ -133,10 +133,23 @@ class Header(HeaderTemplate):
     
     # 4. Process the result after the dialog is closed
     #
+    # First unhide all columns
+    # Filter the column with title 'Stock Price' out of the hidden columns list.
+    for col in Global.work_area[Global.current_work_area_name]["hidden_columns"]:
+      # remove from list of hidden_columns
+      Global.work_area[Global.current_work_area_name]["hidden_columns"].remove(col)
+      # Add it to the Data Grid's column list
+      Global.work_area[Global.current_work_area_name]["hidden_columns"].append(col)
+    # make it 'live'
+    Global.work_area[Global.current_work_area_name]["table"].columns = Global.work_area[Global.current_work_area_name]["table"].columns
+
+    #
     all_columns_titles = [col["title"] for col in Global.work_area[Global.current_work_area_name]["table"].columns if "title" in col]
     #remove columns with empty title
     cleaned_list = [item for item in all_columns_titles if item != ""]
+    print(cleaned_list)
     all_columns_titles = cleaned_list.sort()
+    print(all_columns_titles)
     # create columns_to_hide (difference between all_columns and selected_columns)
     columns_to_hide = []
     selected_columns_titles = []
@@ -144,7 +157,18 @@ class Header(HeaderTemplate):
       selected_columns_titles = [col["text"] for col in selected_list if "text" in col]
       columns_to_hide = list(set(all_columns_titles).difference(selected_columns_titles))
     #
-    print(columns_to_hide)
+    #print(columns_to_hide)
+    # add columns_to_hide to the work_area data structure as "filter"
+    Global.work_area[Global.current_work_area_name]["hidden_columns"] = columns_to_hide
+
+    for col in columns_to_hide:
+      # add col to filter and remove from table
+      column = [c for c in Global.work_area[Global.current_work_area_name]["table"].columns][0]
+      Global.work_area[Global.current_work_area_name]["filter"].append(column)
+      Global.work_area[Global.current_work_area_name]["table"].remove(column)
+    # make the filter 'live'
+    Global.work_area[Global.current_work_area_name]["table"].columns = Global.work_area[Global.current_work_area_name]["table"].columns
+
     pass
 
 

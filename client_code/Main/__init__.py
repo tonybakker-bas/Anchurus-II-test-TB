@@ -185,7 +185,8 @@ class Main(MainTemplate):
       Global.work_area[name]["form"].visible = False
       Global.work_area[name]["button"].bold = False
       Global.work_area[name]["button"].background = Global.button_normal_background_clour
-    
+    #
+    Global.work_area[Global.current_work_area_name]["hidden_columns"] = []
     # Make selected work area visible and have Focus
     Global.work_area[work_area_name]["form"].visible = True
     Global.work_area[work_area_name]["button"].bold = False
