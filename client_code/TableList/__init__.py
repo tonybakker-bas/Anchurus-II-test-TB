@@ -27,6 +27,7 @@ class TableList(TableListTemplate):
       Global.work_area[Global.current_work_area_name]["data_list"] = (
         self.repeating_panel_1.items
       )
+
     # Display the total number of rows
     self.total_number.text = "Total number of rows: " + str(len(self.repeating_panel_1.items))
     self.information.text = Global.table_name
@@ -71,6 +72,9 @@ class TableList(TableListTemplate):
     # assign the columns titles to the grid columns
     self.table.columns = columns_titles
 
+    # add table to work_area data structure for Global.current_work_area_name
+    Global.work_area[Global.current_work_area_name]["table"] = self.table
+    
     # Add the repeating panel to the data grid and set rows_per_page
     self.table.rows_per_page = Global.nr_of_rows
     self.table.role = "horizontal-scroll"

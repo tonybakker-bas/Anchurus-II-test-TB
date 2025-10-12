@@ -171,6 +171,9 @@ class Main(MainTemplate):
     # create a new work_space and add this to the work_area_list      
     Global.work_area[work_area_name]["form"] = Function.create_work_space(action)
     self.add_component(Global.work_area[work_area_name]["form"])
+    
+    print(Global.work_area[work_area_name]["table"].columns)
+    
     # set button name to new work_area_name
     Global.work_area[work_area_name]["button"].text = work_area_name
     Global.work_area[work_area_name]["form_type"] = str(type(Global.work_area[work_area_name]["form"])).split(".")[2][:-2]
