@@ -136,7 +136,7 @@ class Header(HeaderTemplate):
 
     # 4. Process the result after the dialog is closed
     if selected_list:
-      print("User submitted the following items:")
+      print("User selected the following items:")
       for item in selected_list:
         print(f"- {item['text']} (ID: {item['id']})")
     else:
