@@ -108,13 +108,17 @@ class Header(HeaderTemplate):
     if Global.work_area[Global.current_work_area_name]["data_list"]:
       # Get the keys (which are the column headings) from the first item
       column_headings = list(Global.work_area[Global.current_work_area_name]["data_list"][0].keys())
- 
+    column_headings.remove("view")
+    column_headings.remove("edit")
+    column_headings.remove("delete")
+    
     # 1. Define the options you want to display
     option_id = 0
     options_data = []
     for column_name in column_headings:
-      option_id = option_id + 1
-      options_data.append({'text': column_name, 'id': option_id})
+      if column_name != "":  # ignore comlumns with empty title (special columns)
+        option_id = option_id + 1
+        options_data.append({'text': column_name, 'id': option_id})
 
     # 2. Create an instance of your Dialog Form
     dialog = FilterList(options_list=options_data)
@@ -128,21 +132,19 @@ class Header(HeaderTemplate):
     )
     
     # 4. Process the result after the dialog is closed
-    # loop through columns and hide the one not seleced (but not the cols with empty titles!)
+    #
     all_columns_titles = [col["title"] for col in Global.work_area[Global.current_work_area_name]["table"].columns if "title" in col]
-    selected_columns_titles = [col["text"] for col in selected_list if "text" in col]
-    print(all_columns_titles)
-    print(selected_columns_titles)
-    columns_not_selected = list(set(all_columns_titles).difference(selected_columns_titles))
-    print(columns_not_selected)
-    
-    #if selected_list:
-    #  print("User selected the following columns:")
-    #  for item in selected_list:
-    #    print(f"- {item['text']} (ID: {item['id']})")
-    #else:
-    #  # This occurs if the user closes the modal without clicking a button
-    #  print("Selection was cancelled or dismissed.")
+    #remove columns with empty title
+    cleaned_list = [item for item in all_columns_titles if item != ""]
+    all_columns_titles = cleaned_list.sort()
+    # create columns_to_hide (difference between all_columns and selected_columns)
+    columns_to_hide = []
+    selected_columns_titles = []
+    if selected_list:
+      selected_columns_titles = [col["text"] for col in selected_list if "text" in col]
+      columns_to_hide = list(set(all_columns_titles).difference(selected_columns_titles))
+    #
+    print(columns_to_hide)
     pass
 
 
