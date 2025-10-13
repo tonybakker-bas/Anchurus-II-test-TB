@@ -52,7 +52,8 @@ class ContextForm(ContextFormTemplate):
                            required=False,
                            message="Please enter a valid year YYYY BC|AD (or -YYYY for BC year)")
     #
-    self.SiteId.text = Global.context_items["SiteId"]
+    print(Global.context_items)
+    self.SiteId.text = Global.site_id
     #Global.work_area[Global.current_work_area_name]["site_id"] 
     self.SiteId.enabled = False
     self.context_help_information.text = Global.context_help_information

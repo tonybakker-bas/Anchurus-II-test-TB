@@ -52,12 +52,14 @@ class FindForm(FindFormTemplate):
     )
     # for all actions set SiteId disabled for editing
     #self.SiteId.text = Global.work_area[Global.current_work_area_name]["site_id"]
-    self.SiteId.text = Global.find_items["SiteId"]
+    print(Global.find_items)
+    self.SiteId.text = Global.site_id
     self.SiteId.enabled = False
     if Global.action == "View Find" or Global.action == "Edit Find":
       #print(Global.find_items)
       # call check_DBAcontrol for existing or new DBAcontrol value
-      Global.find_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
+      DBAaction = "e"
+      #Global.find_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
       # fill fields with values for View or Edit
       self.FindId.text = Global.find_items["FindId"]
       self.ContextId.text = Global.find_items["ContextId"]
@@ -146,7 +148,8 @@ class FindForm(FindFormTemplate):
       self.Submit_button.visible = False
     if Global.action == "Add Find":
       # call check_DBAcontrol for existing or new DBAcontrol value
-      Global.find_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"i")
+      DBAaction = "i"
+      #Global.find_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"i")
       self.FindId.text = ""
       self.FindId.enabled = True
       self.ContextId.text = ""

@@ -157,7 +157,8 @@ class Main(MainTemplate):
 
     if action not in Global.admin_action_list:
       work_area_name = Global.site_id + " " + work_area_name
-      
+
+    print(action,work_area_name)
     # create new 'empty row' in nested work_area dictionary for the new work_area_name
     Global.work_area[work_area_name] = {}
     Global.work_area[work_area_name]["action"] = action
@@ -395,7 +396,7 @@ class Main(MainTemplate):
     Global.main_form = get_open_form()
     # make action to be "Add ..." 
     Global.action = "Add " + str(self.insert_dropdown.selected_value).capitalize()
-
+    print("Insert action - ",Global.action)
     if Global.action not in Global.action_list_not_implemented:
       # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
       # for any action that has a Form defined create a new work_area
