@@ -52,7 +52,9 @@ class Main(MainTemplate):
     #self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
     #self.action_list.visible = False
-    self.menu_block.visible = False
+    self.menu_top.visible = False
+    self.menu_panel_left.visible = False
+    self.menu_panel_right.visible = False
     self.admin_dropdown.visible = False
 
   def work_area_click(self, **event_args):
@@ -262,7 +264,7 @@ class Main(MainTemplate):
         self.admin_dropdown.visible = True
       
       # make menu bar variable visible
-      self.menu_block.visible = True
+      self.menu_top.visible = True
 
       if anvil.users.get_user() is not None:
         sites_list = anvil.server.call('sites_get_summary')
@@ -290,7 +292,7 @@ class Main(MainTemplate):
       Global.username = user["email"]
       self.username_dropdown.placeholder = Global.username
       self.action_list.visible = True
-      self.menu_block.visible = True
+      self.menu_top.visible = True
       self.welcome_page.visible = False
     pass
 
@@ -311,7 +313,9 @@ class Main(MainTemplate):
       self.welcome_page.visible = True
       
       # make menu block and admin menu invisible
-      self.menu_block.visible = False
+      self.menu_top.visible = False
+      self.menu_panel_left.visible = False
+      self.menu_panel_right.visible = False
       self.admin_dropdown.visible = False
       self.username_dropdown.placeholder = Global.username
       self.username_dropdown.items = []
@@ -353,6 +357,8 @@ class Main(MainTemplate):
       #Global.header_site_name.text = Global.site_name
       self.site_summary.text = str(site_information["Contexts"]) + " Contexts, " + str(site_information["Finds"]) + " Finds"
       #
+      self.menu_panel_left.visible = True
+      self.menu_panel_right.visible = True
 
     pass
     
