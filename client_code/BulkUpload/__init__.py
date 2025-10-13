@@ -32,8 +32,8 @@ class BulkUpload(BulkUploadTemplate):
     msg = "No message received."
     # type is database table name
     # call check_DBAcontrol for existing or new DBAcontrol value
-    DBAcontrol = anvil.server.call("check_DBAcontrol",Global.username,"b")
-    msg = anvil.server.call("bulkupload", type[2][:-1], file, DBAcontrol)
+    #DBAcontrol = anvil.server.call("check_DBAcontrol",Global.username,"b")
+    msg = anvil.server.call("bulkupload", type[2][:-1], file)
     #print(msg)
     self.message_log.text = msg
     pass

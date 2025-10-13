@@ -64,7 +64,7 @@ class ContextForm(ContextFormTemplate):
     if Global.work_area[Global.current_work_area_name]["action"] == "View Context" or Global.work_area[Global.current_work_area_name]["action"] == "Edit Context":
       # fill fields with values for View or Edit
       # call check_DBAcontrol for existing or new DBAcontrol value
-      Global.context_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
+      #Global.context_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
       self.ContextId.text = Global.context_items["ContextId"]
       self.Name.text = Global.context_items["Name"]
       self.Year.text = Global.context_items["Year"]
@@ -106,7 +106,7 @@ class ContextForm(ContextFormTemplate):
       self.Submit_button.visible = False  
     if Global.work_area[Global.current_work_area_name]["action"] == "Add Context":
       # call check_DBAcontrol for existing or new DBAcontrol value
-      Global.context_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"i")
+      #Global.context_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"i")
       self.ContextId.text = ""
       self.ContextId.enabled = True
       self.Name.text = ""

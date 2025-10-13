@@ -89,7 +89,7 @@ class AnomalyForm(AnomalyFormTemplate):
         + "/65535):"
       )
       # call check_DBAcontrol for existing or new DBAcontrol value
-      Global.context_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
+      #Global.context_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
       # in View/Edit disable changing ContextId
       self.ContextId.enabled = False
     if Global.work_area[Global.current_work_area_name]["action"] == "View Context":
@@ -137,7 +137,7 @@ class AnomalyForm(AnomalyFormTemplate):
         + "/65535):"
       )
       # call check_DBAcontrol for existing or new DBAcontrol value
-      Global.context_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
+      #Global.context_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
       self.Submit_button.visible = True
 
   def Submit_button_click(self, **event_args):

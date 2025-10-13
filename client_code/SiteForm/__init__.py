@@ -68,7 +68,7 @@ class SiteForm(SiteFormTemplate):
     if Global.work_area[Global.current_work_area_name]["action"] == "View Site" or Global.work_area[Global.current_work_area_name]["action"] == "Edit Site":
       # fill fields with values for View or Edit
       # call check_DBAcontrol for existing or new DBAcontrol value
-      Global.site_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
+      #Global.site_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
       self.SiteId.text = Global.site_items["SiteId"]
       self.Name.text = Global.site_items["Name"]
       self.Address.text = Global.site_items["Address"]
@@ -122,7 +122,7 @@ class SiteForm(SiteFormTemplate):
       self.Submit_button.visible = False
     if Global.work_area[Global.current_work_area_name]["action"] == "Add Site":
       # call check_DBAcontrol for existing or new DBAcontrol value
-      Global.site_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"i")
+      #Global.site_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"i")
       self.SiteId.text = ""
       self.SiteId.enabled = True
       self.SiteId_header.text = (

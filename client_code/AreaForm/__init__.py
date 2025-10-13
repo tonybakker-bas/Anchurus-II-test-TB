@@ -80,7 +80,7 @@ class AreaForm(AreaFormTemplate):
       self.TopRightEasting.text = Global.area_items["TopRightEasting"]
       self.TopRightNorthing.text = Global.area_items["TopRightNorthing"]
       # call check_DBAcontrol for existing or new DBAcontrol value
-      Global.area_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
+      #Global.area_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"e")
       # in View/Edit disable changing AreaId
       self.AreaId.enabled = False
     if Global.work_area[Global.current_work_area_name]["action"] == "View Area":
@@ -112,7 +112,7 @@ class AreaForm(AreaFormTemplate):
       self.TopRightNorthing.enabled = False 
       self.Submit_button.visible = True  
       # call check_DBAcontrol for existing or new DBAcontrol value
-      Global.area_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"i")
+      #Global.area_items["DBAcontrol"] = anvil.server.call("check_DBAcontrol",Global.username,"i")
 
 
   def Submit_button_click(self, **event_args):
