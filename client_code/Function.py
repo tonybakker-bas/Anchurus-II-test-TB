@@ -28,6 +28,7 @@ from TableList import TableList
 from ContextForm import ContextForm
 from FindForm import FindForm
 from AreaForm import AreaForm
+from RowForm import RowForm
 from SiteForm import SiteForm
 from UserForm import UserForm
 from BulkUpload import BulkUpload
@@ -56,6 +57,8 @@ def create_work_space(type):
     work_space = ListUsers()
   elif type == "Bulk Upload Contexts":
     work_space = BulkUpload()
+  elif type == "Add Row":
+    work_space = RowForm()
   elif type == "Add Context":
     work_space = ContextForm()
   elif type == "Add Area":
@@ -74,6 +77,8 @@ def create_work_space(type):
     work_space = SiteForm()
   elif type == "Edit User":
     work_space = UserForm()
+  elif type == "View Row":
+    work_space = RowForm()
   elif type == "View Context":
     work_space = ContextForm()
   elif type == "View Find":
