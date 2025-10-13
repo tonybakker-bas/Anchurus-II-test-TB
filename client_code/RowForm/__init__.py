@@ -1,4 +1,4 @@
-from ._anvil_designer import RowTemplate
+from ._anvil_designer import RowFormTemplate
 from anvil import *
 import anvil.server
 import anvil.google.auth, anvil.google.drive
@@ -11,7 +11,7 @@ from anvil.tables import app_tables
 from .. import Global
 
 
-class Row(RowTemplate):
+class RowForm(RowFormTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
