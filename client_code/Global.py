@@ -33,6 +33,8 @@ file_action_dropdown = ["Import",separator,"Save"]
 view_action_dropdown = []
 help_action_dropdown = []
 admin_action_dropdown = ["List Users","List Sites","Add Site"]
+import_table_name_dropdown = ["context","find"]
+#
 #
 action_forms_with_refresh = ["TableList","ListUsers","ListSites","ListContexts","ListFinds","ListAreas","BulkUpload","Add Area","List Areas"]
 #action_forms_with_print = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","List Areas","View Context","View Find","View Area"]

@@ -31,7 +31,7 @@ from AreaForm import AreaForm
 from RowForm import RowForm
 from SiteForm import SiteForm
 from UserForm import UserForm
-from BulkUpload import BulkUpload
+from ImportForm import ImportForm
 from Help import Help
 
 from Draw import Draw
@@ -55,8 +55,8 @@ def create_work_space(type):
     work_space = ListSites()
   elif type == "List Users":
     work_space = ListUsers()
-  elif type == "Bulk Upload Contexts":
-    work_space = BulkUpload()
+  elif type == "Import":
+    work_space = ImportForm()
   elif type == "Add Row":
     work_space = RowForm()
   elif type == "Add Context":

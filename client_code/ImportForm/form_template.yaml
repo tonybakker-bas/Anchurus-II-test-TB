@@ -1,0 +1,35 @@
+components:
+- layout_properties: {grid_position: 'EQDXGC,ZGUCEG'}
+  name: Import_title
+  properties: {font_size: 18}
+  type: Label
+- event_bindings: {change: select_table_name_dropdown_change}
+  layout_properties: {grid_position: 'GMEVMI,EHHQGK'}
+  name: select_table_name_dropdown
+  properties: {include_placeholder: true, placeholder: Select table name}
+  type: DropDown
+- layout_properties: {grid_position: 'GMEVMI,EPHMYV'}
+  name: label_1
+  properties: {}
+  type: Label
+- event_bindings: {change: upload_file_change}
+  layout_properties: {grid_position: 'EUETTO,ZMXQUR'}
+  name: upload_file
+  properties: {align: left}
+  type: FileLoader
+- layout_properties: {grid_position: 'CNYLVQ,LJGIAC'}
+  name: selected_file_name
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'WRHPNQ,HIMHLI'}
+  name: message_log_header
+  properties: {bold: true, text: 'Import processing log:'}
+  type: Label
+- layout_properties: {grid_position: 'UJILQQ,ZIRTOA'}
+  name: message_log
+  properties: {background: 'theme:On Primary', border: solid black 1px, height: 282}
+  type: TextArea
+container:
+  properties: {col_widths: '{"ZMXQUR":55,"EHHQGK":20,"EPHMYV":40}'}
+  type: ColumnPanel
+is_package: true

@@ -49,6 +49,8 @@ class Main(MainTemplate):
     self.view_dropdown.items = Global.view_action_dropdown
     self.help_dropdown.items = Global.help_action_dropdown
     #
+    self.file_dropdown.items = Global.file_action_dropdown
+
     #self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
     #self.action_list.visible = False
@@ -463,9 +465,8 @@ class Main(MainTemplate):
 
   def file_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
-    Global.main_form = get_open_form()
-    Global.action = self.file_dropdown.selected_value
 
-    self.file_dropdown.selected_value = None
+    Global.action = self.file_dropdown.selected_value
+    self.create_new_work_area(Global.action)
     pass
 

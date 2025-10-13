@@ -18,7 +18,7 @@ from ..ListFinds import ListFinds
 from ..ListAreas import ListAreas
 from ..ListSites import ListSites
 from ..ListUsers import ListUsers
-from ..BulkUpload import BulkUpload
+from ..ImportForm import ImportForm
 from ..FilterList import FilterList 
 
 class Header(HeaderTemplate):
@@ -86,8 +86,8 @@ class Header(HeaderTemplate):
       ListSites.list_sites_refresh(Global.work_area[Global.current_work_area_name]["form"]) 
     elif Global.work_area[Global.current_work_area_name]["action"] == "List Users":
       ListUsers.list_users_refresh(Global.work_area[Global.current_work_area_name]["form"]) 
-    elif Global.work_area[Global.current_work_area_name]["action"] == "BulkUpload":
-      BulkUpload.bulk_upload_refresh(Global.work_area[Global.current_work_area_name]["form"])
+    elif Global.work_area[Global.current_work_area_name]["action"] == "Import":
+      ImportForm.Import_refresh(Global.work_area[Global.current_work_area_name]["form"])
     pass
 
   def delete_work_area_click(self, **event_args):
