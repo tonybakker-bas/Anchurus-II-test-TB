@@ -29,7 +29,7 @@ action_list_not_implemented = [separator,"Bulk Upload Finds","Draw","List Areas"
 # the list_action_list is a list of the tables in DB (not yet sites)
 list_action_dropdown = ["Contexts","Finds","Anomolies","Interpretrations"]
 insert_action_dropdown = ["Context","Find","Anomoly","Interpretation"]
-file_action_dropdown = ["Bulk import",separator,"Save Work Areas"]
+file_action_dropdown = ["Import",separator,"Save"]
 view_action_dropdown = []
 help_action_dropdown = []
 admin_action_dropdown = ["List Users","List Sites","Add Site"]
