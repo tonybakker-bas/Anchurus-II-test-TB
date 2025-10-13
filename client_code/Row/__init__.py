@@ -17,6 +17,9 @@ class Row(RowTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+    
     # we need to find out which table we are dealing with
     print(Global.action)
     print(Global.table_name)
+
+    # And then we need to create all the fields based on table information 
