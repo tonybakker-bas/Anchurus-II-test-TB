@@ -112,10 +112,7 @@ def delete_all_workspace(work_area_list):
   return
 
 def save_work_areas():
-  print("List of work_area:")
-  print(Global.work_area)
-  for name in Global.work_area:
-    print("Details of work_area")
-    print(Global.work_area[name])
+  # need to create a media object of the work_area list 
+  
   success = anvil.server.call("save_work_areas", Global.work_area,Global.site_id) 
   return
