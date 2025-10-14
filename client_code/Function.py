@@ -112,8 +112,9 @@ def delete_all_workspace(work_area_list):
   return
 
 def save_work_areas():
+  print("List of work_area:")
+  print(Global.work_area)
   for name in Global.work_area:
-    print(name)
-    for rec in Global.work_area[name]:
-      print(rec)
+    print("Details of work_area")
+    print(Global.work_area[name])
   return
