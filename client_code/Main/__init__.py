@@ -157,8 +157,8 @@ class Main(MainTemplate):
     #print("Create New Work Area. Global.site_id = ",Global.site_id)
     #print("Create New Work Area. Global.selected-site = ",Global.selected_site)
 
-    if action not in Global.admin_action_list:
-      work_area_name = Global.site_id + " " + work_area_name
+    #if action not in Global.admin_action_list:
+    #  work_area_name = Global.site_id + " " + work_area_name
 
     print(action,work_area_name)
     # create new 'empty row' in nested work_area dictionary for the new work_area_name

@@ -36,7 +36,7 @@ class ImportForm(ImportFormTemplate):
       # type is database table name
       # call check_DBAcontrol for existing or new DBAcontrol value
       #DBAcontrol = anvil.server.call("check_DBAcontrol",Global.username,"b")
-      msg = anvil.server.call("import", table_name, file)
+      msg = anvil.server.call("import_file", table_name, file)
       #print(msg)
       self.message_log.text = msg
     else:

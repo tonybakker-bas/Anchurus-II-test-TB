@@ -1,12 +1,16 @@
 components:
 - components:
+  - layout_properties: {full_width_row: true, grid_position: 'XHEGHD,OXWLOY'}
+    name: label_1
+    properties: {font_size: 24, text: List of Sites}
+    type: Label
   - layout_properties: {full_width_row: true, grid_position: 'XHEGHD,KCLVTX'}
     name: total_site_number
     properties: {align: right, border: none, role: outlined}
     type: TextBox
   layout_properties: {full_width_row: true, grid_position: 'RCZAKE,YLNNGM'}
   name: sub_header
-  properties: {}
+  properties: {col_widths: '{"OXWLOY":40,"KCLVTX":20}'}
   type: ColumnPanel
 - components:
   - name: SitesList

@@ -117,4 +117,5 @@ def save_work_areas():
   for name in Global.work_area:
     print("Details of work_area")
     print(Global.work_area[name])
+  success = anvil.server.call("save_work_areas", Global.work_area,Global.site_id) 
   return

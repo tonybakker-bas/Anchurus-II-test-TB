@@ -2,7 +2,7 @@ components:
 - components:
   - layout_properties: {full_width_row: true, grid_position: 'JKONWX,USNEJR'}
     name: label_1
-    properties: {font_size: 24, text: List of registered users}
+    properties: {font_size: 24, text: List of Registered Users}
     type: Label
   layout_properties: {full_width_row: true, grid_position: 'LYIUJG,WRVCWB'}
   name: sub_header
