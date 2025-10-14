@@ -97,7 +97,7 @@ def create_work_space(type):
   return work_space
 
 def delete_workspace(work_area_name):
-  # remove work_area space and work_area_name button
+  # remove work_area_name form and work_area_name button
   Global.work_area[work_area_name]["button"].remove_from_parent()
   Global.work_area[work_area_name]["form"].remove_from_parent()
   # now remove (pop) the work_area_name from lists
