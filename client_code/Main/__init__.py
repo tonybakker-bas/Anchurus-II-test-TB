@@ -465,8 +465,13 @@ class Main(MainTemplate):
 
   def file_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
-
+    
     Global.action = self.file_dropdown.selected_value
-    self.create_new_work_area(Global.action)
+    if Global.action == "Import":
+      self.create_new_work_area(Global.action)
+    elif Global.action == "Save":
+      Function.save_work_areas()
+      
+    self.file_dropdown.selected_value = None
     pass
 

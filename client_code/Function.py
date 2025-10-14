@@ -110,3 +110,10 @@ def delete_workspace(work_area_name):
 
 def delete_all_workspace(work_area_list):
   return
+
+def save_work_areas():
+  for name in Global.work_area:
+    print(name)
+    for rec in Global.work_area[name]:
+      print(rec)
+  return
