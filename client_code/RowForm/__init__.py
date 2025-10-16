@@ -13,11 +13,9 @@ from .. import Global
 class RowForm(RowFormTemplate):
   def input_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
-    print(event_args["sender"].tag)
-    
-    #self.title.text = "Context Name (" + str(len(self.) + "/40):"
-    
-  pass   
+    column = event_args["sender"].tag
+    self.form_fields[column]["header"].text = column + " (" + str(len(self.form_fields[column]["field"].text)) + "/40):"
+  pass
   
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -31,7 +29,8 @@ class RowForm(RowFormTemplate):
     table_info = anvil.server.call("describe_table",Global.table_name)
     # And then we need to create all the fields based on table information 
     # loop over table columns
-    row = []
+    self.row = {}
+    self.form_fields = {}
     for item in table_info:
       column_name = item["Field"]
       column_type = item["Type"]
@@ -44,7 +43,8 @@ class RowForm(RowFormTemplate):
       else:
         input = TextBox(tag=column_name)
       input.add_event_handler('change',self.input_change)
-      row.append({"column": column_name, "header": lab, "field": input})
+      row = {"header": lab, "field": input}
+      self.form_fields[column_name] = row
       self.column_panel_1.add_component(lab)
       self.column_panel_1.add_component(input)
 
