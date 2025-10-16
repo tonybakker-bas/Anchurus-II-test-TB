@@ -26,5 +26,7 @@ class RowForm(RowFormTemplate):
     for item in table_info:
       column_name = item["Field"]
       column_type = item["Type"]
-      # types can be varchar(length),int(length),text,
+      # types can be varchar(length),int(length),text,float,double,date
       # type text can be 65535 char
+      # create the label and the input field
+      
