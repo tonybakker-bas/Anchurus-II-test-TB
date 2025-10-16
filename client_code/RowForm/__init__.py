@@ -13,7 +13,7 @@ from .. import Global
 class RowForm(RowFormTemplate):
   def input_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
-    print(event_args["sender"].name)
+    print(event_args["sender"].tag)
     
     #self.title.text = "Context Name (" + str(len(self.) + "/40):"
     
@@ -38,11 +38,11 @@ class RowForm(RowFormTemplate):
       # types can be varchar(length),int(length),text,float,double,date
       # type text can be 65535 char so need to be a TextArea, other can be a TextBox
       # create the label and the input field
-      lab = Label(text=column_name, font_size=14)
+      lab = Label(text=column_name, font_size=14,tag=column_name)
       if column_type == "text":
-        input = TextArea()
+        input = TextArea(tag=column_name)
       else:
-        input = TextBox()
+        input = TextBox(tag=column_name)
       input.add_event_handler('change',self.input_change)
       row.append({"column": column_name, "header": lab, "field": input})
       self.column_panel_1.add_component(lab)
