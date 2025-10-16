@@ -20,6 +20,11 @@ class RowForm(RowFormTemplate):
     print(Global.action)
     print(Global.table_name)
     # get table information
-    table_fields = anvil.server.call("describe_table",Global.table_name)
+    table_info = anvil.server.call("describe_table",Global.table_name)
     # And then we need to create all the fields based on table information 
     # loop over table columns
+    for item in table_info:
+      column_name = item["Field"]
+      column_type = item["Type"]
+      # types can be varchar(length),int(length),text,
+      # type text can be 65535 char
