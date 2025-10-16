@@ -1,5 +1,10 @@
 components:
-- layout_properties: {grid_position: 'HZSULK,VOVPUC'}
+- components:
+  - layout_properties: {grid_position: 'NANCQC,IGFXRQ'}
+    name: title
+    properties: {}
+    type: Label
+  layout_properties: {grid_position: 'HZSULK,VOVPUC'}
   name: column_panel_1
   properties: {}
   type: ColumnPanel

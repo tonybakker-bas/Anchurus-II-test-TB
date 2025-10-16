@@ -166,6 +166,10 @@ class Main(MainTemplate):
     Global.work_area[work_area_name]["action"] = action
     Global.current_work_area_name = work_area_name
 
+    # Set Global.table_name linked with work_area_type
+    Global.table_name = Global.work_area[work_area_name]["action"].split(" ")[1].lower()
+    print("created Global.table_name: ", Global.table_name)
+
     # create the button for the work_area in the navigation panel and add it to the work_area_name_list
     Global.work_area[work_area_name]["button"] = Button(text=work_area_name,align="left")
     #Global.work_area[work_area_name]["button"] = Global.work_area_name_list[work_area_name]
@@ -205,7 +209,7 @@ class Main(MainTemplate):
     Global.header_work_area_type.text = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     Global.header_work_area_type.enabled = False
     #Global.action_form_type = Global.header_work_area_type.text.split(".")[2][:-2]
-
+    
     # Set selected buttons on Header for work area type
     Global.action_form_type = Global.header_work_area_type.text
     if Global.action_form_type in Global.action_forms_with_refresh:
