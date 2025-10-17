@@ -65,7 +65,10 @@ db_schema:
       type: simpleObject
     server: full
     title: Users
-dependencies: []
+dependencies:
+- dep_id: dep_6z06zktgfe2qxv
+  resolution_hints: {app_id: C6ZZPAPN4YYF5NVJ, name: Anvil Extras, package_name: anvil_extras}
+  version: {version_tag: v3.5.0}
 metadata: {title: Anchurus2 v054}
 name: ANC2_v054
 native_deps: null
