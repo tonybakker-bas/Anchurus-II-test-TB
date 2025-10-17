@@ -41,7 +41,8 @@ class RowForm(RowFormTemplate):
       lab = Label(text=column_name, font_size=14,tag=column_name)
       if column_type == "text":
         #create TextArea input field for text type
-        input = TextArea(tag=column_name)
+        #input = TextArea(tag=column_name)
+        input = RichText(tag=column_name)
         len = 65535
       else:
         # by default create TextBox fields
@@ -49,8 +50,9 @@ class RowForm(RowFormTemplate):
         # extract length from type
         match = re.search(r'\d+',column_type)
         len = match.group()
-      # add event handler for when input field is changed to update the character count
-      input.add_event_handler('change',self.input_change)
+        # add event handler for when input field is changed to update the character count
+        input.add_event_handler('change',self.input_change)
+        
       # set default label text
       col = column_name + " (0/" + str(len) + ")"
       lab = Label(text=col, font_size=14,tag=column_name)
@@ -63,8 +65,7 @@ class RowForm(RowFormTemplate):
         self.validator.regex(component=input,
                            events=['lost_focus', 'change'],
                            pattern="^-?\d{1,4}(?:BC|AD)?$",
-                  
-                             required=False,
+                           required=False,
                            message="Please enter a valid year YYYY BC|AD (or -YYYY for BC year)")
       elif column_name in ["Year"]:   
         self.validator.regex(component=input,
