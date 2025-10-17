@@ -8,6 +8,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from anvil_extras.Quill import Quill
 
 from ..Validation import Validator
 from .. import Global
@@ -42,8 +43,9 @@ class RowForm(RowFormTemplate):
       if column_type == "text":
         #create TextArea input field for text type
         #input = TextArea(tag=column_name)
-        input = RichText(tag=column_name)
+        input = Quill()
         len = 65535
+        #input.add_event_handler('textchange',self.input_change)
       else:
         # by default create TextBox fields
         input = TextBox(tag=column_name)
