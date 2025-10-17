@@ -85,4 +85,60 @@ class RowForm(RowFormTemplate):
       self.column_panel_1.add_component(input)
     #
     # Add a Submit button
+    submit_btn = Button(text="Submit")
+    submit_btn.add_event_handler("click",self.submit_btn_click)
+    self.column_panel_1.add_component(submit_btn)
 
+  def submit_btn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    for col in self.form_fields.items():
+      print(col,self.form_fields[col]["field"].text)
+    pass
+
+  def submit_button_click(self, **evemt_args):
+    if self.validator.are_all_valid():
+      # All fields are filled in correct (I think)
+      # collect context form details and then call anvil.server add_context
+      Global.context_items["ContextId"] = self.ContextId.text
+      Global.context_items["SiteId"] = self.SiteId.text
+      Global.context_items["Name"] = self.Name.text
+      Global.context_items["Year"] = self.Year.text
+      #Global.context_items["AreaId"] = self.AreaId.selected_value
+      Global.context_items["AreaId"] = self.AreaId.text
+      Global.context_items["RecordStatus"] = self.RecordStatus.text
+      Global.context_items["FillOf"] = self.FillOfFindId.text
+      Global.context_items["ContextType"] = self.ContextType.selected_value
+      Global.context_items["Description"] = self.Description.text
+      Global.context_items["Interpretation"] = self.Interpretation.text
+      Global.context_items["DatesAssignedBy"] = self.DatesAssignedBy.text
+      Global.context_items["YearStart"] = self.YearStart.text
+      Global.context_items["YearEnd"] = self.YearEnd.text
+      #
+      if (self.ContextType.selected_value) is not None:
+        # call server for database update
+        # set all empty fields to None (will be Null in DB)
+        for x in Global.context_items:
+          if Global.context_items[x] == "":
+            Global.context_items[x] = None
+        msg = "This message text should not be seen. Global.action = " + Global.action
+        #print(Global.action)
+        if Global.work_area[Global.current_work_area_name]["action"] == "Add Context":
+          ret = anvil.server.call("context_add",Global.context_items)
+          # if success then goto list contexts
+          if ret[:2] == "OK":
+            msg = "The context has been successfully inserted to the database."
+          else:
+            msg = "The context has not been inserted to the database, because of " + ret
+        elif Global.work_area[Global.current_work_area_name]["action"] == "Edit Context":
+          ret = anvil.server.call("context_update",Global.context_items)
+          # if success then goto list contexts
+          if ret[:2] == "OK":
+            msg = "The context has been successfully updated in the database."
+          else:
+            msg = "The context has not been updated in the database, because of " + ret
+        alert(content=msg)
+      else:
+        alert("Please select a value for Contect Type and/or Area ID.")
+    else:
+      alert("Please correct the field(s) with errors before submitting.")
+    pass
