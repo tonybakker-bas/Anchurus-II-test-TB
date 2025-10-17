@@ -43,6 +43,7 @@ components:
       properties:
         border: none
         font_size: 13
+        foreground: theme:Surface
         margin: ['0', '0', '0', '0']
         role: outlined
         spacing_above: none

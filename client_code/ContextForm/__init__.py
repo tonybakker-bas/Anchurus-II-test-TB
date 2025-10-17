@@ -164,6 +164,7 @@ class ContextForm(ContextFormTemplate):
       #
       if (self.ContextType.selected_value) is not None:
         # call server for database update
+        # set all empty fields to None (will be Null in DB)
         for x in Global.context_items:
           if Global.context_items[x] == "":
             Global.context_items[x] = None

@@ -42,7 +42,7 @@ def say_hello():
   return
 
 def create_work_space(type):
-  print("Work space to create is: ",type)
+  #print("Work space to create is: ",type)
   if type == "List Contexts":
     work_space = TableList("","context")
     #work_space = ListContexts("")

@@ -168,7 +168,7 @@ class Main(MainTemplate):
 
     # Set Global.table_name linked with work_area_type
     Global.table_name = Global.work_area[work_area_name]["action"].split(" ")[1].lower()
-    print("created Global.table_name: ", Global.table_name)
+    #print("created Global.table_name: ", Global.table_name)
 
     # create the button for the work_area in the navigation panel and add it to the work_area_name_list
     Global.work_area[work_area_name]["button"] = Button(text=work_area_name,align="left")
@@ -402,7 +402,7 @@ class Main(MainTemplate):
     Global.main_form = get_open_form()
     # make action to be "Add ..." 
     Global.action = "Add " + str(self.insert_dropdown.selected_value).capitalize()
-    print("Insert action - ",Global.action)
+    #print("Insert action - ",Global.action)
     if Global.action not in Global.action_list_not_implemented:
       # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
       # for any action that has a Form defined create a new work_area
