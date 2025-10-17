@@ -9,7 +9,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-
+from ..Validation import Validator
 from .. import Global
 
 class RowForm(RowFormTemplate):
@@ -23,6 +23,7 @@ class RowForm(RowFormTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
+    self.validator = Validator()
     # we need to find out which table we are dealing with
     self.title.text = "This form is to " + Global.action
     # get table information
@@ -53,6 +54,26 @@ class RowForm(RowFormTemplate):
       # set default label text
       col = column_name + " (0/" + str(len) + ")"
       lab = Label(text=col, font_size=14,tag=column_name)
+      # set specific settings (like validators) for the various fields
+      if column_name in ["SiteId"]:
+        input.text = Global.site_id
+        input.enabled = False
+        input.foreground = "#ffffff"
+      elif column_name in ["YearEnd","YearStart"]:
+        self.validator.regex(component=input,
+                           events=['lost_focus', 'change'],
+                           pattern="^-?\d{1,4}(?:BC|AD)?$",
+                  
+                             required=False,
+                           message="Please enter a valid year YYYY BC|AD (or -YYYY for BC year)")
+      elif column_name in ["Year"]:   
+        self.validator.regex(component=input,
+                                       events=['lost_focus', 'change'],
+                                       pattern="^\d{4}$",
+                                       required=True,
+                                       message="Please enter a valid year in YYYY format")
+      # end of validation 
+      
       # add columns details to nested dictionary
       row = {"header": lab, "field": input, "length": len}
       self.form_fields[column_name] = row
