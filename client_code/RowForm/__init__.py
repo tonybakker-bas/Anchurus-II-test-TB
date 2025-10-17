@@ -83,5 +83,6 @@ class RowForm(RowFormTemplate):
       # add label and imput field to column_panel
       self.column_panel_1.add_component(lab)
       self.column_panel_1.add_component(input)
-      
+    #
+    # Add a Submit button
 
