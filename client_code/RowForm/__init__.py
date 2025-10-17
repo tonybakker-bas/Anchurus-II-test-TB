@@ -92,7 +92,10 @@ class RowForm(RowFormTemplate):
   def submit_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
     for col in self.form_fields.items():
-      print(col,self.form_fields[col]["field"].text)
+      if str(type(col[1]["field"])) == "<class 'anvil_extras.Quill.Quill'>":
+        print(col[0],col[1]["field"].get_text())
+      else:
+        print(col[0],col[1]["field"].text)
     pass
 
   def submit_button_click(self, **evemt_args):
