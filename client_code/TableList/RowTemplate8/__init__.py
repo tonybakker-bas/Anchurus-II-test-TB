@@ -50,6 +50,7 @@ class RowTemplate8(RowTemplate8Template):
   def btn_select_click(self, **event_args):
     """This handler is called by the dynamically created button."""
     #
+    self.menu_select_options.visible = True
     print(self.item)
     print(Global.table_name)
     Global.table_items = self.item
@@ -79,5 +80,4 @@ class RowTemplate8(RowTemplate8Template):
     self.add_component(self.item['edit'], column='2')
     self.add_component(self.item['delete'], column='3')
     self.add_component(self.item['select'], column='4')
-
 

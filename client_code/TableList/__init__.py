@@ -33,6 +33,43 @@ class TableList(TableListTemplate):
     self.information.text = Global.table_name
   pass
 
+  def btn_view_click(self, **event_args):
+    """This handler is called by the dynamically created button."""
+    #print(self.item)
+    #print(Global.table_name)
+    Global.table_items = self.item
+    Global.action = "View " + Global.table_name.capitalize()
+    if Global.main_form:  # Important to check if the form exists
+      # Create new work_area "View Context" and set focus on this new work_area
+      #print("From repatingPanel row calling create_new_work_area for:",Global.action)
+      Global.main_form.create_new_work_area(Global.action)
+    else:
+      print("Main form not found!")
+  pass
+
+  def btn_edit_click(self, **event_args):
+    """This handler is called by the dynamically created button."""
+    #print(self.item)
+    #print(Global.table_name)
+    Global.table_items = self.item
+    Global.action = "Edit " + Global.table_name.capitalize()
+    if Global.main_form:  # Important to check if the form exists
+      # Create new work_area "View Context" and set focus on this new work_area 
+      Global.main_form.create_new_work_area(Global.action)
+    else:
+      print("Main form not found!")
+  pass
+
+  def btn_delete_click(self, **event_args):
+    """This handler is called by the dynamically created button."""
+    #print(self.item)
+    #print(Global.table_name)
+    Global.table_items = self.item
+    Global.action = "Delete " + Global.table_name.capitalize()
+    message = "You have seleted to delete " + Global.table_name.capitalize() + "\n\n" + str(self.item) + "\n\nDo you wish to continue?"
+    confirm(message)
+  pass
+
   def __init__(self, site_id, table_name, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -79,6 +116,20 @@ class TableList(TableListTemplate):
     # Add the repeating panel to the data grid and set rows_per_page
     self.table.rows_per_page = Global.nr_of_rows
     self.table.role = "horizontal-scroll"
+
+    btn_view = Button(text='',icon='fa:eye',icon_align='top',tooltip="view row",foreground="#FFFFFF",width=20)
+    btn_view.set_event_handler('click', self.btn_view_click)
+    self.item['view'] = btn_view
+    btn_edit = Button(text='',icon='fa:edit',icon_align='top',tooltip="edit row",foreground="#FFFFFF",width=20)
+    btn_edit.set_event_handler('click', self.btn_edit_click)
+    self.item['edit'] = btn_edit
+    btn_delete = Button(text='',icon='fa:remove',icon_align='top',tooltip="delete row",foreground="#FFFFFF",width=20)
+    btn_delete.set_event_handler('click', self.btn_delete_click)
+    self.item['delete'] = btn_delete
+    self.menu_select_options.add_component(self.item['view'])
+    self.menu_select_options.add_component(self.item['edit'])
+    self.menu_select_options.add_component(self.item['delete'])
+    #self.menu_select_options.visible = False
 
     #???
     Global.context_id = ""

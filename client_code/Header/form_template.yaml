@@ -41,10 +41,12 @@ components:
     type: FlowPanel
   - components:
     - event_bindings: {click: filter_button_click}
+      layout_properties: {}
       name: filter_button
       properties:
         icon: fa:filter
         spacing:
+          margin: [null, null, null, null]
           padding: [null, '4', null, '4']
         text: ''
         tooltip: filter columns
