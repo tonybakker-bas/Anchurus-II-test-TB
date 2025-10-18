@@ -47,6 +47,15 @@ class RowTemplate8(RowTemplate8Template):
     confirm(message)
   pass
   
+  def btn_select_click(self, **event_args):
+    """This handler is called by the dynamically created button."""
+    #
+    print(self.item)
+    print(Global.table_name)
+    Global.table_items = self.item
+    Global.action = "Select " + Global.table_name.capitalize()
+  pass
+
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -56,15 +65,19 @@ class RowTemplate8(RowTemplate8Template):
     btn_view = Button(text='',align='left',icon='fa:eye',icon_align='left_edge',tooltip="view row")
     btn_view.set_event_handler('click', self.btn_view_click)
     self.item['view'] = btn_view
-    btn_edit = Button(text='', align='left',icon='fa:edit',icon_align='left_edge',tooltip="edit row")
+    btn_edit = Button(text='',align='left',icon='fa:edit',icon_align='left_edge',tooltip="edit row")
     btn_edit.set_event_handler('click', self.btn_edit_click)
     self.item['edit'] = btn_edit
-    btn_delete = Button(text='', align='left',icon='fa:remove',icon_align='left_edge',tooltip="delete row")
+    btn_delete = Button(text='',align='left',icon='fa:remove',icon_align='left_edge',tooltip="delete row")
     btn_delete.set_event_handler('click', self.btn_delete_click)
     self.item['delete'] = btn_delete
+    btn_select = CheckBox(text='',align='left',tooltip="select row")
+    btn_select.set_event_handler('change',self.btn_select_click)
+    self.item['select'] = btn_select
 
     self.add_component(self.item['view'], column='1')
     self.add_component(self.item['edit'], column='2')
     self.add_component(self.item['delete'], column='3')
+    self.add_component(self.item['select'], column='4')
 
 

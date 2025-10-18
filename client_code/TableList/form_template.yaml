@@ -30,6 +30,7 @@ components:
   layout_properties: {full_width_row: true, grid_position: 'AELHBN,LAYVIR'}
   name: table
   properties:
+    background: theme:On Primary
     columns: []
     margin: ['0', null, null, null]
     spacing_above: none

@@ -23,6 +23,7 @@ components:
     - {data_key: Name, expand: false, id: VJQQOR, title: Name, width: '125'}
     - {data_key: ContextType, expand: false, id: OJLQEN, title: Context Type, width: '110'}
     - {data_key: Description, expand: false, id: BDDLLV, title: Description, width: '400'}
+    - {data_key: column_1, id: CHHMFR, title: Select}
   type: DataGrid
 container:
   properties: {background: '', border: '', col_spacing: medium}

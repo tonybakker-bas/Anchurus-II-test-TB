@@ -1061,6 +1061,6 @@ div.plot-container.plotly svg.main-svg {
 
 /* make all even rows a grey backgroud in data grid */
 .anvil-data-grid .anvil-data-row-panel:nth-child(even) {
-    background-color: #E3E3E3;
+    background-color: #EEEEEE;
     border-left: 0;
 }
