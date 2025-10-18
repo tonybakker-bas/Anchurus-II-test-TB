@@ -12,16 +12,16 @@ from .. import Global
 class RowTemplate8(RowTemplate8Template):
   def btn_view_click(self, **event_args):
     """This handler is called by the dynamically created button."""
-    #print(self.item)
-    #print(Global.table_name)
-    Global.table_items = self.item
-    Global.action = "View " + Global.table_name.capitalize()
-    if Global.main_form:  # Important to check if the form exists
-      # Create new work_area "View Context" and set focus on this new work_area
-      #print("From repatingPanel row calling create_new_work_area for:",Global.action)
-      Global.main_form.create_new_work_area(Global.action)
-    else:
-      print("Main form not found!")
+    print("View selected rows")
+    for row in Global.work_area[Global.current_work_area]["selected_rows"]:
+      Global.table_items = row
+      Global.action = "View " + Global.table_name.capitalize()
+      if Global.main_form:  # Important to check if the form exists
+        # Create new work_area "View Context" and set focus on this new work_area
+        #print("From repatingPanel row calling create_new_work_area for:",Global.action)
+        Global.main_form.create_new_work_area(Global.action)
+      else:
+        print("Main form not found!")
   pass
 
   def btn_edit_click(self, **event_args):
@@ -51,19 +51,19 @@ class RowTemplate8(RowTemplate8Template):
     """This handler is called by the dynamically created button."""
     #
     Global.menu_select_options.visible = True
-    print(self.item)
+    #print(self.item)
     if event_args["sender"].checked:
       # add row to selected list
-      Global.selected_rows.append(self.item)
+      Global.work_area[Global.current_work_area_name]["selected_rows"].append(self.item)
     else:
       #remove row from selected list
-      Global.selected_rows.remove(self.item)
+      Global.work_area[Global.current_work_area_name]["selected_rows"].remove(self.item)
     
-    # remove menu_select_options if list selected_rows = 0
-    if len(Global.selected_rows) == 0:
+    # remove menu_select_options if there are no more selected_rows
+    if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:
       Global.menu_select_options.visible = False
 
-    print(Global.table_name)
+    #print(Global.table_name)
     Global.table_items = self.item
     Global.action = "Select " + Global.table_name.capitalize()
   pass

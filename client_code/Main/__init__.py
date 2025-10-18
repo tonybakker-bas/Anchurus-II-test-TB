@@ -188,6 +188,8 @@ class Main(MainTemplate):
     Global.work_area[work_area_name]["site_name"] = Global.site_name
     Global.header_site_name.text = Global.work_area[work_area_name]["site_name"]
     Global.work_area[work_area_name]["site_id"] = Global.site_id
+    # set selected rows list to empty
+    Global.work_area[work_area_name]["selected_rows"] = []
     #print(Global.work_area)
     # make all work spaces invisible
     for name in Global.work_area:

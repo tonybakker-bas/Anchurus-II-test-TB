@@ -33,21 +33,24 @@ class TableList(TableListTemplate):
     self.information.text = Global.table_name
   pass
 
-  def btn_view_click(self, **event_args):
+  def view_button_click(self, **event_args):
     """This handler is called by the dynamically created button."""
     #print(self.item)
     #print(Global.table_name)
-    Global.table_items = self.item
-    Global.action = "View " + Global.table_name.capitalize()
-    if Global.main_form:  # Important to check if the form exists
-      # Create new work_area "View Context" and set focus on this new work_area
-      #print("From repatingPanel row calling create_new_work_area for:",Global.action)
-      Global.main_form.create_new_work_area(Global.action)
-    else:
-      print("Main form not found!")
+    print("View selected rows")
+    print(Global.work_area[Global.current_work_area_name]["selected_rows"])
+    for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
+      Global.table_items = row
+      Global.action = "View " + Global.table_name.capitalize()
+      if Global.main_form:  # Important to check if the form exists
+        # Create new work_area "View Context" and set focus on this new work_area
+        #print("From repatingPanel row calling create_new_work_area for:",Global.action)
+        Global.main_form.create_new_work_area(Global.action)
+      else:
+        print("Main form not found!")
   pass
 
-  def btn_edit_click(self, **event_args):
+  def edit_button_click(self, **event_args):
     """This handler is called by the dynamically created button."""
     #print(self.item)
     #print(Global.table_name)
@@ -60,7 +63,7 @@ class TableList(TableListTemplate):
       print("Main form not found!")
   pass
 
-  def btn_delete_click(self, **event_args):
+  def delete_button_click(self, **event_args):
     """This handler is called by the dynamically created button."""
     #print(self.item)
     #print(Global.table_name)
@@ -104,8 +107,9 @@ class TableList(TableListTemplate):
     for column_data in table_info:
       # Select Column "Field"
       field_name = column_data["Field"]
-      id = id + 1
-      columns_titles.append({"id": id, "title": field_name, "data_key": field_name, "width": 150, "expand": True })
+      if field_name not in ["SiteId"]: # do not create a columns for SiteId
+        id = id + 1
+        columns_titles.append({"id": id, "title": field_name, "data_key": field_name, "width": 150, "expand": True })
 
     # assign the columns titles to the grid columns
     self.table.columns = columns_titles
@@ -124,3 +128,4 @@ class TableList(TableListTemplate):
     Global.context_id = ""
     # refresh the table content
     self.table_list_refresh()
+

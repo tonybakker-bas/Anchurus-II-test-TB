@@ -1,8 +1,9 @@
 components:
 - components:
   - components:
-    - layout_properties: {}
-      name: b1
+    - event_bindings: {click: view_button_click}
+      layout_properties: {}
+      name: view_button
       properties:
         foreground: '#FFFFFF'
         icon: fa:eye
@@ -12,8 +13,9 @@ components:
           padding: [null, '4', null, '4']
         text: ''
       type: Button
-    - layout_properties: {}
-      name: b2
+    - event_bindings: {click: edit_button_click}
+      layout_properties: {}
+      name: edit_button
       properties:
         foreground: '#FFFFFF'
         icon: fa:edit
@@ -21,8 +23,9 @@ components:
           padding: [null, '4', null, '4']
         text: ''
       type: Button
-    - layout_properties: {}
-      name: b3
+    - event_bindings: {click: delete_button_click}
+      layout_properties: {}
+      name: delete_button
       properties:
         foreground: '#FFFFFF'
         icon: fa:remove
