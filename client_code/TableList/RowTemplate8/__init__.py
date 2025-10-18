@@ -52,8 +52,17 @@ class RowTemplate8(RowTemplate8Template):
     #
     Global.menu_select_options.visible = True
     print(self.item)
-    print(event_args["sender"].checked)
-    #.checked)
+    if event_args["sender"].checked:
+      # add row to selected list
+      Global.selected_rows.append(self.item)
+    else:
+      #remove row from selected list
+      Global.selected_rows.remove(self.item)
+    
+    # remove menu_select_options if list selected_rows = 0
+    if len(Global.selected_rows) == 0:
+      Global.menu_select_options.visible = False
+
     print(Global.table_name)
     Global.table_items = self.item
     Global.action = "Select " + Global.table_name.capitalize()
