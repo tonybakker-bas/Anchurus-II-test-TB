@@ -8,6 +8,7 @@ components:
         icon: fa:eye
         icon_align: top
         spacing:
+          margin: [null, null, null, '16']
           padding: [null, '4', null, '4']
         text: ''
       type: Button
@@ -21,8 +22,13 @@ components:
         text: ''
       type: Button
     - layout_properties: {}
-      name: button_3
-      properties: {text: button_3}
+      name: b3
+      properties:
+        foreground: '#FFFFFF'
+        icon: fa:remove
+        spacing:
+          padding: [null, '4', null, '4']
+        text: ''
       type: Button
     layout_properties: {full_width_row: true, grid_position: 'SCSBHS,LPPOVY'}
     name: menu_select_options

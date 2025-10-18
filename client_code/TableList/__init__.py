@@ -117,19 +117,7 @@ class TableList(TableListTemplate):
     self.table.rows_per_page = Global.nr_of_rows
     self.table.role = "horizontal-scroll"
 
-    btn_view = Button(text='',icon='fa:eye',icon_align='top',tooltip="view row",foreground="#FFFFFF",width=20)
-    btn_view.set_event_handler('click', self.btn_view_click)
-    self.item['view'] = btn_view
-    btn_edit = Button(text='',icon='fa:edit',icon_align='top',tooltip="edit row",foreground="#FFFFFF",width=20)
-    btn_edit.set_event_handler('click', self.btn_edit_click)
-    self.item['edit'] = btn_edit
-    btn_delete = Button(text='',icon='fa:remove',icon_align='top',tooltip="delete row",foreground="#FFFFFF",width=20)
-    btn_delete.set_event_handler('click', self.btn_delete_click)
-    self.item['delete'] = btn_delete
-    self.menu_select_options.add_component(self.item['view'])
-    self.menu_select_options.add_component(self.item['edit'])
-    self.menu_select_options.add_component(self.item['delete'])
-    #self.menu_select_options.visible = False
+    self.menu_select_options.visible = False
 
     #???
     Global.context_id = ""
