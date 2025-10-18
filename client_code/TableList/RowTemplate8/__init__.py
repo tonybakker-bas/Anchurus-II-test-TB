@@ -50,8 +50,10 @@ class RowTemplate8(RowTemplate8Template):
   def btn_select_click(self, **event_args):
     """This handler is called by the dynamically created button."""
     #
-    self.menu_select_options.visible = True
+    Global.menu_select_options.visible = True
     print(self.item)
+    print(event_args["sender"].checked)
+    #.checked)
     print(Global.table_name)
     Global.table_items = self.item
     Global.action = "Select " + Global.table_name.capitalize()

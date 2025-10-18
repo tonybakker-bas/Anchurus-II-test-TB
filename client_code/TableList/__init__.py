@@ -117,7 +117,8 @@ class TableList(TableListTemplate):
     self.table.rows_per_page = Global.nr_of_rows
     self.table.role = "horizontal-scroll"
 
-    self.menu_select_options.visible = False
+    Global.menu_select_options = self.menu_select_options
+    Global.menu_select_options.visible = False
 
     #???
     Global.context_id = ""

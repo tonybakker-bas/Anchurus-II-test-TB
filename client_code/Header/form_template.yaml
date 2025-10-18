@@ -81,10 +81,12 @@ components:
         tooltip: refresh list
       type: Button
     - event_bindings: {click: delete_work_area_click}
+      layout_properties: {}
       name: delete_work_area
       properties:
         icon: fa:remove
         spacing:
+          margin: [null, '16', null, null]
           padding: [null, '4', null, '4']
         text: ''
         tooltip: delete workspace
