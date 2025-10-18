@@ -16,8 +16,11 @@ from .. import Global
 class RowForm(RowFormTemplate):
   def input_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
-    column = event_args["sender"].tag
-    self.form_fields[column]["header"].text = column + " (" + str(len(self.form_fields[column]["field"].text)) + "/" + str(self.form_fields[column]["length"]) + "):"
+    column = event_args["sender"].placeholder
+    if str(type(event_args["sender"])) == "<class 'anvil_extras.Quill.Quill'>":
+      self.form_fields[column]["header"].text = column + " (" + str(len(self.form_fields[column]["field"].get_html())) + "/" + str(self.form_fields[column]["length"]) + "):"
+    else:
+      self.form_fields[column]["header"].text = column + " (" + str(len(self.form_fields[column]["field"].text)) + "/" + str(self.form_fields[column]["length"]) + "):"
   pass
   
   def __init__(self, **properties):
@@ -39,16 +42,16 @@ class RowForm(RowFormTemplate):
       # types can be varchar(length),int(length),text,float,double,date
       # type text can be 65535 char so need to be a TextArea, other can be a TextBox
       # create the label and the input field
-      lab = Label(text=column_name, font_size=14,tag=column_name)
+      #lab = Label(text=column_name, font_size=14,placeholder=column_name)
       if column_type == "text":
         #create TextArea input field for text type
         #input = TextArea(tag=column_name)
-        input = Quill()
+        input = Quill(placeholder=column_name,toolbar=Global.Quill_toolbarOptions)
         len = 65535
-        #input.add_event_handler('textchange',self.input_change)
+        input.add_event_handler('text_change',self.input_change)
       else:
         # by default create TextBox fields
-        input = TextBox(tag=column_name)
+        input = TextBox(placeholder=column_name)
         # extract length from type
         match = re.search(r'\d+',column_type)
         len = match.group()
@@ -57,7 +60,7 @@ class RowForm(RowFormTemplate):
         
       # set default label text
       col = column_name + " (0/" + str(len) + ")"
-      lab = Label(text=col, font_size=14,tag=column_name)
+      lab = Label(text=col,font_size=14,tag=column_name)
       # set specific settings (like validators) for the various fields
       if column_name in ["SiteId"]:
         input.text = Global.site_id
@@ -93,7 +96,7 @@ class RowForm(RowFormTemplate):
     """This method is called when the button is clicked"""
     for col in self.form_fields.items():
       if str(type(col[1]["field"])) == "<class 'anvil_extras.Quill.Quill'>":
-        print(col[0],col[1]["field"].get_text())
+        print(col[0],col[1]["field"].get_html())
       else:
         print(col[0],col[1]["field"].text)
     pass
