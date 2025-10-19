@@ -36,7 +36,7 @@ class RowTemplate8(RowTemplate8Template):
       #remove row from selected list
       Global.work_area[Global.current_work_area_name]["selected_rows"].remove(self.item)
     #
-    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    #print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     # remove menu_select_options if there are no more selected_rows
     if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:
       Global.menu_select_options.visible = False

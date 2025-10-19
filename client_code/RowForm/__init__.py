@@ -36,8 +36,8 @@ class RowForm(RowFormTemplate):
     # loop over table columns
     self.field_details = {}
     self.form_fields = {}
-    print(Global.table_items)
-    print(Global.work_area[Global.current_work_area_name]["items"])
+    #print(Global.table_items)
+    #print(Global.work_area[Global.current_work_area_name]["items"])
     for item in table_info:
       column_name = item["Field"]
       column_type = item["Type"]
@@ -49,24 +49,21 @@ class RowForm(RowFormTemplate):
         #create TextArea input field for text type
         #input = TextArea(tag=column_name)
         input = Quill(placeholder=column_name,toolbar=Global.Quill_toolbarOptions)
-        len = 65535
+        max_length = 65535
         input.add_event_handler('text_change',self.input_change)
       else:
         # by default create TextBox fields
         input = TextBox(placeholder=column_name)
         # extract length from type
         match = re.search(r'\d+',column_type)
-        len = match.group()
+        max_length = match.group()
         # add event handler for when input field is changed to update the character count
         input.add_event_handler('change',self.input_change)
         
-      # set default label text
-      col = column_name + " (0/" + str(len) + ")" 
-      lab = Label(text=col,font_size=14,tag=column_name)
       # if field is None make is "" (empty)
-      if Global.work_area[Global.current_work_area_name]["items"][column_name] is None:
-        Global.work_area[Global.current_work_area_name]["items"][column_name] = ""
-      print(column_name, Global.work_area[Global.current_work_area_name]["items"][column_name])
+      #if Global.work_area[Global.current_work_area_name]["items"][column_name] is None:
+      #  Global.work_area[Global.current_work_area_name]["items"][column_name] = ""
+      #print(column_name, Global.work_area[Global.current_work_area_name]["items"][column_name])
       # set specific settings (like validators) for the various fields
       if column_name in ["SiteId"]:
         input.text = Global.site_id
@@ -92,10 +89,20 @@ class RowForm(RowFormTemplate):
           html_text = Global.work_area[Global.current_work_area_name]["items"][column_name]
           delta = input.clipboard.convert(html_text)
           input.setContents(delta, 'silent')
+          cur_len = 0
+          if html_text is not None:
+            cur_len = len(html_text)
         else:
           input.text = Global.work_area[Global.current_work_area_name]["items"][column_name]
+          cur_len = 0
+          if input.text is not None:
+            cur_len = len(input.text)
+          
+      # set default label text
+      col = column_name + " (" + str(cur_len) + "/" + str(max_length) + ")" 
+      lab = Label(text=col,font_size=14,tag=column_name)
       # add columns details to nested dictionary
-      field_details = {"header": lab, "field": input, "length": len}
+      field_details = {"header": lab, "field": input, "length": max_length}
       self.form_fields[column_name] = field_details
       # add label and imput field to column_panel
       self.column_panel_1.add_component(lab)
