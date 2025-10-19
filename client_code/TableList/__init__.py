@@ -66,9 +66,15 @@ class TableList(TableListTemplate):
     """This handler is called by the dynamically created button."""
     #print(self.item)
     #print(Global.table_name)
-    Global.table_items = self.item
-    Global.action = "Delete " + Global.table_name.capitalize()
-    message = "You have seleted to delete " + Global.table_name.capitalize() + "\n\n" + str(self.item) + "\n\nDo you wish to continue?"
+    message = ""
+    for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
+      Global.table_items = row
+      print(row)
+      Global.action = "Delete " + Global.table_name.capitalize()
+      message = message + "\nYou have seleted to delete " + Global.table_name.capitalize() + "\n\n" + str(row)
+    
+    # ask confirmation to delete selected rows
+    message = message + "\n\nDo you wish to continue?"
     confirm(message)
   pass
 
@@ -94,12 +100,11 @@ class TableList(TableListTemplate):
     table_info = anvil.server.call("describe_table", Global.table_name)
 
     # Extract the columns names from the table_info
-    # Frist two columns are vor View and Edit icon
+    # Frist column if for Select
     # The DESCRIBE result structure is:
     # (Field:, Type:, Null:, Key:, Default:, Extra:)
     columns_titles = []
     columns_titles.append({"id": 1, "title": "", "data_key": "select", "width": 30, "expand": True })
-    #columns_titles.append({"id": 3, "title": "", "data_key": "delete", "width": 30, "expand": True })
     id = 1
     for column_data in table_info:
       # Select Column "Field"
@@ -117,12 +122,13 @@ class TableList(TableListTemplate):
     # Add the repeating panel to the data grid and set rows_per_page
     self.table.rows_per_page = Global.nr_of_rows
     self.table.role = "horizontal-scroll"
-
+    
+    # set menu_select_opti0ns as invisible
     Global.menu_select_options = self.menu_select_options
     Global.menu_select_options.visible = False
 
     #???
-    Global.context_id = ""
+    #Global.context_id = ""
     # refresh the table content
     self.table_list_refresh()
 

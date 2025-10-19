@@ -88,6 +88,8 @@ class Header(HeaderTemplate):
       ListUsers.list_users_refresh(Global.work_area[Global.current_work_area_name]["form"]) 
     elif Global.work_area[Global.current_work_area_name]["action"] == "Import":
       ImportForm.Import_refresh(Global.work_area[Global.current_work_area_name]["form"])
+    # clear list of selected_rows
+    Global.work_area[Global.current_work_area_name]["selected_rows"].clear()
     pass
 
   def delete_work_area_click(self, **event_args):
@@ -111,8 +113,8 @@ class Header(HeaderTemplate):
     
     # remove special columns
     column_headings.remove("select")
-    column_headings.remove("edit")
-    column_headings.remove("delete")
+    #column_headings.remove("edit")
+    #column_headings.remove("delete")
     # sort column names
     column_headings.sort()
     

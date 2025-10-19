@@ -73,7 +73,7 @@ def create_work_space(type):
     work_space = RowForm()
     #work_space = ContextForm()
   elif type == "Edit Find":
-    work_space = FindForm()
+    work_space = RowForm()
   elif type == "Edit Area":
     work_space = AreaForm()
   elif type == "Edit Site":

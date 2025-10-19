@@ -25,14 +25,18 @@ class RowTemplate8(RowTemplate8Template):
     """This handler is called by the dynamically created button."""
     #
     Global.menu_select_options.visible = True
-    #print(self.item)
+    #
     if event_args["sender"].checked:
-      # add row to selected list
-      Global.work_area[Global.current_work_area_name]["selected_rows"].append(self.item)
+      # add row to selected list but first remove select column
+      row = self.item
+      # remove select field of row 
+      del row["select"]
+      Global.work_area[Global.current_work_area_name]["selected_rows"].append(row)
     else:
       #remove row from selected list
       Global.work_area[Global.current_work_area_name]["selected_rows"].remove(self.item)
-    
+    #
+    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     # remove menu_select_options if there are no more selected_rows
     if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:
       Global.menu_select_options.visible = False

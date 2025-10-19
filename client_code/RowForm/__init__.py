@@ -79,6 +79,7 @@ class RowForm(RowFormTemplate):
                                        required=True,
                                        message="Please enter a valid year in YYYY format")
       # end of validation 
+      
       # if action is Edit then fill all fields
       if Global.action in ["Edit Context","Edit Find"]:
         if str(type(input)) == "<class 'anvil_extras.Quill.Quill'>":
