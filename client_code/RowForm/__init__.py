@@ -34,8 +34,10 @@ class RowForm(RowFormTemplate):
     table_info = anvil.server.call("describe_table",Global.table_name)
     # And then we need to create all the fields based on table information 
     # loop over table columns
-    self.row = {}
+    self.field_details = {}
     self.form_fields = {}
+    print(Global.table_items)
+    print(Global.work_area[Global.current_work_area_name]["items"])
     for item in table_info:
       column_name = item["Field"]
       column_type = item["Type"]
@@ -59,8 +61,12 @@ class RowForm(RowFormTemplate):
         input.add_event_handler('change',self.input_change)
         
       # set default label text
-      col = column_name + " (0/" + str(len) + ")"
+      col = column_name + " (0/" + str(len) + ")" 
       lab = Label(text=col,font_size=14,tag=column_name)
+      # if field is None make is "" (empty)
+      if Global.work_area[Global.current_work_area_name]["items"][column_name] is None:
+        Global.work_area[Global.current_work_area_name]["items"][column_name] = ""
+      print(column_name, Global.work_area[Global.current_work_area_name]["items"][column_name])
       # set specific settings (like validators) for the various fields
       if column_name in ["SiteId"]:
         input.text = Global.site_id
@@ -80,8 +86,8 @@ class RowForm(RowFormTemplate):
                                        message="Please enter a valid year in YYYY format")
       # end of validation 
       
-      # if action is Edit then fill all fields
-      if Global.action in ["Edit Context","Edit Find"]:
+      # if action is View or Edit then fill all fields
+      if Global.action in ["Edit Context","Edit Find","View Context","View Find"]:
         if str(type(input)) == "<class 'anvil_extras.Quill.Quill'>":
           html_text = Global.work_area[Global.current_work_area_name]["items"][column_name]
           delta = input.clipboard.convert(html_text)
@@ -89,8 +95,8 @@ class RowForm(RowFormTemplate):
         else:
           input.text = Global.work_area[Global.current_work_area_name]["items"][column_name]
       # add columns details to nested dictionary
-      row = {"header": lab, "field": input, "length": len}
-      self.form_fields[column_name] = row
+      field_details = {"header": lab, "field": input, "length": len}
+      self.form_fields[column_name] = field_details
       # add label and imput field to column_panel
       self.column_panel_1.add_component(lab)
       self.column_panel_1.add_component(input)
