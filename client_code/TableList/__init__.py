@@ -99,11 +99,11 @@ class TableList(TableListTemplate):
     # The DESCRIBE result structure is:
     # (Field:, Type:, Null:, Key:, Default:, Extra:)
     columns_titles = []
-    columns_titles.append({"id": 1, "title": "", "data_key": "view", "width": 30, "expand": True })
+    columns_titles.append({"id": 1, "title": "", "data_key": "select", "width": 30, "expand": True })
+    #columns_titles.append({"id": 1, "title": "", "data_key": "view", "width": 30, "expand": True })
     columns_titles.append({"id": 2, "title": "", "data_key": "edit", "width": 30, "expand": True })
     columns_titles.append({"id": 3, "title": "", "data_key": "delete", "width": 30, "expand": True })
-    columns_titles.append({"id": 4, "title": "", "data_key": "select", "width": 30, "expand": True })
-    id = 4
+    id = 3
     for column_data in table_info:
       # Select Column "Field"
       field_name = column_data["Field"]

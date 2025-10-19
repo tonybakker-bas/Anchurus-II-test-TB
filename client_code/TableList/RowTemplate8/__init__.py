@@ -74,9 +74,9 @@ class RowTemplate8(RowTemplate8Template):
 
     # Any code you write here will run before the form opens.
     # create the view and edit button for the row and set button click event handlers
-    btn_view = Button(text='',align='left',icon='fa:eye',icon_align='left_edge',tooltip="view row")
-    btn_view.set_event_handler('click', self.btn_view_click)
-    self.item['view'] = btn_view
+    #btn_view = Button(text='',align='left',icon='fa:eye',icon_align='left_edge',tooltip="view row")
+    #btn_view.set_event_handler('click', self.btn_view_click)
+    #self.item['view'] = btn_view
     btn_edit = Button(text='',align='left',icon='fa:edit',icon_align='left_edge',tooltip="edit row")
     btn_edit.set_event_handler('click', self.btn_edit_click)
     self.item['edit'] = btn_edit
@@ -87,8 +87,8 @@ class RowTemplate8(RowTemplate8Template):
     btn_select.set_event_handler('change',self.btn_select_click)
     self.item['select'] = btn_select
 
-    self.add_component(self.item['view'], column='1')
+    #self.add_component(self.item['view'], column='1')
     self.add_component(self.item['edit'], column='2')
     self.add_component(self.item['delete'], column='3')
-    self.add_component(self.item['select'], column='4')
+    self.add_component(self.item['select'], column='1')
 

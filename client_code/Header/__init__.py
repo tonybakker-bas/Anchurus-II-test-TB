@@ -110,7 +110,7 @@ class Header(HeaderTemplate):
       column_headings = list(Global.work_area[Global.current_work_area_name]["data_list"][0].keys())
     
     # remove special columns
-    column_headings.remove("view")
+    column_headings.remove("select")
     column_headings.remove("edit")
     column_headings.remove("delete")
     # sort column names
