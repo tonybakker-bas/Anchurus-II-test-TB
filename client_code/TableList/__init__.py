@@ -35,10 +35,8 @@ class TableList(TableListTemplate):
 
   def view_button_click(self, **event_args):
     """This handler is called by the dynamically created button."""
-    #print(self.item)
-    #print(Global.table_name)
-    print("View selected rows")
-    print(Global.work_area[Global.current_work_area_name]["selected_rows"])
+    #print("View selected rows")
+    #print(Global.work_area[Global.current_work_area_name]["selected_rows"])
     for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
       Global.table_items = row
       Global.action = "View " + Global.table_name.capitalize()
@@ -52,15 +50,16 @@ class TableList(TableListTemplate):
 
   def edit_button_click(self, **event_args):
     """This handler is called by the dynamically created button."""
-    #print(self.item)
-    #print(Global.table_name)
-    Global.table_items = self.item
-    Global.action = "Edit " + Global.table_name.capitalize()
-    if Global.main_form:  # Important to check if the form exists
-      # Create new work_area "View Context" and set focus on this new work_area 
-      Global.main_form.create_new_work_area(Global.action)
-    else:
-      print("Main form not found!")
+    #print("View selected rows")
+    #print(Global.work_area[Global.current_work_area_name]["selected_rows"])
+    for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
+      Global.table_items = row
+      Global.action = "Edit " + Global.table_name.capitalize()
+      if Global.main_form:  # Important to check if the form exists
+        # Create new work_area "View Context" and set focus on this new work_area 
+        Global.main_form.create_new_work_area(Global.action)
+      else:
+        print("Main form not found!")
   pass
 
   def delete_button_click(self, **event_args):
@@ -100,10 +99,8 @@ class TableList(TableListTemplate):
     # (Field:, Type:, Null:, Key:, Default:, Extra:)
     columns_titles = []
     columns_titles.append({"id": 1, "title": "", "data_key": "select", "width": 30, "expand": True })
-    #columns_titles.append({"id": 1, "title": "", "data_key": "view", "width": 30, "expand": True })
-    columns_titles.append({"id": 2, "title": "", "data_key": "edit", "width": 30, "expand": True })
-    columns_titles.append({"id": 3, "title": "", "data_key": "delete", "width": 30, "expand": True })
-    id = 3
+    #columns_titles.append({"id": 3, "title": "", "data_key": "delete", "width": 30, "expand": True })
+    id = 1
     for column_data in table_info:
       # Select Column "Field"
       field_name = column_data["Field"]

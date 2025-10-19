@@ -79,7 +79,14 @@ class RowForm(RowFormTemplate):
                                        required=True,
                                        message="Please enter a valid year in YYYY format")
       # end of validation 
-      
+      # if action is Edit then fill all fields
+      if Global.action in ["Edit Context","Edit Find"]:
+        if str(type(input)) == "<class 'anvil_extras.Quill.Quill'>":
+          html_text = Global.work_area[Global.current_work_area_name]["items"][column_name]
+          delta = input.clipboard.convert(html_text)
+          input.setContents(delta, 'silent')
+        else:
+          input.text = Global.work_area[Global.current_work_area_name]["items"][column_name]
       # add columns details to nested dictionary
       row = {"header": lab, "field": input, "length": len}
       self.form_fields[column_name] = row
