@@ -817,22 +817,28 @@ input.anvil-component.anvil-spacing-below-large { margin-bottom: 20px; }
 
 input.anvil-component::-webkit-input-placeholder, textarea.anvil-component::-webkit-input-placeholder {
   color: %color:On Surface%;
+  font-style: italic;
 }
 input.anvil-component::-moz-placeholder, textarea.anvil-component::-moz-placeholder {
   color: %color:On Surface%;
+  font-style: italic;
 }
 input.anvil-component::placeholder, textarea.anvil-component::placeholder  {
   color: %color:On Surface%;
+  font-style: italic;
 }
 
 .app-bar input.anvil-component::-webkit-input-placeholder, .app-bar textarea.anvil-component::-webkit-input-placeholder {
   color: %color:On Surface%;
+  font-style: italic;
 }
 .app-bar input.anvil-component::-moz-placeholder, .app-bar textarea.anvil-component::-moz-placeholder {
   color: %color:On Surface%;
+  font-style: italic;
 }
 .app-bar input.anvil-component::placeholder, .app-bar textarea.anvil-component::placeholder  {
   color: %color:On Surface%;
+  font-style: italic;
 }
 
 input.anvil-component:hover, input.anvil-component:focus, textarea.anvil-component:hover, textarea.anvil-component:focus, 
