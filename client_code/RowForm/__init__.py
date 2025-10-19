@@ -95,10 +95,11 @@ class RowForm(RowFormTemplate):
       self.column_panel_1.add_component(lab)
       self.column_panel_1.add_component(input)
     #
-    # Add a Submit button
-    submit_btn = Button(text="Submit")
-    submit_btn.add_event_handler("click",self.submit_btn_click)
-    self.column_panel_1.add_component(submit_btn)
+    if Global.action in ["Edit Context","Edit Find","Add Context","Add Find"]:
+      # Add a Submit button if Edit or Add action
+      submit_btn = Button(text="Submit")
+      submit_btn.add_event_handler("click",self.submit_btn_click)
+      self.column_panel_1.add_component(submit_btn)
 
   def submit_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
