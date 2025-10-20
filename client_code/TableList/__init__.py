@@ -132,3 +132,7 @@ class TableList(TableListTemplate):
     # refresh the table content
     self.table_list_refresh()
 
+  def select_all_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    pass
+

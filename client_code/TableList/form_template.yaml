@@ -1,6 +1,23 @@
 components:
 - components:
   - components:
+    - event_bindings: {change: select_all_change}
+      layout_properties: {}
+      name: select_all
+      properties:
+        align: center
+        allow_indeterminate: true
+        spacing:
+          margin: [null, null, null, '16']
+          padding: [null, '0', null, null]
+        text: ''
+        tooltip: Select / Deselect all
+      type: CheckBox
+    layout_properties: {full_width_row: true, grid_position: 'SCSBHS,TRMHNK'}
+    name: flow_panel_1
+    properties: {}
+    type: FlowPanel
+  - components:
     - event_bindings: {click: view_button_click}
       layout_properties: {}
       name: view_button
@@ -9,7 +26,7 @@ components:
         icon: fa:eye
         icon_align: top
         spacing:
-          margin: [null, null, null, '16']
+          margin: [null, null, null, '0']
           padding: [null, '4', null, '4']
         text: ''
       type: Button
@@ -61,7 +78,7 @@ components:
     type: FlowPanel
   layout_properties: {full_width_row: true, grid_position: 'XQLOBP,LOKUOL'}
   name: column_panel_1
-  properties: {background: 'theme:Tertiary', col_widths: '{"LPPOVY":15,"WGAWYD":30,"VJGQSP":15}'}
+  properties: {background: 'theme:Tertiary', col_widths: '{"LPPOVY":20,"WGAWYD":35,"VJGQSP":15,"TRMHNK":5}'}
   type: ColumnPanel
 - components:
   - name: repeating_panel_1
