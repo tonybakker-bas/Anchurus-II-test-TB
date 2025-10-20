@@ -38,7 +38,7 @@ class RowTemplate8(RowTemplate8Template):
       #remove row from selected list
       Global.work_area[Global.current_work_area_name]["selected_rows"].remove(self.item)
     #
-    #print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     # remove menu_select_options if there are no more selected_rows
     if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:
       Global.menu_select_options.visible = False
@@ -57,9 +57,9 @@ class RowTemplate8(RowTemplate8Template):
     #btn_delete = Button(text='',align='left',icon='fa:remove',icon_align='left_edge',tooltip="delete row")
     #btn_delete.set_event_handler('click', self.btn_delete_click)
     #self.item['delete'] = btn_delete
-    btn_select = CheckBox(text='',align='left',tooltip="select row")
-    btn_select.set_event_handler('change',self.btn_select_click)
-    self.item['select'] = btn_select
+    self.btn_select = CheckBox(text='',align='left',tooltip="select row")
+    self.btn_select.set_event_handler('change',self.btn_select_click)
+    self.item['select'] = self.btn_select
 
     #self.add_component(self.item['delete'], column='3')
     self.add_component(self.item['select'], column='1')

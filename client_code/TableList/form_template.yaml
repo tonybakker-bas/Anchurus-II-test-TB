@@ -6,7 +6,7 @@ components:
       name: select_all
       properties:
         align: center
-        allow_indeterminate: false
+        allow_indeterminate: true
         spacing:
           margin: [null, null, null, '16']
           padding: [null, '0', null, null]

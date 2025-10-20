@@ -151,10 +151,14 @@ class TableList(TableListTemplate):
     """This method is called when this checkbox is checked or unchecked"""
     checked = self.select_all.checked
     for row in self.repeating_panel_1.get_components():
-      print(row)
       row.btn_select.checked = checked
-      # also add row to word_area data_structure
+      if checked:
+        Global.work_area[Global.current_work_area_name]["selected_rows"].append(row)
+      else:
+        Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row)
 
+    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    
     self.select_all.indeterminate = False
     #self.action_button.visible = checked
     Global.menu_select_options.visible = checked

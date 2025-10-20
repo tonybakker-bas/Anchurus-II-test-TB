@@ -71,7 +71,15 @@ dependencies:
   version: {version_tag: v3.5.0}
 metadata: {title: Anchurus2 v054}
 name: ANC2_v054
-native_deps: null
+native_deps:
+  head_html: |-
+    <script>
+      function  indeterminate(self, value) {
+        self = self.v._anvil.element
+        self.find('input[type=checkbox]').prop("indeterminate", value);
+      }
+
+    </script>
 package_name: ANC2_v050
 renamed: true
 runtime_options:
