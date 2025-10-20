@@ -24,7 +24,7 @@ class RowTemplate8(RowTemplate8Template):
   def btn_select_click(self, **event_args):
     """This handler is called by the dynamically created button."""
     #
-    Global.menu_select_options.visible = True
+    Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = True
     self.parent.raise_event('x-selection-change')
     #
     if event_args["sender"].checked:
@@ -41,7 +41,7 @@ class RowTemplate8(RowTemplate8Template):
     print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     # remove menu_select_options if there are no more selected_rows
     if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:
-      Global.menu_select_options.visible = False
+      Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
 
     #print(Global.table_name)
     Global.table_items = self.item

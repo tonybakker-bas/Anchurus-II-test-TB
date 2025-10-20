@@ -127,8 +127,8 @@ class TableList(TableListTemplate):
     self.table.role = "horizontal-scroll"
     
     # set menu_select_opti0ns as invisible
-    Global.menu_select_options = self.menu_select_options
-    Global.menu_select_options.visible = False
+    Global.work_area[Global.current_work_area_name]["menu_select_options"] = self.menu_select_options
+    Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
 
     #???
     #Global.context_id = ""
@@ -166,6 +166,6 @@ class TableList(TableListTemplate):
     
     self.select_all.indeterminate = False
     #self.action_button.visible = checked
-    Global.menu_select_options.visible = checked
+    Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = checked
     pass
 
