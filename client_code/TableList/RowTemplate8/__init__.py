@@ -25,6 +25,7 @@ class RowTemplate8(RowTemplate8Template):
     """This handler is called by the dynamically created button."""
     #
     Global.menu_select_options.visible = True
+    self.parent.raise_event('x-selection-change')
     #
     if event_args["sender"].checked:
       # add row to selected list but first remove select column

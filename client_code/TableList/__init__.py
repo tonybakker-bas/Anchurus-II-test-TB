@@ -6,6 +6,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .. import indeterminate
 
 # import anvil.google.auth, anvil.google.drive
 # from anvil.google.drive import app_files
@@ -135,6 +136,8 @@ class TableList(TableListTemplate):
     self.table_list_refresh()
 
   def selection_change(self, **event_args):
+    print("in selection_change")
+
     rows = [row for row in self.table.get_components()]
     any_checked = any(row.btn_select.checked for row in rows)
     all_checked = all(row.btn_select.checked for row in rows)
@@ -147,7 +150,7 @@ class TableList(TableListTemplate):
   def select_all_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     checked = self.select_all.checked
-    for row in self.table.get_components():
+    for row in self.repeating_panel_1.get_components():
       print(row)
       row.btn_select.checked = checked
       # also add row to word_area data_structure

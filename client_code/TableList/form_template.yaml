@@ -6,7 +6,7 @@ components:
       name: select_all
       properties:
         align: center
-        allow_indeterminate: true
+        allow_indeterminate: false
         spacing:
           margin: [null, null, null, '16']
           padding: [null, '0', null, null]
@@ -81,7 +81,8 @@ components:
   properties: {background: 'theme:Tertiary', col_widths: '{"LPPOVY":20,"WGAWYD":35,"VJGQSP":15,"TRMHNK":5}'}
   type: ColumnPanel
 - components:
-  - name: repeating_panel_1
+  - data_bindings: []
+    name: repeating_panel_1
     properties: {item_template: TableList.RowTemplate8}
     type: RepeatingPanel
   layout_properties: {full_width_row: true, grid_position: 'AELHBN,LAYVIR'}
