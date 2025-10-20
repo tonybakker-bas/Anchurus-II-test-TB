@@ -51,6 +51,13 @@ class RowForm(RowFormTemplate):
         input = Quill(placeholder=column_name,toolbar=Global.Quill_toolbarOptions)
         max_length = 65535
         input.add_event_handler('text_change',self.input_change)
+      elif column_type == "date":
+        # by default create TextBox fields
+        input = TextBox(placeholder=column_name)
+        # date type is 10 long
+        max_length = 10
+        # add event handler for when input field is changed to update the character count
+        input.add_event_handler('change',self.input_change)
       else:
         # by default create TextBox fields
         input = TextBox(placeholder=column_name)

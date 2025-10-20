@@ -85,7 +85,7 @@ def create_work_space(type):
   elif type == "View Context":
     work_space = RowForm()
   elif type == "View Find":
-    work_space == RowForm()
+    work_space = RowForm()
     #work_space = FindForm()
   elif type == "View Area":
     work_space = AreaForm()
