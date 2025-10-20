@@ -30,7 +30,8 @@ class RowTemplate8(RowTemplate8Template):
       # add row to selected list but first remove select column
       row = self.item
       # remove select field of row 
-      del row["select"]
+      if 'select' in row:
+        del row["select"]
       Global.work_area[Global.current_work_area_name]["selected_rows"].append(row)
     else:
       #remove row from selected list

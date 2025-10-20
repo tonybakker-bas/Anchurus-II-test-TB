@@ -82,6 +82,8 @@ class TableList(TableListTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #
+    self.table.set_event_handler('x-selection-change', self.selection_change)
+    #
     self.site_id = site_id
     # Any code you write here will run before the form open
     # Global.site_id is only None when form called from server side (e.g. printing form)
@@ -132,7 +134,26 @@ class TableList(TableListTemplate):
     # refresh the table content
     self.table_list_refresh()
 
+  def selection_change(self, **event_args):
+    rows = [row for row in self.table.get_components()]
+    any_checked = any(row.btn_select.checked for row in rows)
+    all_checked = all(row.btn_select.checked for row in rows)
+
+    self.select_all.checked = any_checked
+    self.select_all.indeterminate = not all_checked and any_checked
+    self.action_button.visible = any_checked
+    pass
+    
   def select_all_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
+    checked = self.select_all.checked
+    for row in self.table.get_components():
+      print(row)
+      row.btn_select.checked = checked
+      # also add row to word_area data_structure
+
+    self.select_all.indeterminate = False
+    #self.action_button.visible = checked
+    Global.menu_select_options.visible = checked
     pass
 
