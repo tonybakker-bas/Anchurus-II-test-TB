@@ -150,12 +150,17 @@ class TableList(TableListTemplate):
   def select_all_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     checked = self.select_all.checked
+    # clear selected_list
+    if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) != 0:
+      # clear list  
+      Global.work_area[Global.current_work_area_name]["selected_rows"].clear()
     for row in self.repeating_panel_1.get_components():
       row.btn_select.checked = checked
+      print(row.btn_select.checked, row.item)
       if checked:
-        Global.work_area[Global.current_work_area_name]["selected_rows"].append(row)
-      else:
-        Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row)
+        Global.work_area[Global.current_work_area_name]["selected_rows"].append(row.item)
+      #else:
+      #  Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row.item)
 
     print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     
