@@ -157,23 +157,31 @@ class TableList(TableListTemplate):
       # clear list  
       #Global.work_area[Global.current_work_area_name]["selected_rows"].clear() 
     # clear all checked boxes and and remove rows from selected_list
-    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
-    for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
+    print("Clearing list: ",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    list_len = len(Global.work_area[Global.current_work_area_name]["selected_rows"])
+    row_num = 0
+    while row_num < list_len:
       row["select"].checked = False
+      Global.work_area[Global.current_work_area_name]["selected_rows"]
       Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row)
-      print("removed ",row)
+      print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+      print("removed ")
+      row_num = row_num +1
     #
+    print(len(list))
+    print("starting buildup list:",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     for row in self.repeating_panel_1.get_components():
       row.btn_select.checked = checked
       if checked:
         Global.work_area[Global.current_work_area_name]["selected_rows"].append(row.item)
-        print("added ", row.item)
-      #else:
-      #  if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) > 0:
-      #    Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row.item)
-
-    print("Selected list when leaving ",Global.work_area[Global.current_work_area_name]["selected_rows"])
-    
+        print("added ")
+      else:
+        if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) > 0:
+          Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row.item)
+          print("removed")
+    #
+    print("Selected list when leaving ",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    #
     self.select_all.indeterminate = False
     #self.action_button.visible = checked
     Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = checked
