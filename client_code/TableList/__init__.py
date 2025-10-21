@@ -136,54 +136,47 @@ class TableList(TableListTemplate):
     self.table_list_refresh()
 
   def selection_change(self, **event_args):
-    print("In selection_change")
-    
+    #print("In selection_change")
+    #
     rows = [row for row in self.repeating_panel_1.get_components()]
     any_checked = any(row.btn_select.checked for row in rows)
     all_checked = all(row.btn_select.checked for row in rows)
-
+    #
     self.select_all.checked = any_checked
     self.select_all.indeterminate = not all_checked and any_checked
     Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = any_checked
-    print("Leaving selection_change")
+    #
+    #print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    #print("Leaving selection_change")
     pass
     
   def select_all_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     checked = self.select_all.checked
-    print("In select_all_change ",checked)
-    # clear selected_list
-    #if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) != 0:
-      # clear list  
-      #Global.work_area[Global.current_work_area_name]["selected_rows"].clear() 
-    # clear all checked boxes and and remove rows from selected_list
-    print("Clearing list: ",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
-    list_len = len(Global.work_area[Global.current_work_area_name]["selected_rows"])
-    row_num = 0
-    while row_num < list_len:
-      row["select"].checked = False
-      Global.work_area[Global.current_work_area_name]["selected_rows"]
-      Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row)
-      print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
-      print("removed ")
-      row_num = row_num +1
     #
-    print(len(list))
-    print("starting buildup list:",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    #print("In select_all_change ",checked)
+    #print("starting buildup/teardown list:",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    #
     for row in self.repeating_panel_1.get_components():
+      prev_status_btn_select = row.btn_select.checked
       row.btn_select.checked = checked
+      #
+      #print(row.item)
+      #print(row.btn_select.checked)
+      #
       if checked:
         Global.work_area[Global.current_work_area_name]["selected_rows"].append(row.item)
-        print("added ")
+        #print("added: ",row.item)
       else:
-        if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) > 0:
+        if prev_status_btn_select:
           Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row.item)
-          print("removed")
+          #print("removed: ",row.item)
     #
-    print("Selected list when leaving ",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    #print("Selected list when leaving ",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     #
     self.select_all.indeterminate = False
     #self.action_button.visible = checked
-    Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = checked
+    if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:
+      Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = checked
     pass
 

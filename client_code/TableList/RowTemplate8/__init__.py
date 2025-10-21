@@ -27,10 +27,10 @@ class RowTemplate8(RowTemplate8Template):
     Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = True
     self.parent.raise_event('x-selection-change')
     #
-    print(event_args["sender"].checked)
+    #print(event_args["sender"].checked)
     #print(self.background)
     #self.backgroud = "#66FFFF"
-    print("BTN_select_click before adding/removeing",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    #print("BTN_select_click before adding/removeing",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     if event_args["sender"].checked:
       # add row to selected list but first remove select column
       row = self.item
@@ -38,11 +38,13 @@ class RowTemplate8(RowTemplate8Template):
       #if 'select' in row:
       #  del row["select"]
       Global.work_area[Global.current_work_area_name]["selected_rows"].append(row)
+      #print(row["ContextId"])
     else:
       #remove row from selected list
       Global.work_area[Global.current_work_area_name]["selected_rows"].remove(self.item)
+      #print(self.item["ContextId"])
     #
-    print("BTN_select_click after adding/removeing",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    #print("BTN_select_click after adding/removeing",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     # remove menu_select_options if there are no more selected_rows
     if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:
       Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
