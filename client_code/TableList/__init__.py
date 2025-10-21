@@ -137,8 +137,6 @@ class TableList(TableListTemplate):
 
   def selection_change(self, **event_args):
     print("In selection_change")
-    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
-    print(Global.selected_row)
     
     rows = [row for row in self.repeating_panel_1.get_components()]
     any_checked = any(row.btn_select.checked for row in rows)
@@ -159,20 +157,22 @@ class TableList(TableListTemplate):
       # clear list  
       #Global.work_area[Global.current_work_area_name]["selected_rows"].clear() 
     # clear all checked boxes and and remove rows from selected_list
+    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
       row["select"].checked = False
       Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row)
+      print("removed ",row)
     #
     for row in self.repeating_panel_1.get_components():
       row.btn_select.checked = checked
-      print(row.item)
       if checked:
         Global.work_area[Global.current_work_area_name]["selected_rows"].append(row.item)
+        print("added ", row.item)
       #else:
       #  if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) > 0:
       #    Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row.item)
 
-    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    print("Selected list when leaving ",Global.work_area[Global.current_work_area_name]["selected_rows"])
     
     self.select_all.indeterminate = False
     #self.action_button.visible = checked

@@ -25,7 +25,6 @@ class RowTemplate8(RowTemplate8Template):
     """This handler is called by the dynamically created button."""
     #
     Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = True
-    Global.selected_row = self.item
     self.parent.raise_event('x-selection-change')
     #
     #print(event_args)
