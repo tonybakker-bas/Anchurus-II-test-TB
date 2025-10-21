@@ -67,6 +67,8 @@ gh_admin_list = {}
 #
 work_area = {}
 #
+selected_row = []
+#
 menu_select_options = ""
 Quill_toolbarOptions = [
 ['bold', 'italic', 'underline', 'strike'],        # toggled buttons

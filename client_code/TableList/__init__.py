@@ -83,7 +83,7 @@ class TableList(TableListTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #
-    self.table.set_event_handler('x-selection-change', self.selection_change)
+    self.repeating_panel_1.set_event_handler('x-selection-change', self.selection_change)
     #
     self.site_id = site_id
     # Any code you write here will run before the form open
@@ -136,31 +136,41 @@ class TableList(TableListTemplate):
     self.table_list_refresh()
 
   def selection_change(self, **event_args):
-    print("in selection_change")
-
-    rows = [row for row in self.table.get_components()]
+    print("In selection_change")
+    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    print(Global.selected_row)
+    
+    rows = [row for row in self.repeating_panel_1.get_components()]
     any_checked = any(row.btn_select.checked for row in rows)
     all_checked = all(row.btn_select.checked for row in rows)
 
     self.select_all.checked = any_checked
     self.select_all.indeterminate = not all_checked and any_checked
-    self.action_button.visible = any_checked
+    Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = any_checked
+    print("Leaving selection_change")
     pass
     
   def select_all_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     checked = self.select_all.checked
+    print("In select_all_change ",checked)
     # clear selected_list
-    if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) != 0:
+    #if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) != 0:
       # clear list  
-      Global.work_area[Global.current_work_area_name]["selected_rows"].clear()
+      #Global.work_area[Global.current_work_area_name]["selected_rows"].clear() 
+    # clear all checked boxes and and remove rows from selected_list
+    for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
+      row["select"].checked = False
+      Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row)
+    #
     for row in self.repeating_panel_1.get_components():
       row.btn_select.checked = checked
-      print(row.btn_select.checked, row.item)
+      print(row.item)
       if checked:
         Global.work_area[Global.current_work_area_name]["selected_rows"].append(row.item)
       #else:
-      #  Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row.item)
+      #  if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) > 0:
+      #    Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row.item)
 
     print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     
