@@ -14,6 +14,41 @@ from .. import Global
 import anvil.server
 
 class TableList(TableListTemplate):
+  def update_status_label(self, **event_args):
+    """Calculates and updates the label with the current row range."""
+    page_num = int(self.table.get_page())
+    rows_per_page = int(self.table.rows_per_page)
+    total_rows = len(self.repeating_panel_1.items)
+    print("page_num: ",page_num)
+    print("rows per page: ",rows_per_page)
+    # Calculate the start and end row numbers
+    start_row = (page_num) * rows_per_page + 1
+    end_row = min((page_num + 1) * rows_per_page, total_rows)
+    print("start_row: ",start_row)
+    print("end_row: ",end_row)
+
+    # Display the formatted string in the status label
+    if total_rows > 0:
+      self.total_number.text = f"Rows {start_row}-{end_row} of {total_rows}"
+    else:
+      self.total_number.text = "No rows to display"
+  pass
+  
+  # Override functions to trigger the update
+  def next_page_with_update(self):
+    self.original_next_page()
+    self.update_status_label()
+  pass
+
+  def previous_page_with_update(self):
+    self.original_previous_page()
+    self.update_status_label()
+  pass
+  # Custom function that calls the original set_page
+  def set_page_with_update(self, page_num):
+    self.original_set_page(page_num)
+    self.update_status_label()  
+  
   def table_list_refresh(self, **event_args):
     # This function does the filling of the table contents
     # 1. call server function '"table_name"s_get', which retrieves all rows of the table_name for the given site
@@ -28,9 +63,25 @@ class TableList(TableListTemplate):
       Global.work_area[Global.current_work_area_name]["data_list"] = (
         self.repeating_panel_1.items
       )
+    # Load your data and set items
+    #self.repeating_panel_1.items = app_tables.my_table.search()
 
+    # Override the Data Grid's paging methods
+    self.original_next_page = self.table.next_page
+    self.table.next_page = self.next_page_with_update
+
+    self.original_previous_page = self.table.previous_page
+    self.table.previous_page = self.previous_page_with_update
+    
+    # Save and override the set_page method
+    self.original_set_page = self.table.set_page
+    self.table.set_page = self.set_page_with_update
+
+    # Trigger the initial update
+    self.update_status_label()
+      
     # Display the total number of rows
-    self.total_number.text = "Total number of rows: " + str(len(self.repeating_panel_1.items))
+    #self.total_number.text = "Total number of rows: " + str(len(self.repeating_panel_1.items))
     self.information.text = Global.table_name
   pass
 
@@ -183,4 +234,5 @@ class TableList(TableListTemplate):
     else:
       Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = True
     pass
+    
 
