@@ -176,8 +176,8 @@ class TableList(TableListTemplate):
     #
     self.select_all.indeterminate = False
     #self.action_button.visible = checked
-    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
-    print("Select_all status: ",checked)
+    #print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
+    #print("Select_all status: ",checked)
     if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:
       Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
     else:
