@@ -19,13 +19,9 @@ class TableList(TableListTemplate):
     page_num = int(self.table.get_page())
     rows_per_page = int(self.table.rows_per_page)
     total_rows = len(self.repeating_panel_1.items)
-    print("page_num: ",page_num)
-    print("rows per page: ",rows_per_page)
     # Calculate the start and end row numbers
     start_row = (page_num) * rows_per_page + 1
     end_row = min((page_num + 1) * rows_per_page, total_rows)
-    print("start_row: ",start_row)
-    print("end_row: ",end_row)
 
     # Display the formatted string in the status label
     if total_rows > 0:
@@ -37,6 +33,7 @@ class TableList(TableListTemplate):
   # Override functions to trigger the update
   def next_page_with_update(self):
     self.original_next_page()
+    print("next page")
     self.update_status_label()
   pass
 
@@ -44,9 +41,10 @@ class TableList(TableListTemplate):
     self.original_previous_page()
     self.update_status_label()
   pass
-  # Custom function that calls the original set_page
-  def set_page_with_update(self, page_num):
-    self.original_set_page(page_num)
+
+  def jump_to_first_page_with_update(self):
+    self.original_jump_to_first_page()
+    print("Jump to first")
     self.update_status_label()  
   
   def table_list_refresh(self, **event_args):
@@ -72,14 +70,13 @@ class TableList(TableListTemplate):
 
     self.original_previous_page = self.table.previous_page
     self.table.previous_page = self.previous_page_with_update
-    
-    # Save and override the set_page method
-    self.original_set_page = self.table.set_page
-    self.table.set_page = self.set_page_with_update
+
+    self.original_jump_to_first_page = self.table.jump_to_first_page
+    self.table.set_page = self.jump_to_first_page_with_update
 
     # Trigger the initial update
     self.update_status_label()
-      
+    
     # Display the total number of rows
     #self.total_number.text = "Total number of rows: " + str(len(self.repeating_panel_1.items))
     self.information.text = Global.table_name

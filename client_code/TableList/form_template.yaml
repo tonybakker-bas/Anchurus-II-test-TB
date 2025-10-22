@@ -69,6 +69,7 @@ components:
       properties:
         align: right
         border: none
+        foreground: theme:On Primary
         margin: ['0', null, '0', null]
         role: outlined
       type: TextBox
