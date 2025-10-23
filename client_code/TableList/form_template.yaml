@@ -64,13 +64,49 @@ components:
       margin: [null, null, null, '4']
     type: TextArea
   - components:
+    - layout_properties: {width: 20}
+      name: button_3
+      properties:
+        foreground: theme:On Secondary
+        icon: fa:angle-double-left
+        spacing:
+          padding: [null, '0', null, '0']
+        text: ''
+      type: Button
+    - layout_properties: {width: 20}
+      name: button_2
+      properties:
+        foreground: theme:On Secondary
+        icon: fa:angle-left
+        spacing:
+          padding: [null, '0', null, '0']
+        text: ''
+      type: Button
     - layout_properties: {}
+      name: button_1
+      properties:
+        foreground: theme:On Secondary
+        icon: fa:angle-right
+        spacing:
+          padding: [null, '0', null, '0']
+        text: ''
+      type: Button
+    - layout_properties: {}
+      name: button_4
+      properties:
+        foreground: theme:On Secondary
+        icon: fa:angle-double-right
+        spacing:
+          padding: [null, '0', null, '0']
+        text: ''
+      type: Button
+    - layout_properties: {width: 116}
       name: total_number
       properties:
         align: right
         border: none
         foreground: theme:On Primary
-        margin: ['0', null, '0', null]
+        margin: ['4', null, '0', null]
         role: outlined
       type: TextBox
     layout_properties: {grid_position: 'SCSBHS,VJGQSP'}
@@ -79,7 +115,7 @@ components:
     type: FlowPanel
   layout_properties: {full_width_row: true, grid_position: 'XQLOBP,LOKUOL'}
   name: column_panel_1
-  properties: {background: 'theme:Tertiary', col_widths: '{"LPPOVY":20,"WGAWYD":35,"VJGQSP":15,"TRMHNK":5}'}
+  properties: {background: 'theme:Tertiary', col_widths: '{"LPPOVY":20,"WGAWYD":30,"VJGQSP":20,"TRMHNK":5}'}
   type: ColumnPanel
 - components:
   - data_bindings: []
@@ -93,6 +129,7 @@ components:
     background: theme:On Primary
     columns: []
     margin: ['0', null, null, null]
+    show_page_controls: false
     spacing_above: none
     spacing_below: none
   type: DataGrid
