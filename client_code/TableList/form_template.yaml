@@ -61,11 +61,11 @@ components:
       background: theme:Surface Variant
       border: none
       height: '40'
-      margin: [null, null, null, '4']
+      margin: ['8', null, null, '4']
     type: TextArea
   - components:
     - layout_properties: {width: 20}
-      name: button_3
+      name: first_page_btn
       properties:
         foreground: theme:On Secondary
         icon: fa:angle-double-left
@@ -74,7 +74,7 @@ components:
         text: ''
       type: Button
     - layout_properties: {width: 20}
-      name: button_2
+      name: prev_page_btn
       properties:
         foreground: theme:On Secondary
         icon: fa:angle-left
@@ -92,7 +92,7 @@ components:
         text: ''
       type: Button
     - layout_properties: {}
-      name: button_4
+      name: last_page_btn
       properties:
         foreground: theme:On Secondary
         icon: fa:angle-double-right
@@ -100,7 +100,7 @@ components:
           padding: [null, '0', null, '0']
         text: ''
       type: Button
-    - layout_properties: {width: 116}
+    - layout_properties: {width: 118.181884765625}
       name: total_number
       properties:
         align: right
@@ -115,7 +115,7 @@ components:
     type: FlowPanel
   layout_properties: {full_width_row: true, grid_position: 'XQLOBP,LOKUOL'}
   name: column_panel_1
-  properties: {background: 'theme:Tertiary', col_widths: '{"LPPOVY":20,"WGAWYD":30,"VJGQSP":20,"TRMHNK":5}'}
+  properties: {background: 'theme:Tertiary', col_widths: '{"LPPOVY":20,"WGAWYD":25,"VJGQSP":25,"TRMHNK":5}'}
   type: ColumnPanel
 - components:
   - data_bindings: []

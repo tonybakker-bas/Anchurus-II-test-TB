@@ -25,7 +25,7 @@ class TableList(TableListTemplate):
 
     # Display the formatted string in the status label
     if total_rows > 0:
-      self.total_number.text = f"Rows {start_row}-{end_row} of {total_rows}"
+      self.total_number.text = f"{start_row}-{end_row} of {total_rows}"
     else:
       self.total_number.text = "No rows to display"
   pass
