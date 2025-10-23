@@ -39,13 +39,15 @@ class TableList(TableListTemplate):
 
   def previous_page_with_update(self):
     self.original_previous_page()
+    print("prev page")
     self.update_status_label()
   pass
-
-  def jump_to_first_page_with_update(self):
-    self.original_jump_to_first_page()
-    print("Jump to first")
-    self.update_status_label()  
+  
+  def set_page_with_update(self,num):
+    self.original_set_page(num)
+    print("set page ",num)
+    self.update_status_label()
+  pass  
   
   def table_list_refresh(self, **event_args):
     # This function does the filling of the table contents
@@ -71,8 +73,8 @@ class TableList(TableListTemplate):
     self.original_previous_page = self.table.previous_page
     self.table.previous_page = self.previous_page_with_update
 
-    self.original_jump_to_first_page = self.table.jump_to_first_page
-    self.table.set_page = self.jump_to_first_page_with_update
+    self.original_set_page = self.table.set_page
+    self.table.set_page = self.set_page_with_update
 
     # Trigger the initial update
     self.update_status_label()
