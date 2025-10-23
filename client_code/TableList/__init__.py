@@ -22,32 +22,28 @@ class TableList(TableListTemplate):
     # Calculate the start and end row numbers
     start_row = (page_num) * rows_per_page + 1
     end_row = min((page_num + 1) * rows_per_page, total_rows)
+    # 
+    if page_num == 0:
+      # disable first_page_btn and prev_page_btn if on page 0
+      self.first_page_btn.enabled = False
+      self.prev_page_btn.enabled = False
+    else:
+      self.first_page_btn.enabled = True
+      self.prev_page_btn.enabled = True
+    if page_num == (total_rows // rows_per_page):
+      # disable last_page_btn and next_page_btn if on last page
+      self.last_page_btn.enabled = False
+      self.next_page_btn.enabled = False
+    else:
+      self.last_page_btn.enabled = True
+      self.next_page_btn.enabled = True
 
     # Display the formatted string in the status label
     if total_rows > 0:
-      self.total_number.text = f"{start_row}-{end_row} of {total_rows}"
+      self.row_number_info.text = f"{start_row}-{end_row} of {total_rows}"
     else:
-      self.total_number.text = "No rows to display"
+      self.row_number_info.text = "No rows to display"
   pass
-  
-  # Override functions to trigger the update
-  def next_page_with_update(self):
-    self.original_next_page()
-    print("next page")
-    self.update_status_label()
-  pass
-
-  def previous_page_with_update(self):
-    self.original_previous_page()
-    print("prev page")
-    self.update_status_label()
-  pass
-  
-  def set_page_with_update(self,num):
-    self.original_set_page(num)
-    print("set page ",num)
-    self.update_status_label()
-  pass  
   
   def table_list_refresh(self, **event_args):
     # This function does the filling of the table contents
@@ -63,31 +59,17 @@ class TableList(TableListTemplate):
       Global.work_area[Global.current_work_area_name]["data_list"] = (
         self.repeating_panel_1.items
       )
-    # Load your data and set items
-    #self.repeating_panel_1.items = app_tables.my_table.search()
-
-    # Override the Data Grid's paging methods
-    self.original_next_page = self.table.next_page
-    self.table.next_page = self.next_page_with_update
-
-    self.original_previous_page = self.table.previous_page
-    self.table.previous_page = self.previous_page_with_update
-
-    self.original_set_page = self.table.set_page
-    self.table.set_page = self.set_page_with_update
 
     # Trigger the initial update
     self.update_status_label()
     
     # Display the total number of rows
-    #self.total_number.text = "Total number of rows: " + str(len(self.repeating_panel_1.items))
     self.information.text = Global.table_name
   pass
 
   def view_button_click(self, **event_args):
     """This handler is called by the dynamically created button."""
-    #print("View selected rows")
-    #print(Global.work_area[Global.current_work_area_name]["selected_rows"])
+    #
     for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
       Global.table_items = row
       Global.action = "View " + Global.table_name.capitalize()
@@ -101,8 +83,7 @@ class TableList(TableListTemplate):
 
   def edit_button_click(self, **event_args):
     """This handler is called by the dynamically created button."""
-    #print("View selected rows")
-    #print(Global.work_area[Global.current_work_area_name]["selected_rows"])
+    #
     for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
       Global.table_items = row
       Global.action = "Edit " + Global.table_name.capitalize()
@@ -115,8 +96,6 @@ class TableList(TableListTemplate):
 
   def delete_button_click(self, **event_args):
     """This handler is called by the dynamically created button."""
-    #print(self.item)
-    #print(Global.table_name)
     message = ""
     for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
       Global.table_items = row
@@ -186,7 +165,6 @@ class TableList(TableListTemplate):
     self.table_list_refresh()
 
   def selection_change(self, **event_args):
-    #print("In selection_change")
     #
     rows = [row for row in self.repeating_panel_1.get_components()]
     any_checked = any(row.btn_select.checked for row in rows)
@@ -196,42 +174,54 @@ class TableList(TableListTemplate):
     self.select_all.indeterminate = not all_checked and any_checked
     Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = any_checked
     #
-    #print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
-    #print("Leaving selection_change")
     pass
     
   def select_all_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     checked = self.select_all.checked
     #
-    #print("In select_all_change ",checked)
-    #print("starting buildup/teardown list:",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
-    #
     for row in self.repeating_panel_1.get_components():
       prev_status_btn_select = row.btn_select.checked
       row.btn_select.checked = checked
       #
-      #print(row.item)
-      #print(row.btn_select.checked)
-      #
       if checked:
         Global.work_area[Global.current_work_area_name]["selected_rows"].append(row.item)
-        #print("added: ",row.item)
       else:
         if prev_status_btn_select:
           Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row.item)
-          #print("removed: ",row.item)
-    #
-    #print("Selected list when leaving ",len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     #
     self.select_all.indeterminate = False
-    #self.action_button.visible = checked
-    #print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
-    #print("Select_all status: ",checked)
+    #
     if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:
       Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
     else:
       Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = True
+    pass
+
+  def first_page_btn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.table.set_page(0)
+    self.update_status_label()
+    pass
+
+  def prev_page_btn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.table.set_page(self.table.get_page() - 1)
+    self.update_status_label()
+    pass
+
+  def next_page_btn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.table.set_page(self.table.get_page() + 1)
+    self.update_status_label()
+    pass
+
+  def last_page_btn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    rows_per_page = int(self.table.rows_per_page)
+    total_rows = len(self.repeating_panel_1.items)
+    self.table.set_page(total_rows // rows_per_page)
+    self.update_status_label()
     pass
     
 

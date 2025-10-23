@@ -64,7 +64,8 @@ components:
       margin: ['8', null, null, '4']
     type: TextArea
   - components:
-    - layout_properties: {width: 20}
+    - event_bindings: {click: first_page_btn_click}
+      layout_properties: {width: 20}
       name: first_page_btn
       properties:
         foreground: theme:On Secondary
@@ -73,7 +74,8 @@ components:
           padding: [null, '0', null, '0']
         text: ''
       type: Button
-    - layout_properties: {width: 20}
+    - event_bindings: {click: prev_page_btn_click}
+      layout_properties: {width: 20}
       name: prev_page_btn
       properties:
         foreground: theme:On Secondary
@@ -82,8 +84,9 @@ components:
           padding: [null, '0', null, '0']
         text: ''
       type: Button
-    - layout_properties: {}
-      name: button_1
+    - event_bindings: {click: next_page_btn_click}
+      layout_properties: {}
+      name: next_page_btn
       properties:
         foreground: theme:On Secondary
         icon: fa:angle-right
@@ -91,7 +94,8 @@ components:
           padding: [null, '0', null, '0']
         text: ''
       type: Button
-    - layout_properties: {}
+    - event_bindings: {click: last_page_btn_click}
+      layout_properties: {}
       name: last_page_btn
       properties:
         foreground: theme:On Secondary
@@ -101,12 +105,13 @@ components:
         text: ''
       type: Button
     - layout_properties: {width: 118.181884765625}
-      name: total_number
+      name: row_number_info
       properties:
         align: right
         border: none
+        font_size: 12
         foreground: theme:On Primary
-        margin: ['4', null, '0', null]
+        margin: ['8', null, '0', null]
         role: outlined
       type: TextBox
     layout_properties: {grid_position: 'SCSBHS,VJGQSP'}
