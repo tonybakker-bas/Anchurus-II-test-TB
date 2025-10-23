@@ -64,6 +64,10 @@ components:
       margin: ['8', null, null, '4']
     type: TextArea
   - components:
+    - layout_properties: {width: 89.2728271484375}
+      name: selection_info
+      properties: {background: 'theme:Tertiary', border: none, foreground: 'theme:On Primary'}
+      type: TextBox
     - event_bindings: {click: first_page_btn_click}
       layout_properties: {width: 20}
       name: first_page_btn

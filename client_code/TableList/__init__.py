@@ -173,6 +173,7 @@ class TableList(TableListTemplate):
     self.select_all.checked = any_checked
     self.select_all.indeterminate = not all_checked and any_checked
     Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = any_checked
+    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     #
     pass
     
