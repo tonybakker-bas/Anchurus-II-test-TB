@@ -31,7 +31,7 @@ class RowTemplate8(RowTemplate8Template):
       # add row to selected list but first remove select column
       row = self.item
       Global.work_area[Global.current_work_area_name]["selected_rows"].append(row)
-      self.background = "#66FFFF"
+      self.background = Global.selected_highlight_colour
     else:
       #remove row from selected list
       Global.work_area[Global.current_work_area_name]["selected_rows"].remove(self.item)

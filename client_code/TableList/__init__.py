@@ -49,6 +49,7 @@ class TableList(TableListTemplate):
     # clear select checkbox of rows
     for row in self.repeating_panel_1.get_components():
       row.btn_select.checked = False
+      row.background = ""
       
     
     # clear selection list
@@ -155,9 +156,12 @@ class TableList(TableListTemplate):
     for column_data in table_info:
       # Select Column "Field"
       field_name = column_data["Field"]
+      col_width = 150
+      if field_name in ["FindId","ContextId","AreaId","ContextYear","ContextType","FillOf","Year","YearStart","YearEnd", "FindGroupId","Workflow","Count","Weight","BoxId","SmallFindId","FromSample",]:
+        col_width = 80
       if field_name not in ["SiteId"]: # do not create a columns for SiteId
         id = id + 1
-        columns_titles.append({"id": id, "title": field_name, "data_key": field_name, "width": 150, "expand": True })
+        columns_titles.append({"id": id, "title": field_name, "data_key": field_name, "width": col_width, "expand": True })
 
     # assign the columns titles to the grid columns
     self.table.columns = columns_titles
@@ -200,9 +204,11 @@ class TableList(TableListTemplate):
       #
       if checked:
         Global.work_area[Global.current_work_area_name]["selected_rows"].append(row.item)
+        row.background = Global.selected_highlight_colour
       else:
         if prev_status_btn_select:
           Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row.item)
+          row.background = ""
     #
     self.select_all.indeterminate = False
     #

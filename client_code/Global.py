@@ -68,6 +68,7 @@ gh_admin_list = {}
 work_area = {}
 #
 selected_row = []
+selected_highlight_colour = "#66FFFF"
 #
 menu_select_options = ""
 Quill_toolbarOptions = [
