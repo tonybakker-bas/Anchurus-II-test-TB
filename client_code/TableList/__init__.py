@@ -66,9 +66,9 @@ class TableList(TableListTemplate):
     self.repeating_panel_1.items = anvil.server.call("table_get",Global.site_id,Global.table_name)
 
     # 2. set nr of rows per page from Global variable (which is defined by a parameter in the server-side config file)
-    if Global.nr_of_rows is not None:
-      self.table.rows_per_page = Global.nr_of_rows
-
+    #if Global.nr_of_rows is not None:
+    self.table.rows_per_page = Global.nr_of_rows
+    
     # 3.save the list of items in the Global 'work-area' dictionary
     if Global.current_work_area_name is not None:
       Global.work_area[Global.current_work_area_name]["data_list"] = (
@@ -171,8 +171,7 @@ class TableList(TableListTemplate):
     # add table to work_area data structure for Global.current_work_area_name
     Global.work_area[Global.current_work_area_name]["table"] = self.table
     
-    # Add the repeating panel to the data grid and set rows_per_page
-    self.table.rows_per_page = Global.nr_of_rows
+    # Set table role to horizontal scroll
     self.table.role = "horizontal-scroll"
     
     # set menu_select_opti0ns as invisible

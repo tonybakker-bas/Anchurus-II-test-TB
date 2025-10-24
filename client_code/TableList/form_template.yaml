@@ -140,6 +140,7 @@ components:
     columns: []
     margin: ['0', null, null, null]
     role: null
+    rows_per_page: 0
     show_page_controls: false
     spacing_above: none
     spacing_below: none
