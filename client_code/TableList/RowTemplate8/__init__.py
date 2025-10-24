@@ -51,13 +51,11 @@ class RowTemplate8(RowTemplate8Template):
 
     # Any code you write here will run before the form opens.
     # create the view and edit button for the row and set button click event handlers
-    #btn_delete = Button(text='',align='left',icon='fa:remove',icon_align='left_edge',tooltip="delete row")
-    #btn_delete.set_event_handler('click', self.btn_delete_click)
-    #self.item['delete'] = btn_delete
     self.btn_select = CheckBox(text='',align='left',tooltip="select row")
     self.btn_select.set_event_handler('change',self.btn_select_click)
     self.item['select'] = self.btn_select
+    self.spacing_above = 'none'
+    self.spacing_below = 'none'
 
-    #self.add_component(self.item['delete'], column='3')
     self.add_component(self.item['select'], column='1')
 

@@ -128,8 +128,9 @@ components:
   type: ColumnPanel
 - components:
   - data_bindings: []
+    layout_properties: {}
     name: repeating_panel_1
-    properties: {item_template: TableList.RowTemplate8}
+    properties: {item_template: TableList.RowTemplate8, role: null}
     type: RepeatingPanel
   data_bindings: []
   layout_properties: {full_width_row: true, grid_position: 'AELHBN,LAYVIR'}
@@ -138,6 +139,7 @@ components:
     background: theme:On Primary
     columns: []
     margin: ['0', null, null, null]
+    role: null
     show_page_controls: false
     spacing_above: none
     spacing_below: none
