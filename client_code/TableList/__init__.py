@@ -157,9 +157,9 @@ class TableList(TableListTemplate):
       # Select Column "Field"
       field_name = column_data["Field"]
       col_width = 150
-      if field_name in ["FindId","ContextId","AreaId","FillOf","Year","YearStart","YearEnd","Workflow","Count","Weight","BoxId","FromSample",]:
+      if field_name in ["FindId","ContextId","AreaId","FillOf","Year","YearStart","YearEnd","Workflow","Count","Weight","BoxId","FromSample","FindType"]:
         col_width = 80
-      if field_name in ["FindGroupId","ContextYear","ContextType","PackageType","SmallFindId","FromSample",]:
+      if field_name in ["FindGroupId","ContextYear","ContextType","PackageType","SmallFindId","FromSample","RecordStatus"]:
         col_width = 100
       if field_name not in ["SiteId"]: # do not create a columns for SiteId
         id = id + 1
