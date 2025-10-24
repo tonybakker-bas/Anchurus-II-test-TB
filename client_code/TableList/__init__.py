@@ -44,6 +44,19 @@ class TableList(TableListTemplate):
     else:
       self.row_number_info.text = "No rows to display"
   pass
+
+  def clear_selection(self, **event_args):
+    # clear select checkbox of rows
+    for row in self.repeating_panel_1.get_components():
+      row.btn_select.checked = False
+    
+    # clear selection list
+    Global.work_area[Global.current_work_area_name]["selected_rows"].clear()
+    
+    # clear select_all checkbox
+    self.select_all.checked = False
+    #
+  pass
   
   def table_list_refresh(self, **event_args):
     # This function does the filling of the table contents
@@ -173,7 +186,6 @@ class TableList(TableListTemplate):
     self.select_all.checked = any_checked
     self.select_all.indeterminate = not all_checked and any_checked
     Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = any_checked
-    print(len(Global.work_area[Global.current_work_area_name]["selected_rows"]))
     #
     pass
     
@@ -201,24 +213,28 @@ class TableList(TableListTemplate):
 
   def first_page_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
+    self.clear_selection()
     self.table.set_page(0)
     self.update_status_label()
     pass
 
   def prev_page_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
+    self.clear_selection()
     self.table.set_page(self.table.get_page() - 1)
     self.update_status_label()
     pass
 
   def next_page_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
+    self.clear_selection()
     self.table.set_page(self.table.get_page() + 1)
     self.update_status_label()
     pass
 
   def last_page_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
+    self.clear_selection()
     rows_per_page = int(self.table.rows_per_page)
     total_rows = len(self.repeating_panel_1.items)
     self.table.set_page(total_rows // rows_per_page)

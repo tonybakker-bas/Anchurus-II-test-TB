@@ -62,18 +62,15 @@ class Main(MainTemplate):
   def work_area_click(self, **event_args):
     # Here the user clicked on a button in the left navigation list, requested to go to a different work area.
     for name in Global.work_area:
-      #print(name)
       Global.work_area[name]["form"].visible = False
       Global.work_area[name]["button"].bold = False
       Global.work_area[name]["button"].background = Global.button_normal_background_clour
     # now get the name of the button (work_area_name) that was clicked and make this and the associated work_area visible
     work_area = event_args['sender']
     Global.current_work_area_name = work_area.text
-    #print("Work Area click: ", Global.current_work_area_name)
     
     # Set Global.table_name linked with work_area_type
     Global.table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
-    #print(Global.table_name)
     
     # set Global variables for site information
     Global.site_name = Global.work_area[Global.current_work_area_name]["site_name"]
@@ -91,7 +88,6 @@ class Main(MainTemplate):
     Global.work_area[Global.current_work_area_name]["button"].background = Global.button_highlight_background_clour
     Global.header.visible = True
     Global.action_form_type = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
-    #print("header_refresh_button: ",Global.header_refresh_button)
 
     # Set selected buttons on Header for work area type
     if Global.action_form_type in Global.action_forms_with_refresh:
@@ -99,7 +95,6 @@ class Main(MainTemplate):
       Global.header_refresh_button.visible = True
     else:
       Global.header_refresh_button.visible = False
-    #print("header_print_button: ",Global.header_print_button)
     if Global.action_form_type in Global.action_forms_with_print:
       # Make print button visible for Global.action_form_type
       Global.header_print_button.visible = True
@@ -122,7 +117,6 @@ class Main(MainTemplate):
     Global.header.visible = True
     # set name of work_area to be action name if action is view or edit
     work_area_name = action
-    #print("Create new work_area action:",action)
     if action == "View Context" or action == "Edit Context":
       # modify work_area name to add XxxxId number (ContextId, FindId, AeraId, etc); for now only implemented for Context
       Global.context_items = Global.table_items
@@ -151,16 +145,7 @@ class Main(MainTemplate):
       # work_area_name exists, so update work_area_name to add seq_no in brackets
       Global.action_seq_no[work_area_name] += 1
       work_area_name = work_area_name + " (" + str(Global.action_seq_no[work_area_name]) + ")"
-    
-    # prepend site_id to work_area_name
-    #print("Create New Work Area. Global.site_name = ",Global.site_name)
-    #print("Create New Work Area. Global.site_id = ",Global.site_id)
-    #print("Create New Work Area. Global.selected-site = ",Global.selected_site)
 
-    #if action not in Global.admin_action_list:
-    #  work_area_name = Global.site_id + " " + work_area_name
-
-    print(action,work_area_name)
     # create new 'empty row' in nested work_area dictionary for the new work_area_name
     Global.work_area[work_area_name] = {}
     Global.work_area[work_area_name]["action"] = action
@@ -168,7 +153,6 @@ class Main(MainTemplate):
 
     # Set Global.table_name linked with work_area_type
     Global.table_name = Global.work_area[work_area_name]["action"].split(" ")[1].lower()
-    #print("created Global.table_name: ", Global.table_name)
 
     # create the button for the work_area in the navigation panel and add it to the work_area_name_list
     Global.work_area[work_area_name]["button"] = Button(text=work_area_name,align="left")
@@ -190,7 +174,7 @@ class Main(MainTemplate):
     Global.work_area[work_area_name]["site_id"] = Global.site_id
     # set selected rows list to empty
     Global.work_area[work_area_name]["selected_rows"] = []
-    #print(Global.work_area)
+
     # make all work spaces invisible
     for name in Global.work_area:
       Global.work_area[name]["form"].visible = False
@@ -343,7 +327,7 @@ class Main(MainTemplate):
       Global.work_area = {}
       Global.action_seq_no = {}
       
-      components = self.get_components()
+      #components = self.get_components()
       #print(f"{len(components)} components after deleting all workspaces")
     pass
 
