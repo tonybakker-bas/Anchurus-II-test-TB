@@ -157,8 +157,10 @@ class TableList(TableListTemplate):
       # Select Column "Field"
       field_name = column_data["Field"]
       col_width = 150
-      if field_name in ["FindId","ContextId","AreaId","ContextYear","ContextType","FillOf","Year","YearStart","YearEnd", "FindGroupId","Workflow","Count","Weight","BoxId","SmallFindId","FromSample",]:
+      if field_name in ["FindId","ContextId","AreaId","FillOf","Year","YearStart","YearEnd","Workflow","Count","Weight","BoxId","FromSample",]:
         col_width = 80
+      if field_name in ["FindGroupId","ContextYear","ContextType","PackageType","SmallFindId","FromSample",]:
+        col_width = 100
       if field_name not in ["SiteId"]: # do not create a columns for SiteId
         id = id + 1
         columns_titles.append({"id": id, "title": field_name, "data_key": field_name, "width": col_width, "expand": True })

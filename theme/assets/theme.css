@@ -1030,13 +1030,15 @@ input[disabled] ~ span {
 }
 
 .anvil-role-tonal-data-grid.anvil-data-grid .data-grid-child-panel div.data-row-col:first-child {
-  border-left: 0;
+  /*border-left: 0;*/
+  border-left: 1px solid black;
 }
 
 .anvil-role-tonal-data-grid.anvil-data-grid > .data-grid-child-panel>div.auto-grid-header div.data-row-col {
   border-top: 0;
   border-bottom: 0;
-  border-right: 0;
+  /*border-right: 0;*/
+  border-right: 1px solid black;
 }
 
 /* DataGrid Horizontal Scroll */
@@ -1074,13 +1076,11 @@ div.plot-container.plotly svg.main-svg {
 /* make all even rows a grey backgroud in data grid */
 .anvil-data-grid .anvil-data-row-panel:nth-child(even) {
     background-color: #EEEEEE;
-    border-left: 0;
+    /*border-left: 1px solid black;*/
 }
 
-/* Example CSS for a Data Grid with gridlines */
-.anvil-role-custom-grid .anvil-data-row-panel {
-  border-bottom: 1px solid #ddd;
-}
-.anvil-role-custom-grid .anvil-data-row-panel:nth-of-type(even) {
-  background-color: #f5f5f5; /* Alternating row color */
+/* Apply left and right borders to each cell within a data grid row */
+.anvil-data-row-panel > .data-row-col {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }

@@ -130,7 +130,7 @@ components:
   - data_bindings: []
     layout_properties: {}
     name: repeating_panel_1
-    properties: {item_template: TableList.RowTemplate8, role: null}
+    properties: {border: '', item_template: TableList.RowTemplate8, role: null}
     type: RepeatingPanel
   data_bindings: []
   layout_properties: {full_width_row: true, grid_position: 'AELHBN,LAYVIR'}
