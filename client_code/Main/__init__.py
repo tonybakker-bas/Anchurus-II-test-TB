@@ -54,6 +54,7 @@ class Main(MainTemplate):
     #self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
     #self.action_list.visible = False
+    self.menu_block.visible = False
     self.menu_top.visible = False
     self.menu_panel_left.visible = False
     self.menu_panel_right.visible = False
@@ -257,6 +258,7 @@ class Main(MainTemplate):
         self.admin_dropdown.visible = True
       
       # make menu bar variable visible
+      self.menu_block.visible = True
       self.menu_top.visible = True
 
       if anvil.users.get_user() is not None:
@@ -306,6 +308,7 @@ class Main(MainTemplate):
       self.welcome_page.visible = True
       
       # make menu block and admin menu invisible
+      self.menu_block.visible = False
       self.menu_top.visible = False
       self.menu_panel_left.visible = False
       self.menu_panel_right.visible = False
