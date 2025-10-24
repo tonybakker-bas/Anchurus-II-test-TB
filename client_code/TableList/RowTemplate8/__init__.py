@@ -26,17 +26,16 @@ class RowTemplate8(RowTemplate8Template):
     #
     Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = True
     self.parent.raise_event('x-selection-change')
-    #
-    print(event_args["sender"].checked)
-    print(self.background)
-    #self.backgroud = "#66FFFF"
+    #     
     if event_args["sender"].checked:
       # add row to selected list but first remove select column
       row = self.item
       Global.work_area[Global.current_work_area_name]["selected_rows"].append(row)
+      self.background = "#66FFFF"
     else:
       #remove row from selected list
       Global.work_area[Global.current_work_area_name]["selected_rows"].remove(self.item)
+      self.background = ""
     #
     # remove menu_select_options if there are no more selected_rows
     if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:

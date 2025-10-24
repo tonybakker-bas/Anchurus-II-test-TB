@@ -49,6 +49,7 @@ class TableList(TableListTemplate):
     # clear select checkbox of rows
     for row in self.repeating_panel_1.get_components():
       row.btn_select.checked = False
+      
     
     # clear selection list
     Global.work_area[Global.current_work_area_name]["selected_rows"].clear()
