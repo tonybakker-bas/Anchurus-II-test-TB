@@ -27,8 +27,8 @@ class RowTemplate8(RowTemplate8Template):
     Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = True
     self.parent.raise_event('x-selection-change')
     #
-    #print(event_args["sender"].checked)
-    #print(self.background)
+    print(event_args["sender"].checked)
+    print(self.background)
     #self.backgroud = "#66FFFF"
     if event_args["sender"].checked:
       # add row to selected list but first remove select column
