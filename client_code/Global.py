@@ -131,7 +131,13 @@ material_types = ["CBM Tile","CBM Brick","CBM Drain Pipe","CBM Mortar",
                   "Clay Pipe","Metalwork","Nails","Iron Slag","Glass","Animal Bone",
                   "Oyster Shells","Wood","Charcoal"]
 login_options = {"Sign in", "Sign out"}
-nr_of_rows = 20
+#
+# The following variable rows_per_page has to be set to 0, to make sure the print function prints the whole table
+# During startup of the client (i.e. browser URL click of website) this value can be overwritten by a value for this
+# defined in the server side configuration file
+# Note that the 'page' is this context is a webpage and not a physical printing page
+rows_per_page = 0 
+#
 organisation = "Berkshire Archaeological Society"
 selected_site = ""
 sign_in_out_button_text = "Sign in"

@@ -30,7 +30,7 @@ class TableList(TableListTemplate):
     else:
       self.first_page_btn.enabled = True
       self.prev_page_btn.enabled = True
-    if page_num == (total_rows // rows_per_page):
+    if (rows_per_page != 0) and (page_num == (total_rows // rows_per_page)):
       # disable last_page_btn and next_page_btn if on last page
       self.last_page_btn.enabled = False
       self.next_page_btn.enabled = False
@@ -38,11 +38,16 @@ class TableList(TableListTemplate):
       self.last_page_btn.enabled = True
       self.next_page_btn.enabled = True
 
-    # Display the formatted string in the status label
-    if total_rows > 0:
+    # Display the formatted string in the status label if 
+    if total_rows > rows_per_page and rows_per_page != 0:
       self.row_number_info.text = f"{start_row}-{end_row} of {total_rows}"
     else:
-      self.row_number_info.text = "No rows to display"
+      # No need to display page control buttons as nr of rows is less than 
+      self.last_page_btn.visible = False
+      self.next_page_btn.visible = False      
+      self.first_page_btn.visible = False
+      self.prev_page_btn.visible = False
+      self.row_number_info.text = "Total " + str(total_rows) + " rows"
   pass
 
   def clear_selection(self, **event_args):
@@ -66,8 +71,8 @@ class TableList(TableListTemplate):
     self.repeating_panel_1.items = anvil.server.call("table_get",Global.site_id,Global.table_name)
 
     # 2. set nr of rows per page from Global variable (which is defined by a parameter in the server-side config file)
-    #if Global.nr_of_rows is not None:
-    self.table.rows_per_page = Global.nr_of_rows
+    #if Global.rows_per_page is not None:
+    self.table.rows_per_page = Global.rows_per_page
     
     # 3.save the list of items in the Global 'work-area' dictionary
     if Global.current_work_area_name is not None:

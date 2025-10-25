@@ -19,7 +19,7 @@ class Main(MainTemplate):
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     globals_from_config = anvil.server.call("client_globals")
-    Global.nr_of_rows = globals_from_config["rows_per_page"]
+    Global.rows_per_page = globals_from_config["rows_per_page"]
     Global.version = globals_from_config["client_version"]
     Global.admin_domain = globals_from_config["admin_domain"]
     Global.admin_user = globals_from_config["admin_user"]
