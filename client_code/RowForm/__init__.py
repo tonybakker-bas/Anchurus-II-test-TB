@@ -32,7 +32,8 @@ class RowForm(RowFormTemplate):
     if Global.site_id is None:
       # initialise some Globals variables for when the function is called from the server side
       Global.site_id = site_id
-      Global.action = "View " + table_name.capitalize()
+      #Global.action = "View " + table_name.capitalize()
+      Global.action = action
       Global.current_work_area_name = Global.action
       Global.table_name = table_name
       Global.work_area[Global.current_work_area_name] = {}
