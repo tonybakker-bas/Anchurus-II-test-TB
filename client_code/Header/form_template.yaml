@@ -61,6 +61,7 @@ components:
         tooltip: download csv file
       type: Button
     - event_bindings: {click: print_button_click}
+      layout_properties: {}
       name: print_button
       properties:
         icon: fa:print
@@ -68,9 +69,10 @@ components:
           margin: [null, 0, null, null]
           padding: [null, '4', null, '4']
         text: ''
-        tooltip: print list
+        tooltip: print
       type: Button
     - event_bindings: {click: refresh_button_click}
+      layout_properties: {}
       name: refresh_button
       properties:
         icon: fa:refresh
@@ -78,7 +80,7 @@ components:
           margin: [null, null, null, null]
           padding: [null, '4', null, '4']
         text: ''
-        tooltip: refresh list
+        tooltip: refresh
       type: Button
     - event_bindings: {click: delete_work_area_click}
       layout_properties: {}

@@ -132,13 +132,14 @@ material_types = ["CBM Tile","CBM Brick","CBM Drain Pipe","CBM Mortar",
                   "Oyster Shells","Wood","Charcoal"]
 login_options = {"Sign in", "Sign out"}
 #
+organisation = "Berkshire Archaeological Society"
+#
 # The following variable rows_per_page has to be set to 0, to make sure the print function prints the whole table
 # During startup of the client (i.e. browser URL click of website) this value can be overwritten by a value for this
 # defined in the server side configuration file
 # Note that the 'page' is this context is a webpage and not a physical printing page
 rows_per_page = 0 
 #
-organisation = "Berkshire Archaeological Society"
 selected_site = ""
 sign_in_out_button_text = "Sign in"
 site_id = None
@@ -182,9 +183,12 @@ help_page = {}
 help_introduction = """
 <h3>Introduction</h3>
 <p>
+You have successfully logged into the Anchurus-II Web service Application of the """ + organisation + """.
+</p>
+<p>
 Please select a site. Once selected you can use the menu items to select your actions.</p>
 <p>
-<b>Note:</b> changing/selecting a new site, all current workspace wil be deleted.</p>
+<b>Note:</b> When changing/selecting a new site, all current workspaces wil be deleted.</p>
 <h3> </h3>
 <p>
 For more information on recording Archaeological Excavations please go to the
