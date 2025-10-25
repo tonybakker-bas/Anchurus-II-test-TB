@@ -116,7 +116,7 @@ class TableList(TableListTemplate):
     message = ""
     for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
       Global.table_items = row
-      print(row)
+      #print(row)
       Global.action = "Delete " + Global.table_name.capitalize()
       message = message + "\nYou have seleted to delete " + Global.table_name.capitalize() + "\n\n" + str(row)
     
@@ -138,14 +138,14 @@ class TableList(TableListTemplate):
       # initialise some Globals variables for when the function is called from the server side
       Global.site_id = site_id
       Global.current_work_area_name = "TableList"
+      Global.work_area = {}
       Global.work_area[Global.current_work_area_name] = {}
-      Global.table_name = table_name
+      Global.table_name = table_name.strip("s")
     else:
     # set table_name to one of "context", "find", from the action Global variable 
       Global.table_name = Global.action.split(" ")[1][:-1].lower()
     
     # get the Table information form the Database
-    print("Init TableList: ",Global.table_name)
     table_info = anvil.server.call("describe_table", Global.table_name)
 
     # Extract the columns names from the table_info

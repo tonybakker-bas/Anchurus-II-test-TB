@@ -68,13 +68,14 @@ class Header(HeaderTemplate):
       table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
     else:
       table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1].lower()
-    print("site_id for print = ",Global.site_id)
-    print("table name for print = ",table_name)
-    print("action for print = ",Global.work_area[Global.current_work_area_name]["action"])
+    
     # clear select column from data_list
-    print("# rows in data_list: ",len(Global.work_area[Global.current_work_area_name]["data_list"][0]))
-    #print(Global.work_area[Global.current_work_area_name]["data_list"][0])
-    pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name,Global.work_area[Global.current_work_area_name]["action"],Global.work_area[Global.current_work_area_name]["data_list"])
+    i = 0
+    while i < len(Global.work_area[Global.current_work_area_name]["data_list"]):
+      Global.work_area[Global.current_work_area_name]["data_list"][i].pop("select")
+      i = i + 1
+    #
+    pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name.strip(),Global.work_area[Global.current_work_area_name]["action"],Global.work_area[Global.current_work_area_name]["data_list"])
     anvil.media.download(pdf_form)
     pass
 
