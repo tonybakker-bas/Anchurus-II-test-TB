@@ -70,10 +70,10 @@ def create_work_space(type):
   elif type == "Add Site":
     work_space = SiteForm()
   elif type == "Edit Context":
-    work_space = RowForm()
+    work_space = RowForm("","context")
     #work_space = ContextForm()
   elif type == "Edit Find":
-    work_space = RowForm()
+    work_space = RowForm("","find")
   elif type == "Edit Area":
     work_space = AreaForm()
   elif type == "Edit Site":
