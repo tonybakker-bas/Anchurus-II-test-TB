@@ -74,10 +74,8 @@ class TableList(TableListTemplate):
     
     # 3.save the list of items in the Global 'work-area' dictionary
     if Global.current_work_area_name is not None:
-      Global.work_area[Global.current_work_area_name]["data_list"] = (
-        self.repeating_panel_1.items
-      )
-
+      Global.work_area[Global.current_work_area_name]["data_list"] = self.repeating_panel_1.items
+       
     # Trigger the initial update
     self.update_status_label()
     
@@ -90,6 +88,7 @@ class TableList(TableListTemplate):
     #
     for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
       Global.table_items = row
+      #print("View button for row: ",row)
       Global.action = "View " + Global.table_name.capitalize()
       if Global.main_form:  # Important to check if the form exists
         # Create new work_area "View Context" and set focus on this new work_area

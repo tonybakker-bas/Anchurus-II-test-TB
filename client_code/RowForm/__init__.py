@@ -37,7 +37,7 @@ class RowForm(RowFormTemplate):
       Global.table_name = table_name
       Global.work_area[Global.current_work_area_name] = {}
       print(data_list)
-      Global.work_area[Global.current_work_area_name]["items"] = data_list
+      Global.work_area[Global.current_work_area_name]["data_list"] = data_list
     else:
       # set table_name to one of "context", "find", from the action Global variable
       if Global.action in ["List Contexts","List Finds"]:
@@ -54,7 +54,7 @@ class RowForm(RowFormTemplate):
     self.field_details = {}
     self.form_fields = {}
     #print(Global.table_items)
-    #print(Global.work_area[Global.current_work_area_name]["items"])
+    #print(Global.work_area[Global.current_work_area_name]["data_list"])
     for item in table_info:
       column_name = item["Field"]
       column_type = item["Type"]
@@ -85,9 +85,9 @@ class RowForm(RowFormTemplate):
         input.add_event_handler('change',self.input_change)
         
       # if field is None make is "" (empty)
-      #if Global.work_area[Global.current_work_area_name]["items"][column_name] is None:
-      #  Global.work_area[Global.current_work_area_name]["items"][column_name] = ""
-      #print(column_name, Global.work_area[Global.current_work_area_name]["items"][column_name])
+      #if Global.work_area[Global.current_work_area_name]["data_list"][column_name] is None:
+      #  Global.work_area[Global.current_work_area_name]["data_list"][column_name] = ""
+      #print(column_name, Global.work_area[Global.current_work_area_name]["data_list"][column_name])
       # set specific settings (like validators) for the various fields
       if column_name in ["SiteId"]:
         input.text = Global.site_id
@@ -111,14 +111,14 @@ class RowForm(RowFormTemplate):
       cur_len = 0
       if Global.action in ["Edit Context","Edit Find","View Context","View Find"]:
         if str(type(input)) == "<class 'anvil_extras.Quill.Quill'>":
-          html_text = Global.work_area[Global.current_work_area_name]["items"][column_name]
+          html_text = Global.work_area[Global.current_work_area_name]["data_list"][0][column_name]
           delta = input.clipboard.convert(html_text)
           input.setContents(delta, 'silent')
           cur_len = 0
           if html_text is not None:
             cur_len = len(html_text)
         else:
-          input.text = Global.work_area[Global.current_work_area_name]["items"][column_name]
+          input.text = Global.work_area[Global.current_work_area_name]["data_list"][0][column_name]
           cur_len = 0
           if input.text is not None:
             cur_len = len(input.text)

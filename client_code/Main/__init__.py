@@ -161,7 +161,7 @@ class Main(MainTemplate):
     self.work_area_list.add_component(Global.work_area[work_area_name]["button"])
     Global.work_area[work_area_name]["button"].add_event_handler('click', self.work_area_click)
     # add the table_items to the work_area_name
-    Global.work_area[work_area_name]["items"] = Global.table_items
+    Global.work_area[work_area_name]["data_list"] = [Global.table_items]
     # create a new work_space and add this to the work_area_list      
     Global.work_area[work_area_name]["form"] = Function.create_work_space(action,Global.table_items)
     self.add_component(Global.work_area[work_area_name]["form"])

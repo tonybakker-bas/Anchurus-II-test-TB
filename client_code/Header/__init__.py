@@ -71,11 +71,10 @@ class Header(HeaderTemplate):
     print("site_id for print = ",Global.site_id)
     print("table name for print = ",table_name)
     print("action for print = ",Global.work_area[Global.current_work_area_name]["action"])
-    Global.work_area[Global.current_work_area_name]["items"].pop("select")
-    print("items for print = ",Global.work_area[Global.current_work_area_name]["items"])
-    print("data_list for print = ",Global.work_area[Global.current_work_area_name]["data_list"])
-
-    pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name,Global.work_area[Global.current_work_area_name]["action"],Global.work_area[Global.current_work_area_name]["items"])
+    # clear select column from data_list
+    print("# rows in data_list: ",len(Global.work_area[Global.current_work_area_name]["data_list"][0]))
+    #print(Global.work_area[Global.current_work_area_name]["data_list"][0])
+    pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name,Global.work_area[Global.current_work_area_name]["action"],Global.work_area[Global.current_work_area_name]["data_list"])
     anvil.media.download(pdf_form)
     pass
 
