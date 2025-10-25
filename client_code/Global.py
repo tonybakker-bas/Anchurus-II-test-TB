@@ -36,9 +36,9 @@ admin_action_dropdown = ["List Users","List Sites","Add Site"]
 import_table_name_dropdown = ["context","find"]
 #
 #
-action_forms_with_refresh = ["TableList","ListUsers","ListSites","ListContexts","ListFinds","ListAreas","BulkUpload","Add Area","List Areas"]
+action_forms_with_refresh = ["TableList","RowForm","ListUsers","ListSites","ListContexts","ListFinds","ListAreas","BulkUpload","Add Area","List Areas"]
 #action_forms_with_print = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","List Areas","View Context","View Find","View Area"]
-action_forms_with_print = ["ListContexts","ListFinds","TableList"]
+action_forms_with_print = ["ListContexts","ListFinds","TableList","RowForm"]
 action_forms_with_download = ["ListContexts","ListFinds","TableList"]
 action_forms_with_filter = ["ListContexts","ListFinds","TableList"]
 #

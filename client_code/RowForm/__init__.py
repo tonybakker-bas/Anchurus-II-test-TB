@@ -23,10 +23,26 @@ class RowForm(RowFormTemplate):
       self.form_fields[column]["header"].text = column + " (" + str(len(self.form_fields[column]["field"].text)) + "/" + str(self.form_fields[column]["length"]) + "):"
   pass
   
-  def __init__(self, **properties):
+  def __init__(self, site_id, table_name, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
+    self.site_id = site_id
+    # Global.site_id is only None when form called from server side (e.g. printing form)
+    if Global.site_id is None:
+      # initialise some Globals variables for when the function is called from the server side
+      Global.site_id = site_id
+      Global.current_work_area_name = "RowForm"
+      Global.table_name = table_name
+      Global.work_area[Global.current_work_area_name] = {}
+      Global.table_name = table_name
+      Global.action = "View " + table_name.capitalize()
+    else:
+      # set table_name to one of "context", "find", from the action Global variable
+      if Global.action in ["List Contexts","List Finds"]:
+        Global.table_name = Global.action.split(" ")[1][:-1].lower()
+      else:
+        Global.table_name = Global.action.split(" ")[1].lower()
     self.validator = Validator()
     # we need to find out which table we are dealing with
     self.title.text = "This form is to " + Global.action
@@ -91,6 +107,7 @@ class RowForm(RowFormTemplate):
       # end of validation 
       
       # if action is View or Edit then fill all fields
+      cur_len = 0
       if Global.action in ["Edit Context","Edit Find","View Context","View Find"]:
         if str(type(input)) == "<class 'anvil_extras.Quill.Quill'>":
           html_text = Global.work_area[Global.current_work_area_name]["items"][column_name]

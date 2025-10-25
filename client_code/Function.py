@@ -58,14 +58,14 @@ def create_work_space(type):
   elif type == "Import":
     work_space = ImportForm()
   elif type == "Add Row":
-    work_space = RowForm()
+    work_space = RowForm("","row")
   elif type == "Add Context":
-    work_space = RowForm()
+    work_space = RowForm("","context")
     #work_space = ContextForm()
   elif type == "Add Area":
     work_space = AreaForm()
   elif type == "Add Find":
-    work_space = RowForm()
+    work_space = RowForm("","find")
     #work_space = FindForm()
   elif type == "Add Site":
     work_space = SiteForm()
@@ -83,9 +83,9 @@ def create_work_space(type):
   elif type == "View Row":
     work_space = RowForm()
   elif type == "View Context":
-    work_space = RowForm()
+    work_space = RowForm("","context")
   elif type == "View Find":
-    work_space = RowForm()
+    work_space = RowForm("","find")
     #work_space = FindForm()
   elif type == "View Area":
     work_space = AreaForm()

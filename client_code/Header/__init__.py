@@ -64,7 +64,10 @@ class Header(HeaderTemplate):
     """This method is called when the button is clicked"""
     form = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     #print("calling print_form on server for form: ",form)
-    table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
+    if Global.action in ["List Contexts","List Finds"]:
+      table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
+    else:
+      table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1].lower()
     print("table name for print = ",table_name)
     pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name)
     anvil.media.download(pdf_form)
@@ -113,8 +116,6 @@ class Header(HeaderTemplate):
     
     # remove special columns
     column_headings.remove("select")
-    #column_headings.remove("edit")
-    #column_headings.remove("delete")
     # sort column names
     column_headings.sort()
     

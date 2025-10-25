@@ -55,14 +55,12 @@ class TableList(TableListTemplate):
     for row in self.repeating_panel_1.get_components():
       row.btn_select.checked = False
       row.background = ""
-      
-    
+        
     # clear selection list
     Global.work_area[Global.current_work_area_name]["selected_rows"].clear()
     
     # clear select_all checkbox
     self.select_all.checked = False
-    #
   pass
   
   def table_list_refresh(self, **event_args):
@@ -141,7 +139,6 @@ class TableList(TableListTemplate):
       # initialise some Globals variables for when the function is called from the server side
       Global.site_id = site_id
       Global.current_work_area_name = "TableList"
-      Global.table_name = table_name
       Global.work_area[Global.current_work_area_name] = {}
       Global.table_name = table_name
     else:
