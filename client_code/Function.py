@@ -7,7 +7,6 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-from . import Global
 #from .ListUsers import ListUsers
 
 # This is a module.
@@ -18,6 +17,7 @@ from . import Global
 #    Function.say_hello()
 #
 # Global Functions
+from . import Global
 
 from ListContexts import ListContexts
 from ListFinds import ListFinds
@@ -41,8 +41,9 @@ def say_hello():
   print("Hello, world")
   return
 
-def create_work_space(type):
+def create_work_space(type,data_list):
   #print("Work space to create is: ",type)
+  # first param of RowForm and TableList is site_id, but is blanked out. Only used by server print function
   if type == "List Contexts":
     work_space = TableList("","context")
     #work_space = ListContexts("")
@@ -58,22 +59,22 @@ def create_work_space(type):
   elif type == "Import":
     work_space = ImportForm()
   elif type == "Add Row":
-    work_space = RowForm("","row")
+    work_space = RowForm("","row",data_list,type)
   elif type == "Add Context":
-    work_space = RowForm("","context")
+    work_space = RowForm("","context",data_list,type)
     #work_space = ContextForm()
   elif type == "Add Area":
     work_space = AreaForm()
   elif type == "Add Find":
-    work_space = RowForm("","find")
+    work_space = RowForm("","find",data_list,type)
     #work_space = FindForm()
   elif type == "Add Site":
     work_space = SiteForm()
   elif type == "Edit Context":
-    work_space = RowForm("","context")
+    work_space = RowForm("","context",data_list,type)
     #work_space = ContextForm()
   elif type == "Edit Find":
-    work_space = RowForm("","find")
+    work_space = RowForm("","find",data_list,type)
   elif type == "Edit Area":
     work_space = AreaForm()
   elif type == "Edit Site":
@@ -81,11 +82,11 @@ def create_work_space(type):
   elif type == "Edit User":
     work_space = UserForm()
   elif type == "View Row":
-    work_space = RowForm()
+    work_space = RowForm("","context",data_list,type)
   elif type == "View Context":
-    work_space = RowForm("","context")
+    work_space = RowForm("","context",data_list,type)
   elif type == "View Find":
-    work_space = RowForm("","find")
+    work_space = RowForm("","find",data_list,type)
     #work_space = FindForm()
   elif type == "View Area":
     work_space = AreaForm()

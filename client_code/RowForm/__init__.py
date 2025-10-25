@@ -23,7 +23,7 @@ class RowForm(RowFormTemplate):
       self.form_fields[column]["header"].text = column + " (" + str(len(self.form_fields[column]["field"].text)) + "/" + str(self.form_fields[column]["length"]) + "):"
   pass
   
-  def __init__(self, site_id, table_name, **properties):
+  def __init__(self, site_id, table_name, data_list, action,  **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
@@ -32,11 +32,11 @@ class RowForm(RowFormTemplate):
     if Global.site_id is None:
       # initialise some Globals variables for when the function is called from the server side
       Global.site_id = site_id
-      Global.current_work_area_name = "RowForm"
+      Global.action = "View " + table_name.capitalize()
+      Global.current_work_area_name = Global.action
       Global.table_name = table_name
       Global.work_area[Global.current_work_area_name] = {}
-      Global.table_name = table_name
-      Global.action = "View " + table_name.capitalize()
+      Global.work_area[Global.current_work_area_name]["items"] = data_list
     else:
       # set table_name to one of "context", "find", from the action Global variable
       if Global.action in ["List Contexts","List Finds"]:
