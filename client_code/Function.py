@@ -45,12 +45,12 @@ def create_work_space(type,data_list):
   #print("Work space to create is: ",type)
   # first param of RowForm and TableList is site_id, but is blanked out. Only used by server print function
   if type == "List Contexts":
-    work_space = TableList("","context")
+    work_space = TableList("","context",data_list,type)
     #work_space = ListContexts("")
   elif type == "List Areas":
     work_space = ListAreas() 
   elif type == "List Finds":
-    work_space = TableList("","find")
+    work_space = TableList("","find",data_list,type)
     #work_space = ListFinds("")
   elif type == "List Sites":
     work_space = ListSites()

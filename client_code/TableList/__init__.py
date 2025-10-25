@@ -126,7 +126,7 @@ class TableList(TableListTemplate):
     confirm(message)
   pass
 
-  def __init__(self, site_id, table_name, **properties):
+  def __init__(self, site_id, table_name, data_list, action, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #
@@ -146,6 +146,7 @@ class TableList(TableListTemplate):
       Global.table_name = Global.action.split(" ")[1][:-1].lower()
     
     # get the Table information form the Database
+    print("Init TableList: ",Global.table_name)
     table_info = anvil.server.call("describe_table", Global.table_name)
 
     # Extract the columns names from the table_info

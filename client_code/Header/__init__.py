@@ -68,8 +68,12 @@ class Header(HeaderTemplate):
       table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
     else:
       table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1].lower()
+    print("site_id for print = ",Global.site_id)
     print("table name for print = ",table_name)
-    pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name)
+    print("action for print = ",Global.work_area[Global.current_work_area_name]["action"])
+    print("items for print = ",Global.work_area[Global.current_work_area_name]["items"])
+
+    pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name,Global.work_area[Global.current_work_area_name]["action"],Global.work_area[Global.current_work_area_name]["items"])
     anvil.media.download(pdf_form)
     pass
 

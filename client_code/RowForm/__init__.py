@@ -36,6 +36,7 @@ class RowForm(RowFormTemplate):
       Global.current_work_area_name = Global.action
       Global.table_name = table_name
       Global.work_area[Global.current_work_area_name] = {}
+      print(data_list)
       Global.work_area[Global.current_work_area_name]["items"] = data_list
     else:
       # set table_name to one of "context", "find", from the action Global variable
