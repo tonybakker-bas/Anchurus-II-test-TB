@@ -152,12 +152,14 @@ class TableList(TableListTemplate):
     # Frist column if for Select
     # The DESCRIBE result structure is:
     # (Field:, Type:, Null:, Key:, Default:, Extra:)
+    Global.work_area[Global.current_work_area_name]["columns_show"] = []
     columns_titles = []
     columns_titles.append({"id": 1, "title": "", "data_key": "select", "width": 30, "expand": True })
     id = 1
     for column_data in table_info:
       # Select Column "Field"
       field_name = column_data["Field"]
+      Global.work_area[Global.current_work_area_name]["columns_show"].append(field_name)
       col_width = 150
       if field_name in ["FindId","ContextId","AreaId","FillOf","Year","YearStart","YearEnd","Workflow","Count","Weight","BoxId","FromSample","FindType"]:
         col_width = 80

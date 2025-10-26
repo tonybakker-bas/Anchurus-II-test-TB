@@ -7,6 +7,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ... import Global
 
 class RowTemplate6(RowTemplate6Template):
   def __init__(self, **properties):
@@ -14,4 +15,6 @@ class RowTemplate6(RowTemplate6Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    print("in FilterList form row:",self.item)
+    self.check_box_1.checked = False
+    if self.item["text"] in Global.work_area[Global.current_work_area_name]["columns_show"]:
+      self.check_box_1.checked = True

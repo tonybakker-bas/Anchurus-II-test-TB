@@ -148,45 +148,46 @@ class Header(HeaderTemplate):
       title="",
       buttons=[] # Crucial: set buttons=[] to use your custom button for submission
     )
-    
-    # 4. Process the result after the dialog is closed
-    #
-    # First unhide all columns
-    # remove the columns out of the hidden columns list.
-    for col in Global.work_area[Global.current_work_area_name]["hidden_columns"]:
-      column = [c for c in Global.work_area[Global.current_work_area_name]["filter"] if c['title'] == col][0]
-      # remove from list of hidden_columns
-      Global.work_area[Global.current_work_area_name]["filter"].remove(column)
-      # Add it to the Data Grid's column list
-      Global.work_area[Global.current_work_area_name]["table"].columns.append(column)
-    # make it 'live'
-    Global.work_area[Global.current_work_area_name]["table"].columns = Global.work_area[Global.current_work_area_name]["table"].columns
-    # set hidden_columns to empty list
-    Global.work_area[Global.current_work_area_name]["hidden_columns"] = []
+    if selected_list is not None:     # user has made a selection; if not, do nothing
+      # 4. Process the result after the dialog is closed
+      #
+      # First unhide all columns
+      # remove the columns out of the hidden columns list.
+      for col in Global.work_area[Global.current_work_area_name]["hidden_columns"]:
+        column = [c for c in Global.work_area[Global.current_work_area_name]["filter"] if c['title'] == col][0]
+        # remove from list of hidden_columns
+        Global.work_area[Global.current_work_area_name]["filter"].remove(column)
+        # Add it to the Data Grid's column list
+        Global.work_area[Global.current_work_area_name]["table"].columns.append(column)
+      # make it 'live'
+      Global.work_area[Global.current_work_area_name]["table"].columns = Global.work_area[Global.current_work_area_name]["table"].columns
+      # set hidden_columns to empty list
+      Global.work_area[Global.current_work_area_name]["hidden_columns"] = []
 
-    #
-    all_columns_titles = [col["title"] for col in Global.work_area[Global.current_work_area_name]["table"].columns if "title" in col]
-    #remove columns with empty title
-    cleaned_list = [item for item in all_columns_titles if item != ""]
-    cleaned_list.sort()
-    all_columns_titles = cleaned_list
+      #
+      all_columns_titles = [col["title"] for col in Global.work_area[Global.current_work_area_name]["table"].columns if "title" in col]
+      #remove columns with empty title
+      cleaned_list = [item for item in all_columns_titles if item != ""]
+      cleaned_list.sort()
+      all_columns_titles = cleaned_list
     
-    # create columns_to_hide (difference between all_columns and selected_columns)
-    columns_to_hide = []
-    selected_columns_titles = []
-    if selected_list:
-      selected_columns_titles = [col["text"] for col in selected_list if "text" in col]
-      columns_to_hide = list(set(all_columns_titles).difference(selected_columns_titles))
+      # create columns_to_hide (difference between all_columns and selected_columns)
+      columns_to_hide = []
+      selected_columns_titles = []
+      if selected_list:
+        selected_columns_titles = [col["text"] for col in selected_list if "text" in col]
+        columns_to_hide = list(set(all_columns_titles).difference(selected_columns_titles))
     
-    # add columns_to_hide to the work_area data structure as "filter"
-    Global.work_area[Global.current_work_area_name]["hidden_columns"] = columns_to_hide
-    for col in columns_to_hide:
-      # add col to filter and remove from table
-      column = [c for c in Global.work_area[Global.current_work_area_name]["table"].columns if c['title'] == col][0]
-      Global.work_area[Global.current_work_area_name]["filter"].append(column)
-      Global.work_area[Global.current_work_area_name]["table"].columns.remove(column)
-    # make the filter 'live'
-    Global.work_area[Global.current_work_area_name]["table"].columns = Global.work_area[Global.current_work_area_name]["table"].columns
+      # add columns_to_hide to the work_area data structure as "filter"
+      Global.work_area[Global.current_work_area_name]["hidden_columns"] = columns_to_hide
+      for col in columns_to_hide:
+        # add col to filter and remove from table
+        column = [c for c in Global.work_area[Global.current_work_area_name]["table"].columns if c['title'] == col][0]
+        Global.work_area[Global.current_work_area_name]["filter"].append(column)
+        Global.work_area[Global.current_work_area_name]["table"].columns.remove(column)
+    
+      # make the filter 'live'
+      Global.work_area[Global.current_work_area_name]["table"].columns = Global.work_area[Global.current_work_area_name]["table"].columns
     pass
 
 

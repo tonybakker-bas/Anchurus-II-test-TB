@@ -7,6 +7,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .. import Global
 
 
 class FilterList(FilterListTemplate):
@@ -15,7 +16,6 @@ class FilterList(FilterListTemplate):
     self.init_components(**properties)
 
     # The list of options passed from the main form
-    print(options_list)
     self.repeating_panel_1.items = options_list 
     # A property to store the final selected items
     self.selected_options = [] 
@@ -30,4 +30,7 @@ class FilterList(FilterListTemplate):
 
     # Raise the 'x-close-alert' event to close the popup and return the selection
     self.raise_event("x-close-alert", value=self.selected_options)
+    Global.work_area[Global.current_work_area_name]["columns_show"] = []
+    for col in self.selected_options:
+      Global.work_area[Global.current_work_area_name]["columns_show"].append(col["text"])
     pass
