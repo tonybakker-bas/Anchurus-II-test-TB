@@ -23,7 +23,7 @@ class RowForm(RowFormTemplate):
       self.form_fields[column]["header"].text = column + " (" + str(len(self.form_fields[column]["field"].text)) + "/" + str(self.form_fields[column]["length"]) + "):"
   pass
   
-  def __init__(self, site_id, table_name, data_list, action,  **properties):
+  def __init__(self, site_id, table_name, data_list, action, page_info, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
@@ -139,6 +139,10 @@ class RowForm(RowFormTemplate):
       submit_btn = Button(text="Submit")
       submit_btn.add_event_handler("click",self.submit_btn_click)
       self.column_panel_1.add_component(submit_btn)
+
+    # For this form the page_info details are all set to 0; this is for when the server print function call the form
+    Global.work_area[Global.current_work_area_name]["page_info"] = {"page_num": 0, "rows_per_page": 0, "total_rows": 0}
+
 
   def submit_btn_click(self, **event_args):
     """This method is called when the button is clicked"""

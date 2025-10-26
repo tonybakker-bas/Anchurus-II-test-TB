@@ -151,8 +151,16 @@ system_name = ""
 SurveyMethod_options = {"BNG","Aligned to BNG north","Not aligned to BNG north"}
 system = "Anchurus-II Web Service Application"
 status = ""
+#
 table_name = ""
 table_items = {}
+table_colwidth_60 = ["FillOf","Year","Count","Weight"]
+table_colwidth_80 = ["FindId","ContextId","AreaId","YearStart","YearEnd","Workflow","BoxId","FromSample","FindType"]
+table_colwidth_100 = ["FindGroupId","ContextYear","ContextType","PackageType","SmallFindId","FromSample","RecordStatus"]
+table_colwidth_120 = []
+table_colwidth_140 = []
+table_colwidth_default = 150
+#
 title = system + "\n" + organisation
 sign_in_out_button_text = "Sign in"
 username = ""

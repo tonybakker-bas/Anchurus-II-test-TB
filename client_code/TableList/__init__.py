@@ -73,7 +73,10 @@ class TableList(TableListTemplate):
     # 2. set nr of rows per page from Global variable (which is defined by a parameter in the server-side config file)
     #if Global.rows_per_page is not None:
     self.table.rows_per_page = Global.rows_per_page
-    
+    if len(self.page_info) != 0:# this means this form is called from the server (print function)
+      self.table.rows_per_page = self.page_info["rows_per_page"]
+      self.table.set_page(self.page_info["page_num"])
+      
     # 3.save the list of items in the Global 'work-area' dictionary
     if Global.current_work_area_name is not None:
       Global.work_area[Global.current_work_area_name]["data_list"] = self.repeating_panel_1.items
@@ -127,12 +130,13 @@ class TableList(TableListTemplate):
     confirm(message)
   pass
 
-  def __init__(self, site_id, table_name, data_list, action, **properties):
+  def __init__(self, site_id, table_name, data_list, action, page_info, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #
     self.repeating_panel_1.set_event_handler('x-selection-change', self.selection_change)
     #
+    self.page_info = page_info
     self.site_id = site_id
     # Any code you write here will run before the form open
     # Global.site_id is only None when form called from server side (e.g. printing form)
@@ -162,11 +166,17 @@ class TableList(TableListTemplate):
       # Select Column "Field"
       field_name = column_data["Field"]
       Global.work_area[Global.current_work_area_name]["columns_show"].append(field_name)
-      col_width = 150
-      if field_name in ["FindId","ContextId","AreaId","FillOf","Year","YearStart","YearEnd","Workflow","Count","Weight","BoxId","FromSample","FindType"]:
+      col_width = Global.table_colwidth_default
+      if field_name in Global.table_colwidth_60:
+        col_width = 60
+      if field_name in Global.table_colwidth_80:
         col_width = 80
-      if field_name in ["FindGroupId","ContextYear","ContextType","PackageType","SmallFindId","FromSample","RecordStatus"]:
+      if field_name in Global.table_colwidth_100:
         col_width = 100
+      if field_name in Global.table_colwidth_120:
+        col_width = 120
+      if field_name in Global.table_colwidth_140:
+        col_width = 140
       if field_name not in ["SiteId"]: # do not create a columns for SiteId
         id = id + 1
         columns_titles.append({"id": id, "title": field_name, "data_key": field_name, "width": col_width, "expand": True })

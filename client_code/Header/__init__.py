@@ -69,13 +69,17 @@ class Header(HeaderTemplate):
     table_name = tmp_name.lower()
     
     # clear select column from data_list
-    i = 0
-    while i < len(Global.work_area[Global.current_work_area_name]["data_list"]):
-      Global.work_area[Global.current_work_area_name]["data_list"][i].pop("select")
-      i = i + 1
+    #i = 0
+    #while i < len(Global.work_area[Global.current_work_area_name]["data_list"]):
+    #  Global.work_area[Global.current_work_area_name]["data_list"][i].pop("select")
+    #  i = i + 1
       
     # call the print_form at the server-side
-    pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name.strip(),Global.work_area[Global.current_work_area_name]["action"],Global.work_area[Global.current_work_area_name]["data_list"])
+    pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name.strip(),
+                                 Global.work_area[Global.current_work_area_name]["action"],
+                                 Global.work_area[Global.current_work_area_name]["data_list"],
+                                 Global.work_area[Global.current_work_area_name]["page_info"]
+                                )
     anvil.media.download(pdf_form)
     pass
 
