@@ -15,9 +15,8 @@ class FilterList(FilterListTemplate):
     self.init_components(**properties)
 
     # The list of options passed from the main form
-    #print(options_list)
+    print(options_list)
     self.repeating_panel_1.items = options_list 
-
     # A property to store the final selected items
     self.selected_options = [] 
 

@@ -64,17 +64,21 @@ class Header(HeaderTemplate):
     """This method is called when the button is clicked"""
     form = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     #print("calling print_form on server for form: ",form)
-    if Global.action in ["List Contexts","List Finds"]:
-      table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
-    else:
-      table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1].lower()
+    # table name sare all lowercase and singular, so create table name from action
+    tmp_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1].strip("s")
+    table_name = tmp_name.lower()
+    #if Global.action in ["List Contexts","List Finds"]:
+    #  table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
+    #else:
+    #  table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1].lower()
     
     # clear select column from data_list
     i = 0
     while i < len(Global.work_area[Global.current_work_area_name]["data_list"]):
       Global.work_area[Global.current_work_area_name]["data_list"][i].pop("select")
       i = i + 1
-    #
+      
+    # call the print_form at the server-side
     pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name.strip(),Global.work_area[Global.current_work_area_name]["action"],Global.work_area[Global.current_work_area_name]["data_list"])
     anvil.media.download(pdf_form)
     pass
@@ -108,7 +112,7 @@ class Header(HeaderTemplate):
 
   def download_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    #form = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
+    # call server-side function create_csv to create a csv file and download this to user Download folder
     csv_file = anvil.server.call('create_csv',Global.work_area[Global.current_work_area_name]["data_list"])
     anvil.media.download(csv_file)
     pass
@@ -122,6 +126,8 @@ class Header(HeaderTemplate):
     
     # remove special columns
     column_headings.remove("select")
+    column_headings.remove("SiteId")
+    column_headings.remove("DBAcontrol")
     # sort column names
     column_headings.sort()
     
@@ -164,16 +170,16 @@ class Header(HeaderTemplate):
     cleaned_list = [item for item in all_columns_titles if item != ""]
     cleaned_list.sort()
     all_columns_titles = cleaned_list
+    
     # create columns_to_hide (difference between all_columns and selected_columns)
     columns_to_hide = []
     selected_columns_titles = []
     if selected_list:
       selected_columns_titles = [col["text"] for col in selected_list if "text" in col]
       columns_to_hide = list(set(all_columns_titles).difference(selected_columns_titles))
-    #
+    
     # add columns_to_hide to the work_area data structure as "filter"
     Global.work_area[Global.current_work_area_name]["hidden_columns"] = columns_to_hide
-
     for col in columns_to_hide:
       # add col to filter and remove from table
       column = [c for c in Global.work_area[Global.current_work_area_name]["table"].columns if c['title'] == col][0]
@@ -181,7 +187,6 @@ class Header(HeaderTemplate):
       Global.work_area[Global.current_work_area_name]["table"].columns.remove(column)
     # make the filter 'live'
     Global.work_area[Global.current_work_area_name]["table"].columns = Global.work_area[Global.current_work_area_name]["table"].columns
-
     pass
 
 
