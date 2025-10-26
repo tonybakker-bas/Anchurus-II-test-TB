@@ -67,10 +67,6 @@ class Header(HeaderTemplate):
     # table name sare all lowercase and singular, so create table name from action
     tmp_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1].strip("s")
     table_name = tmp_name.lower()
-    #if Global.action in ["List Contexts","List Finds"]:
-    #  table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
-    #else:
-    #  table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1].lower()
     
     # clear select column from data_list
     i = 0

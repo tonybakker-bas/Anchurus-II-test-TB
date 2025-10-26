@@ -48,6 +48,8 @@ class TableList(TableListTemplate):
       self.first_page_btn.visible = False
       self.prev_page_btn.visible = False
       self.row_number_info.text = "Total " + str(total_rows) + " rows"
+    #
+    Global.work_area[Global.current_work_area_name]["page_info"] = {"page_num": page_num, "rows_per_page": rows_per_page, "total_rows": total_rows}
   pass
 
   def clear_selection(self, **event_args):
