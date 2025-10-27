@@ -49,16 +49,7 @@ class Main(MainTemplate):
     Global.work_area_list = {}
 
     # Get table list and create dropdown options for list and insert
-    list = anvil.server.call("db_table_list")
-    table_list = []
-    print(list)
-    for item in list:
-      print(item)
-      table_name = item.values()
-      print(table_name)
-      if table_name != "site" and table_name != "dbdiary":
-        table_list.append(table_name)
-    print(table_list)
+    table_list = anvil.server.call("db_table_list")
     
     Global.insert_action_dropdown = table_list
     Global.list_action_dropdown = table_list

@@ -146,10 +146,10 @@ class TableList(TableListTemplate):
       Global.current_work_area_name = "TableList"
       Global.work_area = {}
       Global.work_area[Global.current_work_area_name] = {}
-      Global.table_name = table_name.strip("s")
+      Global.table_name = table_name.rstrip("s")
     else:
     # set table_name to one of "context", "find", from the action Global variable 
-      Global.table_name = Global.action.split(" ")[1][:-1].lower()
+      Global.table_name = Global.action.split(" ")[1].lower()
     
     # get the Table information form the Database
     table_info = anvil.server.call("describe_table", Global.table_name)

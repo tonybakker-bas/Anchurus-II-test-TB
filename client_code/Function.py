@@ -44,8 +44,12 @@ def say_hello():
 def create_work_space(type,data_list):
   #print("Work space to create is: ",type)
   page_info = {}
+  table_name = type.split(" ")[1].lower()
+  action = type.split(" ")[0].lower()
   # first param of RowForm and TableList is site_id, but is blanked out. Only used by server print function
-  if type == "List Contexts":
+  if action == "list":
+    work_space = TableList("",table_name,data_list,type,page_info)
+  elif type == "List Contexts":
     work_space = TableList("","context",data_list,type,page_info)
     #work_space = ListContexts("")
   elif type == "List Areas":
