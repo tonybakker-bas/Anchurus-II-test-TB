@@ -108,6 +108,7 @@ components:
 container:
   event_bindings: {}
   properties:
+    col_spacing: none
     col_widths: '{}'
     spacing:
       margin: [-0.9090908893868948, null, '0', null]

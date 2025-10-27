@@ -49,8 +49,7 @@ class Main(MainTemplate):
     Global.work_area_list = {}
 
     # Get table list and create dropdown options for list and insert
-    table_list = anvil.server.call("db_table_list")
-    
+    table_list = anvil.server.call("db_table_list")    
     Global.insert_action_dropdown = table_list
     Global.list_action_dropdown = table_list
     # fill action menu options  
@@ -83,8 +82,8 @@ class Main(MainTemplate):
     Global.current_work_area_name = work_area.text
     
     # Set Global.table_name linked with work_area_type
-    Global.table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1][:-1].lower()
-    
+    Global.table_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1].rstrip("s").lower()
+
     # set Global variables for site information
     Global.site_name = Global.work_area[Global.current_work_area_name]["site_name"]
     Global.site_id = Global.work_area[Global.current_work_area_name]["site_id"]
@@ -176,6 +175,7 @@ class Main(MainTemplate):
     Global.work_area[work_area_name]["data_list"] = [Global.table_items]
     # create a new work_space and add this to the work_area_list      
     Global.work_area[work_area_name]["form"] = Function.create_work_space(action,Global.table_items)
+    print(Global.work_area[work_area_name]["form"])
     self.add_component(Global.work_area[work_area_name]["form"])
        
     # set button name to new work_area_name

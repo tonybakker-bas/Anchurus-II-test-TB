@@ -46,9 +46,11 @@ def create_work_space(type,data_list):
   page_info = {}
   table_name = type.split(" ")[1].lower()
   action = type.split(" ")[0].lower()
+  print(action, table_name)
   # first param of RowForm and TableList is site_id, but is blanked out. Only used by server print function
   if action == "list":
     work_space = TableList("",table_name,data_list,type,page_info)
+    print(work_space)
   elif type == "List Contexts":
     work_space = TableList("","context",data_list,type,page_info)
     #work_space = ListContexts("")
