@@ -110,6 +110,7 @@ container:
   properties:
     col_spacing: none
     col_widths: '{}'
+    role: no-scroll
     spacing:
       margin: [-0.9090908893868948, null, '0', null]
     spacing_above: none
