@@ -7,7 +7,7 @@ components:
   name: data_grid_1
   properties:
     columns:
-    - {data_key: column, id: JKSDUP, title: Select or Deselect columns to be shown in the table list}
+    - {data_key: column, id: JKSDUP, title: Select / Deselect columns to be shown / not shown in the table list}
     rows_per_page: 0
     show_page_controls: false
   type: DataGrid

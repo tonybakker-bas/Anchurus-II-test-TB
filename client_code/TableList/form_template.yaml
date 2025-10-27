@@ -124,7 +124,7 @@ components:
     type: FlowPanel
   layout_properties: {full_width_row: true, grid_position: 'XQLOBP,LOKUOL'}
   name: column_panel_1
-  properties: {background: 'theme:Tertiary', col_widths: '{"LPPOVY":20,"WGAWYD":25,"VJGQSP":25,"TRMHNK":5}'}
+  properties: {background: 'theme:Tertiary', col_widths: '{"LPPOVY":10,"WGAWYD":35,"VJGQSP":25,"TRMHNK":5}'}
   type: ColumnPanel
 - components:
   - data_bindings: []
