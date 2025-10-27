@@ -27,7 +27,7 @@ user_action_list = ["Select Site",separator,
 # action_list_not_implemented should always contain the separator
 action_list_not_implemented = [separator,"Bulk Upload Finds","Draw","List Areas","Add Area"]
 # the list_action_list is a list of the tables in DB (not yet sites)
-list_action_dropdown = ["Contexts","Finds","Anomolies","Interpretrations"]
+list_action_dropdown = ["Contexts","Finds","Anomolies","Interpretations"]
 insert_action_dropdown = ["Context","Find","Anomoly","Interpretation"]
 file_action_dropdown = ["Import",separator,"Save"]
 view_action_dropdown = []

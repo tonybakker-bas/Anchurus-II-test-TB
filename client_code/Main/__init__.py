@@ -18,17 +18,21 @@ class Main(MainTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
+    
+    # get client variable settings from server configuration file
     globals_from_config = anvil.server.call("client_globals")
     Global.rows_per_page = globals_from_config["rows_per_page"]
     Global.version = globals_from_config["client_version"]
     Global.admin_domain = globals_from_config["admin_domain"]
     Global.admin_user = globals_from_config["admin_user"]
     Global.admin_user_initials = globals_from_config["admin_user_initials"]
-    #
+    
+    # add Header component (but make it invisible)
     Global.header = Header()
     self.add_component(Global.header, slot='header_slot')
     Global.header.visible = False
-
+    
+    # add Help component (but make it invisible)
     Global.help_page = Help()
     self.add_component(Global.help_page, slot='help_slot')
     Global.help_page.visible = False
@@ -36,12 +40,29 @@ class Main(MainTemplate):
     # set Main title field with name of organisation (defined in Anchurus-2.cgf file from server)
     Global.title_label = self.title
     self.title.text = Global.title + Global.status + Global.selected_site
+    
     # add the about_us_text (taken from Anchurus-2.cfg file) to the about_us_box text field by adding a Rich Text Component
     rt = RichText(content=Global.about_us_text,format="restricted_html")
     self.about_us_box.add_component(rt)
-    # 
+    
+    # Create empty work_area_list
     Global.work_area_list = {}
-    # fill action menu options - taken from gh_*_list defined in Global 
+
+    # Get table list and create dropdown options for list and insert
+    list = anvil.server.call("db_table_list")
+    table_list = []
+    print(list)
+    for item in list:
+      print(item)
+      table_name = item.values()
+      print(table_name)
+      if table_name != "site" and table_name != "dbdiary":
+        table_list.append(table_name)
+    print(table_list)
+    
+    Global.insert_action_dropdown = table_list
+    Global.list_action_dropdown = table_list
+    # fill action menu options  
     self.insert_dropdown.items = Global.insert_action_dropdown
     self.list_dropdown.items = Global.list_action_dropdown
     self.admin_dropdown.items = Global.admin_action_dropdown
