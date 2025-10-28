@@ -34,6 +34,7 @@ components:
     name: flow_panel_1
     properties:
       background: theme:Secondary Container
+      role: no-scroll
       spacing:
         margin: [-0.9090908893868948, null, -0.9090908893868948, null]
       spacing_above: none
@@ -103,7 +104,7 @@ components:
     type: FlowPanel
   layout_properties: {full_width_row: true, grid_position: 'URTZQK,VJOIFT'}
   name: column_panel_1
-  properties: {background: 'theme:Secondary Container', col_widths: '{"CTGSDY":45,"ASPBEZ":15}'}
+  properties: {background: 'theme:Secondary Container', col_widths: '{"CTGSDY":45,"ASPBEZ":15}', role: no-scroll}
   type: ColumnPanel
 container:
   event_bindings: {}
