@@ -48,9 +48,10 @@ components:
         spacing_above: none
         spacing_below: none
       type: DropDown
-    - layout_properties: {width: 240.715894921875}
-      name: drop_down_1
-      properties: {font_size: 13, include_placeholder: true, placeholder: Site Summary, spacing_above: none, spacing_below: none}
+    - event_bindings: {change: site_summary_change}
+      layout_properties: {width: 240.715894921875}
+      name: site_summary
+      properties: {font_size: 13, include_placeholder: true, placeholder: Site Summary Rows per Table, spacing_above: none, spacing_below: none}
       type: DropDown
     - event_bindings: {change: username_dropdown_change}
       layout_properties: {width: 300}

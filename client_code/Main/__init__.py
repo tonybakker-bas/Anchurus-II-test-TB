@@ -65,6 +65,8 @@ class Main(MainTemplate):
     #self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
     #self.action_list.visible = False
+    self.site_summary.visible = False
+    #
     self.menu_block.visible = False
     self.menu_top.visible = False
     self.menu_panel_left.visible = False
@@ -325,6 +327,8 @@ class Main(MainTemplate):
       self.menu_panel_left.visible = False
       self.menu_panel_right.visible = False
       self.admin_dropdown.visible = False
+      self.site_summary.visible = False
+
       self.username_dropdown.placeholder = Global.username
       self.username_dropdown.items = []
 
@@ -360,12 +364,11 @@ class Main(MainTemplate):
       Global.selected_site = ": " + Global.site_name
       #Global.title_label.text = Global.title + Global.status + Global.selected_site
       Global.title_label.text = Global.title
-      #get more details of sites, e.g. How many areas, contexts, finds 
-      site_information = anvil.server.call("site_get_information",Global.site_id)
       #Global.header_site_name.text = Global.site_name
       db_summary = anvil.server.call("db_get_summary")
-      print(db_summary)
-      #self.site_summary.text = str(site_information["Contexts"]) + " Contexts, " + str(site_information["Finds"]) + " Finds"
+      self.site_summary.visible = True
+      self.site_summary.items = db_summary
+      
       #
       self.menu_panel_left.visible = True
       self.menu_panel_right.visible = True
@@ -480,5 +483,10 @@ class Main(MainTemplate):
       Function.save_work_areas()
       
     self.file_dropdown.selected_value = None
+    pass
+
+  def site_summary_change(self, **event_args):
+    """This method is called when an item is selected"""
+    self.site_summary.selected_value = None
     pass
 

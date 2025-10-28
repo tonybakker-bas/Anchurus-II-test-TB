@@ -32,12 +32,12 @@ components:
           margin: [6, '4', null, '4']
           role: outlined
         type: TextBox
-      layout_properties: {width: 631.8555322265624}
+      layout_properties: {width: 630.6591186523438}
       name: flow_panel_4
       properties: {}
       type: FlowPanel
     - components:
-      - layout_properties: {width: 253.0482373046875}
+      - layout_properties: {width: 280.3952373046875}
         name: site_name
         properties: {background: 'theme:Secondary Container', border: none}
         type: TextBox
@@ -105,7 +105,7 @@ components:
           text: ''
           tooltip: delete workspace
         type: Button
-      layout_properties: {width: 339.5113525390625}
+      layout_properties: {width: 228.95758984375}
       name: flow_panel_2
       properties:
         align: right
