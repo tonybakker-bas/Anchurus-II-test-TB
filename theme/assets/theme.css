@@ -1097,9 +1097,9 @@ div.plot-container.plotly svg.main-svg {
 /* Footer bar */
 .footer {
   position: fixed;
-  left: 160px;
+  left: 168px;
   /* bottom: 0; */
-  top: 150px;
+  top: 140px;
   width: 100%;
   font-size: 20px;
   font-weight: 500;
