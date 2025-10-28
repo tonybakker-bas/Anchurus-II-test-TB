@@ -142,7 +142,7 @@ components:
   properties:
     background: theme:Primary
     col_spacing: none
-    col_widths: '{"QVQFFX":25,"CITSIW":20,"VLWEYU":15,"LHAUBZ":25}'
+    col_widths: '{"QVQFFX":25,"CITSIW":20,"VLWEYU":20,"LHAUBZ":20}'
     role: null
     spacing:
       margin: ['8', null, null, null]
@@ -170,7 +170,7 @@ components:
     type: FlowPanel
   layout_properties: {slot: footer-slot}
   name: column_panel_1
-  properties: {background: 'theme:Primary'}
+  properties: {background: 'theme:Primary', col_widths: '{"ZTIHLF":12,"EOEARF":12,"RADSVC":12,"BNFCJM":9,"XEYKUI":15}'}
   type: ColumnPanel
 container:
   properties: {html: '@theme:standard-page.html', visible: true}
