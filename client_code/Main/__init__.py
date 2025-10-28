@@ -363,6 +363,8 @@ class Main(MainTemplate):
       #get more details of sites, e.g. How many areas, contexts, finds 
       site_information = anvil.server.call("site_get_information",Global.site_id)
       #Global.header_site_name.text = Global.site_name
+      db_summary = anvil.server.call("db_get_summary")
+      print(db_summary)
       #self.site_summary.text = str(site_information["Contexts"]) + " Contexts, " + str(site_information["Finds"]) + " Finds"
       #
       self.menu_panel_left.visible = True
