@@ -230,7 +230,7 @@ color: %color:On Primary Container%;
   left: 0;
   flex-shrink: 0;
   min-width: 240px;
-  max-width: 400px;
+  max-width: 600px; /* orig 400px */
 }
 
 .nav-shield {
@@ -398,7 +398,7 @@ color: %color:On Primary Container%;
 
 /* Components: App Bar */
 .app-bar {
-  min-height: 56px;
+  min-height: 100px; /* orig 56px */
   padding: 0 16px 0 72px;
   position: fixed;
   width: 100%;
@@ -468,7 +468,7 @@ color: %color:On Primary Container%;
 .app-bar-nav > .anvil-container {
   margin: 0;
   padding: 0;
-  min-height: 56px;
+  min-height: 100px; /* orig 56px */
 }
 
 .anvil-highlight .app-bar-nav > .anvil-container:not(.has-components):not(a) {
