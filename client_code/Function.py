@@ -128,3 +128,26 @@ def save_work_areas():
   
   success = anvil.server.call("save_work_areas", Global.work_area,Global.site_id) 
   return
+
+def table_list_refresh(self):
+  # This function does the filling of the table contents
+  # 1. call server function '"table_name"s_get', which retrieves all rows of the table_name for the given site
+  self.repeating_panel_1.items = anvil.server.call("table_get",Global.site_id,Global.table_name)
+
+  # 2. set nr of rows per page from Global variable (which is defined by a parameter in the server-side config file)
+  #if Global.rows_per_page is not None:
+  self.table.rows_per_page = Global.rows_per_page
+  if len(self.page_info) != 0:# this means this form is called from the server (print function)
+    self.table.rows_per_page = self.page_info["rows_per_page"]
+    self.table.set_page(self.page_info["page_num"])
+
+  # 3.save the list of items in the Global 'work-area' dictionary
+  if Global.current_work_area_name is not None:
+    Global.work_area[Global.current_work_area_name]["data_list"] = self.repeating_panel_1.items
+
+  # Trigger the initial update
+  self.update_status_label()
+
+  # Display the total number of rows
+  self.information.text = Global.table_name
+  return

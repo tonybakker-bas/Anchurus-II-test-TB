@@ -10,6 +10,7 @@ from .. import indeterminate
 
 # import anvil.google.auth, anvil.google.drive
 # from anvil.google.drive import app_files
+from .. import Function
 from .. import Global
 import anvil.server
 
@@ -194,11 +195,14 @@ class TableList(TableListTemplate):
     Global.work_area[Global.current_work_area_name]["menu_select_options"] = self.menu_select_options
     Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
 
-    #???
-    #Global.context_id = ""
-    # refresh the table content
-    self.table_list_refresh()
+    # save self in Global.work_area
+    Global.work_area[Global.current_work_area_name]["self"] = self
 
+    #self.table_list_refresh()
+    Function.table_list_refresh(self)
+
+
+    
   def selection_change(self, **event_args):
     #
     rows = [row for row in self.repeating_panel_1.get_components()]
