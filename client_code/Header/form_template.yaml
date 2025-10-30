@@ -1,9 +1,5 @@
 components:
 - components:
-  - layout_properties: {full_width_row: true, grid_position: 'ZOXXFI,RXFIGD'}
-    name: flow_panel_3
-    properties: {}
-    type: FlowPanel
   - components:
     - components:
       - layout_properties: {}

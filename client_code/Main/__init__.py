@@ -56,11 +56,11 @@ class Main(MainTemplate):
     self.insert_dropdown.items = Global.insert_action_dropdown
     self.list_dropdown.items = Global.list_action_dropdown
     self.admin_dropdown.items = Global.admin_action_dropdown
-    self.file_dropdown.items = Global.file_list
+    #self.file_dropdown.items = Global.file_list
     self.view_dropdown.items = Global.view_action_dropdown
     self.help_dropdown.items = Global.help_action_dropdown
     #
-    self.file_dropdown.items = Global.file_action_dropdown
+    #self.file_dropdown.items = Global.file_action_dropdown
 
     #self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
@@ -69,8 +69,11 @@ class Main(MainTemplate):
     #
     self.menu_block.visible = False
     self.menu_top.visible = False
-    self.mm_left.visible = False
-    self.mm_right.visible = False
+    self.menu_middle.visible = False
+    #self.mm_left.visible = False
+    #self.mm_right.visible = False
+    self.menu_bottom.visible = False
+    #
     self.admin_dropdown.visible = False
 
   def work_area_click(self, **event_args):
@@ -324,10 +327,12 @@ class Main(MainTemplate):
       # make menu block and admin menu invisible
       self.menu_block.visible = False
       self.menu_top.visible = False
-      self.mm_left.visible = False
-      self.mm_right.visible = False
+      self.menu_middle.visible = False
+      #self.mm_left.visible = False
+      #self.mm_right.visible = False
       self.admin_dropdown.visible = False
       self.site_summary.visible = False
+      self.menu_bottom.visible = False
 
       self.username_dropdown.placeholder = Global.username
       self.username_dropdown.items = []
@@ -370,8 +375,9 @@ class Main(MainTemplate):
       self.site_summary.items = db_summary
       
       #
-      self.mm_left.visible = True
-      self.mm_right.visible = True
+      self.menu_middle.visible = True
+      #self.mm_left.visible = True
+      #self.mm_right.visible = True
 
     pass
     
@@ -488,5 +494,11 @@ class Main(MainTemplate):
   def site_summary_change(self, **event_args):
     """This method is called when an item is selected"""
     self.site_summary.selected_value = None
+    pass
+
+  def import_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
+    
+    self.import_dropdown.selected_value = None
     pass
 

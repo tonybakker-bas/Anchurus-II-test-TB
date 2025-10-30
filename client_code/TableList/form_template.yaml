@@ -130,7 +130,11 @@ components:
   - data_bindings: []
     layout_properties: {}
     name: repeating_panel_1
-    properties: {border: '', item_template: TableList.RowTemplate8, role: null}
+    properties:
+      border: ''
+      item_template: TableList.RowTemplate8
+      margin: ['0', null, '0', null]
+      role: null
     type: RepeatingPanel
   data_bindings: []
   layout_properties: {full_width_row: true, grid_position: 'MWMTGX,ARPQLN'}

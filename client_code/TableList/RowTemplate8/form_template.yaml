@@ -1,5 +1,5 @@
 components: []
 container:
-  properties: {role: null}
+  properties: {font_size: 12, role: null}
   type: DataRowPanel
 is_package: true
