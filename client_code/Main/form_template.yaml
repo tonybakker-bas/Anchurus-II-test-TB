@@ -41,12 +41,12 @@ components:
         spacing_below: none
       type: DropDown
     - event_bindings: {change: site_summary_change}
-      layout_properties: {width: 259.3523525390625}
+      layout_properties: {width: 251.1822373046875}
       name: site_summary
       properties: {font_size: 13, include_placeholder: true, placeholder: Site Summary Rows per Table, spacing_above: none, spacing_below: none}
       type: DropDown
     - event_bindings: {change: username_dropdown_change}
-      layout_properties: {width: 206.170484765625}
+      layout_properties: {expand: true, width: 227.215884765625}
       name: username_dropdown
       properties:
         font_size: 13
@@ -56,9 +56,17 @@ components:
         spacing_above: none
         spacing_below: none
       type: DropDown
+    - layout_properties: {}
+      name: role
+      properties:
+        font_size: 13
+        spacing:
+          margin: ['8', null, null, null]
+          padding: ['0', null, '0', null]
+      type: Label
     layout_properties: {grid_position: 'TQCWAS,XHRUHC'}
     name: menu_top
-    properties: {}
+    properties: {background: 'theme:Primary'}
     type: FlowPanel
   - components:
     - components:
@@ -123,57 +131,150 @@ components:
         spacing:
           margin: ['0', null, null, null]
       type: FlowPanel
-    - components:
-      - components: []
-        layout_properties: {grid_position: 'CNBXKD,YLPEQT'}
-        name: mb_left
-        properties:
-          spacing:
-            margin: [null, '4', null, '4']
-        type: FlowPanel
-      - components:
-        - layout_properties: {}
-          name: drop_down_7
-          properties: {}
-          type: DropDown
-        layout_properties: {full_width_row: true, grid_position: 'CNBXKD,JJKSVV'}
-        name: mb_middle
-        properties:
-          align: center
-          spacing:
-            margin: [null, '0', null, '0']
-          spacing_above: small
-          spacing_below: small
-        type: FlowPanel
-      - components:
-        - layout_properties: {}
-          name: drop_down_6
-          properties: {}
-          type: DropDown
-        layout_properties: {full_width_row: true, grid_position: 'CNBXKD,HLMPXY'}
-        name: mb_right
-        properties:
-          align: right
-          gap: medium
-          spacing:
-            margin: [null, '4', null, '4']
-          spacing_above: small
-          spacing_below: small
-        type: FlowPanel
-      layout_properties: {grid_position: 'UPYRBE,GUEGWQ'}
-      name: menu_bottom
-      properties: {}
-      type: ColumnPanel
-    layout_properties: {grid_position: 'FUHQPM,VPOHYZ'}
+    layout_properties: {grid_position: 'FUHQPM,UXWYDH'}
     name: menu_middle
-    properties: {col_widths: '{"VAHDCA":25,"DCKDAP":10,"EQMWKT":25}'}
+    properties: {background: 'theme:Primary', col_widths: '{"VAHDCA":25,"DCKDAP":10,"EQMWKT":25}'}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'CNBXKD,NFHGGR'}
+      name: mb_left
+      properties: {}
+      type: FlowPanel
+    - components:
+      - layout_properties: {}
+        name: first_page
+        properties:
+          icon: fa:angle-double-left
+          spacing:
+            margin: ['0', '0', null, '0']
+            padding: ['0', '0', '0', '0']
+          text: ''
+          tooltip: first page
+        type: Button
+      - layout_properties: {}
+        name: prev_page
+        properties:
+          icon: fa:angle-left
+          spacing:
+            margin: ['0', null, null, '0']
+            padding: ['0', '0', '0', '0']
+          text: ''
+        type: Button
+      - layout_properties: {}
+        name: next_page
+        properties:
+          icon: fa:angle-right
+          spacing:
+            margin: ['0', '0', null, '0']
+            padding: ['0', '0', '0', '0']
+          text: ''
+          tooltip: next page
+        type: Button
+      - layout_properties: {}
+        name: last_page
+        properties:
+          icon: fa:angle-double-right
+          spacing:
+            margin: ['0', '0', null, '0']
+            padding: ['0', '0', '0', '0']
+          text: ''
+          tooltip: last page
+        type: Button
+      - layout_properties: {expand: true}
+        name: row_number_info
+        properties:
+          align: left
+          font_size: 12
+          spacing:
+            margin: ['0', null, null, null]
+            padding: ['6', null, '0', null]
+        type: Label
+      layout_properties: {full_width_row: true, grid_position: 'CNBXKD,JJKSVV'}
+      name: mb_middle
+      properties:
+        align: center
+        gap: none
+        spacing:
+          margin: [null, '0', null, '0']
+        spacing_above: small
+        spacing_below: small
+      type: FlowPanel
+    - components:
+      - layout_properties: {}
+        name: filter_cols
+        properties:
+          icon: fa:filter
+          spacing:
+            margin: ['0', '0', null, '0']
+            padding: [null, '0', '8', '0']
+          text: ''
+          tooltip: filter columns
+        type: Button
+      - layout_properties: {}
+        name: download_csv
+        properties:
+          icon: fa:download
+          spacing:
+            margin: ['0', '0', '0', null]
+            padding: ['0', '0', '0', '0']
+          text: ''
+          tooltip: download csv
+        type: Button
+      - layout_properties: {}
+        name: print
+        properties:
+          icon: fa:print
+          spacing:
+            margin: ['0', '0', null, '0']
+            padding: ['0', '0', '0', '0']
+          text: ''
+          tooltip: print work area page
+        type: Button
+      - layout_properties: {}
+        name: refresh
+        properties:
+          icon: fa:refresh
+          spacing:
+            margin: ['0', '0', null, '0']
+            padding: ['0', '0', '0', '0']
+          spacing_above: none
+          spacing_below: none
+          text: ''
+          tooltip: refresh work area
+        type: Button
+      - layout_properties: {}
+        name: del_work_area
+        properties:
+          font_size: 13
+          icon: fa:remove
+          spacing:
+            margin: ['0', '0', null, '0']
+            padding: ['0', '0', '0', '0']
+          spacing_above: none
+          spacing_below: none
+          text: ''
+          tooltip: delete work area
+        type: Button
+      layout_properties: {full_width_row: true, grid_position: 'CNBXKD,HLMPXY'}
+      name: mb_right
+      properties:
+        align: right
+        gap: tiny
+        spacing:
+          margin: [null, '4', null, '4']
+        spacing_above: small
+        spacing_below: small
+      type: FlowPanel
+    layout_properties: {grid_position: 'OXMUZC,ELDJTQ'}
+    name: menu_bottom
+    properties: {background: 'theme:Secondary Container'}
     type: ColumnPanel
   layout_properties: {slot: nav-right}
   name: menu_block
   properties:
-    background: theme:Primary
+    background: ''
     col_spacing: none
-    col_widths: '{"VZZLFX":13,"XHRUHC":15}'
+    col_widths: '{"XHRUHC":15}'
     role: null
     spacing:
       margin: ['8', null, null, null]
@@ -201,13 +302,14 @@ components:
     type: FlowPanel
   - components:
     - layout_properties: {}
-      name: label_1
+      name: copyright
       properties:
         font_size: 10
         icon: fa:copyright
         icon_align: left
         spacing:
-          margin: [null, '12', null, null]
+          margin: ['0', '12', 1.8181817787737895, null]
+          padding: ['6', null, '0', null]
         text: Berkshire Archaeological Society
       type: Label
     layout_properties: {full_width_row: true, grid_position: 'DCRRVT,XEYKUI'}
@@ -219,7 +321,7 @@ components:
   properties: {background: 'theme:Primary', col_widths: '{"ZTIHLF":12,"EOEARF":12,"RADSVC":12,"BNFCJM":9,"XEYKUI":15}'}
   type: ColumnPanel
 container:
-  properties: {html: '@theme:standard-page.html', visible: true}
+  properties: {html: '@theme:standard-page.html', tooltip: prev page, visible: true}
   type: HtmlTemplate
 is_package: true
 slots:

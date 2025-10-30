@@ -1085,10 +1085,6 @@ div.plot-container.plotly svg.main-svg {
   border-right: 1px solid #ccc;
 }
 
-.anvil-role-no_scroll {
-    overflow: hidden;
-  }
-
 .nav-title {
   height: 300px !important; /* Adjust the value as needed */
 }

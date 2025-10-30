@@ -331,4 +331,3 @@ roles:
   name: outlined-error
 - components: [TextBox, TextArea, DatePicker, DropDown]
   name: input-error
-- {name: no-scroll}
