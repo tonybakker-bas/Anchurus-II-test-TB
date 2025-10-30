@@ -60,10 +60,22 @@ components:
       name: role
       properties:
         font_size: 13
+        foreground: theme:On Primary
         spacing:
           margin: ['8', null, null, null]
           padding: ['0', null, '0', null]
       type: Label
+    - layout_properties: {}
+      name: logout
+      properties:
+        foreground: theme:On Primary
+        icon: fa:remove
+        spacing:
+          margin: ['5', null, null, null]
+          padding: ['5', '0', null, '0']
+        text: ''
+        tooltip: logout
+      type: Button
     layout_properties: {grid_position: 'TQCWAS,XHRUHC'}
     name: menu_top
     properties: {background: 'theme:Primary'}
@@ -136,7 +148,19 @@ components:
     properties: {background: 'theme:Primary', col_widths: '{"VAHDCA":25,"DCKDAP":10,"EQMWKT":25}'}
     type: ColumnPanel
   - components:
-    - layout_properties: {grid_position: 'CNBXKD,NFHGGR'}
+    - components:
+      - layout_properties: {}
+        name: check_box_1
+        properties:
+          allow_indeterminate: true
+          checked: false
+          spacing:
+            margin: ['0', '0', null, null]
+            padding: [null, '0', '0', '24']
+          text: ''
+          tooltip: select all
+        type: CheckBox
+      layout_properties: {grid_position: 'CNBXKD,NFHGGR'}
       name: mb_left
       properties: {}
       type: FlowPanel
@@ -144,6 +168,7 @@ components:
       - layout_properties: {}
         name: first_page
         properties:
+          foreground: theme:On Tertiary
           icon: fa:angle-double-left
           spacing:
             margin: ['0', '0', null, '0']
@@ -154,6 +179,7 @@ components:
       - layout_properties: {}
         name: prev_page
         properties:
+          foreground: theme:On Tertiary
           icon: fa:angle-left
           spacing:
             margin: ['0', null, null, '0']
@@ -163,6 +189,7 @@ components:
       - layout_properties: {}
         name: next_page
         properties:
+          foreground: theme:On Tertiary
           icon: fa:angle-right
           spacing:
             margin: ['0', '0', null, '0']
@@ -173,6 +200,7 @@ components:
       - layout_properties: {}
         name: last_page
         properties:
+          foreground: theme:On Tertiary
           icon: fa:angle-double-right
           spacing:
             margin: ['0', '0', null, '0']
@@ -185,6 +213,7 @@ components:
         properties:
           align: left
           font_size: 12
+          foreground: theme:On Tertiary
           spacing:
             margin: ['0', null, null, null]
             padding: ['6', null, '0', null]
@@ -203,6 +232,7 @@ components:
       - layout_properties: {}
         name: filter_cols
         properties:
+          foreground: theme:On Tertiary
           icon: fa:filter
           spacing:
             margin: ['0', '0', null, '0']
@@ -213,6 +243,7 @@ components:
       - layout_properties: {}
         name: download_csv
         properties:
+          foreground: theme:On Tertiary
           icon: fa:download
           spacing:
             margin: ['0', '0', '0', null]
@@ -223,6 +254,7 @@ components:
       - layout_properties: {}
         name: print
         properties:
+          foreground: theme:On Tertiary
           icon: fa:print
           spacing:
             margin: ['0', '0', null, '0']
@@ -233,6 +265,7 @@ components:
       - layout_properties: {}
         name: refresh
         properties:
+          foreground: theme:On Tertiary
           icon: fa:refresh
           spacing:
             margin: ['0', '0', null, '0']
@@ -246,6 +279,7 @@ components:
         name: del_work_area
         properties:
           font_size: 13
+          foreground: theme:On Tertiary
           icon: fa:remove
           spacing:
             margin: ['0', '0', null, '0']
@@ -267,7 +301,7 @@ components:
       type: FlowPanel
     layout_properties: {grid_position: 'OXMUZC,ELDJTQ'}
     name: menu_bottom
-    properties: {background: 'theme:Secondary Container'}
+    properties: {background: 'theme:Tertiary'}
     type: ColumnPanel
   layout_properties: {slot: nav-right}
   name: menu_block
@@ -277,7 +311,9 @@ components:
     col_widths: '{"XHRUHC":15}'
     role: null
     spacing:
-      margin: ['8', null, null, null]
+      margin: ['0', null, null, null]
+    spacing_above: none
+    spacing_below: none
   type: ColumnPanel
 - components:
   - components: []
