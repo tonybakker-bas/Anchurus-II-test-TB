@@ -9,6 +9,8 @@ from anvil.tables import app_tables
 import anvil.users
 
 from ..Header import Header
+from ..RowForm import RowForm
+from ..TableList import TableList
 from .. import Global
 from .. import Function
 from ..Help import Help
@@ -80,7 +82,12 @@ class Main(MainTemplate):
     #
     self.admin_dropdown.visible = False
 
+  #
+  # Functions
+  # =========
   def work_area_click(self, **event_args):
+    """" This function is called when the work area button is clicked. Here we make sure all the variable are set correct for the work area swap"""
+    #
     # Here the user clicked on a button in the left navigation list, requested to go to a different work area.
     for name in Global.work_area:
       Global.work_area[name]["form"].visible = False
@@ -135,6 +142,8 @@ class Main(MainTemplate):
   pass
 
   def create_new_work_area(self,action):
+    """"his Function is called when a user creates a new work area"""
+    #
     # First make sure the header is visible
     Global.header.visible = True
     Global.wa_header_menu_bottom.visible = True
@@ -177,16 +186,17 @@ class Main(MainTemplate):
     # Set Global.table_name linked with work_area_type
     Global.table_name = Global.work_area[work_area_name]["action"].split(" ")[1].lower()
 
-    # create the button for the work_area in the navigation panel and add it to the work_area_name_list
+    # create the button for the work_area in the navigation panel, add it to the work_area_name_list and set event handler for when clicked
     Global.work_area[work_area_name]["button"] = Button(text=work_area_name,align="left")
-    #Global.work_area[work_area_name]["button"] = Global.work_area_name_list[work_area_name]
     self.work_area_list.add_component(Global.work_area[work_area_name]["button"])
     Global.work_area[work_area_name]["button"].add_event_handler('click', self.work_area_click)
+    
     # add the table_items to the work_area_name
     Global.work_area[work_area_name]["data_list"] = [Global.table_items]
+    
     # create a new work_space and add this to the work_area_list      
     Global.work_area[work_area_name]["form"] = Function.create_work_space(action,Global.table_items)
-    print(Global.work_area[work_area_name]["form"])
+    #print(Global.work_area[work_area_name]["form"])
     self.add_component(Global.work_area[work_area_name]["form"])
        
     # set button name to new work_area_name
@@ -196,6 +206,7 @@ class Main(MainTemplate):
     Global.work_area[work_area_name]["site_name"] = Global.site_name
     Global.header_site_name.text = Global.work_area[work_area_name]["site_name"]
     Global.work_area[work_area_name]["site_id"] = Global.site_id
+    
     # set selected rows list to empty
     Global.work_area[work_area_name]["selected_rows"] = []
 
@@ -209,7 +220,7 @@ class Main(MainTemplate):
     Global.work_area[Global.current_work_area_name]["filter"] = []
     Global.work_area[Global.current_work_area_name]["hidden_columns"] = []
     
-    # Make selected work area visible and have Focus
+    # Make newly created work area visible and have Focus
     Global.work_area[work_area_name]["form"].visible = True
     Global.work_area[work_area_name]["button"].bold = False
     Global.work_area[work_area_name]["button"].background = Global.button_highlight_background_clour
@@ -247,6 +258,7 @@ class Main(MainTemplate):
     pass
   
   def login_button_click(self, **event_args):
+    """" This Function is called when the users logs in """
     """This method is called when the button is clicked"""
     user = anvil.users.login_with_form(allow_cancel=True)
     # check if user is logged in as newly registered account needs explicit enabling by administrator 
@@ -300,6 +312,7 @@ class Main(MainTemplate):
     pass
 
   def register_button_click(self, **event_args):
+    """ This Function is called when a user wants to register himself"""
     """This method is called when the button is clicked"""
     user = anvil.users.signup_with_form(allow_cancel=True)
     # check if user logged in (should not be, as registration requires an administrator to enable account)
@@ -315,6 +328,7 @@ class Main(MainTemplate):
     pass
 
   def username_dropdown_change(self, **event_args):
+    """ This Function is called when the users has selected the logout option of the username dropdown """
     """This method is called when an item is selected"""
     # This dropdown change means that the user selected for a Logout
     # as the only selection available in the dropdown list is Logout
@@ -362,6 +376,7 @@ class Main(MainTemplate):
     pass
 
   def select_site_dropdown_change(self, **event_args):
+    """ This Function is called when the users selects a site """
     """This method is called when an item is selected"""
     # print("select_site_dropdown selected")
     if self.select_site_dropdown.selected_value is not None:
@@ -384,10 +399,11 @@ class Main(MainTemplate):
       self.menu_middle.visible = True
       #self.mm_left.visible = True
       #self.mm_right.visible = True
-
     pass
-    
+
+  # Funtions for the menu options (Menu_middle) after the user selected a site
   def admin_dropdown_change(self, **event_args):
+    """ Thus Function is called when the users has selected an action form the Admin dropdown menu """
     """This method is called when an item from the dropdown menu is selected"""
     # Action has been selected, but only take action if action in not a separator
     # save a link to the Main form in a Global variable 
@@ -416,6 +432,7 @@ class Main(MainTemplate):
     pass
 
   def insert_dropdown_change(self, **event_args):
+    """ This Function is called when the users selects an option form the Insert dropdown"""
     """This method is called when an item is selected"""
     Global.main_form = get_open_form()
     # make action to be "Add ..." 
@@ -443,6 +460,7 @@ class Main(MainTemplate):
     pass
 
   def list_dropdown_change(self, **event_args):
+    """ This Function is called when the users selects an option form the List dropdown"""
     """This method is called when an item is selected"""
     # clear selected_value
     Global.main_form = get_open_form()
@@ -470,6 +488,7 @@ class Main(MainTemplate):
     pass
 
   def help_dropdown_change(self, **event_args):
+    """ This Function is called when the users selects an option form the Help dropdown"""
     """This method is called when an item is selected"""
     Global.main_form = get_open_form()
     Global.action = self.help_dropdown.selected_value
@@ -478,6 +497,7 @@ class Main(MainTemplate):
     pass
 
   def view_dropdown_change(self, **event_args):
+    """ This Function is called when the users selects an option form the View dropdown"""
     """This method is called when an item is selected"""
     Global.main_form = get_open_form()
     Global.action = self.view_dropdown.selected_value
@@ -485,26 +505,70 @@ class Main(MainTemplate):
     self.view_dropdown.selected_value = None
     pass
 
-  def file_dropdown_change(self, **event_args):
-    """This method is called when an item is selected"""
-    
-    Global.action = self.file_dropdown.selected_value
-    if Global.action == "Import":
-      self.create_new_work_area(Global.action)
-    elif Global.action == "Save":
-      Function.save_work_areas()
-      
-    self.file_dropdown.selected_value = None
-    pass
-
   def site_summary_change(self, **event_args):
+    """ This Function is called when the users selects an option form the Site Summary dropdown"""
     """This method is called when an item is selected"""
+    # here we do not do anything except set the selected value of th dropdown to None
     self.site_summary.selected_value = None
     pass
 
   def import_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
-    
+    """ This Function is called when the users selects an option form the Import dropdown"""
+
     self.import_dropdown.selected_value = None
+    pass
+
+  # Functions on teh header for the work area
+  def select_all_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    pass
+
+  def view_row_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def edit_row_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def delete_row_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def first_page_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def prev_page_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def next_page_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def last_page_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def filter_cols_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def download_csv_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def print_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def refresh_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def del_work_area_click(self, **event_args):
+    """This method is called when the button is clicked"""
     pass
 

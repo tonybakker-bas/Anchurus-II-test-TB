@@ -149,10 +149,12 @@ components:
     type: ColumnPanel
   - components:
     - components:
-      - layout_properties: {}
+      - event_bindings: {change: select_all_change}
+        layout_properties: {}
         name: select_all
         properties:
           allow_indeterminate: true
+          background: ''
           checked: false
           spacing:
             margin: ['0', '0', null, null]
@@ -160,7 +162,8 @@ components:
           text: ''
           tooltip: select all
         type: CheckBox
-      - layout_properties: {}
+      - event_bindings: {click: view_row_click}
+        layout_properties: {}
         name: view_row
         properties:
           foreground: theme:On Tertiary
@@ -171,7 +174,8 @@ components:
           text: ''
           tooltip: view row
         type: Button
-      - layout_properties: {}
+      - event_bindings: {click: edit_row_click}
+        layout_properties: {}
         name: edit_row
         properties:
           foreground: theme:On Tertiary
@@ -182,7 +186,8 @@ components:
           text: ''
           tooltip: edit row
         type: Button
-      - layout_properties: {}
+      - event_bindings: {click: delete_row_click}
+        layout_properties: {}
         name: delete_row
         properties:
           foreground: theme:On Tertiary
@@ -198,7 +203,8 @@ components:
       properties: {gap: none}
       type: FlowPanel
     - components:
-      - layout_properties: {}
+      - event_bindings: {click: first_page_click}
+        layout_properties: {}
         name: first_page
         properties:
           foreground: theme:On Tertiary
@@ -209,7 +215,8 @@ components:
           text: ''
           tooltip: first page
         type: Button
-      - layout_properties: {}
+      - event_bindings: {click: prev_page_click}
+        layout_properties: {}
         name: prev_page
         properties:
           foreground: theme:On Tertiary
@@ -219,7 +226,8 @@ components:
             padding: ['0', '0', '0', '0']
           text: ''
         type: Button
-      - layout_properties: {}
+      - event_bindings: {click: next_page_click}
+        layout_properties: {}
         name: next_page
         properties:
           foreground: theme:On Tertiary
@@ -230,7 +238,8 @@ components:
           text: ''
           tooltip: next page
         type: Button
-      - layout_properties: {}
+      - event_bindings: {click: last_page_click}
+        layout_properties: {}
         name: last_page
         properties:
           foreground: theme:On Tertiary
@@ -262,7 +271,8 @@ components:
         spacing_below: small
       type: FlowPanel
     - components:
-      - layout_properties: {}
+      - event_bindings: {click: filter_cols_click}
+        layout_properties: {}
         name: filter_cols
         properties:
           foreground: theme:On Tertiary
@@ -273,7 +283,8 @@ components:
           text: ''
           tooltip: filter columns
         type: Button
-      - layout_properties: {}
+      - event_bindings: {click: download_csv_click}
+        layout_properties: {}
         name: download_csv
         properties:
           foreground: theme:On Tertiary
@@ -284,7 +295,8 @@ components:
           text: ''
           tooltip: download csv
         type: Button
-      - layout_properties: {}
+      - event_bindings: {click: print_click}
+        layout_properties: {}
         name: print
         properties:
           foreground: theme:On Tertiary
@@ -295,7 +307,8 @@ components:
           text: ''
           tooltip: print work area page
         type: Button
-      - layout_properties: {}
+      - event_bindings: {click: refresh_click}
+        layout_properties: {}
         name: refresh
         properties:
           foreground: theme:On Tertiary
@@ -308,7 +321,8 @@ components:
           text: ''
           tooltip: refresh work area
         type: Button
-      - layout_properties: {}
+      - event_bindings: {click: del_work_area_click}
+        layout_properties: {}
         name: del_work_area
         properties:
           font_size: 13
