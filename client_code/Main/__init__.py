@@ -69,8 +69,8 @@ class Main(MainTemplate):
     #
     self.menu_block.visible = False
     self.menu_top.visible = False
-    self.menu_panel_left.visible = False
-    self.menu_panel_right.visible = False
+    self.mm_left.visible = False
+    self.mm_right.visible = False
     self.admin_dropdown.visible = False
 
   def work_area_click(self, **event_args):
@@ -324,8 +324,8 @@ class Main(MainTemplate):
       # make menu block and admin menu invisible
       self.menu_block.visible = False
       self.menu_top.visible = False
-      self.menu_panel_left.visible = False
-      self.menu_panel_right.visible = False
+      self.mm_left.visible = False
+      self.mm_right.visible = False
       self.admin_dropdown.visible = False
       self.site_summary.visible = False
 
@@ -370,8 +370,8 @@ class Main(MainTemplate):
       self.site_summary.items = db_summary
       
       #
-      self.menu_panel_left.visible = True
-      self.menu_panel_right.visible = True
+      self.mm_left.visible = True
+      self.mm_right.visible = True
 
     pass
     

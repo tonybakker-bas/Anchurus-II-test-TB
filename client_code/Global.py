@@ -199,6 +199,6 @@ Please select a site. Once selected you can use the menu items to select your ac
 <b>Note:</b> When changing/selecting a new site, all current workspaces wil be deleted.</p>
 <h3> </h3>
 <p>
-For more information on recording Archaeological Excavations please go to the
+For more information on recording Archaeological excavations please go to the
 <a href="https://anchurus.co.uk/" target=_blank>Anchurus Website</a></p>
 """
