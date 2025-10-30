@@ -66,6 +66,11 @@ gh_insert_list = {}
 gh_admin_list = {}
 #
 work_area = {}
+# variable for work area header menu options 
+wa_header_menu_bottom = {}
+wa_header_mb_left = {}
+wa_header_mb_middle = {}
+wa_header_mb_right = {}
 #
 selected_row = []
 selected_highlight_colour = "#66FFFF"

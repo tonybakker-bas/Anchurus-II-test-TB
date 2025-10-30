@@ -31,7 +31,6 @@ class Main(MainTemplate):
     Global.header = Header()
     self.add_component(Global.header, slot='header_slot')
     Global.header.visible = False
-    
     # add Help component (but make it invisible)
     Global.help_page = Help()
     self.add_component(Global.help_page, slot='help_slot')
@@ -64,6 +63,10 @@ class Main(MainTemplate):
 
     #self.action_list.items = Global.user_action_list
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
+    Global.wa_header_menu_bottom = self.menu_bottom
+    Global.wa_header_mb_left = self.mb_left
+    Global.wa_header_mb_middle = self.mb_left
+    Global.wa_header_mb_right = self.mb_right
     #self.action_list.visible = False
     self.site_summary.visible = False
     #
@@ -72,7 +75,8 @@ class Main(MainTemplate):
     self.menu_middle.visible = False
     #self.mm_left.visible = False
     #self.mm_right.visible = False
-    self.menu_bottom.visible = False
+    #
+    Global.wa_header_menu_bottom.visible = False
     #
     self.admin_dropdown.visible = False
 
@@ -104,6 +108,7 @@ class Main(MainTemplate):
     Global.work_area[Global.current_work_area_name]["button"].bold = False
     Global.work_area[Global.current_work_area_name]["button"].background = Global.button_highlight_background_clour
     Global.header.visible = True
+    Global.wa_header_menu_bottom.visible = True
     Global.action_form_type = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
 
     # Set selected buttons on Header for work area type
@@ -132,6 +137,7 @@ class Main(MainTemplate):
   def create_new_work_area(self,action):
     # First make sure the header is visible
     Global.header.visible = True
+    Global.wa_header_menu_bottom.visible = True
     # set name of work_area to be action name if action is view or edit
     work_area_name = action
     if action == "View Context" or action == "Edit Context":
