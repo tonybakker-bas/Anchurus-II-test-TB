@@ -562,6 +562,25 @@ class Main(MainTemplate):
 
   def print_click(self, **event_args):
     """This method is called when the button is clicked"""
+    form = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
+    print("From new print_click, form to use and send to server function: ",form)
+    # table names are all lowercase and singular, so create table name from action
+    tmp_name = Global.work_area[Global.current_work_area_name]["action"].split(" ")[1].strip("s")
+    table_name = tmp_name.lower()
+
+    # clear select column from data_list
+    #i = 0
+    #while i < len(Global.work_area[Global.current_work_area_name]["data_list"]):
+    #  Global.work_area[Global.current_work_area_name]["data_list"][i].pop("select")
+    #  i = i + 1
+
+    # call the print_form at the server-side
+    pdf_form = anvil.server.call('print_form',form,Global.site_id,table_name.strip(),
+                                 Global.work_area[Global.current_work_area_name]["action"],
+                                 Global.work_area[Global.current_work_area_name]["data_list"],
+                                 Global.work_area[Global.current_work_area_name]["page_info"]
+                                )
+    anvil.media.download(pdf_form)
     pass
 
   def refresh_click(self, **event_args):
