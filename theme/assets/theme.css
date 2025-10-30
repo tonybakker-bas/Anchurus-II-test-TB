@@ -778,7 +778,7 @@ input.anvil-component, textarea.anvil-component, .anvil-component select, .anvil
 }
 
 input.anvil-component, .anvil-component select, .anvil-datepicker input, textarea.anvil-component {
-  padding: 8px 8px;
+  padding: 8px 16px;
   border: 0;
   border-bottom: 1px solid %color:Outline%;
 }

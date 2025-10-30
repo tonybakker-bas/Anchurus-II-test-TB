@@ -45,10 +45,6 @@ components:
       name: site_summary
       properties: {font_size: 13, include_placeholder: true, placeholder: Site Summary Rows per Table, spacing_above: none, spacing_below: none}
       type: DropDown
-    - layout_properties: {width: 136.3636474609375}
-      name: text_box_1
-      properties: {}
-      type: TextBox
     - event_bindings: {change: username_dropdown_change}
       layout_properties: {width: 206.170484765625}
       name: username_dropdown
