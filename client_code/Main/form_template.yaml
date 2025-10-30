@@ -57,7 +57,7 @@ components:
         spacing_below: none
       type: DropDown
     - layout_properties: {}
-      name: role
+      name: user_role
       properties:
         font_size: 13
         foreground: theme:On Primary
@@ -71,8 +71,8 @@ components:
         foreground: theme:On Primary
         icon: fa:remove
         spacing:
-          margin: ['5', null, null, null]
-          padding: ['5', '0', null, '0']
+          margin: ['0', null, null, null]
+          padding: ['0', '0', '0', '0']
         text: ''
         tooltip: logout
       type: Button
@@ -150,7 +150,7 @@ components:
   - components:
     - components:
       - layout_properties: {}
-        name: check_box_1
+        name: select_all
         properties:
           allow_indeterminate: true
           checked: false
@@ -160,9 +160,42 @@ components:
           text: ''
           tooltip: select all
         type: CheckBox
+      - layout_properties: {}
+        name: view_row
+        properties:
+          foreground: theme:On Tertiary
+          icon: fa:eye
+          spacing:
+            margin: ['0', '0', null, '0']
+            padding: ['5', '0', '5', '0']
+          text: ''
+          tooltip: view row
+        type: Button
+      - layout_properties: {}
+        name: edit_row
+        properties:
+          foreground: theme:On Tertiary
+          icon: fa:edit
+          spacing:
+            margin: ['0', '0', null, '0']
+            padding: ['5', '0', '5', '0']
+          text: ''
+          tooltip: edit row
+        type: Button
+      - layout_properties: {}
+        name: delete_row
+        properties:
+          foreground: theme:On Tertiary
+          icon: fa:remove
+          spacing:
+            margin: ['0', '0', null, null]
+            padding: ['5', '0', '5', '0']
+          text: ''
+          tooltip: delete row
+        type: Button
       layout_properties: {grid_position: 'CNBXKD,NFHGGR'}
       name: mb_left
-      properties: {}
+      properties: {gap: none}
       type: FlowPanel
     - components:
       - layout_properties: {}
@@ -246,7 +279,7 @@ components:
           foreground: theme:On Tertiary
           icon: fa:download
           spacing:
-            margin: ['0', '0', '0', null]
+            margin: ['0', '0', '0', '0']
             padding: ['0', '0', '0', '0']
           text: ''
           tooltip: download csv
