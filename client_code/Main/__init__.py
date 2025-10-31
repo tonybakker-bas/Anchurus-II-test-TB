@@ -15,7 +15,7 @@ from .. import Global
 from .. import Function
 from ..Help import Help
 
-class Main(MainTemplate):
+class Main(MainTemplate):  
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -235,7 +235,8 @@ class Main(MainTemplate):
     Global.header_work_area_type.text = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     Global.header_work_area_type.enabled = False
     #Global.action_form_type = Global.header_work_area_type.text.split(".")[2][:-2]
-    
+    #
+    # Only show page controls for List action
     if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"]:
       self.mb_middle.visible = False
     elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
@@ -529,11 +530,47 @@ class Main(MainTemplate):
     self.import_dropdown.selected_value = None
     pass
 
-  # Functions on teh header for the work area
+  # Functions on the header for the work area
+  def selection_change(self, **event_args):
+    #
+    rows = [row for row in Global.work_area[Global.current_work_area_name]["self"].repeating_panel_1.get_components()]
+    any_checked = any(row.btn_select.checked for row in rows)
+    all_checked = all(row.btn_select.checked for row in rows)
+    #
+    #self.select_all.checked = any_checked
+    #self.select_all.indeterminate = not all_checked and any_checked
+    Global.work_area[Global.current_work_area_name]["self"].select_all.checked = any_checked
+    Global.work_area[Global.current_work_area_name]["self"].select_all.indeterminate = not all_checked and any_checked
+    Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = any_checked
+    #
+    pass
+  
   def select_all_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
+    checked = self.select_all.checked
+    #
+    #for row in self.repeating_panel_1.get_components(): 
+    for row in Global.work_area[Global.current_work_area_name]["self"].repeating_panel_1.get_components():
+      prev_status_btn_select = row.btn_select.checked
+      row.btn_select.checked = checked
+      #
+      if checked:
+        Global.work_area[Global.current_work_area_name]["selected_rows"].append(row.item)
+        row.background = Global.selected_highlight_colour
+      else:
+        if prev_status_btn_select:
+          Global.work_area[Global.current_work_area_name]["selected_rows"].remove(row.item)
+          row.background = ""
+    #
+    #self.select_all.indeterminate = False
+    Global.work_area[Global.current_work_area_name]["self"].select_all.indeterminate = False
+    #
+    if len(Global.work_area[Global.current_work_area_name]["selected_rows"]) == 0:
+      Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
+    else:
+      Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = True
     pass
-
+    
   def view_row_click(self, **event_args):
     """This method is called when the button is clicked"""
     #
@@ -564,22 +601,46 @@ class Main(MainTemplate):
 
   def delete_row_click(self, **event_args):
     """This method is called when the button is clicked"""
+    message = ""
+    for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
+      Global.table_items = row
+      #print(row)
+      Global.action = "Delete " + Global.table_name.capitalize()
+      message = message + "\nYou have seleted to delete " + Global.table_name.capitalize() + "\n\n" + str(row)
+
+    # ask confirmation to delete selected rows
+    message = message + "\n\nDo you wish to continue?"
+    confirm(message)
     pass
 
   def first_page_click(self, **event_args):
     """This method is called when the button is clicked"""
+    Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
+    Global.work_area[Global.current_work_area_name]["self"].table.set_page(0)
+    Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def prev_page_click(self, **event_args):
     """This method is called when the button is clicked"""
+    Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
+    Global.work_area[Global.current_work_area_name]["self"].table.set_page(self.table.get_page() - 1)
+    Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def next_page_click(self, **event_args):
     """This method is called when the button is clicked"""
+    Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
+    Global.work_area[Global.current_work_area_name]["self"].table.set_page(self.table.get_page() + 1)
+    Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def last_page_click(self, **event_args):
     """This method is called when the button is clicked"""
+    Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
+    rows_per_page = int(self.table.rows_per_page)
+    total_rows = len(self.repeating_panel_1.items)
+    Global.work_area[Global.current_work_area_name]["self"].table.set_page(total_rows // rows_per_page)
+    Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def filter_cols_click(self, **event_args):

@@ -129,6 +129,57 @@ def save_work_areas():
   success = anvil.server.call("save_work_areas", Global.work_area,Global.site_id) 
   return
 
+def update_status_label(self):
+  """Calculates and updates the label with the current row range."""
+  page_num = int(self.table.get_page())
+  rows_per_page = int(self.table.rows_per_page)
+  total_rows = len(self.repeating_panel_1.items)
+  # Calculate the start and end row numbers
+  start_row = (page_num) * rows_per_page + 1
+  end_row = min((page_num + 1) * rows_per_page, total_rows)
+  # 
+  if page_num == 0:
+    # disable first_page_btn and prev_page_btn if on page 0
+    self.first_page.enabled = False
+    self.prev_page.enabled = False
+  else:
+    self.first_page.enabled = True
+    self.prev_page.enabled = True
+  if (rows_per_page != 0) and (page_num == (total_rows // rows_per_page)):
+    # disable last_page_btn and next_page_btn if on last page
+    self.last_page.enabled = False
+    self.next_page.enabled = False
+  else:
+    self.last_page.enabled = True
+    self.next_page.enabled = True
+
+  # Display the formatted string in the status label if 
+  if total_rows > rows_per_page and rows_per_page != 0:
+    self.row_number_info.text = f"{start_row}-{end_row} of {total_rows}"
+  else:
+    # No need to display page control buttons as nr of rows is less than 
+    self.last_page.visible = False
+    self.next_page.visible = False      
+    self.first_page.visible = False
+    self.prev_page.visible = False
+    self.row_number_info.text = "Total " + str(total_rows) + " rows"
+  #
+  Global.work_area[Global.current_work_area_name]["page_info"] = {"page_num": page_num, "rows_per_page": rows_per_page, "total_rows": total_rows}
+  return
+
+def clear_selection(self):
+  # clear select checkbox of rows
+  for row in self.repeating_panel_1.get_components():
+    row.btn_select.checked = False
+    row.background = ""
+
+  # clear selection list
+  Global.work_area[Global.current_work_area_name]["selected_rows"].clear()
+
+  # clear select_all checkbox
+  self.select_all.checked = False
+  return
+
 def table_list_refresh(self):
   # This function does the filling of the table contents
   # 1. call server function '"table_name"s_get', which retrieves all rows of the table_name for the given site
@@ -146,8 +197,7 @@ def table_list_refresh(self):
     Global.work_area[Global.current_work_area_name]["data_list"] = self.repeating_panel_1.items
 
   # Trigger the initial update
-  self.update_status_label()
+  update_status_label(self)
 
-  # Display the total number of rows
-  self.information.text = Global.table_name
+  #self.information.text = Global.table_name
   return
