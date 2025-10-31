@@ -129,7 +129,7 @@ def save_work_areas():
   success = anvil.server.call("save_work_areas", Global.work_area,Global.site_id) 
   return
 
-def update_status_label(self):
+def update_status_label(self,main_form):
   """Calculates and updates the label with the current row range."""
   page_num = int(self.table.get_page())
   rows_per_page = int(self.table.rows_per_page)
@@ -137,7 +137,7 @@ def update_status_label(self):
   # Calculate the start and end row numbers
   start_row = (page_num) * rows_per_page + 1
   end_row = min((page_num + 1) * rows_per_page, total_rows)
-  # 
+  # The page control buttons are not in self but in main form
   if page_num == 0:
     # disable first_page_btn and prev_page_btn if on page 0
     self.first_page.enabled = False
