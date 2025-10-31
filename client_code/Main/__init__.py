@@ -117,7 +117,12 @@ class Main(MainTemplate):
     Global.header.visible = True
     Global.wa_header_menu_bottom.visible = True
     Global.action_form_type = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
-
+    #
+    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"]:
+      self.mb_middle.visible = False
+    elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
+      self.mb_middle.visible = True
+    
     # Set selected buttons on Header for work area type
     if Global.action_form_type in Global.action_forms_with_refresh:
       # Make refresh button visible for Global.action_form_type
@@ -231,6 +236,11 @@ class Main(MainTemplate):
     Global.header_work_area_type.enabled = False
     #Global.action_form_type = Global.header_work_area_type.text.split(".")[2][:-2]
     
+    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"]:
+      self.mb_middle.visible = False
+    elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
+      self.mb_middle.visible = True
+
     # Set selected buttons on Header for work area type
     Global.action_form_type = Global.header_work_area_type.text
     if Global.action_form_type in Global.action_forms_with_refresh:
@@ -526,10 +536,30 @@ class Main(MainTemplate):
 
   def view_row_click(self, **event_args):
     """This method is called when the button is clicked"""
+    #
+    for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
+      Global.table_items = row
+      #print("View button for row: ",row)
+      Global.action = "View " + Global.table_name.capitalize()
+      if Global.main_form:  # Important to check if the form exists
+        # Create new work_area "View Context" and set focus on this new work_area
+        #print("From repatingPanel row calling create_new_work_area for:",Global.action)
+        Global.main_form.create_new_work_area(Global.action)
+      else:
+        print("Main form not found!")
     pass
 
   def edit_row_click(self, **event_args):
     """This method is called when the button is clicked"""
+    #
+    for row in Global.work_area[Global.current_work_area_name]["selected_rows"]:
+      Global.table_items = row
+      Global.action = "Edit " + Global.table_name.capitalize()
+      if Global.main_form:  # Important to check if the form exists
+        # Create new work_area "View Context" and set focus on this new work_area 
+        Global.main_form.create_new_work_area(Global.action)
+      else:
+        print("Main form not found!")
     pass
 
   def delete_row_click(self, **event_args):

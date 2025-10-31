@@ -348,7 +348,7 @@ components:
       type: FlowPanel
     layout_properties: {grid_position: 'OXMUZC,ELDJTQ'}
     name: menu_bottom
-    properties: {background: 'theme:Tertiary'}
+    properties: {background: 'theme:Tertiary', col_widths: '{"NFHGGR":20,"JJKSVV":25,"HLMPXY":15}'}
     type: ColumnPanel
   layout_properties: {slot: nav-right}
   name: menu_block
