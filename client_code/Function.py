@@ -129,8 +129,8 @@ def save_work_areas():
   success = anvil.server.call("save_work_areas", Global.work_area,Global.site_id) 
   return
 
-def update_status_label(self,main_form):
-  """Calculates and updates the label with the current row range."""
+def update_status_label(self):
+  """ Calculates and updates the page control row information label with the current row range."""
   page_num = int(self.table.get_page())
   rows_per_page = int(self.table.rows_per_page)
   total_rows = len(self.repeating_panel_1.items)
@@ -140,29 +140,29 @@ def update_status_label(self,main_form):
   # The page control buttons are not in self but in main form
   if page_num == 0:
     # disable first_page_btn and prev_page_btn if on page 0
-    self.first_page.enabled = False
-    self.prev_page.enabled = False
+    Global.main_form.first_page.enabled = False
+    Global.main_form.prev_page.enabled = False
   else:
-    self.first_page.enabled = True
-    self.prev_page.enabled = True
+    Global.main_form.first_page.enabled = True
+    Global.main_form.prev_page.enabled = True
   if (rows_per_page != 0) and (page_num == (total_rows // rows_per_page)):
     # disable last_page_btn and next_page_btn if on last page
-    self.last_page.enabled = False
-    self.next_page.enabled = False
+    Global.main_form.last_page.enabled = False
+    Global.main_form.next_page.enabled = False
   else:
-    self.last_page.enabled = True
-    self.next_page.enabled = True
+    Global.main_form.last_page.enabled = True
+    Global.main_form.next_page.enabled = True
 
   # Display the formatted string in the status label if 
   if total_rows > rows_per_page and rows_per_page != 0:
-    self.row_number_info.text = f"{start_row}-{end_row} of {total_rows}"
+    Global.main_form.row_number_info.text = f"{start_row}-{end_row} of {total_rows}"
   else:
     # No need to display page control buttons as nr of rows is less than 
-    self.last_page.visible = False
-    self.next_page.visible = False      
-    self.first_page.visible = False
-    self.prev_page.visible = False
-    self.row_number_info.text = "Total " + str(total_rows) + " rows"
+    Global.main_form.last_page.visible = False
+    Global.main_form.next_page.visible = False      
+    Global.main_form.first_page.visible = False
+    Global.main_form.prev_page.visible = False
+    Global.main_form.row_number_info.text = "Total " + str(total_rows) + " rows"
   #
   Global.work_area[Global.current_work_area_name]["page_info"] = {"page_num": page_num, "rows_per_page": rows_per_page, "total_rows": total_rows}
   return
@@ -177,7 +177,7 @@ def clear_selection(self):
   Global.work_area[Global.current_work_area_name]["selected_rows"].clear()
 
   # clear select_all checkbox
-  self.select_all.checked = False
+  Global.main_form.select_all.checked = False
   return
 
 def table_list_refresh(self):

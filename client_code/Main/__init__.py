@@ -81,6 +81,7 @@ class Main(MainTemplate):
     Global.wa_header_menu_bottom.visible = False
     #
     self.admin_dropdown.visible = False
+    Global.main_form = self
 
   #
   # Functions
@@ -123,6 +124,10 @@ class Main(MainTemplate):
     elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
       self.mb_middle.visible = True
     
+    # update status label (page control information) if work_space is a List
+    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
+      Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
+
     # Set selected buttons on Header for work area type
     if Global.action_form_type in Global.action_forms_with_refresh:
       # Make refresh button visible for Global.action_form_type
@@ -200,6 +205,7 @@ class Main(MainTemplate):
     Global.work_area[work_area_name]["data_list"] = [Global.table_items]
     
     # create a new work_space and add this to the work_area_list      
+    print("Main create_new_work_area: ",self)
     Global.work_area[work_area_name]["form"] = Function.create_work_space(action,Global.table_items)
     #print(Global.work_area[work_area_name]["form"])
     self.add_component(Global.work_area[work_area_name]["form"])
@@ -418,7 +424,7 @@ class Main(MainTemplate):
     """This method is called when an item from the dropdown menu is selected"""
     # Action has been selected, but only take action if action in not a separator
     # save a link to the Main form in a Global variable 
-    Global.main_form = get_open_form()
+    #Global.main_form = get_open_form()
     Global.action = self.admin_dropdown.selected_value
 
     if Global.action not in Global.action_list_not_implemented:
@@ -445,7 +451,7 @@ class Main(MainTemplate):
   def insert_dropdown_change(self, **event_args):
     """ This Function is called when the users selects an option form the Insert dropdown"""
     """This method is called when an item is selected"""
-    Global.main_form = get_open_form()
+    #Global.main_form = get_open_form()
     # make action to be "Add ..." 
     Global.action = "Add " + str(self.insert_dropdown.selected_value).capitalize()
     #print("Insert action - ",Global.action)
@@ -474,7 +480,7 @@ class Main(MainTemplate):
     """ This Function is called when the users selects an option form the List dropdown"""
     """This method is called when an item is selected"""
     # clear selected_value
-    Global.main_form = get_open_form()
+    #Global.main_form = get_open_form()
     # make action to be "List ..."
     Global.action = "List " + str(self.list_dropdown.selected_value).capitalize()
     
@@ -501,7 +507,7 @@ class Main(MainTemplate):
   def help_dropdown_change(self, **event_args):
     """ This Function is called when the users selects an option form the Help dropdown"""
     """This method is called when an item is selected"""
-    Global.main_form = get_open_form()
+    #Global.main_form = get_open_form()
     Global.action = self.help_dropdown.selected_value
 
     self.help_dropdown.selected_value = None
@@ -510,7 +516,7 @@ class Main(MainTemplate):
   def view_dropdown_change(self, **event_args):
     """ This Function is called when the users selects an option form the View dropdown"""
     """This method is called when an item is selected"""
-    Global.main_form = get_open_form()
+    #Global.main_form = get_open_form()
     Global.action = self.view_dropdown.selected_value
 
     self.view_dropdown.selected_value = None
@@ -623,22 +629,22 @@ class Main(MainTemplate):
   def prev_page_click(self, **event_args):
     """This method is called when the button is clicked"""
     Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
-    Global.work_area[Global.current_work_area_name]["self"].table.set_page(self.table.get_page() - 1)
+    Global.work_area[Global.current_work_area_name]["self"].table.set_page(Global.work_area[Global.current_work_area_name]["self"].table.get_page() - 1)
     Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def next_page_click(self, **event_args):
     """This method is called when the button is clicked"""
     Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
-    Global.work_area[Global.current_work_area_name]["self"].table.set_page(self.table.get_page() + 1)
+    Global.work_area[Global.current_work_area_name]["self"].table.set_page(Global.work_area[Global.current_work_area_name]["self"].table.get_page() + 1)
     Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def last_page_click(self, **event_args):
     """This method is called when the button is clicked"""
     Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
-    rows_per_page = int(self.table.rows_per_page)
-    total_rows = len(self.repeating_panel_1.items)
+    rows_per_page = int(Global.work_area[Global.current_work_area_name]["self"].table.rows_per_page)
+    total_rows = len(Global.work_area[Global.current_work_area_name]["self"].repeating_panel_1.items)
     Global.work_area[Global.current_work_area_name]["self"].table.set_page(total_rows // rows_per_page)
     Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
