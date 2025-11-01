@@ -79,8 +79,9 @@ def table_list_refresh(self):
   if Global.current_work_area_name is not None:
     Global.work_area[Global.current_work_area_name]["data_list"] = self.repeating_panel_1.items
 
-  # Trigger the initial update
-  update_status_label(self)
+  # Trigger the initial update only if not a print action
+  if not Global.print_action:
+    update_status_label(self)
 
   #self.information.text = Global.table_name
   return

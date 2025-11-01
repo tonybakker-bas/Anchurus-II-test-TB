@@ -173,8 +173,12 @@ class TableList(TableListTemplate):
       col_width = Global.table_colwidth_default
       if field_name in Global.table_colwidth_60:
         col_width = 60
+      if field_name in Global.table_colwidth_70:
+        col_width = 70
       if field_name in Global.table_colwidth_80:
         col_width = 80
+      if field_name in Global.table_colwidth_90:
+        col_width = 90
       if field_name in Global.table_colwidth_100:
         col_width = 100
       if field_name in Global.table_colwidth_120:
@@ -202,9 +206,7 @@ class TableList(TableListTemplate):
     Global.work_area[Global.current_work_area_name]["self"] = self
 
     #self.table_list_refresh()
-    # only update the page control information when not printing form from server
-    if not Global.print_action:
-      FunctionsB.table_list_refresh(self)
+    FunctionsB.table_list_refresh(self)
 
 
     
