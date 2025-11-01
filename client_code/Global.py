@@ -130,6 +130,7 @@ face(s) 7. Bonding material (brick height of 4 courses and 4 bed joints in mm 8 
 """
 image_type = ""
 ip_address = ""
+print_action = False
 selected_material_types = {}
 material_types = ["CBM Tile","CBM Brick","CBM Drain Pipe","CBM Mortar",
                   "Stone","Roofing Slate","Flint","Worked Flint","Pottery",

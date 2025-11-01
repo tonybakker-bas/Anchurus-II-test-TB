@@ -14,6 +14,7 @@ from ..RowForm import RowForm
 from ..TableList import TableList
 from .. import Global
 from .. import Function
+from .. import FunctionsB
 from ..Help import Help
 
 class Main(MainTemplate):  
@@ -131,7 +132,7 @@ class Main(MainTemplate):
     
     # update status label (page control information) if work_space is a List
     if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
-      Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
+      FunctionsB.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
 
     # Set selected buttons on Header for work area type
     if Global.action_form_type in Global.action_forms_with_refresh:
@@ -631,32 +632,32 @@ class Main(MainTemplate):
 
   def first_page_click(self, **event_args):
     """This method is called when the button is clicked"""
-    Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
+    FunctionsB.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
     Global.work_area[Global.current_work_area_name]["self"].table.set_page(0)
-    Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
+    FunctionsB.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def prev_page_click(self, **event_args):
     """This method is called when the button is clicked"""
-    Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
+    FunctionsB.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
     Global.work_area[Global.current_work_area_name]["self"].table.set_page(Global.work_area[Global.current_work_area_name]["self"].table.get_page() - 1)
-    Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
+    FunctionsB.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def next_page_click(self, **event_args):
     """This method is called when the button is clicked"""
-    Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
+    FunctionsB.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
     Global.work_area[Global.current_work_area_name]["self"].table.set_page(Global.work_area[Global.current_work_area_name]["self"].table.get_page() + 1)
-    Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
+    FunctionsB.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def last_page_click(self, **event_args):
     """This method is called when the button is clicked"""
-    Function.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
+    FunctionsB.clear_selection(Global.work_area[Global.current_work_area_name]["self"])
     rows_per_page = int(Global.work_area[Global.current_work_area_name]["self"].table.rows_per_page)
     total_rows = len(Global.work_area[Global.current_work_area_name]["self"].repeating_panel_1.items)
     Global.work_area[Global.current_work_area_name]["self"].table.set_page(total_rows // rows_per_page)
-    Function.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
+    FunctionsB.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def filter_cols_click(self, **event_args):

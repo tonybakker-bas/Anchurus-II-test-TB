@@ -10,7 +10,7 @@ from .. import indeterminate
 
 # import anvil.google.auth, anvil.google.drive
 # from anvil.google.drive import app_files
-from .. import Function
+from .. import FunctionsB
 from .. import Global
 import anvil.server
 
@@ -145,6 +145,7 @@ class TableList(TableListTemplate):
     # Global.site_id is only None when form called from server side (e.g. printing form)
     if Global.site_id is None:
       # initialise some Globals variables for when the function is called from the server side
+      Global.print_action = True
       Global.site_id = site_id
       Global.current_work_area_name = "TableList"
       Global.work_area = {}
@@ -201,7 +202,9 @@ class TableList(TableListTemplate):
     Global.work_area[Global.current_work_area_name]["self"] = self
 
     #self.table_list_refresh()
-    Function.table_list_refresh(self)
+    # only update the page control information when not printing form from server
+    if not Global.print_action:
+      FunctionsB.table_list_refresh(self)
 
 
     
