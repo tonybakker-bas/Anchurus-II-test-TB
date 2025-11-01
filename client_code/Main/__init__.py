@@ -8,6 +8,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.users
 
+from .. import indeterminate
 from ..Header import Header
 from ..RowForm import RowForm
 from ..TableList import TableList

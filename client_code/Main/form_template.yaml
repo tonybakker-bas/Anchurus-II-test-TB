@@ -153,9 +153,10 @@ components:
         layout_properties: {}
         name: select_all
         properties:
-          allow_indeterminate: true
+          allow_indeterminate: false
           background: ''
           checked: false
+          foreground: theme:Secondary Container
           spacing:
             margin: ['0', '0', null, null]
             padding: [null, '0', '0', '24']
@@ -200,7 +201,7 @@ components:
         type: Button
       layout_properties: {grid_position: 'CNBXKD,NFHGGR'}
       name: mb_left
-      properties: {gap: none}
+      properties: {foreground: 'theme:Tertiary', gap: none}
       type: FlowPanel
     - components:
       - event_bindings: {click: first_page_click}
