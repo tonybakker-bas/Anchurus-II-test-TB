@@ -118,6 +118,10 @@ class Main(MainTemplate):
     Global.work_area[Global.current_work_area_name]["button"].background = Global.button_highlight_background_clour
     Global.header.visible = True
     Global.wa_header_menu_bottom.visible = True
+    # set menu_select_opti0ns as invisible
+    Global.work_area[Global.current_work_area_name]["menu_select_options"] = self.fp_select_options
+    Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
+
     Global.action_form_type = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     #
     if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"]:
@@ -158,6 +162,7 @@ class Main(MainTemplate):
     # First make sure the header is visible
     Global.header.visible = True
     Global.wa_header_menu_bottom.visible = True
+
     # set name of work_area to be action name if action is view or edit
     work_area_name = action
     if action == "View Context" or action == "Edit Context":
@@ -193,6 +198,10 @@ class Main(MainTemplate):
     Global.work_area[work_area_name] = {}
     Global.work_area[work_area_name]["action"] = action
     Global.current_work_area_name = work_area_name
+
+    # set menu_select_opti0ns as invisible
+    Global.work_area[Global.current_work_area_name]["menu_select_options"] = self.fp_select_options
+    Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
 
     # Set Global.table_name linked with work_area_type
     Global.table_name = Global.work_area[work_area_name]["action"].split(" ")[1].lower()

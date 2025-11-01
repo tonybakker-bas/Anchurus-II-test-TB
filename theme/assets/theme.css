@@ -1137,3 +1137,9 @@ footer a, .footer .anvil-component {
 .footer a .link-text {
   padding: 0 4px;
 }
+
+/* Target all data grid column headers */
+.anvil-data-grid .data-grid-col-header {
+  background-color: ##348c8c; /* Example: Red background */
+  color: #ffffff; /* Example: White text color */
+}

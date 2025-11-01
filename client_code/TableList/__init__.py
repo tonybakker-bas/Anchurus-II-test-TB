@@ -135,6 +135,8 @@ class TableList(TableListTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #
+    self.column_panel_1.visible = False
+    #
     self.repeating_panel_1.set_event_handler('x-selection-change', self.selection_change)
     #
     self.page_info = page_info
@@ -192,8 +194,8 @@ class TableList(TableListTemplate):
     self.table.role = "horizontal-scroll"
     
     # set menu_select_opti0ns as invisible
-    Global.work_area[Global.current_work_area_name]["menu_select_options"] = self.menu_select_options
-    Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
+    #Global.work_area[Global.current_work_area_name]["menu_select_options"] = self.menu_select_options
+    #Global.work_area[Global.current_work_area_name]["menu_select_options"].visible = False
 
     # save self in Global.work_area
     Global.work_area[Global.current_work_area_name]["self"] = self

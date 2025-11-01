@@ -140,7 +140,8 @@ components:
   layout_properties: {full_width_row: true, grid_position: 'MWMTGX,ARPQLN'}
   name: table
   properties:
-    background: theme:On Primary
+    auto_header: true
+    background: ''
     columns: []
     margin: ['0', null, null, null]
     role: null
