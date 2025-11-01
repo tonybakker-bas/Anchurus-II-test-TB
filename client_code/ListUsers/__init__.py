@@ -14,7 +14,7 @@ class ListUsers(ListUsersTemplate):
   def list_users_refresh(self, **event_args):
     # this function does the filling of the table contents
     self.UsersList.items = anvil.server.call('users_get')
-    self.User_list_1.rows_per_page = Global.nr_of_rows
+    self.User_list_1.rows_per_page = Global.rows_per_page
     self.total_user_number.text = "Total number of Users: " + str(len(self.UsersList.items))
   pass
   
@@ -22,6 +22,8 @@ class ListUsers(ListUsersTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
+    Global.help_page.visible = False
+    Global.main_form.menu_bottom.visible = False
     self.list_users_refresh()
 
 

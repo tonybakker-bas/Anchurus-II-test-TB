@@ -67,5 +67,7 @@ class UserForm(UserFormTemplate):
   def submit_changes_click(self, **event_args):
     """This method is called when the button is clicked"""
     #print("New values for ",Global.user_items["email"], ": ", Global.user_role,Global.user_status)
-    anvil.server.call('user_update',Global.user_items["email"], Global.user_role,Global.user_status,Global.user_initials)
+    msg = anvil.server.call('user_update',Global.user_items["email"], Global.user_role,Global.user_status,Global.user_initials)
+    n = Notification(msg)
+    n.show()
     pass

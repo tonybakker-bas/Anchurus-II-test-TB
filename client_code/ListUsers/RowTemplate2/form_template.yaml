@@ -2,7 +2,14 @@ components:
 - event_bindings: {click: edit_user_button_click}
   layout_properties: {column: FBKXLS}
   name: edit_user_button
-  properties: {icon: 'fa:edit', text: ''}
+  properties:
+    icon: fa:edit
+    spacing:
+      margin: ['0', null, '0', null]
+      padding: ['0', '0', '0', '0']
+    text: ''
   type: Button
-container: {type: DataRowPanel}
+container:
+  properties: {tooltip: edit user details}
+  type: DataRowPanel
 is_package: true

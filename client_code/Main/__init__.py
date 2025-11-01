@@ -131,7 +131,7 @@ class Main(MainTemplate):
       self.mb_middle.visible = True
     
     # update status label (page control information) if work_space is a List
-    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
+    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"] and Global.work_area[Global.current_work_area_name]["action"] != "List Users":
       FunctionsB.update_status_label(Global.work_area[Global.current_work_area_name]["self"])
 
     # Set selected buttons on Header for work area type
@@ -288,6 +288,7 @@ class Main(MainTemplate):
   def login_button_click(self, **event_args):
     """" This Function is called when the users logs in """
     """This method is called when the button is clicked"""
+    print("Login button clicked")
     user = anvil.users.login_with_form(allow_cancel=True)
     # check if user is logged in as newly registered account needs explicit enabling by administrator 
     # user = anvil.users.get_user()
@@ -318,7 +319,12 @@ class Main(MainTemplate):
       Global.user_role = user["role"]
       if Global.user_role == "admin":
         #print(Global.username, Global.user_role)
+        self.menu_middle.visible = True
+        self.mm_right.visible = True
+        self.mm_left.visible = False
+        self.mm_middle.visible = False
         self.admin_dropdown.visible = True
+        self.menu_block.visible = False
       
       # make menu bar variable visible
       self.menu_block.visible = True
@@ -376,8 +382,9 @@ class Main(MainTemplate):
       self.menu_block.visible = False
       self.menu_top.visible = False
       self.menu_middle.visible = False
-      #self.mm_left.visible = False
-      #self.mm_right.visible = False
+      self.mm_left.visible = False
+      self.mm_middle.visible = False
+      self.mm_right.visible = False
       self.admin_dropdown.visible = False
       self.site_summary.visible = False
       self.menu_bottom.visible = False
@@ -425,8 +432,9 @@ class Main(MainTemplate):
       
       #
       self.menu_middle.visible = True
-      #self.mm_left.visible = True
-      #self.mm_right.visible = True
+      self.mm_left.visible = True
+      self.mm_middle.visible = True
+      self.mm_right.visible = True
     pass
 
   # Funtions for the menu options (Menu_middle) after the user selected a site

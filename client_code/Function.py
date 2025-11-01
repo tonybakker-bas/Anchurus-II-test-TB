@@ -48,7 +48,11 @@ def create_work_space(type,data_list):
   action = type.split(" ")[0].lower()
   print(action, table_name)
   # first param of RowForm and TableList is site_id, but is blanked out. Only used by server print function
-  if action == "list":
+  if type == "List Users":
+    work_space = ListUsers()
+  elif type == "List Sites":
+    work_space = ListSites()
+  elif action == "list":
     work_space = TableList("",table_name,data_list,type,page_info)
     print(work_space)
   elif type == "List Contexts":
@@ -59,10 +63,6 @@ def create_work_space(type,data_list):
   elif type == "List Finds":
     work_space = TableList("","find",data_list,type,page_info)
     #work_space = ListFinds("")
-  elif type == "List Sites":
-    work_space = ListSites()
-  elif type == "List Users":
-    work_space = ListUsers()
   elif type == "Import":
     work_space = ImportForm()
   elif type == "Add Row":
