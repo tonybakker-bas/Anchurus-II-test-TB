@@ -127,8 +127,10 @@ class Main(MainTemplate):
     #
     if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"] or Global.work_area[Global.current_work_area_name]["action"] == "List Users":
       self.mb_middle.visible = False
+      self.mb_left.visible = False
     elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
       self.mb_middle.visible = True
+      self.mb_left.visible = True
     
     # update status label (page control information) if work_space is a List
     if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"] and Global.work_area[Global.current_work_area_name]["action"] != "List Users":
@@ -161,10 +163,10 @@ class Main(MainTemplate):
   pass
 
   def create_new_work_area(self,action):
-    """"his Function is called when a user creates a new work area"""
+    """ This Function is called when a user creates a new work area"""
     #
     # First make sure the header is visible
-    Global.header.visible = True
+    Global.header.visible = False
     Global.wa_header_menu_bottom.visible = True
 
     # set name of work_area to be action name if action is view or edit
@@ -259,8 +261,10 @@ class Main(MainTemplate):
     # Only show page controls for List action
     if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"] or Global.work_area[Global.current_work_area_name]["action"] == "List Users":
       self.mb_middle.visible = False
+      self.mb_left.visible = False
     elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
       self.mb_middle.visible = True
+      self.mb_left.visible = True
 
     # Set selected buttons on Header for work area type
     Global.action_form_type = Global.header_work_area_type.text
