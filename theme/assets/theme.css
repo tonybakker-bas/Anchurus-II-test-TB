@@ -182,9 +182,9 @@ color: %color:On Primary Container%;
 }
 
 .nav-holder {
-  display: flex; 
+ display: flex; 
 /*  flex-grow: 1;
-  overflow-y: initial;*/
+    overflow-y: initial;*/
 }
 
 @media print {
