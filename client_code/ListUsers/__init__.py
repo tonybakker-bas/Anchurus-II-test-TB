@@ -9,6 +9,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 from .. import Global
+from .. import FunctionsB
 
 class ListUsers(ListUsersTemplate):
   def list_users_refresh(self, **event_args):
@@ -23,7 +24,15 @@ class ListUsers(ListUsersTemplate):
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     Global.help_page.visible = False
-    Global.main_form.menu_bottom.visible = False
-    self.list_users_refresh()
+    Global.main_form.menu_bottom.visible = True
+    Global.main_form.mb_left.visible = False
+    Global.main_form.mb_middle.visible = False
+    #
+    # save self in Global.work_area
+    Global.work_area[Global.current_work_area_name]["self"] = self
+    
+    #self.list_users_refresh()
+    FunctionsB.list_users_refresh(self)
+
 
 

@@ -48,6 +48,7 @@ def create_work_space(type,data_list):
   action = type.split(" ")[0].lower()
   print(action, table_name)
   # first param of RowForm and TableList is site_id, but is blanked out. Only used by server print function
+  # Make sure any List actions that are notmusing the TableList Form should be listed first
   if type == "List Users":
     work_space = ListUsers()
   elif type == "List Sites":
@@ -63,20 +64,24 @@ def create_work_space(type,data_list):
   elif type == "List Finds":
     work_space = TableList("","find",data_list,type,page_info)
     #work_space = ListFinds("")
+  #
   elif type == "Import":
     work_space = ImportForm()
+  #
   elif type == "Add Row":
     work_space = RowForm("","row",data_list,type,page_info)
+  #
   elif type == "Add Context":
     work_space = RowForm("","context",data_list,type,page_info)
     #work_space = ContextForm()
-  elif type == "Add Area":
-    work_space = AreaForm()
   elif type == "Add Find":
     work_space = RowForm("","find",data_list,type,page_info)
     #work_space = FindForm()
+  elif type == "Add Area":
+    work_space = AreaForm()
   elif type == "Add Site":
     work_space = SiteForm()
+  #
   elif type == "Edit Context":
     work_space = RowForm("","context",data_list,type,page_info)
     #work_space = ContextForm()
@@ -88,6 +93,7 @@ def create_work_space(type,data_list):
     work_space = SiteForm()
   elif type == "Edit User":
     work_space = UserForm()
+  #
   elif type == "View Row":
     work_space = RowForm("","context",data_list,type,page_info)
   elif type == "View Context":
@@ -99,8 +105,10 @@ def create_work_space(type,data_list):
     work_space = AreaForm()
   elif type == "View Site":
     work_space = SiteForm()
+  #
   elif type == "Draw":
     work_space = Draw()
+  #
   elif type == "Help":
     work_space = Help()
   else:

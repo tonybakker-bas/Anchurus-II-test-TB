@@ -69,7 +69,7 @@ class Main(MainTemplate):
     # make all fields invisible to only show about_us_text box as welcome followed by login and registration buttons (see design of Main)
     Global.wa_header_menu_bottom = self.menu_bottom
     Global.wa_header_mb_left = self.mb_left
-    Global.wa_header_mb_middle = self.mb_left
+    Global.wa_header_mb_middle = self.mb_middle
     Global.wa_header_mb_right = self.mb_right
     #self.action_list.visible = False
     self.site_summary.visible = False
@@ -125,7 +125,7 @@ class Main(MainTemplate):
 
     Global.action_form_type = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     #
-    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"]:
+    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"] or Global.work_area[Global.current_work_area_name]["action"] == "List Users":
       self.mb_middle.visible = False
     elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
       self.mb_middle.visible = True
@@ -138,8 +138,11 @@ class Main(MainTemplate):
     if Global.action_form_type in Global.action_forms_with_refresh:
       # Make refresh button visible for Global.action_form_type
       Global.header_refresh_button.visible = True
+      self.refresh.visible = True
     else:
       Global.header_refresh_button.visible = False
+      self.refresh.visible = False
+
     if Global.action_form_type in Global.action_forms_with_print:
       # Make print button visible for Global.action_form_type
       Global.header_print_button.visible = True
@@ -254,7 +257,7 @@ class Main(MainTemplate):
     #Global.action_form_type = Global.header_work_area_type.text.split(".")[2][:-2]
     #
     # Only show page controls for List action
-    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"]:
+    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"] or Global.work_area[Global.current_work_area_name]["action"] == "List Users":
       self.mb_middle.visible = False
     elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
       self.mb_middle.visible = True
@@ -264,8 +267,11 @@ class Main(MainTemplate):
     if Global.action_form_type in Global.action_forms_with_refresh:
       # make Refresh button visible if action_form_type has refresh function (i.e. in list Global.action_forms_with_refresh) 
       Global.header_refresh_button.visible = True
+      self.refresh.visible = True
     else:
       Global.header_refresh_button.visible = False
+      self.refresh.visible = False
+
     if Global.action_form_type in Global.action_forms_with_print:
       # make print button visible if action_form_type has print function (i.e. in list Global.action_forms_with_print) 
       Global.header_print_button.visible = True
@@ -701,6 +707,8 @@ class Main(MainTemplate):
 
   def refresh_click(self, **event_args):
     """This method is called when the button is clicked"""
+    print("Refresh cicked: ",Global.current_work_area_name)
+    FunctionsB.refresh_click(Global.work_area[Global.current_work_area_name]["self"])
     pass
 
   def del_work_area_click(self, **event_args):

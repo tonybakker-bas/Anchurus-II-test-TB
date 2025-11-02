@@ -1,3 +1,4 @@
+from anvil import *
 import anvil.server
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
@@ -63,6 +64,21 @@ def clear_selection(self):
   Global.main_form.select_all.checked = False
   return
 
+def refresh_click(self):
+  # The refresh button on then main menu has been clicked. 
+  # The self variable is the one of the current_work_area_name
+  # select which refresh fucntion should be called
+  if Global.work_area[Global.current_work_area_name]["form_type"] == "ListUsers":
+    list_users_refresh(self)
+  elif Global.work_area[Global.current_work_area_name]["form_type"] == "TableList":
+    table_list_refresh(self)
+  else:
+    msg = "Refresh not yet implemented."
+    n = Notification(msg)
+    n.show()
+  
+  return
+  
 def table_list_refresh(self):
   # This function does the filling of the table contents
   # 1. call server function '"table_name"s_get', which retrieves all rows of the table_name for the given site
@@ -84,4 +100,11 @@ def table_list_refresh(self):
     update_status_label(self)
 
   #self.information.text = Global.table_name
+  return
+
+def list_users_refresh(self):
+  # this function does the filling of the table contents
+  self.UsersList.items = anvil.server.call('users_get')
+  self.User_list_1.rows_per_page = Global.rows_per_page
+  self.total_user_number.text = "Total number of Users: " + str(len(self.UsersList.items))
   return
