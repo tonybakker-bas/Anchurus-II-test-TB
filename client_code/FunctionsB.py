@@ -62,7 +62,12 @@ def clear_selection(self):
 
   # clear select_all checkbox
   Global.main_form.select_all.checked = False
+  Global.main_form.select_all.indeterminate = False
   return
+  
+#
+#
+#
 
 def refresh_click(self):
   # The refresh button on then main menu has been clicked. 

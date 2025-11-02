@@ -215,10 +215,10 @@ class TableList(TableListTemplate):
     rows = [row for row in self.repeating_panel_1.get_components()]
     any_checked = any(row.btn_select.checked for row in rows)
     all_checked = all(row.btn_select.checked for row in rows)
-    print("any_checked: ",any_checked)
-    print("all_checked: ",all_checked)
+    #print("any_checked: ",any_checked)
+    #print("all_checked: ",all_checked)
     indeterminate_value = not all_checked and any_checked
-    print("indeterminate: ",indeterminate_value)
+    #print("indeterminate: ",indeterminate_value)
     # make select_all a Global.work_area[Global.Global.current_work_area_name]["select_all"]
     self.select_all.checked = any_checked
     self.select_all.indeterminate = not all_checked and any_checked

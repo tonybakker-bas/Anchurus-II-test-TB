@@ -323,6 +323,7 @@ class Main(MainTemplate):
       # if users has admin role, add admin actions list and set it visible
       user = anvil.users.get_user()
       Global.user_role = user["role"]
+      self.user_role.text = Global.user_role
       if Global.user_role == "admin":
         #print(Global.username, Global.user_role)
         self.menu_middle.visible = True
