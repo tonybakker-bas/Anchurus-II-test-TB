@@ -12,6 +12,7 @@ from .. import indeterminate
 from ..Header import Header
 from ..RowForm import RowForm
 from ..TableList import TableList
+from ..ImportForm import ImportForm
 from .. import Global
 from .. import Function
 from .. import FunctionsB
@@ -55,6 +56,7 @@ class Main(MainTemplate):
     table_list = anvil.server.call("db_table_list")    
     Global.insert_action_dropdown = table_list
     Global.list_action_dropdown = table_list
+    Global.import_table_name_dropdown = table_list
     # fill action menu options  
     self.insert_dropdown.items = Global.insert_action_dropdown
     self.list_dropdown.items = Global.list_action_dropdown
@@ -91,6 +93,10 @@ class Main(MainTemplate):
   def work_area_click(self, **event_args):
     """" This function is called when the work area button is clicked. Here we make sure all the variable are set correct for the work area swap"""
     #
+    # First make sure the old header is invisible
+    Global.header.visible = False
+    Global.wa_header_menu_bottom.visible = True
+
     # Here the user clicked on a button in the left navigation list, requested to go to a different work area.
     for name in Global.work_area:
       Global.work_area[name]["form"].visible = False
@@ -117,7 +123,9 @@ class Main(MainTemplate):
     Global.work_area[Global.current_work_area_name]["form"].visible = True
     Global.work_area[Global.current_work_area_name]["button"].bold = False
     Global.work_area[Global.current_work_area_name]["button"].background = Global.button_highlight_background_clour
-    Global.header.visible = True
+
+    # make old header invisible
+    Global.header.visible = False
     Global.wa_header_menu_bottom.visible = True
     # set menu_select_opti0ns as invisible
     Global.work_area[Global.current_work_area_name]["menu_select_options"] = self.fp_select_options
@@ -165,7 +173,7 @@ class Main(MainTemplate):
   def create_new_work_area(self,action):
     """ This Function is called when a user creates a new work area"""
     #
-    # First make sure the header is visible
+    # First make sure the old header is invisible
     Global.header.visible = False
     Global.wa_header_menu_bottom.visible = True
 
@@ -530,6 +538,29 @@ class Main(MainTemplate):
   def import_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
     """ This Function is called when the users selects an option form the Import dropdown"""
+    print("Import dropdown")
+    #Global.main_form = get_open_form()
+    # make action to be "Add ..." 
+    Global.action = "Import Table"
+    #print("Import action - ",Global.action)
+    if Global.action not in Global.action_list_not_implemented:
+      # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
+      # for any action that has a Form defined create a new work_area
+      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown):
+        # if site is not yet selected alert user
+        alert(
+          content="Site has not been selected. Please select a site.",
+          title="Site selection warning",
+          large=True,
+          buttons=[("Ok", True)],
+        )
+      else:
+        self.create_new_work_area(Global.action)
+    else:
+      if Global.action != Global.separator:
+        alert("Action not yet implemented.")
+
+    # clear selected_value
 
     self.import_dropdown.selected_value = None
     pass
