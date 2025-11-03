@@ -40,7 +40,7 @@ action_forms_with_refresh = ["TableList","RowForm","ListUsers","ListSites","List
 #action_forms_with_print = ["ListUsers","ListSites","ListContexts","ListFinds","ListAreas","List Areas","View Context","View Find","View Area"]
 action_forms_with_print = ["ListContexts","ListFinds","TableList","RowForm"]
 action_forms_with_download = ["ListContexts","ListFinds","TableList"]
-action_forms_with_filter = ["ListContexts","ListFinds","TableList"]
+action_forms_with_filter = ["ListContexts","ListFinds","TableList","RowForm"]
 #
 action_seq_no = {}
 csv_file = None

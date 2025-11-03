@@ -28,7 +28,7 @@ class ImportForm(ImportFormTemplate):
     self.selected_table.text = "You have selected to import a csv file for the table: " + Global.table_name
     Global.main_form.mb_left.visible = False
     Global.main_form.mb_middle.visible = False
-    Global.main_form.
+    #Global.main_form.
 
 
   def upload_file_change(self, file, **event_args):

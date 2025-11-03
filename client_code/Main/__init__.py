@@ -134,7 +134,7 @@ class Main(MainTemplate):
 
     Global.action_form_type = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
     #
-    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"] or Global.work_area[Global.current_work_area_name]["action"] == "List Users":
+    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add", "Import"] or Global.work_area[Global.current_work_area_name]["action"] == "List Users":
       self.mb_middle.visible = False
       self.mb_left.visible = False
     elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
@@ -153,22 +153,27 @@ class Main(MainTemplate):
     else:
       Global.header_refresh_button.visible = False
       self.refresh.visible = False
-
     if Global.action_form_type in Global.action_forms_with_print:
       # Make print button visible for Global.action_form_type
       Global.header_print_button.visible = True
+      self.print.visible = True
     else:
       Global.header_print_button.visible = False
+      self.print.visible = False
     if Global.action_form_type in Global.action_forms_with_download:
       # Make download button visible for Global.action_form_type
       Global.header_download_button.visible = True
+      self.download_csv.visible = True
     else:
       Global.header_download_button.visible = False
+      self.download_csv.visible = False
     if Global.action_form_type in Global.action_forms_with_filter:
       # Make filter button visible for Global.action_form_type
       Global.header_filter_button.visible = True
+      self.filter_cols.visible = True
     else:
       Global.header_filter_button.visible = False
+      self.filter_cols.visible = False
   pass
 
   def create_new_work_area(self,action):
@@ -283,7 +288,7 @@ class Main(MainTemplate):
       #Global.action_form_type = Global.header_work_area_type.text.split(".")[2][:-2]
       #
       # Only show page controls for List action
-      if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"] or Global.work_area[Global.current_work_area_name]["action"] == "List Users":
+      if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add", "Import"] or Global.work_area[Global.current_work_area_name]["action"] == "List Users":
         self.mb_middle.visible = False
         self.mb_left.visible = False
       elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
@@ -296,6 +301,7 @@ class Main(MainTemplate):
         # make Refresh button visible if action_form_type has refresh function (i.e. in list Global.action_forms_with_refresh) 
         Global.header_refresh_button.visible = True
         self.refresh.visible = True
+        print("set refresh button")
       else:
         Global.header_refresh_button.visible = False
         self.refresh.visible = False
@@ -303,18 +309,25 @@ class Main(MainTemplate):
       if Global.action_form_type in Global.action_forms_with_print:
         # make print button visible if action_form_type has print function (i.e. in list Global.action_forms_with_print) 
         Global.header_print_button.visible = True
+        self.print.visible = True
       else:
-        Global.header_print_button.visible = False    
+        Global.header_print_button.visible = False   
+        self.print.visible = False
       if Global.action_form_type in Global.action_forms_with_download:
         # Make download button visible for Global.action_form_type
         Global.header_download_button.visible = True
+        self.download_csv.visible = True
       else:
         Global.header_download_button.visible = False
+        self.download_csv.visible = False
       if Global.action_form_type in Global.action_forms_with_filter:
         # Make filter button visible for Global.action_form_type
         Global.header_filter_button.visible = True
+        self.filter_cols.visible = True
       else:
         Global.header_filter_button.visible = False
+        self.filter_cols.visible = False
+
       # reset action dropdown list
       #self.action_list.selected_value = None
     else:
