@@ -1144,7 +1144,6 @@ footer a, .footer .anvil-component {
 }
 
 /* Target all data grid column headers */
-/* .anvil-data-grid .data-grid-col-header { */
 .anvil-data-grid .auto-grid-header {
   background-color: #348c8c; /* Example: background */
   /* color: #ffffff; /* Example: White text color */

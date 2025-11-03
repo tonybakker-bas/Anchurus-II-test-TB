@@ -169,7 +169,7 @@ table_colwidth_120 = []
 table_colwidth_140 = []
 table_colwidth_default = 150
 #
-title = system + "\n" + organisation
+title = system + "\n\n" + organisation
 sign_in_out_button_text = "Sign in"
 username = ""
 user_initials = ""
