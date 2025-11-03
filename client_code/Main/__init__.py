@@ -213,86 +213,103 @@ class Main(MainTemplate):
     Global.table_name = Global.work_area[work_area_name]["action"].split(" ")[1].lower()
 
     # create the button for the work_area in the navigation panel, add it to the work_area_list Column Panel and set event handler for when clicked
-    Global.work_area[work_area_name]["button"] = Button(text=work_area_name,align="left")
+    if Global.dummy_btn1 != {}:
+      Global.dummy_btn1.remove_from_parent() 
+      Global.dummy_btn2.remove_from_parent() 
+
+    Global.work_area[work_area_name]["button"] = Button(text=work_area_name,align="left",tooltip="select workspace")
     self.work_area_list.add_component(Global.work_area[work_area_name]["button"])
     Global.work_area[work_area_name]["button"].add_event_handler('click', self.work_area_click)
+    
+    Global.dummy_btn1 = Button(text="")
+    Global.dummy_btn1.enabled = False
+    Global.dummy_btn1.visible = True
+    self.work_area_list.add_component(Global.dummy_btn1) 
+    Global.dummy_btn2 = Button(text="")
+    Global.dummy_btn2.enabled = False
+    Global.dummy_btn2.visible = True
+    self.work_area_list.add_component(Global.dummy_btn2)
     
     # add the table_items to the work_area_name
     Global.work_area[work_area_name]["data_list"] = [Global.table_items]
     
     # create a new work_space and add this to the work_area_list and add component to main     
     print("Main create_new_work_area: ",self)
-    Global.work_area[work_area_name]["form"] = Function.create_work_space(action,Global.table_items)
-    #print(Global.work_area[work_area_name]["form"])
-    self.add_component(Global.work_area[work_area_name]["form"])
+    form_result = Function.create_work_space(action,Global.table_items)
+    if form_result != "Unknown":
+      Global.work_area[work_area_name]["form"] = form_result
+      #print(Global.work_area[work_area_name]["form"])
+      self.add_component(Global.work_area[work_area_name]["form"])
        
-    # set button name to new work_area_name
-    Global.work_area[work_area_name]["button"].text = work_area_name
-    Global.work_area[work_area_name]["form_type"] = str(type(Global.work_area[work_area_name]["form"])).split(".")[2][:-2]
-    #
-    Global.work_area[work_area_name]["site_name"] = Global.site_name
-    Global.header_site_name.text = Global.work_area[work_area_name]["site_name"]
-    Global.work_area[work_area_name]["site_id"] = Global.site_id
+      # set button name to new work_area_name
+      Global.work_area[work_area_name]["button"].text = work_area_name
+      Global.work_area[work_area_name]["form_type"] = str(type(Global.work_area[work_area_name]["form"])).split(".")[2][:-2]
+      #
+      Global.work_area[work_area_name]["site_name"] = Global.site_name
+      Global.header_site_name.text = Global.work_area[work_area_name]["site_name"]
+      Global.work_area[work_area_name]["site_id"] = Global.site_id
     
-    # set selected rows list to empty
-    Global.work_area[work_area_name]["selected_rows"] = []
+      # set selected rows list to empty
+      Global.work_area[work_area_name]["selected_rows"] = []
 
-    # make all work spaces invisible
-    for name in Global.work_area:
-      Global.work_area[name]["form"].visible = False
-      Global.work_area[name]["button"].bold = False
-      Global.work_area[name]["button"].background = Global.button_normal_background_clour
+      # make all work spaces invisible
+      for name in Global.work_area:
+        Global.work_area[name]["form"].visible = False
+        Global.work_area[name]["button"].bold = False
+        Global.work_area[name]["button"].background = Global.button_normal_background_clour
     
-    # create an empty filter and empty hidden_columns
-    Global.work_area[Global.current_work_area_name]["filter"] = []
-    Global.work_area[Global.current_work_area_name]["hidden_columns"] = []
+      # create an empty filter and empty hidden_columns
+      Global.work_area[Global.current_work_area_name]["filter"] = []
+      Global.work_area[Global.current_work_area_name]["hidden_columns"] = []
     
-    # Make newly created work area visible and have Focus
-    Global.work_area[work_area_name]["form"].visible = True
-    Global.work_area[work_area_name]["button"].bold = False
-    Global.work_area[work_area_name]["button"].background = Global.button_highlight_background_clour
-    #
-    Global.header_work_area_name.text = work_area_name
-    Global.current_work_area_name = work_area_name
-    Global.header_work_area_type.text = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
-    Global.header_work_area_type.enabled = False
-    #Global.action_form_type = Global.header_work_area_type.text.split(".")[2][:-2]
-    #
-    # Only show page controls for List action
-    if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"] or Global.work_area[Global.current_work_area_name]["action"] == "List Users":
-      self.mb_middle.visible = False
-      self.mb_left.visible = False
-    elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
-      self.mb_middle.visible = True
-      self.mb_left.visible = True
+      # Make newly created work area visible and have Focus
+      Global.work_area[work_area_name]["form"].visible = True
+      Global.work_area[work_area_name]["button"].bold = False
+      Global.work_area[work_area_name]["button"].background = Global.button_highlight_background_clour
+      #
+      Global.header_work_area_name.text = work_area_name
+      Global.current_work_area_name = work_area_name
+      Global.header_work_area_type.text = str(type(Global.work_area[Global.current_work_area_name]["form"])).split(".")[2][:-2]
+      Global.header_work_area_type.enabled = False
+      #Global.action_form_type = Global.header_work_area_type.text.split(".")[2][:-2]
+      #
+      # Only show page controls for List action
+      if Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["View", "Edit", "Add"] or Global.work_area[Global.current_work_area_name]["action"] == "List Users":
+        self.mb_middle.visible = False
+        self.mb_left.visible = False
+      elif Global.work_area[Global.current_work_area_name]["action"].split(" ")[0] in ["List"]:
+        self.mb_middle.visible = True
+        self.mb_left.visible = True
 
-    # Set selected buttons on Header for work area type
-    Global.action_form_type = Global.header_work_area_type.text
-    if Global.action_form_type in Global.action_forms_with_refresh:
-      # make Refresh button visible if action_form_type has refresh function (i.e. in list Global.action_forms_with_refresh) 
-      Global.header_refresh_button.visible = True
-      self.refresh.visible = True
-    else:
-      Global.header_refresh_button.visible = False
-      self.refresh.visible = False
+      # Set selected buttons on Header for work area type
+      Global.action_form_type = Global.header_work_area_type.text
+      if Global.action_form_type in Global.action_forms_with_refresh:
+        # make Refresh button visible if action_form_type has refresh function (i.e. in list Global.action_forms_with_refresh) 
+        Global.header_refresh_button.visible = True
+        self.refresh.visible = True
+      else:
+        Global.header_refresh_button.visible = False
+        self.refresh.visible = False
 
-    if Global.action_form_type in Global.action_forms_with_print:
-      # make print button visible if action_form_type has print function (i.e. in list Global.action_forms_with_print) 
-      Global.header_print_button.visible = True
+      if Global.action_form_type in Global.action_forms_with_print:
+        # make print button visible if action_form_type has print function (i.e. in list Global.action_forms_with_print) 
+        Global.header_print_button.visible = True
+      else:
+        Global.header_print_button.visible = False    
+      if Global.action_form_type in Global.action_forms_with_download:
+        # Make download button visible for Global.action_form_type
+        Global.header_download_button.visible = True
+      else:
+        Global.header_download_button.visible = False
+      if Global.action_form_type in Global.action_forms_with_filter:
+        # Make filter button visible for Global.action_form_type
+        Global.header_filter_button.visible = True
+      else:
+        Global.header_filter_button.visible = False
+      # reset action dropdown list
+      #self.action_list.selected_value = None
     else:
-      Global.header_print_button.visible = False    
-    if Global.action_form_type in Global.action_forms_with_download:
-      # Make download button visible for Global.action_form_type
-      Global.header_download_button.visible = True
-    else:
-      Global.header_download_button.visible = False
-    if Global.action_form_type in Global.action_forms_with_filter:
-      # Make filter button visible for Global.action_form_type
-      Global.header_filter_button.visible = True
-    else:
-      Global.header_filter_button.visible = False
-    # reset action dropdown list
-    #self.action_list.selected_value = None
+      Notification("This action is not yet implemented.")
     pass
   
   def login_button_click(self, **event_args):
@@ -370,55 +387,6 @@ class Main(MainTemplate):
       self.action_list.visible = True
       self.menu_top.visible = True
       self.welcome_page.visible = False
-    pass
-
-  def username_dropdown_change(self, **event_args):
-    """ This Function is called when the users has selected the logout option of the username dropdown """
-    """This method is called when an item is selected"""
-    # This dropdown change means that the user selected for a Logout
-    # as the only selection available in the dropdown list is Logout
-    # But we just check in case it is not ;)
-    if self.username_dropdown.selected_value == "Logout":
-      # logout user, hide action menu, username and logout button; also delete all workspaces
-      anvil.server.call("user_logout_notification",Global.ip_address,Global.username)
-      anvil.users.logout()
-
-      # make help_page invisible
-      Global.help_page.visible = False
-
-      # Welcome_page will show the login page
-      self.welcome_page.visible = True
-      
-      # make menu block and admin menu invisible
-      self.menu_block.visible = False
-      self.menu_top.visible = False
-      self.menu_middle.visible = False
-      self.mm_left.visible = False
-      self.mm_middle.visible = False
-      self.mm_right.visible = False
-      self.admin_dropdown.visible = False
-      self.site_summary.visible = False
-      self.menu_bottom.visible = False
-
-      self.username_dropdown.placeholder = Global.username
-      self.username_dropdown.items = []
-
-      # To be done: save work areas in table for user for loading when login
-
-      #delete all work_areas and all work_area names/buttons
-      temp_work_area_name_list = list(Global.work_area.keys())
-      for work_area_name in temp_work_area_name_list:
-        Function.delete_workspace(work_area_name)
-
-      # clear selected site
-      self.select_site_dropdown.selected_value = None
-      
-      # clear work_area list and action_seq_no
-      Global.work_area = {}
-      Global.action_seq_no = {}
-      
-      #components = self.get_components()
-      #print(f"{len(components)} components after deleting all workspaces")
     pass
 
   def select_site_dropdown_change(self, **event_args):
@@ -720,3 +688,57 @@ class Main(MainTemplate):
     """This method is called when the button is clicked"""
     pass
 
+  def logout_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    # logout user, hide action menu, username and logout button; also delete all workspaces
+    anvil.server.call("user_logout_notification",Global.ip_address,Global.username)
+    anvil.users.logout()
+
+    # make help_page invisible
+    Global.help_page.visible = False
+
+    # Welcome_page will show the login page
+    self.welcome_page.visible = True
+
+    # make menu block and admin menu invisible
+    self.menu_block.visible = False
+    self.menu_top.visible = False
+    self.menu_middle.visible = False
+    self.mm_left.visible = False
+    self.mm_middle.visible = False
+    self.mm_right.visible = False
+    self.admin_dropdown.visible = False
+    self.site_summary.visible = False
+    self.menu_bottom.visible = False
+
+    self.username_dropdown.placeholder = Global.username
+    self.username_dropdown.items = []
+
+    # To be done: save work areas in table for user for loading when login
+
+    #delete all work_areas and all work_area names/buttons
+    temp_work_area_name_list = list(Global.work_area.keys())
+    for work_area_name in temp_work_area_name_list:
+      Function.delete_workspace(work_area_name)
+
+      # clear selected site
+    self.select_site_dropdown.selected_value = None
+
+    # clear work_area list and action_seq_no
+    Global.work_area = {}
+    Global.action_seq_no = {}
+
+    #components = self.get_components()
+    #print(f"{len(components)} components after deleting all workspaces")
+    pass
+
+  def username_dropdown_change(self, **event_args):
+    """ This Function is called when the users has selected the logout option of the username dropdown """
+    """This method is called when an item is selected"""
+    # This dropdown change means that the user selected for a Logout
+    # as the only selection available in the dropdown list is Logout
+    # But we just check in case it is not ;)
+    if self.username_dropdown.selected_value == "Logout":
+      self.logout_click()
+
+    pass

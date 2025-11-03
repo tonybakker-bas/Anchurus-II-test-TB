@@ -25,7 +25,7 @@ user_action_list = ["Select Site",separator,
                     "List Interpretations","Add Interpretation"
                    ]
 # action_list_not_implemented should always contain the separator
-action_list_not_implemented = [separator,"Bulk Upload Finds","Draw","List Areas","Add Area"]
+action_list_not_implemented = [separator,"Bulk Upload Finds","Draw","List Areas","Add Area","Add Anomaly"]
 # the list_action_list is a list of the tables in DB (not yet sites)
 list_action_dropdown = ["Contexts","Finds","Anomolies","Interpretations"]
 insert_action_dropdown = ["Context","Find","Anomoly","Interpretation"]
@@ -104,6 +104,8 @@ admin_user_initials = ""
 area_items = {}
 area_id = None
 area_options = {}
+dummy_btn1 = {}
+dummy_btn2 = {}
 context_id = None
 context_items = {}
 context_options = {}

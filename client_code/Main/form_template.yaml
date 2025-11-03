@@ -64,8 +64,10 @@ components:
         spacing:
           margin: ['8', null, null, null]
           padding: ['0', null, '0', null]
+        tooltip: role
       type: Label
-    - layout_properties: {}
+    - event_bindings: {click: logout_click}
+      layout_properties: {}
       name: logout
       properties:
         foreground: theme:On Primary
