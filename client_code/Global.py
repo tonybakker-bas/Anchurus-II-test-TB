@@ -33,7 +33,7 @@ file_action_dropdown = ["Import",separator,"Save"]
 view_action_dropdown = []
 help_action_dropdown = []
 admin_action_dropdown = ["List Users","List Sites","Add Site"]
-import_table_name_dropdown = ["context","find"]
+import_action_dropdown = ["context","find"]
 #
 #
 action_forms_with_refresh = ["TableList","RowForm","ListUsers","ListSites","ListContexts","ListFinds","ListAreas","BulkUpload","Add Area","List Areas"]

@@ -120,7 +120,7 @@ components:
         properties:
           font_size: 13
           include_placeholder: true
-          items: [Table]
+          items: []
           placeholder: Import
           tooltip: import
         type: DropDown

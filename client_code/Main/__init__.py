@@ -56,8 +56,9 @@ class Main(MainTemplate):
     table_list = anvil.server.call("db_table_list")    
     Global.insert_action_dropdown = table_list
     Global.list_action_dropdown = table_list
-    Global.import_table_name_dropdown = table_list
-    # fill action menu options  
+    Global.import_action_dropdown = table_list
+    # fill action menu options
+    self.import_dropdown.items = Global.import_action_dropdown
     self.insert_dropdown.items = Global.insert_action_dropdown
     self.list_dropdown.items = Global.list_action_dropdown
     self.admin_dropdown.items = Global.admin_action_dropdown
@@ -510,6 +511,36 @@ class Main(MainTemplate):
     self.list_dropdown.selected_value = None
     pass
 
+  def import_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
+    """ This Function is called when the users selects an option form the Import dropdown"""
+    print("Import dropdown")
+    #Global.main_form = get_open_form()
+    # set action
+    Global.action = "Import Table"
+    #print("Import action - ",Global.action)
+    if Global.action not in Global.action_list_not_implemented:
+      # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
+      # for any action that has a Form defined create a new work_area
+      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown):
+        # if site is not yet selected alert user
+        alert(
+          content="Site has not been selected. Please select a site.",
+          title="Site selection warning",
+          large=True,
+          buttons=[("Ok", True)],
+        )
+      else:
+        self.create_new_work_area(Global.action)
+    else:
+      if Global.action != Global.separator:
+        alert("Action not yet implemented.")
+
+    # clear selected_value
+
+    self.import_dropdown.selected_value = None
+    pass
+    
   def help_dropdown_change(self, **event_args):
     """ This Function is called when the users selects an option form the Help dropdown"""
     """This method is called when an item is selected"""
@@ -535,35 +566,6 @@ class Main(MainTemplate):
     self.site_summary.selected_value = None
     pass
 
-  def import_dropdown_change(self, **event_args):
-    """This method is called when an item is selected"""
-    """ This Function is called when the users selects an option form the Import dropdown"""
-    print("Import dropdown")
-    #Global.main_form = get_open_form()
-    # make action to be "Add ..." 
-    Global.action = "Import Table"
-    #print("Import action - ",Global.action)
-    if Global.action not in Global.action_list_not_implemented:
-      # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
-      # for any action that has a Form defined create a new work_area
-      if Global.site_id is None and Global.action not in (Global.admin_action_dropdown):
-        # if site is not yet selected alert user
-        alert(
-          content="Site has not been selected. Please select a site.",
-          title="Site selection warning",
-          large=True,
-          buttons=[("Ok", True)],
-        )
-      else:
-        self.create_new_work_area(Global.action)
-    else:
-      if Global.action != Global.separator:
-        alert("Action not yet implemented.")
-
-    # clear selected_value
-
-    self.import_dropdown.selected_value = None
-    pass
 
   # Functions on the header for the work area
   def selection_change(self, **event_args):
