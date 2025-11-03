@@ -22,8 +22,14 @@ class ImportForm(ImportFormTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    self.Import_title.text = "Here you can import csv files for uploading to the Database. You can download a template csv file if needed."
-    self.select_table_name_dropdown.items = Global.import_table_name_dropdown
+    self.Import_title.text = "Here you can import csv files for importing to the Database. You can download a template csv file if needed."
+    #self.select_table_name_dropdown.items = Global.import_action_dropdown
+    Global.table_name = Global.action.split(" ")[1].rstrip("s").lower()
+    self.selected_table.text = "You have selected to import a csv file for the table: " + Global.table_name
+    Global.main_form.mb_left.visible = False
+    Global.main_form.mb_middle.visible = False
+    Global.main_form.
+
 
   def upload_file_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""

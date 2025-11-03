@@ -517,7 +517,7 @@ class Main(MainTemplate):
     print("Import dropdown")
     #Global.main_form = get_open_form()
     # set action
-    Global.action = "Import Table"
+    Global.action = "Import " + str(self.import_dropdown.selected_value).capitalize()
     #print("Import action - ",Global.action)
     if Global.action not in Global.action_list_not_implemented:
       # Action has been selected, create button in work area list, and make this work area in focus (highlight button)
@@ -531,6 +531,7 @@ class Main(MainTemplate):
           buttons=[("Ok", True)],
         )
       else:
+        print("Import action: ",Global.action)
         self.create_new_work_area(Global.action)
     else:
       if Global.action != Global.separator:

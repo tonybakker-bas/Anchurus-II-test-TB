@@ -65,7 +65,7 @@ def create_work_space(type,data_list):
     work_space = TableList("","find",data_list,type,page_info)
     #work_space = ListFinds("")
   #
-  elif type == "Import Table":
+  elif action == "import":
     work_space = ImportForm()
   #
   elif type == "Add Row":

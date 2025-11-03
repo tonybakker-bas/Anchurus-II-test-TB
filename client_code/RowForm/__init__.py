@@ -41,10 +41,8 @@ class RowForm(RowFormTemplate):
       Global.work_area[Global.current_work_area_name]["data_list"] = data_list
     else:
       # set table_name to one of "context", "find", from the action Global variable
-      if Global.action in ["List Contexts","List Finds"]:
-        Global.table_name = Global.action.split(" ")[1][:-1].lower()
-      else:
-        Global.table_name = Global.action.split(" ")[1].lower()
+      Global.table_name = Global.action.split(" ")[1].rstrip("s").lower()
+
     self.validator = Validator()
     # we need to find out which table we are dealing with
     self.title.text = "This form is to " + Global.action
