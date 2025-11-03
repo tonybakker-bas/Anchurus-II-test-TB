@@ -212,7 +212,7 @@ class Main(MainTemplate):
     # Set Global.table_name linked with work_area_type
     Global.table_name = Global.work_area[work_area_name]["action"].split(" ")[1].lower()
 
-    # create the button for the work_area in the navigation panel, add it to the work_area_name_list and set event handler for when clicked
+    # create the button for the work_area in the navigation panel, add it to the work_area_list Column Panel and set event handler for when clicked
     Global.work_area[work_area_name]["button"] = Button(text=work_area_name,align="left")
     self.work_area_list.add_component(Global.work_area[work_area_name]["button"])
     Global.work_area[work_area_name]["button"].add_event_handler('click', self.work_area_click)
@@ -220,7 +220,7 @@ class Main(MainTemplate):
     # add the table_items to the work_area_name
     Global.work_area[work_area_name]["data_list"] = [Global.table_items]
     
-    # create a new work_space and add this to the work_area_list      
+    # create a new work_space and add this to the work_area_list and add component to main     
     print("Main create_new_work_area: ",self)
     Global.work_area[work_area_name]["form"] = Function.create_work_space(action,Global.table_items)
     #print(Global.work_area[work_area_name]["form"])

@@ -230,7 +230,7 @@ color: %color:On Primary Container%;
   left: 0;
   flex-shrink: 0;
   min-width: 240px;
-  max-width: 600px; /* orig 400px */
+  max-width: 400px; 
 }
 
 .nav-shield {
@@ -468,7 +468,7 @@ color: %color:On Primary Container%;
 .app-bar-nav > .anvil-container {
   margin: 0;
   padding: 0;
-  min-height: 100px; /* orig 56px */
+  min-height: 56px;
 }
 
 .anvil-highlight .app-bar-nav > .anvil-container:not(.has-components):not(a) {
@@ -1073,6 +1073,10 @@ div.plot-container.plotly svg.main-svg {
     --anvil-spinner-bg: %color:Surface Variant%;
 }
 
+/* 
+Changes to the standard Theme.css are below
+*/
+
 /* make all even rows a grey backgroud in data grid */
 .anvil-data-grid .anvil-data-row-panel:nth-child(even) {
     background-color: #EEEEEE;
@@ -1085,10 +1089,11 @@ div.plot-container.plotly svg.main-svg {
   border-right: 1px solid #ccc;
 }
 
+/*
 .nav-title {
   height: 300px !important; /* Adjust the value as needed */
 }
-
+*/
 
 /* Footer bar */
 .footer {
@@ -1139,7 +1144,8 @@ footer a, .footer .anvil-component {
 }
 
 /* Target all data grid column headers */
-.anvil-data-grid .data-grid-col-header {
-  background-color: ##348c8c; /* Example: Red background */
-  color: #ffffff; /* Example: White text color */
+/* .anvil-data-grid .data-grid-col-header { */
+.anvil-data-grid .auto-grid-header {
+  background-color: #348c8c; /* Example: background */
+  /* color: #ffffff; /* Example: White text color */
 }
