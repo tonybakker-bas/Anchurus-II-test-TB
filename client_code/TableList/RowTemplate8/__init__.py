@@ -51,7 +51,7 @@ class RowTemplate8(RowTemplate8Template):
 
     # Any code you write here will run before the form opens.
     # create the view and edit button for the row and set button click event handlers
-    self.btn_select = CheckBox(text='',align='left',tooltip="select row",background="#348c8c")
+    self.btn_select = CheckBox(text='',align='left',tooltip="select row")
     self.btn_select.set_event_handler('change',self.btn_select_click)
     self.item['select'] = self.btn_select
     self.spacing_above = 'none'

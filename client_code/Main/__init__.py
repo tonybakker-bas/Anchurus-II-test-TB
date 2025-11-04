@@ -42,9 +42,10 @@ class Main(MainTemplate):
     Global.help_page.visible = False
 
     # set Main title field with name of organisation (defined in Anchurus-2.cgf file from server)
-    Global.title_label = self.title
-    self.title.text = Global.title + Global.status + Global.selected_site
-    
+    #Global.title_label = self.title
+    #self.title.text = Global.title + Global.status + Global.selected_site
+    self.app_title.text = Global.system
+    self.organisation.text = Global.organisation
     # add the about_us_text (taken from Anchurus-2.cfg file) to the about_us_box text field by adding a Rich Text Component
     rt = RichText(content=Global.about_us_text,format="restricted_html")
     self.about_us_box.add_component(rt)
@@ -425,7 +426,7 @@ class Main(MainTemplate):
       Global.site_id = Global.site_options[self.select_site_dropdown.selected_value]
       Global.selected_site = ": " + Global.site_name
       #Global.title_label.text = Global.title + Global.status + Global.selected_site
-      Global.title_label.text = Global.title
+      #Global.title_label.text = Global.title
       #Global.header_site_name.text = Global.site_name
       db_summary = anvil.server.call("db_get_summary")
       self.site_summary.visible = True

@@ -2,7 +2,7 @@
  This CSS implements the Material Design 3 look and feel for Anvil apps.
  **/
 
-/* Stop panel-cols cutting off drop shadows */
+/* Stop panel-cols cutting of drop shadows */
 .anvil-panel-col {
   padding-bottom: 10px;
   margin-bottom: -10px;
@@ -468,6 +468,7 @@ color: %color:On Primary Container%;
 .app-bar-nav > .anvil-container {
   margin: 0;
   padding: 0;
+  width: 92vw; /* added TB */
   min-height: 56px;
 }
 
@@ -475,6 +476,7 @@ color: %color:On Primary Container%;
   outline: 1px dotted #fff;
   margin-top: 8px;
   min-height: 40px;
+  min-width: 600px;
   padding: 5px 8px;
 }
 
@@ -944,6 +946,7 @@ textarea.anvil-component.anvil-role-input-error, input.anvil-component.anvil-rol
   width: 15px;
   height: 15px;
   border-radius: 1px;
+  border: 1px solid %color:On Surface Variant%; /* Add a border for better visibility */
   background-color: %color:Surface Variant%; 
 /*   color: %color:On Surface Variant%; */
 }
@@ -1088,12 +1091,6 @@ Changes to the standard Theme.css are below
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
-
-/*
-.nav-title {
-  height: 300px !important; /* Adjust the value as needed */
-}
-*/
 
 /* Footer bar */
 .footer {
